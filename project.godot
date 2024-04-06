@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="2D Mining"
-run/main_scene="res://game.tscn"
+run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+DataManager="*res://scripts/data_manager.gd"
 
 [editor]
 

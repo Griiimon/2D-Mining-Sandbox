@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://d4mufsk5s6ksm"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_ucsv2"]
-[ext_resource type="PackedScene" uid="uid://b7kuvqlnmagen" path="res://block_marker.tscn" id="2_wdobs"]
-[ext_resource type="PackedScene" uid="uid://bhvbs1jyh6255" path="res://block_break_animation.tscn" id="3_60ons"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_ucsv2"]
+[ext_resource type="PackedScene" uid="uid://b7kuvqlnmagen" path="res://scenes/block_marker.tscn" id="2_wdobs"]
+[ext_resource type="PackedScene" uid="uid://bhvbs1jyh6255" path="res://scenes/block_break_animation.tscn" id="3_60ons"]
 
 [sub_resource type="Curve" id="Curve_sr264"]
 _data = [Vector2(0, 0.501887), 0.0, 0.0, 0, 0, Vector2(0.496429, 1), 0.0, 0.0, 0, 0, Vector2(0.989286, 0.501887), 0.0, 0.0, 0, 0]
@@ -70,6 +70,21 @@ _data = {
 "RESET": SubResource("Animation_6y2c6")
 }
 
+[sub_resource type="Animation" id="Animation_1dm2i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Hip:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_v8cep"]
 resource_name = "Walk"
 length = 0.5
@@ -87,21 +102,6 @@ tracks/0/keys = {
 "values": [0.0, 0.380482, -0.349066]
 }
 
-[sub_resource type="Animation" id="Animation_1dm2i"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Hip:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ve3ko"]
 _data = {
 "RESET": SubResource("Animation_1dm2i"),
@@ -113,6 +113,7 @@ radius = 15.0
 height = 75.15
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_ucsv2")
 speed = 100.0
 jump_velocity = -300.0
@@ -159,7 +160,7 @@ position = Vector2(-8, 8)
 
 [node name="Shoe" type="Polygon2D" parent="Body/Hip"]
 position = Vector2(13, -21)
-color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+color = Color(0.152941, 0.152941, 0.152941, 1)
 polygon = PackedVector2Array(-16, 32, -16, 48, 8, 48, 8, 40, -5, 37, -8, 32)
 
 [node name="Look Pivot" type="Node2D" parent="Body"]

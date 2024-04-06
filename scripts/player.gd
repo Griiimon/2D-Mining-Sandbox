@@ -22,7 +22,9 @@ extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+# rectangle to mark the block we are currently looking at
 var block_marker: Sprite2D
+# overlay to indicate the breaking progress of the currently mined block
 var block_breaker: AnimatedSprite2D
 
 var is_mining: bool= false
