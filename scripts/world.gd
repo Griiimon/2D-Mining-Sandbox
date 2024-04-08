@@ -56,9 +56,12 @@ func break_block(tile_pos: Vector2i):
 	var block_id: int= get_block_id(tile_pos)
 	if block_id >= 0:
 		var block: Block= DataManager.blocks[block_id]
+		var world_pos: Vector2= map_to_local(tile_pos)
 		if block.drop:
-			spawn_item(block.drop, map_to_local(tile_pos))
+			spawn_item(block.drop, world_pos)
 		set_cell(0, tile_pos, -1)
+
+		Effects.spawn_particle_system(world_pos, MyParticleSystem.ParticleSettings.new(20, 3, block.particle_color, 1, 1, 2, true, 50, 100, 500, Vector2.UP, 90, true, 0.5, 0))
 
 
 func spawn_item(item: Item, pos: Vector2)-> WorldItem:

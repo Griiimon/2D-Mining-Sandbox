@@ -2,6 +2,8 @@
 # v0.2           #
 ##################
 
+- block break particle effect
+- custom particle system
 - inventory and hotbar
 - drop hand item ( Q )
 - tags

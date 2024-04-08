@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DataManager="*res://scripts/data_manager.gd"
+Effects="*res://scripts/effects.gd"
 
 [editor]
 

@@ -11,3 +11,5 @@ texture = ExtResource("3_dle50")
 drop = ExtResource("1_yea73")
 hardness = 1.0
 has_collision = true
+tags = Array[Resource("res://scripts/tag.gd")]([])
+particle_color = Color(0.337255, 0.337255, 0.337255, 1)

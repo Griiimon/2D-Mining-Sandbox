@@ -7,6 +7,7 @@ extends Resource
 @export var hardness: float= 0.5
 @export var has_collision: bool= true
 @export var tags: Array[Tag]
+@export var particle_color: Color
 
 
 func has_tag(tag_name: String)-> bool:
