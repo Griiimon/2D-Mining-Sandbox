@@ -2,6 +2,7 @@
 # v0.2           #
 ##################
 
+- pull items towards player
 - block break particle effect
 - custom particle system
 - inventory and hotbar

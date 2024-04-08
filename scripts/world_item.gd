@@ -3,11 +3,15 @@ extends Area2D
 
 @export var item_gravity: float= 100
 @export var bounce: float= 20
+@export var pull_force: float= 10
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var shape_cast: ShapeCast2D = $ShapeCast2D
 
 @onready var pickup_cooldown = $"Pickup Cooldown"
+
+@onready var magnet_range = $"Magnet Range"
+
 
 var item: Item:
 	set(_item):
@@ -25,8 +29,23 @@ var velocity: Vector2
 
 
 func _physics_process(delta):
+	var being_pulled:= false
+	
+	for body in magnet_range.get_overlapping_bodies():
+		assert(body is Player)
+		
+		if not pickup_cooldown.is_stopped():
+			continue
+
+		var player: Player= body
+		if player.can_pickup(item):
+			velocity+= (player.global_position - global_position).normalized() * pull_force
+			being_pulled= true
+
+
 	if not shape_cast.is_colliding():
-		velocity.y+= item_gravity * delta
+		if not being_pulled:
+			velocity.y+= item_gravity * delta
 	else:
 		var normal:= Vector2.ZERO
 		
@@ -65,3 +84,5 @@ func _on_pickup_cooldown_timeout():
 		_on_body_entered(body)
 		if not is_instance_valid(self) or is_queued_for_deletion():
 			break
+
+

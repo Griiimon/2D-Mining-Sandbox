@@ -1,5 +1,3 @@
-pull world items towards player
-
 tilemap foreground layer (for water, add water tile to foreground layer in addition to bg layer)
 
 throw dynamite
