@@ -1,0 +1,16 @@
+##################
+# v0.2           #
+##################
+
+- inventory and hotbar
+- drop hand item ( Q )
+- tags
+- pick up WorldItems
+- modular hand items
+- WASD controls
+
+##################
+# v0.1 (classic) #
+##################
+
+- basic movement and mining mechanics

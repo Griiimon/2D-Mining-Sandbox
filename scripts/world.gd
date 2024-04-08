@@ -50,7 +50,6 @@ func get_block_hardness(tile_pos: Vector2i)-> float:
 	if not block:
 		return 0.0
 	return block.hardness
-	
 
 
 func break_block(tile_pos: Vector2i):
@@ -58,13 +57,19 @@ func break_block(tile_pos: Vector2i):
 	if block_id >= 0:
 		var block: Block= DataManager.blocks[block_id]
 		if block.drop:
-			spawn_item(map_to_local(tile_pos), block.drop)
+			spawn_item(block.drop, map_to_local(tile_pos))
 		set_cell(0, tile_pos, -1)
 
 
-func spawn_item(pos: Vector2i, item: Item):
+func spawn_item(item: Item, pos: Vector2)-> WorldItem:
 	var world_item: WorldItem= world_item_scene.instantiate()
 	world_item.position= pos
 	add_child(world_item)
 	
 	world_item.item= item
+	return world_item
+
+
+func throw_item(item: Item, pos: Vector2, velocity: Vector2):
+	spawn_item(item, pos).velocity= velocity
+	

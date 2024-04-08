@@ -6,7 +6,8 @@
 
 [resource]
 script = ExtResource("1_2kmga")
-name = "Stone"
+name = "stone"
 texture = ExtResource("3_dle50")
 drop = ExtResource("1_yea73")
 hardness = 1.0
+has_collision = true

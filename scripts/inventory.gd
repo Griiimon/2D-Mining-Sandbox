@@ -1,0 +1,49 @@
+class_name Inventory
+
+const SIZE= 9
+
+
+var items: Array[InventoryItem]
+
+var update_callback: Callable
+
+func _init():
+	for i in SIZE:
+		items.append(InventoryItem.new())
+
+
+func add_item(item: Item, amount: int= 1):
+	if item.can_stack:
+		for it in items:
+			if it.item == item:
+				it.amount+= amount
+				updated()
+				return
+	
+	var slot_idx: int= find_empty_slot()
+	
+	if slot_idx >= 0:
+		items[slot_idx].item= item
+		items[slot_idx].amount= amount
+		updated()
+		return
+	
+	assert(false, "trying to add item to full inventory")
+
+
+func find_empty_slot()-> int:
+	for i in SIZE:
+		if not items[i].item:
+			return i
+	return -1
+
+
+func clear_slot(idx: int):
+	items[idx].item= null
+	items[idx].amount= 0
+	updated()
+
+
+func updated():
+	if update_callback:
+		update_callback.call()
