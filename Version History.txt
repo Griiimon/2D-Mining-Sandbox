@@ -2,6 +2,11 @@
 # v0.2           #
 ##################
 
+- custom interaction hints
+- mouse wheel support
+- test game scene added
+- create tileset in editor via tool script
+- follow camera
 - coal, iron blocks/ores/ingot
 - furnace + recipes
 - base block entity
