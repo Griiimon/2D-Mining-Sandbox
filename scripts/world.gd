@@ -37,6 +37,13 @@ func create_tileset():
 			tile_data.set_collision_polygon_points(0, 0, collision_polygon)
 
 
+func _tile_data_runtime_update(layer, coords, tile_data):
+	pass
+
+
+func _use_tile_data_runtime_update(layer, coords):
+	return Engine.is_editor_hint()
+
 func _physics_process(delta):
 	if Engine.is_editor_hint(): return
 	
