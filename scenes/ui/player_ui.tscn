@@ -7,7 +7,7 @@
 bg_color = Color(0.34902, 0.34902, 0.34902, 0.423529)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84786"]
-bg_color = Color(0.576471, 0.576471, 0.576471, 1)
+bg_color = Color(0.317647, 0.513726, 0.584314, 0.827451)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -68,9 +68,9 @@ grow_horizontal = 2
 
 [node name="Interaction Hint" type="Label" parent="CenterContainer Interaction Hint"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_84786")
-text = "a"
 label_settings = SubResource("LabelSettings_cj0bk")
 horizontal_alignment = 1
 vertical_alignment = 1
