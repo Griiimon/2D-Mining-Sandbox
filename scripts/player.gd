@@ -196,9 +196,22 @@ func pickup(item: Item):
 
 
 func add_item_to_inventory(item: Item):
-	inventory.add_item(item)
+	inventory.add_new_item(item)
 
 	check_hotbar_hand_item()
+
+
+func get_current_inventory_item()-> InventoryItem:
+	return inventory.items[get_current_inventory_slot()]
+
+
+func get_current_inventory_slot()-> int:
+	return ui.current_hotbar_slot_idx
+
+
+func is_current_inventory_slot_empty()-> bool:
+	return get_current_inventory_item().item == null
+
 
 func update_hotbar():
 	ui.update_hotbar(inventory)
@@ -218,8 +231,9 @@ func _on_player_ui_hotbar_slot_changed():
 	unequip_hand_item()
 	check_hotbar_hand_item()
 
+
 func check_hotbar_hand_item():
-	var item: Item= inventory.items[ui.current_hotbar_slot_idx].item
+	var item: Item= get_current_inventory_item().item
 	if item and item is HandItem:
 		equip_hand_item(item)
 		
