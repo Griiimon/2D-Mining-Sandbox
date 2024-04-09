@@ -1,9 +1,15 @@
+@tool
 class_name World
 extends TileMap
 
 const TILE_SIZE= 32
 const ENTITY_TICKS= 60
 
+@export var generate_tile_set: bool= false:
+	set(b):
+		if b:
+			create_tileset()
+			generate_tile_set= false
 
 @export var world_item_scene: PackedScene
 
@@ -11,7 +17,7 @@ const ENTITY_TICKS= 60
 var tick_entities: Array[BaseBlockEntity]
 
 
-func _ready():
+func create_tileset():
 	# creates a tile-set automatically from block textures
 	var collision_polygon:= [Vector2(0, 0), Vector2(TILE_SIZE, 0), Vector2(TILE_SIZE, TILE_SIZE),  Vector2(0, TILE_SIZE)]
 
@@ -32,6 +38,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if Engine.is_editor_hint(): return
+	
 	for entity in tick_entities:
 		entity.tick(self)
 
