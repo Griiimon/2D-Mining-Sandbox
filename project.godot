@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 DataManager="*res://scripts/data_manager.gd"
 Effects="*res://scripts/effects.gd"
+NodeDebugger="*res://scripts/utils/node_debugger.gd"
 
 [editor]
 
@@ -66,6 +67,7 @@ next_hotbar_item={
 
 2d_physics/layer_1="Terrain"
 2d_physics/layer_2="Player"
+2d_physics/layer_5="Interaction"
 
 [rendering]
 
