@@ -23,7 +23,7 @@ NodeDebugger="*res://scripts/utils/node_debugger.gd"
 
 [editor]
 
-movie_writer/movie_file="C:/_CODING/godot/2D Mining/gameplay.avi"
+movie_writer/movie_file="C:/_CODING/godot/2D-Mining/gameplay.avi"
 movie_writer/fps=30
 
 [input]
