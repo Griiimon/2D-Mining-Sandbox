@@ -10,6 +10,7 @@ extends Resource
 @export var particle_color: Color
 
 
+
 func has_tag(tag_name: String)-> bool:
 	for tag in tags:
 		if tag.name == tag_name:
