@@ -2,11 +2,16 @@
 # v0.2           #
 ##################
 
+- coal, iron blocks/ores/ingot
+- furnace + recipes
+- base block entity
+- debug component
+- interaction target component
 - pull items towards player
 - block break particle effect
 - custom particle system
-- inventory and hotbar
-- drop hand item ( Q )
+- inventory (= hotbar)
+- drop hand item ( X )
 - tags
 - pick up WorldItems
 - modular hand items
