@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_26ueg"]
 [ext_resource type="Resource" uid="uid://f3gfebet4jby" path="res://resources/tags/ores.tres" id="2_rdmc6"]
-[ext_resource type="Texture2D" uid="uid://7vys5sdr1ckv" path="res://textures/items/coal.png" id="2_s8po0"]
+[ext_resource type="Texture2D" uid="uid://beccfyj6t28ha" path="res://textures/items/iron.png" id="3_w5rdj"]
 
 [resource]
 script = ExtResource("1_26ueg")
 name = "iron"
-texture = ExtResource("2_s8po0")
+texture = ExtResource("3_w5rdj")
 can_stack = true
 tags = Array[Resource("res://scripts/tag.gd")]([ExtResource("2_rdmc6")])
 fuel_value = 0.0
