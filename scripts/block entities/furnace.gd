@@ -31,7 +31,7 @@ func tick(world: World):
 			return
 			
 	if ore_type and ore_amount > 0:
-		var recipe: FurnaceRecipe= DataManager.find_furnace_recipe_for(ore_type)
+		var recipe: FurnaceRecipe= DataManager.furnace_recipes[ore_type]
 		
 		if fuel < recipe.required_fuel:
 			return
@@ -56,7 +56,7 @@ func interact(player: Player):
 			fuel+= inv_item.item.fuel_value
 			player.inventory.sub_item(inv_item)
 		else:
-			var recipe: FurnaceRecipe= DataManager.find_furnace_recipe_for(inv_item.item)
+			var recipe: FurnaceRecipe= DataManager.furnace_recipes[inv_item.item]
 			if recipe:
 				if ore_type == null or ore_type == inv_item.item:
 					NodeDebugger.msg(self, "adding ore")
