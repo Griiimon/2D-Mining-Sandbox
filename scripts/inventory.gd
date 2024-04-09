@@ -12,7 +12,20 @@ func _init():
 		items.append(InventoryItem.new())
 
 
-func add_item(item: Item, amount: int= 1):
+func add_item(inv_item: InventoryItem, amount: int= 1):
+	inv_item.amount+= amount
+	updated()
+
+
+func sub_item(inv_item: InventoryItem, amount: int= 1):
+	assert(inv_item.amount >= amount)
+	inv_item.amount-= amount
+	if inv_item.amount == 0:
+		inv_item.item= null
+	updated()
+
+
+func add_new_item(item: Item, amount: int= 1):
 	if item.can_stack:
 		for it in items:
 			if it.item == item:

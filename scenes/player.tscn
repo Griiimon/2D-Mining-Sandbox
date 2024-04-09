@@ -114,6 +114,7 @@ height = 75.15
 bg_color = Color(0.6, 0.6, 0.6, 0.219608)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("body", "look_pivot", "ray_cast", "main_hand")]
+z_index = 10
 collision_layer = 2
 script = ExtResource("1_ucsv2")
 speed = 100.0
