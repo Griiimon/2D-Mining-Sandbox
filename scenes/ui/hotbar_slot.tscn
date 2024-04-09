@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bfleajb856jir" path="res://textures/ui/hotbar_selection.png" id="2_3eqn3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h18t"]
-bg_color = Color(0.682353, 0.580392, 0.486275, 0.227451)
+bg_color = Color(0.752941, 0.654902, 0.564706, 0.529412)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3

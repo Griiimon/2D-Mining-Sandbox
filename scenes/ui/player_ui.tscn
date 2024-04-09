@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d3a35hbblyx6o" path="res://scenes/ui/hotbar_slot.tscn" id="2_8gj2r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82jp2"]
-bg_color = Color(0.6, 0.6, 0.6, 0.219608)
+bg_color = Color(0.34902, 0.34902, 0.34902, 0.423529)
 
 [node name="Player UI" type="CanvasLayer"]
 script = ExtResource("1_cefh8")
