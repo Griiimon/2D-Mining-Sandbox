@@ -44,6 +44,12 @@ func add_new_item(item: Item, amount: int= 1):
 	assert(false, "trying to add item to full inventory")
 
 
+func add_item_to_slot(slot_idx: int, item: Item, amount: int= 1):
+	items[slot_idx].item= item
+	items[slot_idx].amount= amount
+	updated()
+
+
 func find_empty_slot()-> int:
 	for i in SIZE:
 		if not items[i].item:
