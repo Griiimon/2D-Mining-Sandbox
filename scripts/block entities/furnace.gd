@@ -12,7 +12,12 @@ var ore_amount: int
 var product_type: Item
 var product_amount: int
 
-var is_burning: bool
+var is_burning: bool= false:
+	set(b):
+		if is_burning != b:
+			is_burning= b
+			sprite.texture= working_texture if is_burning else default_texture
+
 var ticks_to_finish: float
 
 
@@ -25,6 +30,7 @@ func tick(world: World):
 	if is_burning:
 		ticks_to_finish-= 1
 		if ticks_to_finish == 0:
+			NodeDebugger.msg(self, "product finished")
 			product_amount+= 1
 			is_burning= false
 		else:
@@ -40,13 +46,17 @@ func tick(world: World):
 		
 		product_type= recipe.product
 		fuel-= recipe.required_fuel
+		ore_amount-= 1
 		ticks_to_finish= recipe.duration * World.ENTITY_TICKS
 		is_burning= true
+	
+		NodeDebugger.msg(self, "start recipe " + ore_type.name)
 
 
 func interact(player: Player):
 	if player.is_current_inventory_slot_empty() or player.get_current_inventory_item().item == product_type:
 		if product_amount > 0:
+			NodeDebugger.msg(self, "take product")
 			player.inventory.add_item_to_slot(player.get_current_inventory_slot(), product_type)
 			product_amount-= 1
 	else:
@@ -60,6 +70,7 @@ func interact(player: Player):
 			if recipe:
 				if ore_type == null or ore_type == inv_item.item:
 					NodeDebugger.msg(self, "adding ore")
+					ore_type= inv_item.item
 					ore_amount+= 1
 					player.inventory.sub_item(inv_item)
 
