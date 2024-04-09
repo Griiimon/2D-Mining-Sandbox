@@ -53,3 +53,4 @@ func update_hotbar(inventory: Inventory):
 
 func set_interaction_hint(text: String= ""):
 	interaction_hint.text= text
+	interaction_hint.visible= not text.is_empty()

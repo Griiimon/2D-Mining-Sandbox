@@ -1,10 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4uyq2o7u54dp"]
+[gd_scene load_steps=6 format=3 uid="uid://b4uyq2o7u54dp"]
 
 [ext_resource type="Script" path="res://scripts/ui/player_ui.gd" id="1_cefh8"]
 [ext_resource type="PackedScene" uid="uid://d3a35hbblyx6o" path="res://scenes/ui/hotbar_slot.tscn" id="2_8gj2r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82jp2"]
 bg_color = Color(0.34902, 0.34902, 0.34902, 0.423529)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84786"]
+bg_color = Color(0.576471, 0.576471, 0.576471, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_cj0bk"]
+font_size = 26
+font_color = Color(0.662745, 0.317647, 0.352941, 1)
 
 [node name="Player UI" type="CanvasLayer"]
 script = ExtResource("1_cefh8")
@@ -42,14 +57,20 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="CenterContainer Interaction Hint" type="CenterContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_right = 5.0
+offset_bottom = 23.0
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Interaction Hint" type="Label" parent="CenterContainer Interaction Hint"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_84786")
+text = "a"
+label_settings = SubResource("LabelSettings_cj0bk")
 horizontal_alignment = 1
 vertical_alignment = 1
