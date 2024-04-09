@@ -30,6 +30,16 @@ func _process(_delta):
 		current_hotbar_slot_idx+= 1
 
 
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.pressed:
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				current_hotbar_slot_idx+= 1
+			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				current_hotbar_slot_idx-= 1
+				
+
+
 func select_current_hotbar_slot(enable: bool= true):
 	var slot: HotbarSlot= hbox_hotbar.get_child(current_hotbar_slot_idx)
 	slot.selected= enable
