@@ -5,5 +5,7 @@
 
 [resource]
 script = ExtResource("1_v8rf4")
-name = "Stone"
+name = "stone"
 texture = ExtResource("2_yxcum")
+can_stack = true
+fuel_value = 0.0

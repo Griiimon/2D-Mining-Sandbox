@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Block" load_steps=5 format=3 uid="uid://bkhtok35reseh"]
+
+[ext_resource type="Resource" uid="uid://nf0hhc0e33eu" path="res://resources/items/coal.tres" id="1_ef0kh"]
+[ext_resource type="Script" path="res://scripts/block.gd" id="2_cced1"]
+[ext_resource type="Resource" uid="uid://sq7bx4hrpblf" path="res://resources/tags/ore_blocks.tres" id="3_gy7hy"]
+[ext_resource type="Texture2D" uid="uid://cscruo81ch07t" path="res://textures/blocks/coal.png" id="3_m6rw7"]
+
+[resource]
+script = ExtResource("2_cced1")
+name = "coal"
+texture = ExtResource("3_m6rw7")
+drop = ExtResource("1_ef0kh")
+hardness = 1.5
+has_collision = true
+tags = Array[Resource("res://scripts/tag.gd")]([ExtResource("3_gy7hy")])
+particle_color = Color(0.0588235, 0.0588235, 0.0588235, 1)

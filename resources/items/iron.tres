@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://btas3fdf5k1ee"]
+
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_26ueg"]
+[ext_resource type="Resource" uid="uid://f3gfebet4jby" path="res://resources/tags/ores.tres" id="2_rdmc6"]
+[ext_resource type="Texture2D" uid="uid://7vys5sdr1ckv" path="res://textures/items/coal.png" id="2_s8po0"]
+
+[resource]
+script = ExtResource("1_26ueg")
+name = "iron"
+texture = ExtResource("2_s8po0")
+can_stack = true
+tags = Array[Resource("res://scripts/tag.gd")]([ExtResource("2_rdmc6")])
+fuel_value = 0.0
