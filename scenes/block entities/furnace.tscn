@@ -1,0 +1,18 @@
+[gd_scene load_steps=7 format=3 uid="uid://bonrl4spbueh8"]
+
+[ext_resource type="PackedScene" uid="uid://crokjugu1888g" path="res://scenes/block entities/base_block_entity.tscn" id="1_vbgah"]
+[ext_resource type="Script" path="res://scripts/block entities/furnace.gd" id="2_i6m4i"]
+[ext_resource type="Texture2D" uid="uid://bk7pjs50dqwso" path="res://textures/block entities/furnace.png" id="3_uaepq"]
+[ext_resource type="Texture2D" uid="uid://cja4g0evfsll1" path="res://textures/block entities/furnace_working.png" id="4_7nije"]
+[ext_resource type="PackedScene" uid="uid://uq60ihcsuow5" path="res://scenes/interaction_target.tscn" id="5_hfabe"]
+[ext_resource type="PackedScene" uid="uid://vgl3mtr5d37f" path="res://scenes/utils/debug_component.tscn" id="6_1ku78"]
+
+[node name="Furnace" instance=ExtResource("1_vbgah")]
+script = ExtResource("2_i6m4i")
+default_texture = ExtResource("3_uaepq")
+working_texture = ExtResource("4_7nije")
+size = Vector2i(2, 2)
+
+[node name="Interaction Target" parent="." index="2" instance=ExtResource("5_hfabe")]
+
+[node name="Debug Component" parent="." index="3" instance=ExtResource("6_1ku78")]
