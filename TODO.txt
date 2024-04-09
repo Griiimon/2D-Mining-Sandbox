@@ -1,3 +1,16 @@
+add cheats
+
+rename game scene to test_game
+
+mouse scroll hotbar selection
+
+tool script to create tileset sources in editor
+
+terrain generator ( per block: noise, threshold, seed offset, height range, priority )
+	virtual air block for caves (is_air= true)
+	chunks, not threaded
+	create_empty player spawn area
+
 tilemap foreground layer (for water, add water tile to foreground layer in addition to bg layer)
 
 throw dynamite
@@ -8,14 +21,7 @@ basePlayer class and extend with default character "Classico"
 
 character selection screen
 
-terrain generator ( per block: noise, threshold, seed offset, height range, priority )
-	virtual air block for caves (is_air= true)
-	chunks, not threaded
-	create_empty player spawn area
-
-
-furnace ( multi-block sprite with interaction component )
+health bar ( auto regenerate ), fall damage
 
 bat ( Creature, neutral )
 
-health bar ( auto regenerate )
