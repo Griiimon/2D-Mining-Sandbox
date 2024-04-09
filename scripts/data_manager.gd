@@ -25,3 +25,9 @@ static func load_resource_folder_into_dictionary(folder: String, dict: Dictionar
 	for file in dir.get_files():
 		var item= load(folder + file)
 		dict[item.key]= item
+
+
+func find_furnace_recipe_for(ore: Item)-> FurnaceRecipe:
+	if not furnace_recipes.has(ore):
+		return null
+	return furnace_recipes[ore]
