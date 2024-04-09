@@ -1,10 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://d4mufsk5s6ksm"]
+[gd_scene load_steps=13 format=3 uid="uid://d4mufsk5s6ksm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ucsv2"]
 [ext_resource type="PackedScene" uid="uid://b7kuvqlnmagen" path="res://scenes/block_marker.tscn" id="2_wdobs"]
 [ext_resource type="PackedScene" uid="uid://bhvbs1jyh6255" path="res://scenes/block_break_animation.tscn" id="3_60ons"]
-[ext_resource type="PackedScene" uid="uid://d3a35hbblyx6o" path="res://scenes/ui/hotbar_slot.tscn" id="4_dychl"]
-[ext_resource type="Script" path="res://scripts/ui/player_ui.gd" id="4_oj38c"]
+[ext_resource type="PackedScene" uid="uid://b4uyq2o7u54dp" path="res://scenes/ui/player_ui.tscn" id="4_8hau5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wumd6"]
 size = Vector2(40, 60)
@@ -113,9 +112,6 @@ _data = {
 radius = 15.0
 height = 75.15
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82jp2"]
-bg_color = Color(0.6, 0.6, 0.6, 0.219608)
-
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("body", "look_pivot", "ray_cast", "main_hand", "interaction_area")]
 z_index = 10
 collision_layer = 2
@@ -210,52 +206,4 @@ libraries = {
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_nwn3q")
 
-[node name="Player UI" type="CanvasLayer" parent="."]
-script = ExtResource("4_oj38c")
-hotbar_slot_scene = ExtResource("4_dychl")
-
-[node name="MarginContainer Hotbar" type="MarginContainer" parent="Player UI"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_bottom = 20
-
-[node name="Hotbar" type="PanelContainer" parent="Player UI/MarginContainer Hotbar"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_82jp2")
-
-[node name="MarginContainer" type="MarginContainer" parent="Player UI/MarginContainer Hotbar/Hotbar"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBox Hotbar" type="HBoxContainer" parent="Player UI/MarginContainer Hotbar/Hotbar/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="CenterContainer Interaction Hint" type="CenterContainer" parent="Player UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Interaction Hint" type="Label" parent="Player UI/CenterContainer Interaction Hint"]
-unique_name_in_owner = true
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="hotbar_slot_changed" from="Player UI" to="." method="_on_player_ui_hotbar_slot_changed"]
+[node name="Player UI" parent="." instance=ExtResource("4_8hau5")]
