@@ -15,6 +15,7 @@ var selected: bool= false:
 func set_item(inv_item: InventoryItem):
 	if not inv_item.item:
 		texture_rect.texture= null
+		amount_label.hide()
 	else:
 		texture_rect.texture= inv_item.item.texture
 		if inv_item.item.can_stack:
