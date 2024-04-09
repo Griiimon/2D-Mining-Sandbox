@@ -1,11 +1,5 @@
 add cheats
 
-rename game scene to test_game
-
-mouse scroll hotbar selection
-
-tool script to create tileset sources in editor
-
 terrain generator ( per block: noise, threshold, seed offset, height range, priority )
 	virtual air block for caves (is_air= true)
 	chunks, not threaded
