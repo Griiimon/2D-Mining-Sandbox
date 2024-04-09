@@ -12,6 +12,7 @@ const DROP_THROW_FORCE= 300
 @export var look_pivot: Node2D
 @export var ray_cast: RayCast2D
 @export var main_hand: Node2D
+@export var interaction_area: Area2D
 
 @export_category("Scenes")
 @export var block_marker_scene: PackedScene
@@ -72,6 +73,7 @@ func _process(_delta):
 
 func _physics_process(delta):
 	movement(delta)
+	interaction_logic()
 	
 	if Input.is_action_just_pressed("drop_item") and has_hand_item():
 		drop_hand_item()
@@ -114,6 +116,22 @@ func movement(delta):
 		animation_player_feet.play("RESET")
 
 	move_and_slide()
+
+
+func interaction_logic():
+	var areas: Array[Area2D]= interaction_area.get_overlapping_areas()
+
+	if areas.is_empty(): 
+		ui.set_interaction_hint()
+		return
+	
+	var interaction_target: InteractionTarget= areas[0]
+
+	ui.set_interaction_hint(interaction_target.get_interaction_hint(self))
+
+	if Input.is_action_just_pressed("interact"):
+		interaction_target.interact(self)
+
 
 
 func mining_logic(block_pos: Vector2i, delta)-> bool:
