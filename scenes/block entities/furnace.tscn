@@ -15,6 +15,7 @@ size = Vector2i(2, 2)
 register_tick = true
 
 [node name="Interaction Target" parent="." index="2" instance=ExtResource("5_hfabe")]
+default_hint = ""
 
 [node name="Debug Component" parent="." index="3" instance=ExtResource("6_1ku78")]
 enabled = true

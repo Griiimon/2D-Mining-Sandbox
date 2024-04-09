@@ -2,8 +2,11 @@ class_name InteractionTarget
 extends Area2D
 
 const INTERACT_METHOD= "interact"
+const CUSTOM_HINT_METHOD= "custom_interaction_hint"
+
 
 @export var auto_retrieve_collision_shape: bool= true
+@export var default_hint: String= "Press F to interact"
 
 @onready var collision_shape = $CollisionShape2D
 
@@ -28,4 +31,7 @@ func interact(player: Player):
 
 
 func get_interaction_hint(player: Player)-> String:
-	return "Press F to interact"
+	if parent.has_method(CUSTOM_HINT_METHOD):
+		return parent.call(CUSTOM_HINT_METHOD, player, default_hint)
+
+	return default_hint
