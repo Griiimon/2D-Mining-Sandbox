@@ -4,6 +4,7 @@ extends StaticBody2D
 # size in tiles
 @export var size: Vector2i= Vector2i.ONE
 @export var has_collision: bool= false
+@export var register_tick: bool= false
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D

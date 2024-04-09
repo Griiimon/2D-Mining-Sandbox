@@ -7,8 +7,12 @@ const ENTITY_TICKS= 60
 
 @export var world_item_scene: PackedScene
 
-# creates a tile-set automatically from block textures
+
+var tick_entities: Array[BaseBlockEntity]
+
+
 func _ready():
+	# creates a tile-set automatically from block textures
 	var collision_polygon:= [Vector2(0, 0), Vector2(TILE_SIZE, 0), Vector2(TILE_SIZE, TILE_SIZE),  Vector2(0, TILE_SIZE)]
 
 	for i in collision_polygon.size():
@@ -25,6 +29,11 @@ func _ready():
 			var tile_data: TileData= source.get_tile_data(Vector2i.ZERO, 0)
 			tile_data.add_collision_polygon(0)
 			tile_data.set_collision_polygon_points(0, 0, collision_polygon)
+
+
+func _physics_process(delta):
+	for entity in tick_entities:
+		entity.tick(self)
 
 
 func get_block(tile_pos: Vector2i)-> Block:
@@ -83,4 +92,6 @@ func spawn_block_entity(tile_pos: Vector2i, entity_scene: PackedScene):
 	var entity: BaseBlockEntity= entity_scene.instantiate()
 	entity.position= tile_pos * TILE_SIZE
 	add_child(entity)
-
+	
+	if entity.register_tick:
+		tick_entities.append(entity)
