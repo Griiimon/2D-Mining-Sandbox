@@ -2,6 +2,8 @@ class_name World
 extends TileMap
 
 const TILE_SIZE= 32
+const ENTITY_TICKS= 60
+
 
 @export var world_item_scene: PackedScene
 
@@ -75,4 +77,10 @@ func spawn_item(item: Item, pos: Vector2)-> WorldItem:
 
 func throw_item(item: Item, pos: Vector2, velocity: Vector2):
 	spawn_item(item, pos).velocity= velocity
-	
+
+
+func spawn_block_entity(tile_pos: Vector2i, entity_scene: PackedScene):
+	var entity: BaseBlockEntity= entity_scene.instantiate()
+	entity.position= tile_pos * TILE_SIZE
+	add_child(entity)
+
