@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://d4mufsk5s6ksm"]
+[gd_scene load_steps=15 format=3 uid="uid://d4mufsk5s6ksm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ucsv2"]
 [ext_resource type="PackedScene" uid="uid://b7kuvqlnmagen" path="res://scenes/block_marker.tscn" id="2_wdobs"]
 [ext_resource type="PackedScene" uid="uid://bhvbs1jyh6255" path="res://scenes/block_break_animation.tscn" id="3_60ons"]
 [ext_resource type="PackedScene" uid="uid://d3a35hbblyx6o" path="res://scenes/ui/hotbar_slot.tscn" id="4_dychl"]
 [ext_resource type="Script" path="res://scripts/ui/player_ui.gd" id="4_oj38c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wumd6"]
+size = Vector2(40, 60)
 
 [sub_resource type="Animation" id="Animation_6kfkf"]
 resource_name = "Mine"
@@ -113,7 +116,7 @@ height = 75.15
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82jp2"]
 bg_color = Color(0.6, 0.6, 0.6, 0.219608)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("body", "look_pivot", "ray_cast", "main_hand")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("body", "look_pivot", "ray_cast", "main_hand", "interaction_area")]
 z_index = 10
 collision_layer = 2
 script = ExtResource("1_ucsv2")
@@ -123,6 +126,7 @@ body = NodePath("Body")
 look_pivot = NodePath("Body/Look Pivot")
 ray_cast = NodePath("Body/Look Pivot/RayCast2D")
 main_hand = NodePath("Body/Look Pivot/Shoulder/Hand")
+interaction_area = NodePath("Body/Interaction Area")
 block_marker_scene = ExtResource("2_wdobs")
 block_breaker_scene = ExtResource("3_60ons")
 
@@ -185,6 +189,13 @@ default_color = Color(0.991973, 0.555872, 0.591136, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="Interaction Area" type="Area2D" parent="Body"]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Interaction Area"]
+position = Vector2(20, 0)
+shape = SubResource("RectangleShape2D_wumd6")
+
 [node name="AnimationPlayer Hand" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_qvefq")
@@ -203,7 +214,7 @@ shape = SubResource("CapsuleShape2D_nwn3q")
 script = ExtResource("4_oj38c")
 hotbar_slot_scene = ExtResource("4_dychl")
 
-[node name="MarginContainer" type="MarginContainer" parent="Player UI"]
+[node name="MarginContainer Hotbar" type="MarginContainer" parent="Player UI"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -218,20 +229,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/margin_bottom = 20
 
-[node name="Hotbar" type="PanelContainer" parent="Player UI/MarginContainer"]
+[node name="Hotbar" type="PanelContainer" parent="Player UI/MarginContainer Hotbar"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_82jp2")
 
-[node name="MarginContainer" type="MarginContainer" parent="Player UI/MarginContainer/Hotbar"]
+[node name="MarginContainer" type="MarginContainer" parent="Player UI/MarginContainer Hotbar/Hotbar"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBox Hotbar" type="HBoxContainer" parent="Player UI/MarginContainer/Hotbar/MarginContainer"]
+[node name="HBox Hotbar" type="HBoxContainer" parent="Player UI/MarginContainer Hotbar/Hotbar/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
+
+[node name="CenterContainer Interaction Hint" type="CenterContainer" parent="Player UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Interaction Hint" type="Label" parent="Player UI/CenterContainer Interaction Hint"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="hotbar_slot_changed" from="Player UI" to="." method="_on_player_ui_hotbar_slot_changed"]

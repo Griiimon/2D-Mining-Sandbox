@@ -25,3 +25,7 @@ func _ready():
 
 func interact(player: Player):
 	parent.interact(player)
+
+
+func get_interaction_hint(player: Player)-> String:
+	return "Press F to interact"

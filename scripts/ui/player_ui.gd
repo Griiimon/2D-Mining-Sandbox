@@ -6,6 +6,8 @@ signal hotbar_slot_changed
 @export var hotbar_slot_scene: PackedScene
 
 @onready var hbox_hotbar = %"HBox Hotbar"
+@onready var interaction_hint: Label= %"Interaction Hint"
+
 
 var current_hotbar_slot_idx: int:
 	set(_slot):
@@ -37,3 +39,7 @@ func update_hotbar(inventory: Inventory):
 	for i in Inventory.SIZE:
 		var slot: HotbarSlot= hbox_hotbar.get_child(i)
 		slot.set_item(inventory.items[i])
+
+
+func set_interaction_hint(text: String= ""):
+	interaction_hint.text= text
