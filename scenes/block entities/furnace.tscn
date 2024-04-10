@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://scripts/block entities/furnace.gd" id="2_i6m4i"]
 [ext_resource type="Texture2D" uid="uid://bk7pjs50dqwso" path="res://textures/block entities/furnace.png" id="3_uaepq"]
 [ext_resource type="Texture2D" uid="uid://cja4g0evfsll1" path="res://textures/block entities/furnace_working.png" id="4_7nije"]
-[ext_resource type="PackedScene" uid="uid://uq60ihcsuow5" path="res://scenes/interaction_target.tscn" id="5_hfabe"]
-[ext_resource type="PackedScene" uid="uid://vgl3mtr5d37f" path="res://scenes/utils/debug_component.tscn" id="6_1ku78"]
+[ext_resource type="PackedScene" uid="uid://uq60ihcsuow5" path="res://scenes/components/interaction_target.tscn" id="5_hfabe"]
+[ext_resource type="PackedScene" uid="uid://vgl3mtr5d37f" path="res://scenes/components/debug_component.tscn" id="6_1ku78"]
 
 [node name="Furnace" instance=ExtResource("1_vbgah")]
 script = ExtResource("2_i6m4i")

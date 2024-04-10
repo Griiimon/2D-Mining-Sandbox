@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://d4mufsk5s6ksm"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_ucsv2"]
-[ext_resource type="PackedScene" uid="uid://b7kuvqlnmagen" path="res://scenes/block_marker.tscn" id="2_wdobs"]
-[ext_resource type="PackedScene" uid="uid://bhvbs1jyh6255" path="res://scenes/block_break_animation.tscn" id="3_60ons"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_ucsv2"]
+[ext_resource type="PackedScene" uid="uid://b7kuvqlnmagen" path="res://scenes/effects/block_marker.tscn" id="2_wdobs"]
+[ext_resource type="PackedScene" uid="uid://bhvbs1jyh6255" path="res://scenes/effects/block_break_animation.tscn" id="3_60ons"]
 [ext_resource type="PackedScene" uid="uid://b4uyq2o7u54dp" path="res://scenes/ui/player_ui.tscn" id="4_8hau5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wumd6"]

@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DataManager="*res://scripts/data_manager.gd"
-Effects="*res://scripts/effects.gd"
-NodeDebugger="*res://scripts/utils/node_debugger.gd"
+DataManager="*res://scripts/autoloads/data_manager.gd"
+Effects="*res://scripts/autoloads/effects.gd"
+NodeDebugger="*res://scripts/autoloads/node_debugger.gd"
 
 [editor]
 

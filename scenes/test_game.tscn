@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cscruo81ch07t" path="res://textures/blocks/coal.png" id="2_bpmuf"]
 [ext_resource type="Texture2D" uid="uid://fqjuupebpt0x" path="res://textures/blocks/iron.png" id="3_kfj6t"]
 [ext_resource type="Texture2D" uid="uid://dc3wjicuyfidk" path="res://textures/blocks/stone.png" id="4_yow46"]
-[ext_resource type="Script" path="res://scripts/world.gd" id="5_unxvm"]
+[ext_resource type="Script" path="res://scripts/world/world.gd" id="5_unxvm"]
 [ext_resource type="PackedScene" uid="uid://bvx4bb7jk0sr7" path="res://scenes/world_item.tscn" id="6_vly0n"]
 [ext_resource type="PackedScene" uid="uid://d4mufsk5s6ksm" path="res://scenes/player.tscn" id="7_mja2y"]
-[ext_resource type="Script" path="res://scenes/camera.gd" id="8_3qg1m"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="8_3qg1m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tc5ud"]
 texture = ExtResource("2_bpmuf")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://beruoxj04jcop"]
 
-[ext_resource type="Script" path="res://scripts/hand_item_object.gd" id="1_vdc2h"]
+[ext_resource type="Script" path="res://scripts/player/hand_item_object.gd" id="1_vdc2h"]
 
 [sub_resource type="Curve" id="Curve_sr264"]
 _data = [Vector2(0, 0.501887), 0.0, 0.0, 0, 0, Vector2(0.496429, 1), 0.0, 0.0, 0, 0, Vector2(0.989286, 0.501887), 0.0, 0.0, 0, 0]
