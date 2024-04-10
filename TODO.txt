@@ -1,3 +1,7 @@
+fix unequip hand item when changing hotbar selection
+
+track all spawned items globally, and check all if inside despawned chunk and delete 
+
 add cheats
 
 terrain generator ( per block: noise, threshold, seed offset, height range, priority )
