@@ -9,6 +9,7 @@ const TILE_SIZE= 32
 @export var world_item_scene: PackedScene
 @export var world_chunk_scene: PackedScene
 @export var chunks: Node2D
+@export var generator: TerrainGenerator
 
 var tick_entities: Array[BaseBlockEntity]
 
