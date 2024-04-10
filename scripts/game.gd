@@ -2,6 +2,7 @@ class_name Game
 extends Node
 
 @export var world: World
+@export var cheats: Cheats
 
 
 
