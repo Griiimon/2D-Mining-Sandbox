@@ -10,7 +10,7 @@ func _init():
 	
 
 func _ready():
-	pass
+	assert(cheats)
 
 
 func _process(delta):
