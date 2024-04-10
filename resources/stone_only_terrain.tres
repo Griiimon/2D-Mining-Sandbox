@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="TerrainGenerator" load_steps=7 format=3 uid="uid://coin0o2iwsbjj"]
+
+[ext_resource type="Script" path="res://scripts/resources/terrain_generator.gd" id="1_7ufax"]
+[ext_resource type="Resource" uid="uid://bv3qfie2av8dh" path="res://resources/blocks/stone_block.tres" id="1_qemkp"]
+[ext_resource type="Script" path="res://scripts/resources/terrain_block_distribution.gd" id="2_616wy"]
+[ext_resource type="Script" path="res://scripts/resources/terrain_generator_instruction.gd" id="3_251kn"]
+
+[sub_resource type="Resource" id="Resource_xsb8v"]
+script = ExtResource("2_616wy")
+blocks = Array[Resource("res://scripts/resources/block.gd")]([ExtResource("1_qemkp")])
+
+[sub_resource type="Resource" id="Resource_wjd63"]
+script = ExtResource("3_251kn")
+priority = 0
+min_height = 0
+max_height = 1024
+distribution = SubResource("Resource_xsb8v")
+
+[resource]
+script = ExtResource("1_7ufax")
+instructions = Array[ExtResource("3_251kn")]([SubResource("Resource_wjd63")])
