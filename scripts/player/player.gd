@@ -138,7 +138,7 @@ func mining_logic(block_pos: Vector2i, delta)-> bool:
 	mining_progress+= mining_speed * delta
 	var block_hardness: float= get_world().get_block_hardness(block_pos)
 	
-	if mining_progress >= block_hardness:
+	if mining_progress >= block_hardness or Global.game.cheats.instant_mine:
 		get_world().break_block(block_pos)
 		return false
 	
