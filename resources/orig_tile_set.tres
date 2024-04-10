@@ -1,0 +1,5 @@
+[gd_resource type="TileSet" format=3 uid="uid://oilm5db18kw1"]
+
+[resource]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1

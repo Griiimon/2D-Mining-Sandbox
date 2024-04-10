@@ -1,48 +1,18 @@
-@tool
+#@tool
 class_name World
-extends TileMap
+extends Node2D
 
-const TILE_SIZE= 32
 const ENTITY_TICKS= 60
 
-@export var generate_tile_set: bool= false:
-	set(b):
-		if b:
-			create_tileset()
-			generate_tile_set= false
+const TILE_SIZE= 32
 
 @export var world_item_scene: PackedScene
 
+@export var chunks: Node2D
 
 var tick_entities: Array[BaseBlockEntity]
 
 
-func create_tileset():
-	# creates a tile-set automatically from block textures
-	var collision_polygon:= [Vector2(0, 0), Vector2(TILE_SIZE, 0), Vector2(TILE_SIZE, TILE_SIZE),  Vector2(0, TILE_SIZE)]
-
-	for i in collision_polygon.size():
-		collision_polygon[i]= collision_polygon[i] - Vector2.ONE * TILE_SIZE / 2
-
-	for block in DataManager.blocks:
-		var source:= TileSetAtlasSource.new()
-		source.texture_region_size= Vector2i.ONE * TILE_SIZE
-		source.texture= block.texture
-		source.create_tile(Vector2i.ZERO)
-		tile_set.add_source(source)
-		
-		if block.has_collision:
-			var tile_data: TileData= source.get_tile_data(Vector2i.ZERO, 0)
-			tile_data.add_collision_polygon(0)
-			tile_data.set_collision_polygon_points(0, 0, collision_polygon)
-
-
-func _tile_data_runtime_update(layer, coords, tile_data):
-	pass
-
-
-func _use_tile_data_runtime_update(layer, coords):
-	return Engine.is_editor_hint()
 
 func _physics_process(delta):
 	if Engine.is_editor_hint(): return
@@ -57,18 +27,36 @@ func get_block(tile_pos: Vector2i)-> Block:
 		return null
 	return DataManager.blocks[block_id]
 
+
+func get_block_id(tile_pos: Vector2i):
+	var chunk: WorldChunk= get_chunk_at(tile_pos)
+	if not chunk: 
+		assert(false)
+		return null
+	return chunk.get_block_id(tile_pos)
+
+
 func get_block_id_at(pos: Vector2)-> int:
 	return get_block_id(get_tile(pos))
 
 
-func get_block_id(tile_pos: Vector2i)-> int:
-	if not tile_pos in get_used_cells(0):
-		return -1
-	return get_cell_source_id(0, tile_pos)
-
-
 func get_tile(pos: Vector2)-> Vector2i:
-	return local_to_map(pos)
+	var chunk: WorldChunk= get_chunk_at(pos / WorldChunk.SIZE)
+	if not chunk: 
+		assert(false)
+		return Vector2i.ZERO
+	return chunk.local_to_map(pos)
+
+
+func get_chunk_at(tile_pos: Vector2i)-> WorldChunk:
+	tile_pos= (Vector2(tile_pos) / WorldChunk.SIZE).floor()
+	var key: String= str(tile_pos)
+	var node: Node= chunks.get_node_or_null(key)
+	return node
+
+
+func map_to_local(tile_pos: Vector2i)-> Vector2:
+	return tile_pos * TILE_SIZE + Vector2i.ONE * TILE_SIZE / 2
 
 
 func get_block_hardness(tile_pos: Vector2i)-> float:
@@ -79,15 +67,11 @@ func get_block_hardness(tile_pos: Vector2i)-> float:
 
 
 func break_block(tile_pos: Vector2i):
-	var block_id: int= get_block_id(tile_pos)
-	if block_id >= 0:
-		var block: Block= DataManager.blocks[block_id]
-		var world_pos: Vector2= map_to_local(tile_pos)
-		if block.drop:
-			spawn_item(block.drop, world_pos)
-		set_cell(0, tile_pos, -1)
-
-		Effects.spawn_particle_system(world_pos, MyParticleSystem.ParticleSettings.new(20, 3, block.particle_color, 1, 1, 2, true, 50, 100, 500, Vector2.UP, 90, true, 0.5, 0))
+	var chunk: WorldChunk= get_chunk_at(tile_pos)
+	if not chunk: 
+		assert(false)
+		return null
+	chunk.break_block(tile_pos)
 
 
 func spawn_item(item: Item, pos: Vector2)-> WorldItem:

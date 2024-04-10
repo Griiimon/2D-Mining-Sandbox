@@ -1,7 +1,7 @@
 class_name Game
 extends Node
 
-@onready var world: World = $TileMap
+@export var world: World
 
 
 
