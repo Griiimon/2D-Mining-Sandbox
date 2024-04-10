@@ -7,6 +7,9 @@ var furnace_recipes: Dictionary
 
 func _init():
 	load_resource_folder_into_array("res://resources/blocks", blocks)
+
+	if Engine.is_editor_hint(): return
+	
 	load_resource_folder_into_dictionary("res://resources/recipes/furnace", furnace_recipes, "ingredient")
 
 

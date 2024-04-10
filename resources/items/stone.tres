@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://de0gco3gyqye8"]
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://jkfdi3kaaiof"]
 
-[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_v8rf4"]
-[ext_resource type="Texture2D" uid="uid://c0ugvpklexp2x" path="res://textures/items/stone.png" id="2_yxcum"]
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_jcmka"]
 
 [resource]
-script = ExtResource("1_v8rf4")
-name = "stone"
-texture = ExtResource("2_yxcum")
+script = ExtResource("1_jcmka")
+name = ""
 can_stack = true
+tags = Array[Resource("res://scripts/resources/tag.gd")]([])
 fuel_value = 0.0
