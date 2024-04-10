@@ -6,6 +6,7 @@ const DROP_THROW_FORCE= 300
 @export var speed = 300.0
 @export var jump_velocity = -400.0
 @export var mining_speed= 1.0
+@export var freeze: bool= false
 
 @export_category("Components")
 @export var body: Node2D
@@ -61,6 +62,8 @@ func late_ready():
 
 
 func _process(_delta):
+	if freeze: return
+	
 	var mouse_pos: Vector2= get_global_mouse_position()
 	
 	if mouse_pos.x >= position.x:
@@ -72,6 +75,8 @@ func _process(_delta):
 
 
 func _physics_process(delta):
+	if freeze: return
+
 	movement(delta)
 	interaction_logic()
 	
