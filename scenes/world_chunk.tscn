@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dre4owqmev6mn"]
+
+[ext_resource type="TileSet" uid="uid://bpax2etnrehcm" path="res://resources/tile_set.tres" id="1_y7mm8"]
+[ext_resource type="Script" path="res://scripts/world/world_chunk.gd" id="2_xk4iw"]
+
+[node name="World Chunk" type="TileMap"]
+tile_set = ExtResource("1_y7mm8")
+format = 2
+script = ExtResource("2_xk4iw")
+auto_generate_tiles = false

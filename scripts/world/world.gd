@@ -7,7 +7,7 @@ const ENTITY_TICKS= 60
 const TILE_SIZE= 32
 
 @export var world_item_scene: PackedScene
-
+@export var world_chunk_scene: PackedScene
 @export var chunks: Node2D
 
 var tick_entities: Array[BaseBlockEntity]
@@ -48,11 +48,33 @@ func get_tile(pos: Vector2)-> Vector2i:
 	return chunk.local_to_map(pos)
 
 
+func get_chunk_coords_at(tile_pos: Vector2i)-> Vector2i:
+	return (Vector2(tile_pos) / WorldChunk.SIZE).floor()
+
+
 func get_chunk_at(tile_pos: Vector2i)-> WorldChunk:
-	tile_pos= (Vector2(tile_pos) / WorldChunk.SIZE).floor()
-	var key: String= str(tile_pos)
+	return get_chunk(get_chunk_coords_at(tile_pos))
+
+
+func get_chunk(chunk_coords: Vector2i)-> WorldChunk:
+	var key: String= str(chunk_coords)
 	var node: Node= chunks.get_node_or_null(key)
 	return node
+	
+
+func get_chunks()-> Array[WorldChunk]:
+	var result: Array[WorldChunk]
+	result.assign(chunks.get_children())
+	return result
+
+
+func create_chunk(chunk_coords: Vector2i):
+	var chunk: WorldChunk= world_chunk_scene.instantiate()
+	chunk.name= str(chunk_coords)
+	chunk.position= chunk_coords * WorldChunk.SIZE * TILE_SIZE
+	chunks.add_child(chunk)
+	chunk.coords= chunk_coords
+	chunk.generate_tiles()
 
 
 func map_to_local(tile_pos: Vector2i)-> Vector2:
