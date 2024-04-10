@@ -1,16 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbhvqow2nbc0k"]
+[gd_scene load_steps=10 format=3 uid="uid://cbhvqow2nbc0k"]
 
 [ext_resource type="Script" path="res://scripts/test_game.gd" id="1_desap"]
 [ext_resource type="Script" path="res://scripts/world/world.gd" id="2_f1sv7"]
+[ext_resource type="Script" path="res://scripts/resources/cheats.gd" id="2_p63yw"]
 [ext_resource type="PackedScene" uid="uid://bvx4bb7jk0sr7" path="res://scenes/world_item.tscn" id="3_4uoyr"]
 [ext_resource type="Script" path="res://scripts/world/chunk_updater.gd" id="4_ii2m7"]
 [ext_resource type="PackedScene" uid="uid://dre4owqmev6mn" path="res://scenes/world_chunk.tscn" id="5_im1ga"]
 [ext_resource type="PackedScene" uid="uid://d4mufsk5s6ksm" path="res://scenes/player.tscn" id="7_mja2y"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="8_3qg1m"]
 
+[sub_resource type="Resource" id="Resource_4icba"]
+script = ExtResource("2_p63yw")
+instant_mine = true
+
 [node name="Test Game" type="Node" node_paths=PackedStringArray("world")]
 script = ExtResource("1_desap")
 world = NodePath("World")
+cheats = SubResource("Resource_4icba")
 
 [node name="World" type="Node2D" parent="." node_paths=PackedStringArray("chunks")]
 script = ExtResource("2_f1sv7")
