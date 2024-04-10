@@ -13,7 +13,7 @@ config_version=5
 config/name="2D Mining"
 run/main_scene="res://scenes/test_game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://textures/items/pickaxe.png"
 
 [autoload]
 
