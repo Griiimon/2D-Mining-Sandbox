@@ -5,6 +5,9 @@ extends Node
 @export var cheats: Cheats
 
 
+func _init():
+	Global.game= self
+	
 
 func _ready():
 	pass
