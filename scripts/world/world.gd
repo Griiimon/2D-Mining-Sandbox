@@ -47,10 +47,11 @@ func get_block_id_at(pos: Vector2)-> int:
 
 
 func get_tile(pos: Vector2)-> Vector2i:
-	var chunk: WorldChunk= get_chunk_at(pos / WorldChunk.SIZE)
+	var chunk: WorldChunk= get_chunk_at((pos / WorldChunk.SIZE).floor())
 	if not chunk: 
 		assert(false)
 		return Vector2i.ZERO
+	DebugHud.send("get_tile() chunk", str(chunk.coords))
 	return chunk.local_to_map(pos)
 
 
