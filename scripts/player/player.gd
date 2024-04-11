@@ -42,6 +42,10 @@ var inventory: Inventory= Inventory.new()
 
 
 func _ready():
+	var game: Game= get_parent()
+	assert(game)
+	game.player= self
+	
 	inventory.update_callback= update_hotbar
 	
 	block_marker= block_marker_scene.instantiate()
