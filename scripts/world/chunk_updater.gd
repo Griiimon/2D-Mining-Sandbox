@@ -1,6 +1,7 @@
 class_name ChunkUpdater
 extends Node
 
+@export var disabled: bool= false
 @export var chunk_viewer: Node2D
 @export var min_distance: int= 100
 @export var max_distance: int= 200
@@ -14,6 +15,8 @@ func _ready():
 
 
 func run(non_blocking: bool= true):
+	if disabled: return
+	
 	var view_tile_pos: Vector2i= chunk_viewer.global_position / World.TILE_SIZE if chunk_viewer else Vector2i.ZERO
 
 	for x in range(view_tile_pos.x - max_distance, view_tile_pos.x + max_distance, WorldChunk.SIZE):
