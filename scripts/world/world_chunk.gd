@@ -41,14 +41,14 @@ func _use_tile_data_runtime_update(layer, coords):
 
 
 func get_block_id(tile_pos: Vector2i)-> int:
-	tile_pos= make_tile_pos_local(tile_pos)
+	tile_pos= get_local_pos(tile_pos)
 	if not tile_pos in get_used_cells(0):
 		return -1
 	return get_cell_source_id(0, tile_pos)
 
 
-func make_tile_pos_local(tile_pos: Vector2i)-> Vector2i:
-	return tile_pos 
+func get_local_pos(tile_pos: Vector2i)-> Vector2i:
+	return Vector2i(wrapi(tile_pos.x, 0, SIZE), wrapi(tile_pos.y, 0, SIZE))
 
 
 func break_block(tile_pos: Vector2i):
@@ -61,6 +61,10 @@ func break_block(tile_pos: Vector2i):
 		set_cell(0, tile_pos, -1)
 
 		Effects.spawn_particle_system(world_pos, MyParticleSystem.ParticleSettings.new(20, 3, block.particle_color, 1, 1, 2, true, 50, 100, 500, Vector2.UP, 90, true, 0.5, 0))
+
+
+func delete_block(tile_pos: Vector2i):
+	set_cell(0, get_local_pos(tile_pos), -1)
 
 
 func get_world_tile_pos()-> Vector2i:
