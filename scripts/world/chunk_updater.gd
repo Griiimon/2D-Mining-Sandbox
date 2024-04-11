@@ -1,6 +1,8 @@
 class_name ChunkUpdater
 extends Node
 
+signal initial_run_completed
+
 const DELAY_FRAMES= 10
 
 @export var disabled: bool= false
@@ -15,7 +17,12 @@ var busy:= false
 
 func _ready():
 	world= get_parent()
-	run.call_deferred(false)
+	late_ready.call_deferred()
+
+
+func late_ready():
+	run(false)
+	initial_run_completed.emit()
 
 
 func run(non_blocking: bool= true):

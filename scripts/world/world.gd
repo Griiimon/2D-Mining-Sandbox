@@ -1,6 +1,8 @@
 class_name World
 extends Node2D
 
+signal initialization_finished
+
 const ENTITY_TICKS= 60
 
 const TILE_SIZE= 32
@@ -16,7 +18,7 @@ var tick_entities: Array[BaseBlockEntity]
 func _ready():
 	if generator:
 		generator.initialize()
-
+		
 
 func _physics_process(delta):
 	if Engine.is_editor_hint(): return
@@ -92,6 +94,14 @@ func get_block_hardness(tile_pos: Vector2i)-> float:
 	return block.hardness
 
 
+func delete_block(tile_pos: Vector2i):
+	var chunk: WorldChunk= get_chunk_at(tile_pos)
+	if not chunk: 
+		assert(false)
+		return null
+	chunk.delete_block(tile_pos)
+
+
 func break_block(tile_pos: Vector2i):
 	var chunk: WorldChunk= get_chunk_at(tile_pos)
 	if not chunk: 
@@ -120,3 +130,12 @@ func spawn_block_entity(tile_pos: Vector2i, entity_scene: PackedScene):
 	
 	if entity.register_tick:
 		tick_entities.append(entity)
+
+
+func _on_chunk_updater_initial_run_completed():
+	var settings: GameSettings= Global.game.settings
+	for x in range(-settings.spawn_clearing_radius, settings.spawn_clearing_radius):
+		for y in range(-settings.spawn_clearing_radius, settings.spawn_clearing_radius):
+			delete_block(settings.player_spawn + Vector2i(x, y))
+
+	initialization_finished.emit()
