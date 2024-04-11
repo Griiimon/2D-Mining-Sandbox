@@ -54,7 +54,7 @@ func _physics_process(delta):
 		
 		normal= normal.normalized()
 		
-		if normal.dot(Vector2.DOWN) < 0.1:
+		if normal and normal.dot(Vector2.DOWN) < 0.1:
 			if velocity.y >= 0:
 				velocity= velocity.normalized().bounce(normal) * bounce
 		else:
