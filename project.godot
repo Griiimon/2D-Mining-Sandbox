@@ -21,6 +21,7 @@ DataManager="*res://scripts/autoloads/data_manager.gd"
 Effects="*res://scripts/autoloads/effects.gd"
 NodeDebugger="*res://scripts/autoloads/node_debugger.gd"
 Global="*res://scripts/autoloads/global.gd"
+DebugHud="*res://scenes/ui/debug_hud.tscn"
 
 [editor]
 
