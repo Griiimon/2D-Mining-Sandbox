@@ -1,14 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdykicosk4xdy"]
+[gd_scene load_steps=13 format=3 uid="uid://cdykicosk4xdy"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blqru"]
 [ext_resource type="Script" path="res://scripts/resources/cheats.gd" id="2_43t25"]
+[ext_resource type="Script" path="res://scripts/resources/game_settings.gd" id="2_kke0s"]
 [ext_resource type="Script" path="res://scripts/world/world.gd" id="2_klfuq"]
 [ext_resource type="PackedScene" uid="uid://d4mufsk5s6ksm" path="res://scenes/player.tscn" id="2_pa4jp"]
 [ext_resource type="PackedScene" uid="uid://bvx4bb7jk0sr7" path="res://scenes/world_item.tscn" id="3_7kj0i"]
 [ext_resource type="PackedScene" uid="uid://dre4owqmev6mn" path="res://scenes/world_chunk.tscn" id="4_8vesl"]
-[ext_resource type="Resource" uid="uid://coin0o2iwsbjj" path="res://resources/stone_only_terrain.tres" id="5_0fwwb"]
 [ext_resource type="Script" path="res://scripts/world/chunk_updater.gd" id="5_h7gee"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="5_jn5ho"]
+[ext_resource type="Resource" uid="uid://duvgbpy54bx4m" path="res://resources/terrain generators/stone_and_caves.tres" id="7_ofqw5"]
+
+[sub_resource type="Resource" id="Resource_lqxxk"]
+script = ExtResource("2_kke0s")
+seed = 0
 
 [sub_resource type="Resource" id="Resource_2wtjc"]
 script = ExtResource("2_43t25")
@@ -17,6 +22,7 @@ instant_mine = false
 [node name="Game" type="Node" node_paths=PackedStringArray("world")]
 script = ExtResource("1_blqru")
 world = NodePath("World")
+settings = SubResource("Resource_lqxxk")
 cheats = SubResource("Resource_2wtjc")
 
 [node name="World" type="Node2D" parent="." node_paths=PackedStringArray("chunks")]
@@ -24,7 +30,7 @@ script = ExtResource("2_klfuq")
 world_item_scene = ExtResource("3_7kj0i")
 world_chunk_scene = ExtResource("4_8vesl")
 chunks = NodePath("Chunks")
-generator = ExtResource("5_0fwwb")
+generator = ExtResource("7_ofqw5")
 
 [node name="Chunk Updater" type="Node" parent="World" node_paths=PackedStringArray("chunk_viewer")]
 script = ExtResource("5_h7gee")

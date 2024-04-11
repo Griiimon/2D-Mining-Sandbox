@@ -2,6 +2,7 @@ class_name Game
 extends Node
 
 @export var world: World
+@export var settings: GameSettings
 @export var cheats: Cheats
 
 
@@ -11,6 +12,7 @@ func _init():
 
 func _ready():
 	assert(cheats)
+	assert(settings)
 
 
 func _process(delta):
