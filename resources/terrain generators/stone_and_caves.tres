@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="TerrainGenerator" load_steps=11 format=3 uid="uid://duvgbpy54bx4m"]
+
+[ext_resource type="Resource" uid="uid://bv3qfie2av8dh" path="res://resources/blocks/stone_block.tres" id="1_evbbc"]
+[ext_resource type="Script" path="res://scripts/resources/terrain_block_distribution.gd" id="2_camgi"]
+[ext_resource type="Script" path="res://scripts/resources/terrain_generator_instruction.gd" id="3_mthxs"]
+[ext_resource type="Script" path="res://scripts/resources/terrain_generator.gd" id="4_4rghw"]
+[ext_resource type="Resource" uid="uid://cjykj5i260i0c" path="res://resources/blocks/air_block.tres" id="4_ywnag"]
+
+[sub_resource type="Resource" id="Resource_0omqx"]
+script = ExtResource("2_camgi")
+blocks = Array[Resource("res://scripts/resources/block.gd")]([ExtResource("1_evbbc")])
+noise_threshold = 0.0
+
+[sub_resource type="Resource" id="Resource_g0ypn"]
+script = ExtResource("3_mthxs")
+priority = 1
+min_height = 0
+max_height = 1024
+distribution = SubResource("Resource_0omqx")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0jp82"]
+frequency = 0.0125
+fractal_type = 2
+fractal_octaves = 3
+fractal_lacunarity = 2.41
+fractal_gain = 0.77
+domain_warp_amplitude = 27.995
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="Resource" id="Resource_0yq5w"]
+script = ExtResource("2_camgi")
+blocks = Array[Resource("res://scripts/resources/block.gd")]([ExtResource("4_ywnag")])
+noise = SubResource("FastNoiseLite_0jp82")
+noise_threshold = 0.5
+
+[sub_resource type="Resource" id="Resource_i8ooj"]
+script = ExtResource("3_mthxs")
+priority = 0
+min_height = 0
+max_height = 1024
+distribution = SubResource("Resource_0yq5w")
+
+[resource]
+script = ExtResource("4_4rghw")
+instructions = Array[ExtResource("3_mthxs")]([SubResource("Resource_g0ypn"), SubResource("Resource_i8ooj")])
