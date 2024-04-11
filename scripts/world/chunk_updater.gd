@@ -15,6 +15,7 @@ var busy:= false
 
 func _ready():
 	world= get_parent()
+	run.call_deferred(false)
 
 
 func run(non_blocking: bool= true):
@@ -23,6 +24,12 @@ func run(non_blocking: bool= true):
 	busy= true
 	
 	var view_tile_pos: Vector2i= chunk_viewer.global_position / World.TILE_SIZE if chunk_viewer else Vector2i.ZERO
+
+	for chunk in world.get_chunks():
+		var distance: int= (view_tile_pos - chunk.get_world_tile_pos_center()).length()
+		if distance > max_distance:
+			chunk.queue_free()
+
 
 	for x in range(view_tile_pos.x - max_distance, view_tile_pos.x + max_distance, WorldChunk.SIZE):
 		for y in range(view_tile_pos.y - max_distance, view_tile_pos.y + max_distance, WorldChunk.SIZE):
@@ -39,6 +46,7 @@ func run(non_blocking: bool= true):
 						await get_tree().process_frame
 	
 	busy= false
+
 
 func _on_update_timer_timeout():
 	run()
