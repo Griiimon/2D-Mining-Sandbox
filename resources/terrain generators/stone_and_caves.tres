@@ -14,7 +14,7 @@ noise_threshold = 0.0
 [sub_resource type="Resource" id="Resource_g0ypn"]
 script = ExtResource("3_mthxs")
 priority = 1
-min_height = 0
+min_height = -100
 max_height = 1024
 distribution = SubResource("Resource_0omqx")
 
