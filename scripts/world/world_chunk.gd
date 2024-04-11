@@ -18,6 +18,8 @@ func _ready():
 	if auto_generate_tiles:
 		generate_tiles()
 
+	var rect: Rect2i= get_used_rect()
+	assert(rect.position.x >= 0 and rect.position.y >= 0 and rect.size.x < SIZE and rect.size.y < SIZE)
 
 
 func generate_tiles():
