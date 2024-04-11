@@ -14,6 +14,8 @@
 [sub_resource type="Resource" id="Resource_lqxxk"]
 script = ExtResource("2_kke0s")
 seed = 0
+player_spawn = Vector2i(0, 0)
+spawn_clearing_radius = 4
 
 [sub_resource type="Resource" id="Resource_2wtjc"]
 script = ExtResource("2_43t25")
@@ -24,6 +26,7 @@ script = ExtResource("1_blqru")
 world = NodePath("World")
 settings = SubResource("Resource_lqxxk")
 cheats = SubResource("Resource_2wtjc")
+player_scene = ExtResource("2_pa4jp")
 
 [node name="World" type="Node2D" parent="." node_paths=PackedStringArray("chunks")]
 script = ExtResource("2_klfuq")
@@ -41,14 +44,10 @@ autostart = true
 
 [node name="Chunks" type="Node2D" parent="World"]
 
-[node name="Player" parent="." instance=ExtResource("2_pa4jp")]
-position = Vector2(183, 113)
-freeze = true
-
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_node")]
 script = ExtResource("5_jn5ho")
-follow_node = NodePath("../Player")
-free_cam = true
+follow_node = NodePath("")
 speed = 1000.0
 
+[connection signal="initial_run_completed" from="World/Chunk Updater" to="World" method="_on_chunk_updater_initial_run_completed"]
 [connection signal="timeout" from="World/Chunk Updater/Update Timer" to="World/Chunk Updater" method="_on_update_timer_timeout"]

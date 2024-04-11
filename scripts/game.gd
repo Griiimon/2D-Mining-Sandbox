@@ -4,6 +4,11 @@ extends Node
 @export var world: World
 @export var settings: GameSettings
 @export var cheats: Cheats
+@export var player_scene: PackedScene
+
+@onready var camera = $Camera2D
+
+var player: Player
 
 
 func _init():
@@ -13,6 +18,14 @@ func _init():
 func _ready():
 	assert(cheats)
 	assert(settings)
+	
+	await world.initialization_finished
+	
+	if not player:
+		player= player_scene.instantiate()
+		player.position= settings.player_spawn
+		add_child(player)
+		camera.follow_node= player
 
 
 func _process(delta):
