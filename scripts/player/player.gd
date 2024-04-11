@@ -168,7 +168,7 @@ func select_block()-> Vector2i:
 	return block_pos
 
 
-func get_tile_collision()-> Vector2i:
+func get_tile_collision()-> Vector2:
 	var point: Vector2= ray_cast.get_collision_point()
 	
 	# apply fix for collision rounding issue on tile border
