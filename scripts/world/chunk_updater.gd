@@ -1,6 +1,8 @@
 class_name ChunkUpdater
 extends Node
 
+const DELAY_FRAMES= 10
+
 @export var disabled: bool= false
 @export var chunk_viewer: Node2D
 @export var min_distance: int= 100
@@ -8,6 +10,7 @@ extends Node
 
 
 var world: World
+var busy:= false
 
 
 func _ready():
@@ -15,7 +18,9 @@ func _ready():
 
 
 func run(non_blocking: bool= true):
-	if disabled: return
+	if disabled or busy: return
+	
+	busy= true
 	
 	var view_tile_pos: Vector2i= chunk_viewer.global_position / World.TILE_SIZE if chunk_viewer else Vector2i.ZERO
 
@@ -30,10 +35,10 @@ func run(non_blocking: bool= true):
 			if not chunk and distance < min_distance:
 				world.create_chunk(chunk_coords)
 				if non_blocking:
-					await get_tree().process_frame
-			#elif chunk and distance > max_distance:
-				#chunk.queue_free()
-
+					for i in DELAY_FRAMES:
+						await get_tree().process_frame
+	
+	busy= false
 
 func _on_update_timer_timeout():
 	run()
