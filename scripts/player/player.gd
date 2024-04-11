@@ -87,7 +87,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("drop_item") and has_hand_item():
 		drop_hand_item()
 	
-	
 	is_mining= false
 	
 	if ray_cast.is_colliding():
@@ -142,7 +141,6 @@ func interaction_logic():
 		interaction_target.interact(self)
 
 
-
 func mining_logic(block_pos: Vector2i, delta)-> bool:
 	mining_progress+= mining_speed * delta
 	var block_hardness: float= get_world().get_block_hardness(block_pos)
@@ -163,7 +161,7 @@ func mining_logic(block_pos: Vector2i, delta)-> bool:
 
 func select_block()-> Vector2i:
 	var block_pos: Vector2i= get_world().get_tile(get_tile_collision())
-		
+	
 	block_marker.position= get_world().map_to_local(block_pos)
 	block_marker.show()
 	
@@ -177,7 +175,7 @@ func get_tile_collision()-> Vector2i:
 	# by moving the collision point into the tile
 	
 	point+= -ray_cast.get_collision_normal() * 0.1
-
+	DebugHud.send("fixed tile collision", str(point))
 	return point
 
 
