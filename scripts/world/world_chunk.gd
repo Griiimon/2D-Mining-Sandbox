@@ -23,10 +23,13 @@ func _ready():
 
 
 func generate_tiles():
+	var generator: TerrainGenerator= world.generator
 	for x in SIZE:
 		for y in SIZE:
-			set_cell(0, Vector2i(x, y), 0, Vector2i.ZERO)
-	print(get_used_rect())
+			var local_pos= Vector2i(x, y)
+			var global_pos= local_pos + coords * SIZE
+			set_cell(0, local_pos, generator.get_block_id(global_pos), Vector2i.ZERO)
+
 
 func _tile_data_runtime_update(layer, coords, tile_data):
 	pass
