@@ -1,4 +1,16 @@
 ##################
+# v0.3          #
+##################
+
+- toggle free camera ( K )
+- Debug Hud
+- auto player spawning
+- game settings
+- cheats
+- terrain generator
+- world chunks
+
+##################
 # v0.2           #
 ##################
 
