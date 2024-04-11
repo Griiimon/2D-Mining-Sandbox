@@ -52,6 +52,7 @@ func run(non_blocking: bool= true):
 					for i in DELAY_FRAMES:
 						await get_tree().process_frame
 	
+	DebugHud.send("Total chunks", len(world.get_chunks()))
 	busy= false
 
 
