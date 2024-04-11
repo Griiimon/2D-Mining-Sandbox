@@ -3,6 +3,8 @@ extends Area2D
 
 @export var item_gravity: float= 100
 @export var bounce: float= 20
+@export var x_damping: float= 1
+@export var y_damping: float= 0.1
 @export var pull_force: float= 10
 
 @onready var sprite: Sprite2D = $Sprite2D
@@ -63,7 +65,8 @@ func _physics_process(delta):
 		velocity.x*= 0.5
 
 	
-	velocity.x*= 1 - delta
+	velocity.x*= 1 - delta * x_damping
+	velocity.y*= 1 - delta * y_damping
 	position+= velocity * delta
 
 
