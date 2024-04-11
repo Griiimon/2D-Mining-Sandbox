@@ -18,7 +18,8 @@ func get_block_id(pos: Vector2i)-> int:
 	var block: Block
 
 	for instruction in instructions:
-		block= instruction.get_block(pos)
+		var new_block: Block= instruction.get_block(pos)
+		block= new_block if new_block else block
 
-	if not block: return -1
+	if not block or block.is_air: return -1
 	return DataManager.blocks.find(block)
