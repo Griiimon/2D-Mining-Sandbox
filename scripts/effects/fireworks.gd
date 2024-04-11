@@ -1,0 +1,28 @@
+class_name Fireworks
+extends Node2D
+
+@export var effect_scene: PackedScene
+@export var amount: int= 20
+@export var interval: float = 0.2
+@export var range: int= 500
+
+@onready var next_effect: float= interval
+@onready var effects_left: int= amount
+
+
+func _process(delta):
+
+	next_effect-= delta
+	
+	if next_effect <= 0:
+		var obj= effect_scene.instantiate()
+		obj.position= Vector2(randi_range(-range, range), randi_range(-range, range))
+		add_child(obj)
+		next_effect= interval
+
+		effects_left-= 1
+		if effects_left <= 0:
+			set_process(false)
+			await get_tree().create_timer(5).timeout
+			queue_free()
+			
