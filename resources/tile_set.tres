@@ -1,10 +1,12 @@
-[gd_resource type="TileSet" load_steps=7 format=3]
+[gd_resource type="TileSet" load_steps=8 format=3]
 
 [ext_resource type="Texture2D" path="res://textures/blocks/coal.png" id="1_wqpac"]
 [ext_resource type="Texture2D" path="res://textures/blocks/iron.png" id="2_ipnj4"]
 [ext_resource type="Texture2D" path="res://textures/blocks/stone.png" id="3_vyu6m"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fn57w"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3e0x"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbc3e"]
 texture = ExtResource("1_wqpac")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -12,7 +14,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c83ev"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nodcd"]
 texture = ExtResource("2_ipnj4")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -20,7 +22,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rlt4c"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mb1k8"]
 texture = ExtResource("3_vyu6m")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -31,6 +33,7 @@ texture_region_size = Vector2i(32, 32)
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_fn57w")
-sources/1 = SubResource("TileSetAtlasSource_c83ev")
-sources/2 = SubResource("TileSetAtlasSource_rlt4c")
+sources/0 = SubResource("TileSetAtlasSource_a3e0x")
+sources/1 = SubResource("TileSetAtlasSource_tbc3e")
+sources/2 = SubResource("TileSetAtlasSource_nodcd")
+sources/3 = SubResource("TileSetAtlasSource_mb1k8")
