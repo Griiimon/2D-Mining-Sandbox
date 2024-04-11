@@ -28,7 +28,8 @@ func generate_tiles():
 		for y in SIZE:
 			var local_pos= Vector2i(x, y)
 			var global_pos= local_pos + coords * SIZE
-			set_cell(0, local_pos, generator.get_block_id(global_pos), Vector2i.ZERO)
+			var block_id: int= generator.get_block_id(global_pos)
+			set_cell(0, local_pos, block_id, Vector2i.ZERO)
 
 
 func _tile_data_runtime_update(layer, coords, tile_data):
