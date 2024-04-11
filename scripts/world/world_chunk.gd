@@ -82,9 +82,10 @@ static func create_tileset():
 
 	for block in DataManager.blocks:
 		var source:= TileSetAtlasSource.new()
-		source.texture_region_size= Vector2i.ONE * World.TILE_SIZE
-		source.texture= block.texture
-		source.create_tile(Vector2i.ZERO)
+		if not block.is_air:
+			source.texture_region_size= Vector2i.ONE * World.TILE_SIZE
+			source.texture= block.texture
+			source.create_tile(Vector2i.ZERO)
 		DataManager.tile_set.add_source(source)
 		
 		if block.has_collision:
