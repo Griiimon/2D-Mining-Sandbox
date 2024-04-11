@@ -44,9 +44,8 @@ autostart = true
 
 [node name="Chunks" type="Node2D" parent="World"]
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_node")]
+[node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("5_jn5ho")
-follow_node = NodePath("")
 speed = 1000.0
 
 [connection signal="initial_run_completed" from="World/Chunk Updater" to="World" method="_on_chunk_updater_initial_run_completed"]
