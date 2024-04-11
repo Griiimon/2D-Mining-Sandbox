@@ -32,4 +32,4 @@ func get_block_id(pos: Vector2i)-> int:
 		block= new_block if new_block else block
 
 	if not block or block.is_air: return -1
-	return DataManager.blocks.find(block)
+	return DataManager.get_block_id(block)

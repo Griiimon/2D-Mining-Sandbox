@@ -5,6 +5,8 @@ const TILE_SET_PATH= "res://resources/tile_set.tres"
 const ORIG_TILE_SET_PATH= "res://resources/orig_tile_set.tres"
 
 var blocks: Array[Block]
+var blocks_lookup: Dictionary
+
 var furnace_recipes: Dictionary
 
 var tile_set: TileSet
@@ -13,6 +15,9 @@ var tile_set: TileSet
 
 func _init():
 	load_resource_folder_into_array("res://resources/blocks", blocks)
+	
+	for i in len(blocks):
+		blocks_lookup[blocks[i]]= i
 
 	if Engine.is_editor_hint(): return
 
@@ -50,3 +55,6 @@ func find_furnace_recipe_for(ore: Item)-> FurnaceRecipe:
 	return furnace_recipes[ore]
 
 
+func get_block_id(block: Block)-> int:
+	assert(blocks_lookup.has(block))
+	return blocks_lookup[block]
