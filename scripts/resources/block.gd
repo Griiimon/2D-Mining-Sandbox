@@ -9,6 +9,9 @@ extends Resource
 @export var tags: Array[Tag]
 @export var particle_color: Color
 
+@export_category("Special")
+@export var is_air: bool= false
+
 
 
 func has_tag(tag_name: String)-> bool:
