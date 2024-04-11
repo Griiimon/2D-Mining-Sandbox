@@ -12,4 +12,5 @@ drop = ExtResource("1_4h8do")
 hardness = 0.5
 has_collision = true
 tags = Array[Resource("res://scripts/resources/tag.gd")]([])
-particle_color = Color(0, 0, 0, 1)
+particle_color = Color(0.360784, 0.360784, 0.360784, 1)
+is_air = false

@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_26ueg")
-name = "coal"
+name = "iron"
 texture = ExtResource("3_42i5d")
 can_stack = true
 tags = Array[Resource("res://scripts/resources/tag.gd")]([ExtResource("2_pnluo")])
