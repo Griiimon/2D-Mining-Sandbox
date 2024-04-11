@@ -30,7 +30,7 @@ func _physics_process(delta):
 		velocity= velocity.normalized().bounce(ray_cast.get_collision_normal()) * velocity.length() * settings.bounce
 	else:
 		velocity.y+= settings.gravity * delta
-		velocity*= (1 - delta) * (1 - settings.damping)
+		velocity*= 1 - delta * settings.damping
 	
 	ray_cast.target_position= velocity * delta
 	
