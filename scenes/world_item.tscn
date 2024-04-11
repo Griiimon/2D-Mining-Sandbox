@@ -12,7 +12,7 @@ radius = 50.0
 collision_mask = 2
 script = ExtResource("1_py7qy")
 item_gravity = 500.0
-bounce = 100.0
+bounce = 50.0
 x_damping = 2.0
 y_damping = 1.0
 
