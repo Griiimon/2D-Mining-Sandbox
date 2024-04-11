@@ -31,3 +31,6 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
+	elif Input.is_action_just_pressed("toggle_free_cam"):
+		camera.free_cam= not camera.free_cam
+		player.freeze= camera.free_cam
