@@ -1,4 +1,3 @@
-#@tool
 class_name World
 extends Node2D
 
@@ -13,6 +12,10 @@ const TILE_SIZE= 32
 
 var tick_entities: Array[BaseBlockEntity]
 
+
+func _ready():
+	if generator:
+		generator.initialize()
 
 
 func _physics_process(delta):

@@ -7,6 +7,9 @@ extends Resource
 @export var distribution: TerrainBlockDistribution
 
 
+func initialize():
+	distribution.initialize()
+
 
 func get_block(pos: Vector2i)-> Block:
 	if pos.y < min_height or pos.y > max_height:
