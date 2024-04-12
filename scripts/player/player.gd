@@ -63,6 +63,7 @@ func _ready():
 
 func late_ready():
 	add_item_to_inventory(load("res://resources/hand items/pickaxe.tres"))
+	add_item_to_inventory(load("res://resources/hand items/sword.tres"))
 
 
 func _process(_delta):
