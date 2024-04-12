@@ -109,7 +109,7 @@ func break_block(tile_pos: Vector2i):
 		assert(false)
 		return null
 	chunk.break_block(tile_pos)
-
+	
 
 func spawn_item(item: Item, pos: Vector2)-> WorldItem:
 	var world_item: WorldItem= world_item_scene.instantiate()
