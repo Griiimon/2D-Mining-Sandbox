@@ -47,6 +47,8 @@ var is_mining: bool= false:
 
 var mining_progress: float
 
+var selected_block_pos: Vector2i
+
 var hand_item_obj: HandItemObject
 
 var inventory: Inventory= Inventory.new()
@@ -101,11 +103,13 @@ func _physics_process(delta):
 
 	
 	if ray_cast.is_colliding():
-		var block_pos: Vector2i= select_block()
+		select_block()
 		
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			if can_mine():
-				is_mining= mining_logic(block_pos, delta)
+				is_mining= mining_logic(delta)
+		else:
+			is_mining= false
 	else:
 		block_marker.hide()
 		is_mining= false
@@ -147,28 +151,31 @@ func interaction_logic():
 		interaction_target.interact(self)
 
 
-func mining_logic(block_pos: Vector2i, delta)-> bool:
+func mining_logic(delta)-> bool:
 	mining_progress+= mining_speed * delta
-	var block_hardness: float= get_world().get_block_hardness(block_pos)
+	var block_hardness: float= get_world().get_block_hardness(selected_block_pos)
 	
 	if mining_progress >= block_hardness or Global.game.cheats.instant_mine:
-		get_world().break_block(block_pos)
+		get_world().break_block(selected_block_pos)
 		return false
 	else:
-		block_breaker.position= get_world().map_to_local(block_pos)
+		block_breaker.position= get_world().map_to_local(selected_block_pos)
 		var frames: int= block_breaker.sprite_frames.get_frame_count("default")
 		block_breaker.frame= int(frames * mining_progress / block_hardness)
 		
 	return true
 
 
-func select_block()-> Vector2i:
-	var block_pos: Vector2i= get_world().get_tile(get_tile_collision())
+func select_block():
+	var new_block_pos: = get_world().get_tile(get_tile_collision())
+	if new_block_pos != selected_block_pos:
+		mining_progress= 0
+	selected_block_pos= new_block_pos
 	
-	block_marker.position= get_world().map_to_local(block_pos)
+	block_marker.position= get_world().map_to_local(selected_block_pos)
 	block_marker.show()
 	
-	return block_pos
+
 
 
 func get_tile_collision()-> Vector2:
