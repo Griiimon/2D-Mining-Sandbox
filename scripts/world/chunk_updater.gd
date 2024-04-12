@@ -30,10 +30,10 @@ func run(non_blocking: bool= true):
 	
 	busy= true
 	
-	var view_tile_pos: Vector2i= chunk_viewer.global_position / World.TILE_SIZE if chunk_viewer else Vector2i.ZERO
+	var view_tile_pos: Vector2i= Vector2i(chunk_viewer.global_position / World.TILE_SIZE) if chunk_viewer else Vector2i.ZERO
 
 	for chunk in world.get_chunks():
-		var distance: int= (view_tile_pos - chunk.get_world_tile_pos_center()).length()
+		var distance: int= int((view_tile_pos - chunk.get_world_tile_pos_center()).length())
 		if distance > max_distance:
 			chunk.queue_free()
 
@@ -44,7 +44,7 @@ func run(non_blocking: bool= true):
 			var chunk_coords: Vector2i= world.get_chunk_coords_at(pos)
 			var chunk: WorldChunk= world.get_chunk(chunk_coords)
 			
-			var distance: int= (view_tile_pos - pos).length()
+			var distance: int= int((view_tile_pos - pos).length())
 
 			if not chunk and distance < min_distance:
 				world.create_chunk(chunk_coords)

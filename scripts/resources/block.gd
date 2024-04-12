@@ -22,13 +22,13 @@ func has_tag(tag_name: String)-> bool:
 	return false
 
 
-func on_spawn(world: World, block_pos: Vector2i):
+func on_spawn(_world: World, _block_pos: Vector2i):
 	pass
 
 
-func on_break(world: World, block_pos: Vector2i):
+func on_break(_world: World, _block_pos: Vector2i):
 	pass
 
 
-func on_tick(world: World, block_pos: Vector2i):
+func on_tick(_world: World, _block_pos: Vector2i):
 	pass

@@ -30,7 +30,7 @@ func late_init():
 	WorldChunk.create_tileset()
 
 
-static func load_resource_folder_into_array(folder: String, array: Array):
+func load_resource_folder_into_array(folder: String, array: Array):
 	folder+= "/"
 	var dir:= DirAccess.open(folder)
 	
@@ -39,7 +39,7 @@ static func load_resource_folder_into_array(folder: String, array: Array):
 		array.append(item)
 
 
-static func load_resource_folder_into_dictionary(folder: String, dict: Dictionary, key: String):
+func load_resource_folder_into_dictionary(folder: String, dict: Dictionary, key: String):
 	folder+= "/"
 	var dir:= DirAccess.open(folder)
 	

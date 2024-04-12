@@ -20,7 +20,7 @@ func _ready():
 		generator.initialize()
 		
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Engine.is_editor_hint(): return
 	
 	for entity in tick_entities:
@@ -70,7 +70,7 @@ func get_chunk(chunk_coords: Vector2i)-> WorldChunk:
 	
 
 func get_chunks()-> Array[WorldChunk]:
-	var result: Array[WorldChunk]
+	var result: Array[WorldChunk]= []
 	result.assign(chunks.get_children())
 	return result
 

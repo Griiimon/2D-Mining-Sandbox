@@ -4,7 +4,7 @@ extends Node2D
 @export var effect_scene: PackedScene
 @export var amount: int= 20
 @export var interval: float = 0.2
-@export var range: int= 500
+@export var max_distance: int= 500
 
 @onready var next_effect: float= interval
 @onready var effects_left: int= amount
@@ -16,7 +16,7 @@ func _process(delta):
 	
 	if next_effect <= 0:
 		var obj= effect_scene.instantiate()
-		obj.position= Vector2(randi_range(-range, range), randi_range(-range, range))
+		obj.position= Vector2(randi_range(-max_distance, max_distance), randi_range(-max_distance, max_distance))
 		add_child(obj)
 		next_effect= interval
 

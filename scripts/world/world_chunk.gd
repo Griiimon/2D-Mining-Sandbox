@@ -32,11 +32,12 @@ func generate_tiles():
 			set_cell(0, local_pos, block_id, Vector2i.ZERO)
 			DataManager.get_block(block_id).on_spawn(world, global_pos)
 
-func _tile_data_runtime_update(layer, coords, tile_data):
+
+func _tile_data_runtime_update(_layer, _coords, _tile_data):
 	pass
 
 
-func _use_tile_data_runtime_update(layer, coords):
+func _use_tile_data_runtime_update(_layer, _coords):
 	return Engine.is_editor_hint()
 
 

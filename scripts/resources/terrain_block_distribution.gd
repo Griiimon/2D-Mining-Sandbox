@@ -9,14 +9,14 @@ var processed_noises: Array[FastNoiseLite]
 
 
 func initialize():
-	var seed: int= Global.game.settings.seed
+	var current_seed: int= Global.game.settings.world_seed
 	
 	if noise:
 		for i in blocks.size():
 			var new_noise: FastNoiseLite= noise.duplicate(true)
-			new_noise.seed= seed
+			new_noise.seed= current_seed
 			processed_noises.append(new_noise)
-			seed= wrapi(seed + 100, 0, 1_000_000)
+			current_seed= wrapi(current_seed + 100, 0, 1_000_000)
 		
 
 func get_block(pos: Vector2i)-> Block:

@@ -18,7 +18,7 @@ func _ready():
 	assert(parent.has_method(INTERACT_METHOD))
 	
 	if auto_retrieve_collision_shape:
-		var coll_shapes: Array[CollisionShape2D]
+		var coll_shapes: Array[CollisionShape2D]= []
 		coll_shapes.assign(parent.find_children("", "CollisionShape2D"))
 		assert(coll_shapes.size() > 0)
 		collision_shape.position= coll_shapes[0].position

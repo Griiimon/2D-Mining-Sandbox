@@ -28,7 +28,7 @@ func _ready():
 		camera.follow_node= player
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("toggle_free_cam"):

@@ -36,6 +36,6 @@ func send(key: String, value):
 	dict[key].value= str(value)
 
 
-func _process(delta):
+func _process(_delta):
 	for key in dict.keys():
 		dict[key].label_value.text= str(dict[key].value)

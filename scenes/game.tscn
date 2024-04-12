@@ -13,7 +13,7 @@
 
 [sub_resource type="Resource" id="Resource_lqxxk"]
 script = ExtResource("2_kke0s")
-seed = 0
+world_seed = 0
 player_spawn = Vector2i(0, 0)
 spawn_clearing_radius = 4
 
