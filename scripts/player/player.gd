@@ -33,7 +33,18 @@ var block_marker: Sprite2D
 # overlay to indicate the breaking progress of the currently mined block
 var block_breaker: AnimatedSprite2D
 
-var is_mining: bool= false
+var is_mining: bool= false:
+	set(b):
+		if b == is_mining: return
+		is_mining= b
+		if not is_mining:
+			mining_progress= 0
+			block_breaker.hide()
+			animation_player_hand.play("RESET")
+		else:
+			block_breaker.show()
+			animation_player_hand.play("mine")
+
 var mining_progress: float
 
 var hand_item_obj: HandItemObject
@@ -87,8 +98,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("drop_item") and has_hand_item():
 		drop_hand_item()
-	
-	is_mining= false
+
 	
 	if ray_cast.is_colliding():
 		var block_pos: Vector2i= select_block()
@@ -96,15 +106,10 @@ func _physics_process(delta):
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			if can_mine():
 				is_mining= mining_logic(block_pos, delta)
-			
 	else:
 		block_marker.hide()
-	
-	if not is_mining:
-		mining_progress= 0
-		block_breaker.hide()
-		animation_player_hand.play("RESET")
-		
+		is_mining= false
+
 
 func movement(delta):
 	if not is_on_floor():
@@ -149,13 +154,10 @@ func mining_logic(block_pos: Vector2i, delta)-> bool:
 	if mining_progress >= block_hardness or Global.game.cheats.instant_mine:
 		get_world().break_block(block_pos)
 		return false
-	
 	else:
 		block_breaker.position= get_world().map_to_local(block_pos)
 		var frames: int= block_breaker.sprite_frames.get_frame_count("default")
 		block_breaker.frame= int(frames * mining_progress / block_hardness)
-		block_breaker.show()
-		animation_player_hand.play("Mine")
 		
 	return true
 
@@ -254,6 +256,7 @@ func get_world()-> World:
 
 
 func _on_player_ui_hotbar_slot_changed():
+	is_mining= false
 	unequip_hand_item()
 	check_hotbar_hand_item()
 
@@ -262,4 +265,4 @@ func check_hotbar_hand_item():
 	var item: Item= get_current_inventory_item().item
 	if item and item is HandItem:
 		equip_hand_item(item)
-		
+
