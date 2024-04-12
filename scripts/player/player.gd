@@ -183,7 +183,7 @@ func get_tile_collision()-> Vector2:
 
 
 func equip_hand_item(item: HandItem):
-	unequip_hand_item()
+	await unequip_hand_item()
 	hand_item_obj= item.scene.instantiate()
 	main_hand.add_child(hand_item_obj)
 	hand_item_obj.type= item
@@ -193,6 +193,7 @@ func unequip_hand_item():
 	if has_hand_item():
 		get_hand_item().queue_free()
 		hand_item_obj= null
+		await get_tree().process_frame
 
 
 func has_hand_item()-> bool:
