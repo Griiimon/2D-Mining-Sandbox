@@ -191,6 +191,7 @@ func get_tile_collision()-> Vector2:
 
 func equip_hand_item(item: HandItem):
 	await unequip_hand_item()
+	assert(not hand_item_obj and main_hand.get_child_count() == 0)
 	hand_item_obj= item.scene.instantiate()
 	main_hand.add_child(hand_item_obj)
 	hand_item_obj.type= item
@@ -265,7 +266,7 @@ func get_world()-> World:
 
 func _on_player_ui_hotbar_slot_changed():
 	is_mining= false
-	unequip_hand_item()
+	await unequip_hand_item()
 	check_hotbar_hand_item()
 
 
