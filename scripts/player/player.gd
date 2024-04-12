@@ -51,6 +51,8 @@ var selected_block_pos: Vector2i
 
 var hand_item_obj: HandItemObject
 
+var is_executing_action: bool= false
+
 var inventory: Inventory= Inventory.new()
 
 
@@ -102,7 +104,7 @@ func _physics_process(delta):
 		drop_hand_item()
 
 	
-	if ray_cast.is_colliding():
+	if ray_cast.is_colliding() and is_raycast_hitting_terrain():
 		select_block()
 		
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -113,6 +115,18 @@ func _physics_process(delta):
 	else:
 		block_marker.hide()
 		is_mining= false
+		
+		if not is_executing_action:
+			if has_hand_item():
+				var action_name: String
+				if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+					action_name= get_hand_item().type.primary_action_animation
+				elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+					action_name= get_hand_item().type.secondary_action_animation
+
+				if action_name:
+					animation_player_hand.play(action_name)
+					is_executing_action= true
 
 
 func movement(delta):
@@ -174,8 +188,12 @@ func select_block():
 	
 	block_marker.position= get_world().map_to_local(selected_block_pos)
 	block_marker.show()
-	
 
+
+func is_raycast_hitting_terrain()-> bool: 
+	if ray_cast.get_collider() is TileMap:
+		return true
+	return false
 
 
 func get_tile_collision()-> Vector2:
@@ -275,3 +293,6 @@ func check_hotbar_hand_item():
 	if item and item is HandItem:
 		equip_hand_item(item)
 
+
+func _on_animation_player_hand_animation_finished(anim_name):
+	is_executing_action= false

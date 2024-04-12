@@ -334,4 +334,5 @@ shape = SubResource("CapsuleShape2D_nwn3q")
 
 [node name="Player UI" parent="." instance=ExtResource("4_8hau5")]
 
+[connection signal="animation_finished" from="AnimationPlayer Hand" to="." method="_on_animation_player_hand_animation_finished"]
 [connection signal="hotbar_slot_changed" from="Player UI" to="." method="_on_player_ui_hotbar_slot_changed"]

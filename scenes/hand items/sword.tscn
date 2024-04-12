@@ -67,9 +67,10 @@ _data = {
 "start_attack": SubResource("Animation_tb25w")
 }
 
-[node name="Sword" type="Node2D"]
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("action_player")]
 position = Vector2(8, 0)
 script = ExtResource("1_k0drm")
+action_player = NodePath("ActionPlayer")
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 0
