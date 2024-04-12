@@ -1,10 +1,22 @@
-fix unequip hand item when changing hotbar selection
+player jump animation
+
+player loadout resource
+
+add sounds
+
+add state machine for enemies
+
+world item damp upwards movement, only after bounce
 
 track all spawned items globally, and check all if inside despawned chunk and delete 
 
 tilemap foreground layer (for water, add water tile to foreground layer in addition to bg layer)
 
+display interaction label over interaction object?
+
 add godot block, mining it triggers fireworks
+
+sword, hurtbox, left click stab, right click swing while freezing player
 
 throw dynamite
 
