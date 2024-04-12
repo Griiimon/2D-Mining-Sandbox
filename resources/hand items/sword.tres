@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cfl3rvrkdqktu" path="res://scenes/hand items/sword.tscn" id="1_6gf1x"]
 [ext_resource type="Script" path="res://scripts/resources/hand_item.gd" id="2_rcpog"]
-[ext_resource type="Texture2D" uid="uid://cx1jcqlsqk8ql" path="res://textures/items/pickaxe.png" id="3_4qfx4"]
+[ext_resource type="Texture2D" uid="uid://dee6iq5cab4vn" path="res://textures/items/sword.png" id="3_5ajcn"]
 
 [resource]
 script = ExtResource("2_rcpog")
@@ -13,7 +13,7 @@ mining_animation = "mine"
 primary_action_animation = "stab"
 secondary_action_animation = "swing"
 name = "sword"
-texture = ExtResource("3_4qfx4")
+texture = ExtResource("3_5ajcn")
 can_stack = false
 tags = Array[Resource("res://scripts/resources/tag.gd")]([])
 fuel_value = 0.0
