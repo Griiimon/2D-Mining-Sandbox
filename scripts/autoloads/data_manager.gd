@@ -55,6 +55,11 @@ func find_furnace_recipe_for(ore: Item)-> FurnaceRecipe:
 	return furnace_recipes[ore]
 
 
+func get_block(id: int)-> Block:
+	assert(id < len(blocks))
+	return blocks[id]
+
+
 func get_block_id(block: Block)-> int:
 	assert(blocks_lookup.has(block))
 	return blocks_lookup[block]
