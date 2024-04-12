@@ -30,7 +30,7 @@ func generate_tiles():
 			var global_pos= local_pos + coords * SIZE
 			var block_id: int= generator.get_block_id(global_pos)
 			set_cell(0, local_pos, block_id, Vector2i.ZERO)
-
+			DataManager.get_block(block_id).on_spawn(world, global_pos)
 
 func _tile_data_runtime_update(layer, coords, tile_data):
 	pass
@@ -61,6 +61,7 @@ func break_block(tile_pos: Vector2i):
 		set_cell(0, get_local_pos(tile_pos), -1)
 
 		Effects.spawn_particle_system(world_pos, MyParticleSystem.ParticleSettings.new(20, 3, block.particle_color, 1, 1, 2, true, 50, 100, 500, Vector2.UP, 90, true, 0.5, 0))
+		block.on_break(world, tile_pos)
 
 
 func delete_block(tile_pos: Vector2i):

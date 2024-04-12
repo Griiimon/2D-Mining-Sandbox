@@ -9,6 +9,7 @@ extends Resource
 @export var tags: Array[Tag]
 @export var particle_color: Color
 
+
 @export_category("Special")
 @export var is_air: bool= false
 
@@ -19,3 +20,15 @@ func has_tag(tag_name: String)-> bool:
 		if tag.name == tag_name:
 			return true
 	return false
+
+
+func on_spawn(world: World, block_pos: Vector2i):
+	pass
+
+
+func on_break(world: World, block_pos: Vector2i):
+	pass
+
+
+func on_tick(world: World, block_pos: Vector2i):
+	pass
