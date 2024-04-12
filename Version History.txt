@@ -2,6 +2,12 @@
 # v0.3          #
 ##################
 
+- dummy enemy
+- sword
+- melee attack animations
+- damage system
+- godot block 
+- fireworks effect
 - toggle free camera ( K )
 - Debug Hud
 - auto player spawning
