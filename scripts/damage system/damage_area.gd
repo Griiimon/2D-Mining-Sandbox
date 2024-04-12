@@ -6,7 +6,7 @@ extends Area2D
 
 func _ready():
 	assert(damage != null, get_parent().name + " DamageArea is missing Damage Resource")
-	set_collision_mask_value(Global.HURTBOX_LAYER, true)
+	set_collision_mask_value(Global.HURTBOX_COLLISION_LAYER, true)
 
 
 func _on_area_entered(area):

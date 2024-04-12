@@ -6,7 +6,7 @@ class_name HurtBox
 
 func _ready():
 	assert(health_component, "HealthComponent in HurtBox of " + get_parent().name + " not set")
-	set_collision_layer_value(Global.HURTBOX_LAYER, true)
+	set_collision_layer_value(Global.HURTBOX_COLLISION_LAYER, true)
 
 
 func receive_damage(damage: Damage):
