@@ -8,6 +8,8 @@ enum Type { PICK_AXE, SHOVEL, MELEE_WEAPON, THROWABLE, CUSTOM }
 @export var scene: PackedScene
 
 @export var mining_animation: String
+@export var primary_action_animation: String
+@export var secondary_action_animation: String
 
 
 func can_mine()-> bool:
