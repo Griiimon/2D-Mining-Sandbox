@@ -56,9 +56,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_skb86"]
 size = Vector2(100, 50)
 
-[node name="Bat" type="CharacterBody2D"]
+[node name="Bat" type="CharacterBody2D" node_paths=PackedStringArray("sleep_state", "fly_state")]
 collision_layer = 8
 script = ExtResource("1_ge4ks")
+sleep_state = NodePath("State Machine/Sleep")
+fly_state = NodePath("State Machine/Fly")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_fwys7")
@@ -69,6 +71,7 @@ visible = false
 shape = SubResource("RectangleShape2D_i72l7")
 
 [node name="Visual" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Wings" type="Node2D" parent="Visual"]
 
@@ -130,6 +133,10 @@ width = 3.0
 width_curve = SubResource("Curve_go8wa")
 default_color = Color(0.364706, 0.0980392, 0.0470588, 1)
 
+[node name="RayCast Ceiling" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(0, -15)
+
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("current_state", "animation_player")]
 script = ExtResource("3_n88n8")
 current_state = NodePath("Fly")
@@ -146,8 +153,6 @@ auto_play_animation = "fly"
 [node name="Timer" type="Timer" parent="State Machine/Fly"]
 wait_time = 5.0
 one_shot = true
-
-[node name="Flee" type="Node" parent="State Machine"]
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 0
@@ -175,4 +180,5 @@ shape = SubResource("RectangleShape2D_skb86")
 debug_color = Color(0.796078, 0.411765, 0.282353, 0.419608)
 
 [connection signal="wake_up" from="State Machine/Sleep" to="." method="_on_wake_up"]
+[connection signal="go_sleep" from="State Machine/Fly" to="." method="_on_fly_go_sleep"]
 [connection signal="body_entered" from="Movement Detection" to="State Machine/Sleep" method="_on_movement_detection_body_entered"]
