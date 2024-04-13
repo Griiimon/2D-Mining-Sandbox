@@ -1,6 +1,6 @@
-restructure project to put code/scene/asset into same folder
+damage area needs custom set_enabled func because area_entered wont trigger when already inside
 
-player jump animation
+restructure project to put code/scene/asset into same folder
 
 player loadout resource
 
