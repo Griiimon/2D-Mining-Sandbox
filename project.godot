@@ -17,10 +17,10 @@ config/icon="res://textures/items/pickaxe.png"
 
 [autoload]
 
-DataManager="*res://scripts/autoloads/data_manager.gd"
-Effects="*res://scripts/autoloads/effects.gd"
-NodeDebugger="*res://scripts/autoloads/node_debugger.gd"
-Global="*res://scripts/autoloads/global.gd"
+DataManager="*res://scripts/autoloads singletons/data_manager.gd"
+Effects="*res://scripts/autoloads singletons/effects.gd"
+NodeDebugger="*res://scripts/autoloads singletons/node_debugger.gd"
+Global="*res://scripts/autoloads singletons/global.gd"
 DebugHud="*res://scenes/ui/debug_hud.tscn"
 
 [editor]
@@ -80,6 +80,7 @@ toggle_free_cam={
 2d_physics/layer_1="Terrain"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Mob"
+2d_physics/layer_4="No Collision Mob"
 2d_physics/layer_5="Interaction"
 2d_physics/layer_7="Damage"
 
