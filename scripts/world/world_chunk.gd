@@ -52,12 +52,12 @@ func get_local_pos(tile_pos: Vector2i)-> Vector2i:
 	return Vector2i(wrapi(tile_pos.x, 0, SIZE), wrapi(tile_pos.y, 0, SIZE))
 
 
-func break_block(tile_pos: Vector2i):
+func break_block(tile_pos: Vector2i, with_drops: bool= true):
 	var block_id: int= get_block_id(tile_pos)
 	if block_id >= 0:
 		var block: Block= DataManager.blocks[block_id]
 		var world_pos: Vector2= map_to_local(tile_pos)
-		if block.drop:
+		if with_drops and block.drop:
 			world.spawn_item(block.drop, world_pos)
 		set_cell(0, get_local_pos(tile_pos), -1)
 

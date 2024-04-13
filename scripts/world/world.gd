@@ -103,12 +103,12 @@ func delete_block(tile_pos: Vector2i):
 	chunk.delete_block(tile_pos)
 
 
-func break_block(tile_pos: Vector2i):
+func break_block(tile_pos: Vector2i, with_drops: bool= true):
 	var chunk: WorldChunk= get_chunk_at(tile_pos)
 	if not chunk: 
 		assert(false)
 		return null
-	chunk.break_block(tile_pos)
+	chunk.break_block(tile_pos, with_drops)
 	
 
 func spawn_item(item: Item, pos: Vector2)-> WorldItem:

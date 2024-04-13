@@ -9,6 +9,10 @@ extends Resource
 @export var tags: Array[Tag]
 @export var particle_color: Color
 
+@export_category("Tools")
+@export var mining_tool: HandItem.Type= HandItem.Type.PICK_AXE
+@export var other_tool_penalty: float= 4.0
+@export var other_tool_produces_drops: bool= false
 
 @export_category("Special")
 @export var is_air: bool= false

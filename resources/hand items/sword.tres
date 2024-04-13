@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("2_rcpog")
-type = 2
+type = 3
 tier = 0
 scene = ExtResource("1_6gf1x")
 mining_animation = "mine"

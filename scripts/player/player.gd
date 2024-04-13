@@ -167,15 +167,21 @@ func interaction_logic():
 
 func mining_logic(delta)-> bool:
 	mining_progress+= mining_speed * delta
-	var block_hardness: float= get_world().get_block_hardness(selected_block_pos)
-	
-	if mining_progress >= block_hardness or Global.game.cheats.instant_mine:
-		get_world().break_block(selected_block_pos)
+	var block: Block= get_world().get_block(selected_block_pos)
+	if not block:
+		return false
+
+	var total_mining_effort= block.hardness
+	if get_hand_item_type() != block.mining_tool:
+		total_mining_effort*= 1 + block.other_tool_penalty
+		
+	if mining_progress >= total_mining_effort or Global.game.cheats.instant_mine:
+		get_world().break_block(selected_block_pos, get_hand_item_type() == block.mining_tool)
 		return false
 	else:
 		block_breaker.position= get_world().map_to_local(selected_block_pos)
 		var frames: int= block_breaker.sprite_frames.get_frame_count("default")
-		block_breaker.frame= int(frames * mining_progress / block_hardness)
+		block_breaker.frame= int(frames * mining_progress / total_mining_effort)
 		
 	return true
 
@@ -228,6 +234,12 @@ func has_hand_item()-> bool:
 
 func get_hand_item()-> HandItemObject:
 	return main_hand.get_child(0)
+
+
+func get_hand_item_type()-> HandItem.Type:
+	if not has_hand_item():
+		return HandItem.Type.NONE
+	return get_hand_item().type.type
 
 
 func can_mine()-> bool:

@@ -6,10 +6,14 @@
 
 [resource]
 script = ExtResource("1_0ajy6")
-type = 0
+type = 1
 tier = 0
 scene = ExtResource("1_6yoo4")
 mining_animation = "Mine"
+primary_action_animation = ""
+secondary_action_animation = ""
 name = "pickaxe"
 texture = ExtResource("3_o577b")
 can_stack = false
+tags = Array[Resource("res://scripts/resources/tag.gd")]([])
+fuel_value = 0.0
