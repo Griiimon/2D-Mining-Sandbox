@@ -2,6 +2,9 @@
 # v0.3          #
 ##################
 
+
+- added state machine
+- specific mining tool type per block, speed penalty and conditional drops
 - dummy enemy
 - sword
 - melee attack animations
