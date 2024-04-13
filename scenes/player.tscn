@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d4mufsk5s6ksm"]
+[gd_scene load_steps=17 format=3 uid="uid://d4mufsk5s6ksm"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_ucsv2"]
 [ext_resource type="PackedScene" uid="uid://b7kuvqlnmagen" path="res://scenes/effects/block_marker.tscn" id="2_wdobs"]
@@ -224,10 +224,26 @@ tracks/0/keys = {
 "values": [0.0, 0.380482, -0.349066]
 }
 
+[sub_resource type="Animation" id="Animation_7fwcn"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Hip:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.872665, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ve3ko"]
 _data = {
 "RESET": SubResource("Animation_1dm2i"),
-"Walk": SubResource("Animation_v8cep")
+"Walk": SubResource("Animation_v8cep"),
+"jump": SubResource("Animation_7fwcn")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nwn3q"]
@@ -317,6 +333,7 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Interaction Area"]
 position = Vector2(20, 0)
 shape = SubResource("RectangleShape2D_wumd6")
+debug_color = Color(0.584314, 0.905882, 0.172549, 0.419608)
 
 [node name="AnimationPlayer Hand" type="AnimationPlayer" parent="."]
 libraries = {

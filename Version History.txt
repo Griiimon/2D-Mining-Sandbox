@@ -2,8 +2,8 @@
 # v0.3          #
 ##################
 
-
-- added state machine
+- bat neutral mob
+- state machine
 - specific mining tool type per block, speed penalty and conditional drops
 - dummy enemy
 - sword

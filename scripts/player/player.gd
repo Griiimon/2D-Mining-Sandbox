@@ -133,8 +133,6 @@ func movement(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
 
 	var direction = Input.get_axis("left", "right")
 	if direction:
@@ -142,10 +140,14 @@ func movement(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
-	if abs(velocity.x) > 0:
-		animation_player_feet.play("Walk")
-	else:
-		animation_player_feet.play("RESET")
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jump_velocity
+		animation_player_feet.play("jump")
+	elif is_on_floor():
+		if abs(velocity.x) > 0:
+			animation_player_feet.play("Walk")
+		else:
+			animation_player_feet.play("RESET")
 
 	move_and_slide()
 

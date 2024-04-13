@@ -14,10 +14,6 @@ tilemap foreground layer (for water, add water tile to foreground layer in addit
 
 display interaction label over interaction object?
 
-add godot block, mining it triggers fireworks
-
-sword, hurtbox, left click stab, right click swing while freezing player
-
 throw dynamite
 
 hand gun
@@ -27,6 +23,3 @@ basePlayer class and extend with default character "Classico"
 character selection screen
 
 health bar ( auto regenerate ), fall damage
-
-bat ( Creature, neutral )
-
