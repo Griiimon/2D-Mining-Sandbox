@@ -4,13 +4,8 @@ extends Node
 signal state_changed(new_state: StateMachineState)
 
 @export var current_state: StateMachineState = null: set = set_current_state
+@export var animation_player: AnimationPlayer
 
-
-
-func _ready() -> void:
-	if is_instance_valid(current_state):
-		current_state.on_enter()
-		current_state.state_entered.emit()
 
 
 func _process(delta: float) -> void:
@@ -32,7 +27,9 @@ func change_state(node_path: NodePath) -> void:
 
 
 func set_current_state(next_state: StateMachineState) -> void:
-	# Exit from the previous state
+	if not is_inside_tree():
+		await ready
+		
 	if current_state:
 		current_state.on_exit()
 		current_state.state_exited.emit()
@@ -40,5 +37,7 @@ func set_current_state(next_state: StateMachineState) -> void:
 
 	if current_state:
 		state_changed.emit(current_state)
+		if current_state.auto_play_animation and animation_player:
+			animation_player.play(current_state.auto_play_animation)
 		current_state.on_enter()
 		current_state.state_entered.emit()

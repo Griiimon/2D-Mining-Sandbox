@@ -5,6 +5,9 @@ extends Node
 signal state_entered
 signal state_exited
 
+@export var auto_play_animation: String
+
+
 
 func on_enter() -> void:
 	pass
