@@ -1,10 +1,10 @@
+restructure project to put code/scene/asset into same folder
+
 player jump animation
 
 player loadout resource
 
 add sounds
-
-add state machine for enemies
 
 world item damp upwards movement, only after bounce
 
