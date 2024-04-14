@@ -8,3 +8,6 @@ monitoring = false
 script = ExtResource("1_eskap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(0.797158, 0.421571, 0.0909174, 0.42)
+
+[node name="Label Offset" type="Node2D" parent="."]

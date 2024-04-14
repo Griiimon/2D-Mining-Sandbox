@@ -165,7 +165,7 @@ func interaction_logic():
 	
 	var interaction_target: InteractionTarget= areas[0]
 
-	ui.set_interaction_hint(interaction_target.get_interaction_hint(self))
+	ui.set_interaction_hint(interaction_target.get_interaction_hint(self), interaction_target.label_offset.global_position)
 
 	if Input.is_action_just_pressed("interact"):
 		interaction_target.interact(self)

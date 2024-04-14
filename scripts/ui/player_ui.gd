@@ -16,6 +16,8 @@ var current_hotbar_slot_idx: int:
 		select_current_hotbar_slot()
 		hotbar_slot_changed.emit()
 
+
+
 func _ready():
 	for i in Inventory.SIZE:
 		var slot: HotbarSlot= hotbar_slot_scene.instantiate()
@@ -37,7 +39,6 @@ func _unhandled_input(event):
 				current_hotbar_slot_idx+= 1
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				current_hotbar_slot_idx-= 1
-				
 
 
 func select_current_hotbar_slot(enable: bool= true):
@@ -51,6 +52,10 @@ func update_hotbar(inventory: Inventory):
 		slot.set_item(inventory.items[i])
 
 
-func set_interaction_hint(text: String= ""):
+func set_interaction_hint(text: String= "", pos: Vector2= Vector2.ZERO):
 	interaction_hint.text= text
 	interaction_hint.visible= not text.is_empty()
+
+	await get_tree().process_frame
+	interaction_hint.position= get_viewport().canvas_transform * pos - Vector2(interaction_hint.size.x / 2, 0)
+	#interaction_hint.

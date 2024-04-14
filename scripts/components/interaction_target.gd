@@ -9,6 +9,7 @@ const CUSTOM_HINT_METHOD= "custom_interaction_hint"
 @export var default_hint: String= "Press F to interact"
 
 @onready var collision_shape = $CollisionShape2D
+@onready var label_offset = $"Label Offset"
 
 var parent: Node2D
 
