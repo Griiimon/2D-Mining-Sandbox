@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://53373xw8w422"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/projectile.gd" id="1_3aiph"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wbemm"]
+radius = 11.0
+
+[node name="Grenade" type="CharacterBody2D" node_paths=PackedStringArray("visual")]
+collision_layer = 32
+script = ExtResource("1_3aiph")
+visual = NodePath("Visual")
+gravity = 100.0
+damping = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wbemm")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Visual"]
+position = Vector2(0, 1.5)
+color = Color(0.192157, 0.486275, 0.329412, 1)
+polygon = PackedVector2Array(0, -12, -4, -12, -8, -4, -8, 4, -4, 8, 0, 10, 4, 8, 8, 4, 8, -4, 4, -12)
