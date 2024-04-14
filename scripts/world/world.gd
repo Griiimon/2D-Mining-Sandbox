@@ -133,6 +133,16 @@ func spawn_block_entity(tile_pos: Vector2i, entity_scene: PackedScene):
 		tick_entities.append(entity)
 
 
+func explosion(center: Vector2i, damage: float, radius: float):
+	for x in range(-radius, radius):
+		for y in range(-radius, radius):
+			var tile: Vector2i= center + Vector2i(x, y)
+			if (tile - center).length() <= radius:
+				var block: Block= get_block(tile)
+				if block and damage > block.hardness:
+					delete_block(tile)
+
+
 func _on_chunk_updater_initial_run_completed():
 	var settings: GameSettings= Global.game.settings
 	for x in range(-settings.spawn_clearing_radius, settings.spawn_clearing_radius):

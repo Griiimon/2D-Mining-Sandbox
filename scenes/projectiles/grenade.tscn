@@ -10,8 +10,6 @@ collision_layer = 32
 script = ExtResource("1_amtvd")
 visual = NodePath("Visual")
 gravity = 100.0
-damping = null
-bounce = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_wbemm")
