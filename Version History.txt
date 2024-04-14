@@ -2,6 +2,7 @@
 # v0.3          #
 ##################
 
+- player loadout
 - bat neutral mob
 - state machine
 - specific mining tool type per block, speed penalty and conditional drops
