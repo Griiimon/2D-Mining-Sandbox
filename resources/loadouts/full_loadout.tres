@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="PlayerLoadout" load_steps=15 format=3 uid="uid://bkrr445vap63e"]
+
+[ext_resource type="Resource" uid="uid://de53vt430ls03" path="res://resources/hand items/pickaxe.tres" id="1_g0e2q"]
+[ext_resource type="Script" path="res://scripts/player/inventory_item.gd" id="2_k0fc7"]
+[ext_resource type="Resource" uid="uid://c0uy4aakxock" path="res://resources/hand items/sword.tres" id="3_ne423"]
+[ext_resource type="Script" path="res://scripts/resources/player_loadout.gd" id="4_a2iic"]
+[ext_resource type="Resource" uid="uid://dvmim47wemg41" path="res://resources/items/coal_ore.tres" id="4_u6vlg"]
+[ext_resource type="Resource" uid="uid://dxr48tuivsyc2" path="res://resources/items/iron_ore.tres" id="5_paj5d"]
+[ext_resource type="Resource" uid="uid://jkfdi3kaaiof" path="res://resources/items/stone.tres" id="6_5bpub"]
+[ext_resource type="Resource" uid="uid://bhhsycxt24sle" path="res://resources/items/iron_ingot.tres" id="7_443rk"]
+
+[sub_resource type="Resource" id="Resource_262tr"]
+script = ExtResource("2_k0fc7")
+item = ExtResource("1_g0e2q")
+amount = 1
+
+[sub_resource type="Resource" id="Resource_kxhpa"]
+script = ExtResource("2_k0fc7")
+item = ExtResource("3_ne423")
+amount = 1
+
+[sub_resource type="Resource" id="Resource_ypdij"]
+script = ExtResource("2_k0fc7")
+item = ExtResource("4_u6vlg")
+amount = 20
+
+[sub_resource type="Resource" id="Resource_kfgry"]
+script = ExtResource("2_k0fc7")
+item = ExtResource("5_paj5d")
+amount = 20
+
+[sub_resource type="Resource" id="Resource_hb4wu"]
+script = ExtResource("2_k0fc7")
+item = ExtResource("6_5bpub")
+amount = 20
+
+[sub_resource type="Resource" id="Resource_by25c"]
+script = ExtResource("2_k0fc7")
+item = ExtResource("7_443rk")
+amount = 20
+
+[resource]
+script = ExtResource("4_a2iic")
+inventory_items = Array[ExtResource("2_k0fc7")]([SubResource("Resource_262tr"), SubResource("Resource_kxhpa"), SubResource("Resource_ypdij"), SubResource("Resource_kfgry"), SubResource("Resource_hb4wu"), SubResource("Resource_by25c")])
