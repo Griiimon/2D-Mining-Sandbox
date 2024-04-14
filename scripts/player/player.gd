@@ -7,6 +7,7 @@ const DROP_THROW_FORCE= 300
 @export var jump_velocity = -400.0
 @export var mining_speed= 1.0
 @export var freeze: bool= false
+@export var loadout: PlayerLoadout
 
 @export_category("Components")
 @export var body: Node2D
@@ -77,8 +78,8 @@ func _ready():
 
 
 func late_ready():
-	add_item_to_inventory(load("res://resources/hand items/pickaxe.tres"))
-	add_item_to_inventory(load("res://resources/hand items/sword.tres"))
+	for inv_item in loadout.inventory_items:
+		add_item_to_inventory(inv_item.item, inv_item.amount)
 
 
 func _process(_delta):
@@ -264,8 +265,8 @@ func pickup(item: Item):
 	add_item_to_inventory(item)
 
 
-func add_item_to_inventory(item: Item):
-	inventory.add_new_item(item)
+func add_item_to_inventory(item: Item, amount: int= 1):
+	inventory.add_new_item(item, amount)
 
 	check_hotbar_hand_item()
 

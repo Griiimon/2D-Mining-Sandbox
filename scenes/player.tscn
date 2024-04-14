@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://d4mufsk5s6ksm"]
+[gd_scene load_steps=18 format=3 uid="uid://d4mufsk5s6ksm"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_ucsv2"]
+[ext_resource type="Resource" uid="uid://c8feqy48gw426" path="res://resources/loadouts/default_loadout.tres" id="2_ufm6i"]
 [ext_resource type="PackedScene" uid="uid://b7kuvqlnmagen" path="res://scenes/effects/block_marker.tscn" id="2_wdobs"]
 [ext_resource type="PackedScene" uid="uid://bhvbs1jyh6255" path="res://scenes/effects/block_break_animation.tscn" id="3_60ons"]
 [ext_resource type="PackedScene" uid="uid://b4uyq2o7u54dp" path="res://scenes/ui/player_ui.tscn" id="4_8hau5"]
@@ -258,6 +259,7 @@ collision_mask = 5
 script = ExtResource("1_ucsv2")
 speed = 100.0
 jump_velocity = -300.0
+loadout = ExtResource("2_ufm6i")
 body = NodePath("Body")
 look_pivot = NodePath("Body/Look Pivot")
 ray_cast = NodePath("Body/Look Pivot/RayCast2D")
