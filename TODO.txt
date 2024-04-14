@@ -1,4 +1,5 @@
 restructure project to put code/scene/asset into same folder
+move variable setters to custom funcs
 
 add sounds
 
@@ -8,7 +9,7 @@ track all spawned items globally, and check all if inside despawned chunk and de
 
 tilemap foreground layer (for water, add water tile to foreground layer in addition to bg layer)
 
-display interaction label over interaction object?
+display interaction label over interaction object? make component 2d for positional hint
 
 throw dynamite
 
