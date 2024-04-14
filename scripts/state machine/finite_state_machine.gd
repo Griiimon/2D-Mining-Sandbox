@@ -30,7 +30,8 @@ func set_current_state(next_state: StateMachineState):
 		await ready
 		
 	if current_state:
-		print(get_parent().name + " State Machine exiting state " + current_state.name)
+		if debug:
+			print(get_parent().name + " State Machine exiting state " + current_state.name)
 		if current_state.auto_stop_animation and animation_player:
 			animation_player.stop()
 		current_state.on_exit()
@@ -38,7 +39,8 @@ func set_current_state(next_state: StateMachineState):
 	current_state = next_state
 
 	if current_state:
-		print(get_parent().name + " State Machine changing state to " + current_state.name)
+		if debug:
+			print(get_parent().name + " State Machine changing state to " + current_state.name)
 		state_changed.emit(current_state)
 		if current_state.auto_play_animation and animation_player:
 			animation_player.play(current_state.auto_play_animation)
