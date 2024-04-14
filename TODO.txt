@@ -1,6 +1,8 @@
 restructure project to put code/scene/asset into same folder
 move variable setters to custom funcs
 
+make hand connector sub node for exact positioning
+
 add sounds
 
 world item damp upwards movement, only after bounce
@@ -10,8 +12,6 @@ track all spawned items globally, and check all if inside despawned chunk and de
 tilemap foreground layer (for water, add water tile to foreground layer in addition to bg layer)
 
 display interaction label over interaction object? make component 2d for positional hint
-
-throw dynamite
 
 hand gun
 
