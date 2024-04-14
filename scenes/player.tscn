@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d4mufsk5s6ksm"]
+[gd_scene load_steps=19 format=3 uid="uid://d4mufsk5s6ksm"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_ucsv2"]
 [ext_resource type="Resource" uid="uid://c8feqy48gw426" path="res://resources/loadouts/default_loadout.tres" id="2_ufm6i"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bhvbs1jyh6255" path="res://scenes/effects/block_break_animation.tscn" id="3_60ons"]
 [ext_resource type="PackedScene" uid="uid://b4uyq2o7u54dp" path="res://scenes/ui/player_ui.tscn" id="4_8hau5"]
 [ext_resource type="Script" path="res://scripts/player/hand.gd" id="4_wxlyd"]
+[ext_resource type="PackedScene" uid="uid://dcor34lsh3lfc" path="res://scenes/hand items/virtual_projectile_thrower.tscn" id="5_f18j0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wumd6"]
 size = Vector2(40, 60)
@@ -267,6 +268,7 @@ main_hand = NodePath("Body/Look Pivot/Shoulder/Hand")
 interaction_area = NodePath("Body/Interaction Area")
 block_marker_scene = ExtResource("2_wdobs")
 block_breaker_scene = ExtResource("3_60ons")
+virtual_thrower_scene = ExtResource("5_f18j0")
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -320,7 +322,7 @@ collision_mask = 5
 
 [node name="Shoulder" type="Node2D" parent="Body/Look Pivot"]
 
-[node name="Hand" type="Line2D" parent="Body/Look Pivot/Shoulder"]
+[node name="Hand" type="Line2D" parent="Body/Look Pivot/Shoulder" node_paths=PackedStringArray("player")]
 position = Vector2(8, 16)
 rotation = 0.349066
 points = PackedVector2Array(0, 0, 5, 0)
@@ -328,6 +330,7 @@ default_color = Color(0.991973, 0.555872, 0.591136, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 script = ExtResource("4_wxlyd")
+player = NodePath("../../../..")
 
 [node name="Interaction Area" type="Area2D" parent="Body"]
 collision_mask = 16

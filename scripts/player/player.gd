@@ -19,6 +19,7 @@ const DROP_THROW_FORCE= 300
 @export_category("Scenes")
 @export var block_marker_scene: PackedScene
 @export var block_breaker_scene: PackedScene
+@export var virtual_thrower_scene: PackedScene
 
 
 @onready var animation_player_hand = $"AnimationPlayer Hand"
@@ -56,8 +57,21 @@ var is_executing_action: bool= false
 
 var inventory: Inventory= Inventory.new()
 
+var is_charging: bool= false
+var charge_primary: bool= true
+var total_charge: float
+
 
 func _ready():
+	assert(body)
+	assert(look_pivot)
+	assert(ray_cast)
+	assert(main_hand)
+	assert(interaction_area)
+	assert(block_breaker_scene)
+	assert(block_marker_scene)
+	assert(virtual_thrower_scene)
+	
 	var game: Game= get_parent()
 	assert(game)
 	game.player= self
@@ -99,6 +113,9 @@ func _process(_delta):
 
 
 func _physics_process(delta):
+	if is_charging:
+		total_charge+= delta
+
 	if freeze: return
 
 	movement(delta)
@@ -120,23 +137,12 @@ func _physics_process(delta):
 		block_marker.hide()
 		is_mining= false
 		
-		if not is_executing_action:
-			if has_hand_item():
-				var action_name: String
-				if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-					action_name= get_hand_item().type.primary_action_animation
-				elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-					action_name= get_hand_item().type.secondary_action_animation
-
-				if action_name:
-					animation_player_hand.play(action_name)
-					is_executing_action= true
+		mouse_actions()
 
 
 func movement(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
 
 	var direction = Input.get_axis("left", "right")
 	if direction:
@@ -192,6 +198,30 @@ func mining_logic(delta)-> bool:
 	return true
 
 
+func mouse_actions():
+	if is_charging:
+		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			release_charge()
+	elif not is_executing_action:
+		if has_hand_item():
+			var action_name: String
+			var hand_item_type: HandItem= get_hand_item().type
+			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				action_name= hand_item_type.primary_action_animation
+				if hand_item_type.charge_primary_action:
+					is_charging= true
+					charge_primary= true
+			elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+				action_name= hand_item_type.secondary_action_animation
+				if hand_item_type.charge_secondary_action:
+					is_charging= true
+					charge_primary= false
+
+			if action_name:
+				animation_player_hand.play(action_name)
+				is_executing_action= true
+
+
 func select_block():
 	var new_block_pos: = get_world().get_tile(get_tile_collision())
 	if new_block_pos != selected_block_pos:
@@ -200,6 +230,13 @@ func select_block():
 	
 	block_marker.position= get_world().map_to_local(selected_block_pos)
 	block_marker.show()
+
+
+func release_charge():
+	assert(has_hand_item())
+	get_hand_item().release_charge(total_charge, charge_primary)
+	is_charging= false
+	total_charge= 0
 
 
 func is_raycast_hitting_terrain()-> bool: 
@@ -222,9 +259,16 @@ func get_tile_collision()-> Vector2:
 func equip_hand_item(item: HandItem):
 	await unequip_hand_item()
 	assert(not hand_item_obj and main_hand.get_child_count() == 0)
-	hand_item_obj= item.scene.instantiate()
+	var obj_scene: PackedScene
+	if item.type == HandItem.Type.THROWABLE:
+		obj_scene= virtual_thrower_scene 
+	else:
+		obj_scene= item.scene
+
+	hand_item_obj= obj_scene.instantiate()
 	main_hand.add_child(hand_item_obj)
 	hand_item_obj.type= item
+	hand_item_obj.on_equip()
 
 
 func unequip_hand_item():
