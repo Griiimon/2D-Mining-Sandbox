@@ -2,6 +2,7 @@
 # v0.3          #
 ##################
 
+- game settings loadout
 - player loadout
 - bat neutral mob
 - state machine
