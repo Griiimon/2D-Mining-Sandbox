@@ -18,6 +18,8 @@ func _ready():
 	
 	assert(parent.has_method(INTERACT_METHOD))
 	
+	await parent.ready
+	
 	if auto_retrieve_collision_shape:
 		var coll_shapes: Array[CollisionShape2D]= []
 		coll_shapes.assign(parent.find_children("", "CollisionShape2D"))
