@@ -45,7 +45,6 @@ func set_random_direction():
 	direction= direction.normalized()
 	if not direction:
 		set_random_direction()
-	direction= Vector2.UP
 
 
 func can_enter_sleep()-> bool:
