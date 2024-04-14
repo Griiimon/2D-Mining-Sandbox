@@ -1,5 +1,6 @@
 class_name InventoryItem
+extends Resource
 
-var item: Item
-var amount: int
+@export var item: Item
+@export var amount: int
 
