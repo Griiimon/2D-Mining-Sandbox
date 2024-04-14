@@ -78,7 +78,10 @@ func _ready():
 
 
 func late_ready():
-	for inv_item in loadout.inventory_items:
+	var priority_loadout: PlayerLoadout= loadout
+	if Global.game.settings.player_loadout:
+		priority_loadout= Global.game.settings.player_loadout
+	for inv_item in priority_loadout.inventory_items:
 		add_item_to_inventory(inv_item.item, inv_item.amount)
 
 
@@ -267,8 +270,9 @@ func pickup(item: Item):
 
 func add_item_to_inventory(item: Item, amount: int= 1):
 	inventory.add_new_item(item, amount)
-
-	check_hotbar_hand_item()
+	
+	if not has_hand_item():
+		check_hotbar_hand_item()
 
 
 func get_current_inventory_item()-> InventoryItem:
