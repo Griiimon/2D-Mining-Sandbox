@@ -21,3 +21,7 @@ func _physics_process(delta):
 
 func shoot(_velocity: Vector2):
 	velocity= _velocity
+
+
+func get_world()-> World:
+	return get_parent()

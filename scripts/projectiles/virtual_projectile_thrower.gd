@@ -19,5 +19,5 @@ func release_charge(total_charge: float, primary: bool):
 	var projectile: Projectile= type.scene.instantiate()
 	projectile.position= hand.global_position
 	hand_object.queue_free()
-	Global.game.add_child(projectile)
+	Global.game.world.add_child(projectile)
 	projectile.shoot(hand.player.get_look_direction() * total_charge * 500)
