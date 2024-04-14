@@ -17,5 +17,13 @@ func set_attack_state(b: bool):
 			action_player.play(END_ATTACK_ANIMATION_ACTION)
 
 
+func release_charge(total_charge: float, primary: bool):
+	pass
+
+
+func on_equip():
+	pass
+
+
 func can_mine()-> bool:
 	return type.can_mine()
