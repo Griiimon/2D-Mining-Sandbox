@@ -7,7 +7,6 @@ _data = [Vector2(0, 0.501887), 0.0, 0.0, 0, 0, Vector2(0.496429, 1), 0.0, 0.0, 0
 point_count = 3
 
 [node name="Pickaxe" type="Node2D"]
-position = Vector2(8, 0)
 script = ExtResource("1_vdc2h")
 
 [node name="Line2D" type="Line2D" parent="."]

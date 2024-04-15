@@ -68,7 +68,6 @@ _data = {
 }
 
 [node name="Sword" type="Node2D" node_paths=PackedStringArray("action_player")]
-position = Vector2(8, 0)
 script = ExtResource("1_k0drm")
 action_player = NodePath("ActionPlayer")
 
