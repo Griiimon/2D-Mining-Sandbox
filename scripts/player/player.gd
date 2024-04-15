@@ -96,7 +96,7 @@ func _physics_process(delta):
 	movement(delta)
 	interaction_logic()
 	
-	if Input.is_action_just_pressed("drop_item") and has_hand_item():
+	if Input.is_action_just_pressed("drop_item") and has_hand_object():
 		drop_hand_item()
 
 	
@@ -159,11 +159,11 @@ func mining_logic(delta)-> bool:
 		return false
 
 	var total_mining_effort= block.hardness
-	if get_hand_item_type() != block.mining_tool:
+	if get_hand_object_type() != block.mining_tool:
 		total_mining_effort*= 1 + block.other_tool_penalty
 		
 	if mining_progress >= total_mining_effort or Global.game.cheats.instant_mine:
-		get_world().break_block(selected_block_pos, get_hand_item_type() == block.mining_tool)
+		get_world().break_block(selected_block_pos, get_hand_object_type() == block.mining_tool)
 		return false
 	else:
 		block_breaker.position= get_world().map_to_local(selected_block_pos)
@@ -180,9 +180,9 @@ func mouse_actions():
 
 	elif not is_executing_action:
 
-		if has_hand_item():
+		if has_hand_object():
 			var action_name: String
-			var hand_item_type: HandItem= get_hand_item().type
+			var hand_item_type: HandItem= get_hand_object().type
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 				action_name= hand_item_type.primary_action_animation
 				if hand_item_type.charge_primary_action:
@@ -215,8 +215,8 @@ func select_block():
 
 
 func release_charge():
-	assert(has_hand_item())
-	get_hand_item().release_charge(total_charge, charge_primary)
+	assert(has_hand_object())
+	get_hand_object().release_charge(total_charge, charge_primary)
 	on_hand_action_executed()
 	is_charging= false
 	total_charge= 0
@@ -256,43 +256,43 @@ func equip_hand_item(item: HandItem):
 
 
 func unequip_hand_item():
-	if has_hand_item():
-		get_hand_item().queue_free()
+	if has_hand_object():
+		get_hand_object().queue_free()
 		hand_item_obj= null
 		await get_tree().process_frame
 
 
 func on_hand_action_executed():
-	if get_hand_item() is VirtualProjectileThrower:
+	if get_hand_object() is VirtualProjectileThrower:
 		inventory.sub_item(get_current_inventory_item())
 		if get_current_inventory_item().amount > 0:
-			get_hand_item().on_equip()
+			get_hand_object().on_equip()
 		else:
-			get_hand_item().queue_free()
+			get_hand_object().queue_free()
 
 
-func has_hand_item()-> bool:
+func has_hand_object()-> bool:
 	return main_hand.get_child_count() > 0
 
 
-func get_hand_item()-> HandItemObject:
+func get_hand_object()-> HandItemObject:
 	return main_hand.get_child(0)
 
 
-func get_hand_item_type()-> HandItem.Type:
-	if not has_hand_item():
+func get_hand_object_type()-> HandItem.Type:
+	if not has_hand_object():
 		return HandItem.Type.NONE
-	return get_hand_item().type.type
+	return get_hand_object().type.type
 
 
 func can_mine()-> bool:
-	return not has_hand_item() or get_hand_item().can_mine()
+	return not has_hand_object() or get_hand_object().can_mine()
 
 
 func drop_hand_item():
-	assert(has_hand_item())
+	assert(has_hand_object())
 	var throw_velocity: Vector2= get_look_direction() * DROP_THROW_FORCE
-	get_world().throw_item(get_hand_item().type, main_hand.global_position, throw_velocity)
+	get_world().throw_item(get_hand_object().type, main_hand.global_position, throw_velocity)
 	unequip_hand_item()
 	inventory.clear_slot(ui.current_hotbar_slot_idx)
 
@@ -308,7 +308,7 @@ func pickup(item: Item):
 func add_item_to_inventory(item: Item, amount: int= 1):
 	inventory.add_new_item(item, amount)
 	
-	if not has_hand_item():
+	if not has_hand_object():
 		check_hotbar_hand_item()
 
 
