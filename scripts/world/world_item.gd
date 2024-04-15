@@ -18,6 +18,18 @@ extends Area2D
 var item: Item: set= set_item
 var velocity: Vector2
 
+var freeze: bool= false:
+	set(b):
+		freeze= b
+		if freeze:
+			velocity= Vector2.ZERO
+
+
+func _ready():
+	set_physics_process(false)
+	await get_tree().physics_frame
+	set_physics_process(true)
+
 
 func _physics_process(delta):
 	var being_pulled:= false
@@ -33,25 +45,29 @@ func _physics_process(delta):
 			velocity+= (player.global_position - global_position).normalized() * pull_force
 			being_pulled= true
 
-
 	if not shape_cast.is_colliding():
+		freeze= false
 		if not being_pulled:
 			velocity.y+= item_gravity * delta
 	else:
-		var normal:= Vector2.ZERO
-		
-		for i in shape_cast.get_collision_count():
-			normal+= shape_cast.get_collision_normal(i)
-		
-		normal= normal.normalized()
-		
-		if normal and normal.dot(Vector2.DOWN) < 0.1:
-			if velocity.y >= 0:
-				velocity= velocity.normalized().bounce(normal) * bounce
-		else:
-			velocity.y= bounce
+		if not freeze:
+			var normal:= Vector2.ZERO
+			
+			for i in shape_cast.get_collision_count():
+				normal+= shape_cast.get_collision_normal(i)
+			
+			normal= normal.normalized()
+			
+			if normal and normal.dot(Vector2.DOWN) < 0.1:
+				if velocity.y >= 0:
+					if abs(velocity.x) < 1:
+						freeze= true
+						return
+					velocity= velocity.normalized().bounce(normal) * bounce
+			else:
+				velocity.y= bounce
 
-		velocity.x*= 0.5
+			velocity.x*= 0.5
 
 	
 	velocity.x*= 1 - delta * x_damping
