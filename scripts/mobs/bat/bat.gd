@@ -10,6 +10,7 @@ class_name Bat
 func _ready():
 	assert(sleep_state)
 
+
 func _on_wake_up():
 	state_machine.change_state(fly_state)
 
