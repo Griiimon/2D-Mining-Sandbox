@@ -11,6 +11,7 @@ const TILE_SIZE= 32
 @export var world_chunk_scene: PackedScene
 @export var chunks: Node2D
 @export var generator: TerrainGenerator
+@export var explosion_particles: ParticleSettings
 
 var tick_entities: Array[BaseBlockEntity]
 
@@ -141,6 +142,7 @@ func explosion(center: Vector2i, damage: float, radius: float):
 				var block: Block= get_block(tile)
 				if block and damage > block.hardness:
 					delete_block(tile)
+	Effects.spawn_particle_system(map_to_local(center), explosion_particles)
 
 
 func _on_chunk_updater_initial_run_completed():

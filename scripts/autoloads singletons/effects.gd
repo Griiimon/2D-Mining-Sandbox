@@ -3,7 +3,7 @@ extends Node
 const particle_system_scene= preload("res://scenes/effects/particle_system.tscn")
 const fireworks_scene= preload("res://scenes/effects/fireworks.tscn")
 
-func spawn_particle_system(pos: Vector2, settings: MyParticleSystem.ParticleSettings):
+func spawn_particle_system(pos: Vector2, settings: ParticleSettings):
 	var system: MyParticleSystem= particle_system_scene.instantiate()
 	system.position= pos
 	system.init(settings)

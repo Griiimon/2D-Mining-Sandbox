@@ -6,6 +6,8 @@ const SIZE= 32
 @export var coords: Vector2i
 @export var auto_generate_tiles: bool= true
 
+@export var block_break_particles: ParticleSettings
+
 var world: World
 
 
@@ -61,7 +63,7 @@ func break_block(tile_pos: Vector2i, with_drops: bool= true):
 			world.spawn_item(block.drop, world_pos)
 		set_cell(0, get_local_pos(tile_pos), -1)
 
-		Effects.spawn_particle_system(world_pos, MyParticleSystem.ParticleSettings.new(20, 3, block.particle_color, 1, 1, 2, true, 50, 100, 500, Vector2.UP, 90, true, 0.5, 0))
+		Effects.spawn_particle_system(world_pos, block_break_particles.duplicate().set_color(block.particle_color))
 		block.on_break(world, tile_pos)
 
 

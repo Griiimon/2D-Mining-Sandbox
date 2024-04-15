@@ -12,7 +12,7 @@ var particle_system: MyParticleSystem
 func init(_system: MyParticleSystem):
 	particle_system= _system
 	
-	var settings: MyParticleSystem.ParticleSettings= particle_system.settings
+	var settings: ParticleSettings= particle_system.settings
 
 	lifetime= randf_range(settings.min_lifetime, settings.max_lifetime)
 	velocity= settings.direction.rotated(deg_to_rad(randf_range(-settings.spread_angle, settings.spread_angle))) * randf_range(settings.initial_min_velocity, settings.initial_max_velocity)
@@ -24,7 +24,7 @@ func init(_system: MyParticleSystem):
 
 
 func _physics_process(delta):
-	var settings: MyParticleSystem.ParticleSettings= particle_system.settings
+	var settings: ParticleSettings= particle_system.settings
 
 	if ray_cast.is_colliding():
 		velocity= velocity.normalized().bounce(ray_cast.get_collision_normal()) * velocity.length() * settings.bounce
@@ -48,7 +48,7 @@ func _physics_process(delta):
 func _draw():
 	if not particle_system: return
 
-	var settings: MyParticleSystem.ParticleSettings= particle_system.settings
+	var settings: ParticleSettings= particle_system.settings
 	
 	draw_rect(Rect2(-Vector2.ONE * settings.size / 2, Vector2.ONE * settings.size), settings.color)
 
