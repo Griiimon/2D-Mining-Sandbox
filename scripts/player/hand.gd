@@ -22,3 +22,7 @@ func has_hand_object()-> bool:
 
 func get_hand_object()-> HandItemObject:
 	return connector.get_child(0)
+
+
+func set_object(obj: HandItemObject):
+	connector.add_child(obj)

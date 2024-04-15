@@ -27,3 +27,11 @@ func on_equip():
 
 func can_mine()-> bool:
 	return type.can_mine()
+
+
+func get_hand()-> Hand:
+	return get_parent().get_parent()
+
+
+func get_player()-> Player:
+	return get_hand().player

@@ -13,7 +13,7 @@ const DROP_THROW_FORCE= 300
 @export var body: Node2D
 @export var look_pivot: Node2D
 @export var ray_cast: RayCast2D
-@export var main_hand: Node2D
+@export var main_hand: Hand
 @export var interaction_area: Area2D
 
 @export_category("Scenes")
@@ -241,7 +241,7 @@ func get_tile_collision()-> Vector2:
 
 func equip_hand_item(item: HandItem):
 	await unequip_hand_item()
-	assert(not hand_item_obj and main_hand.get_child_count() == 0)
+	assert(not hand_item_obj and not has_hand_object())
 	
 	var obj_scene: PackedScene
 	if item.type == HandItem.Type.THROWABLE:
@@ -250,7 +250,7 @@ func equip_hand_item(item: HandItem):
 		obj_scene= item.scene
 
 	hand_item_obj= obj_scene.instantiate()
-	main_hand.add_child(hand_item_obj)
+	main_hand.set_object(hand_item_obj)
 	hand_item_obj.type= item
 	hand_item_obj.on_equip()
 
@@ -272,11 +272,11 @@ func on_hand_action_executed():
 
 
 func has_hand_object()-> bool:
-	return main_hand.get_child_count() > 0
+	return main_hand.has_hand_object()
 
 
 func get_hand_object()-> HandItemObject:
-	return main_hand.get_child(0)
+	return main_hand.get_hand_object()
 
 
 func get_hand_object_type()-> HandItem.Type:
