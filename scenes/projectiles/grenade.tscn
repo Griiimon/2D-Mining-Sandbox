@@ -8,8 +8,13 @@ radius = 11.0
 [node name="Grenade" type="CharacterBody2D" node_paths=PackedStringArray("visual")]
 collision_layer = 32
 script = ExtResource("1_amtvd")
+explosion_damage = null
+block_damage_factor = null
+explosion_radius = null
 visual = NodePath("Visual")
 gravity = 100.0
+damping = null
+bounce = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_wbemm")

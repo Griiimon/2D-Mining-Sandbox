@@ -134,14 +134,15 @@ func spawn_block_entity(tile_pos: Vector2i, entity_scene: PackedScene):
 		tick_entities.append(entity)
 
 
-func explosion(center: Vector2i, damage: float, radius: float):
+func explosion(center: Vector2i, damage: float, radius: float, block_dmg_factor: float= 1):
 	for x in range(-radius, radius):
 		for y in range(-radius, radius):
 			var tile: Vector2i= center + Vector2i(x, y)
 			if (tile - center).length() <= radius:
 				var block: Block= get_block(tile)
-				if block and damage > block.hardness:
+				if block and damage * block_dmg_factor > block.hardness:
 					delete_block(tile)
+	
 	Effects.spawn_particle_system(map_to_local(center), explosion_particles)
 
 
