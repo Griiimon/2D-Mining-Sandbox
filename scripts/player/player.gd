@@ -35,17 +35,7 @@ var block_marker: Sprite2D
 # overlay to indicate the breaking progress of the currently mined block
 var block_breaker: AnimatedSprite2D
 
-var is_mining: bool= false:
-	set(b):
-		if b == is_mining: return
-		is_mining= b
-		if not is_mining:
-			mining_progress= 0
-			block_breaker.hide()
-			animation_player_hand.play("RESET")
-		else:
-			block_breaker.show()
-			animation_player_hand.play("mine")
+var is_mining: bool= false: set= set_mining
 
 var mining_progress: float
 
@@ -63,30 +53,15 @@ var total_charge: float
 
 
 func _ready():
-	assert(body)
-	assert(look_pivot)
-	assert(ray_cast)
-	assert(main_hand)
-	assert(interaction_area)
-	assert(block_breaker_scene)
-	assert(block_marker_scene)
-	assert(virtual_thrower_scene)
-	
+	assert_export_scenes()
+
 	var game: Game= get_parent()
 	assert(game)
 	game.player= self
 	
 	inventory.update_callback= update_hotbar
 	
-	block_marker= block_marker_scene.instantiate()
-	add_child(block_marker)
-	block_marker.top_level= true
-	block_marker.hide()
-	
-	block_breaker= block_breaker_scene.instantiate()
-	add_child(block_breaker)
-	block_breaker.top_level= true
-	block_breaker.hide()
+	init_block_indicators()
 
 	late_ready.call_deferred()
 
@@ -359,3 +334,38 @@ func check_hotbar_hand_item():
 
 func _on_animation_player_hand_animation_finished(anim_name):
 	is_executing_action= false
+
+
+func assert_export_scenes():
+	assert(body)
+	assert(look_pivot)
+	assert(ray_cast)
+	assert(main_hand)
+	assert(interaction_area)
+	assert(block_breaker_scene)
+	assert(block_marker_scene)
+	assert(virtual_thrower_scene)
+
+
+func init_block_indicators():
+	block_marker= block_marker_scene.instantiate()
+	add_child(block_marker)
+	block_marker.top_level= true
+	block_marker.hide()
+	
+	block_breaker= block_breaker_scene.instantiate()
+	add_child(block_breaker)
+	block_breaker.top_level= true
+	block_breaker.hide()
+
+
+func set_mining(b: bool):
+	if b == is_mining: return
+	is_mining= b
+	if not is_mining:
+		mining_progress= 0
+		block_breaker.hide()
+		animation_player_hand.play("RESET")
+	else:
+		block_breaker.show()
+		animation_player_hand.play("mine")
