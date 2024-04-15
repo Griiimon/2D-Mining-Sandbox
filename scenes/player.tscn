@@ -332,6 +332,9 @@ end_cap_mode = 2
 script = ExtResource("4_wxlyd")
 player = NodePath("../../../..")
 
+[node name="Connector" type="Node2D" parent="Body/Look Pivot/Shoulder/Hand"]
+position = Vector2(6.5, 0)
+
 [node name="Interaction Area" type="Area2D" parent="Body"]
 collision_mask = 16
 
