@@ -9,12 +9,7 @@ signal hotbar_slot_changed
 @onready var interaction_hint: Label= %"Interaction Hint"
 
 
-var current_hotbar_slot_idx: int:
-	set(_slot):
-		select_current_hotbar_slot(false)
-		current_hotbar_slot_idx= wrapi(_slot, 0, 9)
-		select_current_hotbar_slot()
-		hotbar_slot_changed.emit()
+var current_hotbar_slot_idx: int: set= set_current_hotbar_slot
 
 
 
@@ -59,3 +54,10 @@ func set_interaction_hint(text: String= "", pos: Vector2= Vector2.ZERO):
 	await get_tree().process_frame
 	interaction_hint.position= get_viewport().canvas_transform * pos - Vector2(interaction_hint.size.x / 2, 0)
 	#interaction_hint.
+
+
+func set_current_hotbar_slot(idx: int):
+	select_current_hotbar_slot(false)
+	current_hotbar_slot_idx= wrapi(idx, 0, 9)
+	select_current_hotbar_slot()
+	hotbar_slot_changed.emit()

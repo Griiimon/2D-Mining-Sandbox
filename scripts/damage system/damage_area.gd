@@ -3,18 +3,7 @@ extends Area2D
 @export var damage: Damage
 @export var exclude_hurtbox: HurtBox
 
-@export var enabled: bool= true:
-	set(b):
-		if enabled != b:
-			enabled= b
-			if not collision_shape:
-				await ready
-			collision_shape.disabled= not enabled
-		if enabled:
-			for overlap in get_overlapping_areas():
-				# makes sure to trigger area_entered even if its already overlapping when enabled
-				_on_area_entered(overlap)
-
+@export var enabled: bool= true: set= set_enabled
 
 @onready var collision_shape = $CollisionShape2D
 
@@ -30,3 +19,15 @@ func _on_area_entered(area):
 	var hurtbox= area as HurtBox
 	if hurtbox == exclude_hurtbox: return
 	hurtbox.receive_damage(damage)
+
+
+func set_enabled(b: bool):
+	if enabled != b:
+		enabled= b
+		if not collision_shape:
+			await ready
+		collision_shape.disabled= not enabled
+	if enabled:
+		for overlap in get_overlapping_areas():
+			# makes sure to trigger area_entered even if its already overlapping when enabled
+			_on_area_entered(overlap)	

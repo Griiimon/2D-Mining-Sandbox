@@ -1,15 +1,11 @@
 extends PanelContainer
 class_name HotbarSlot
 
-var selected: bool= false:
-	set(_selected):
-		selected= _selected
-		selection.visible= selected
-
-
 @onready var selection: TextureRect = $Selection
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var amount_label: Label = $MarginContainer/Amount
+
+var selected: bool= false: set= set_selected
 
 
 func set_item(inv_item: InventoryItem):
@@ -23,4 +19,9 @@ func set_item(inv_item: InventoryItem):
 			amount_label.show()
 		else:
 			amount_label.hide()
-		
+
+
+func set_selected(b: bool):
+	selected= b
+	selection.visible= selected
+

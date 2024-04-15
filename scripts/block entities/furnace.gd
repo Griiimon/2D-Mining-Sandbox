@@ -12,11 +12,7 @@ var ore_amount: int
 var product_type: Item
 var product_amount: int
 
-var is_burning: bool= false:
-	set(b):
-		if is_burning != b:
-			is_burning= b
-			sprite.texture= working_texture if is_burning else default_texture
+var is_burning: bool= false: set= set_burning
 
 var ticks_to_finish: float
 
@@ -101,3 +97,9 @@ func custom_interaction_hint(player: Player, default_hint: String)-> String:
 		return "Wait for Product"
 	
 	return default_hint
+
+
+func set_burning(b: bool):
+	if is_burning != b:
+		is_burning= b
+		sprite.texture= working_texture if is_burning else default_texture	

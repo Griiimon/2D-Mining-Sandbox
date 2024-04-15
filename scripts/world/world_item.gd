@@ -15,18 +15,7 @@ extends Area2D
 @onready var magnet_range = $"Magnet Range"
 
 
-var item: Item:
-	set(_item):
-		if not _item:
-			return
-		
-		item= _item
-		sprite.texture= item.texture
-		
-		if item is HandItem:
-			pickup_cooldown.start()
-
-
+var item: Item: set= set_item
 var velocity: Vector2
 
 
@@ -89,3 +78,12 @@ func _on_pickup_cooldown_timeout():
 			break
 
 
+func set_item(_item: Item):
+	if not _item:
+		return
+	
+	item= _item
+	sprite.texture= item.texture
+	
+	if item is HandItem:
+		pickup_cooldown.start()

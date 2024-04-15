@@ -1,7 +1,6 @@
 restructure project to put code/scene/asset into same folder
 move variable setters to custom funcs
 
-make hand connector sub node for exact positioning
 
 add sounds
 
