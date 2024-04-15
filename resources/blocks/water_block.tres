@@ -15,3 +15,4 @@ mining_tool = 0
 other_tool_penalty = 4.0
 other_tool_produces_drops = false
 is_air = false
+is_fluid = true
