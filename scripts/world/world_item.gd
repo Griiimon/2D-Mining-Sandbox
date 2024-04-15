@@ -19,11 +19,9 @@ extends Area2D
 var item: Item: set= set_item
 var velocity: Vector2
 
-var freeze: bool= false:
-	set(b):
-		freeze= b
-		if freeze:
-			velocity= Vector2.ZERO
+var freeze: bool= false: set= set_freeze
+
+var bounce_tween: Tween
 
 
 func _ready():
@@ -113,3 +111,19 @@ func set_item(_item: Item):
 
 func _on_pickup_delay_timeout():
 	pickup_delay.queue_free()
+
+
+func set_freeze(b: bool):
+	if freeze == b: return
+	
+	freeze= b
+	if freeze:
+		velocity= Vector2.ZERO
+		bounce_tween= create_tween()
+		bounce_tween.tween_property(sprite, "position:y", -5, 0.5)
+		bounce_tween.tween_property(sprite, "position:y", 0, 0.5)
+		bounce_tween.set_loops()
+	else:
+		if bounce_tween and bounce_tween.is_running():
+			bounce_tween.kill()
+			sprite.position.y= 0
