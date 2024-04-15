@@ -11,6 +11,7 @@ extends Area2D
 @onready var shape_cast: ShapeCast2D = $ShapeCast2D
 
 @onready var pickup_cooldown = $"Pickup Cooldown"
+@onready var pickup_delay = $"Pickup Delay"
 
 @onready var magnet_range = $"Magnet Range"
 
@@ -26,6 +27,7 @@ var freeze: bool= false:
 
 
 func _ready():
+	pickup_delay.wait_time= randf_range(0, 0.3)
 	set_physics_process(false)
 	await get_tree().physics_frame
 	set_physics_process(true)
@@ -39,6 +41,11 @@ func _physics_process(delta):
 		
 		if not pickup_cooldown.is_stopped():
 			continue
+		if is_instance_valid(pickup_delay):
+			if pickup_delay.is_stopped():
+				pickup_delay.start()
+			continue
+		
 
 		var player: Player= body
 		if player.can_pickup(item):
@@ -69,7 +76,6 @@ func _physics_process(delta):
 
 			velocity.x*= 0.5
 
-	
 	velocity.x*= 1 - delta * x_damping
 	velocity.y*= 1 - delta * y_damping
 	position+= velocity * delta
@@ -103,3 +109,7 @@ func set_item(_item: Item):
 	
 	if item is HandItem:
 		pickup_cooldown.start()
+
+
+func _on_pickup_delay_timeout():
+	pickup_delay.queue_free()

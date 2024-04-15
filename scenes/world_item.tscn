@@ -30,6 +30,9 @@ max_results = 3
 wait_time = 2.0
 one_shot = true
 
+[node name="Pickup Delay" type="Timer" parent="."]
+one_shot = true
+
 [node name="Magnet Range" type="Area2D" parent="."]
 collision_mask = 2
 
@@ -38,4 +41,5 @@ shape = SubResource("CircleShape2D_hafnq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Pickup Cooldown" to="." method="_on_pickup_cooldown_timeout"]
+[connection signal="timeout" from="Pickup Delay" to="." method="_on_pickup_delay_timeout"]
 [connection signal="body_entered" from="Magnet Range" to="." method="_on_magnet_range_body_entered"]
