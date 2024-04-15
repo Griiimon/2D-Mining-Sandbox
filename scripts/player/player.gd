@@ -47,7 +47,7 @@ var is_executing_action: bool= false
 
 var inventory: Inventory= Inventory.new()
 
-var is_charging: bool= false
+var is_charging: bool= false: set= set_charging
 var charge_primary: bool= true
 var total_charge: float
 
@@ -177,7 +177,9 @@ func mouse_actions():
 	if is_charging:
 		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 			release_charge()
+
 	elif not is_executing_action:
+
 		if has_hand_item():
 			var action_name: String
 			var hand_item_type: HandItem= get_hand_item().type
@@ -186,11 +188,16 @@ func mouse_actions():
 				if hand_item_type.charge_primary_action:
 					is_charging= true
 					charge_primary= true
+				else:
+					on_hand_action_executed()
+
 			elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 				action_name= hand_item_type.secondary_action_animation
 				if hand_item_type.charge_secondary_action:
 					is_charging= true
 					charge_primary= false
+				else:
+					on_hand_action_executed()
 
 			if action_name:
 				animation_player_hand.play(action_name)
@@ -210,6 +217,7 @@ func select_block():
 func release_charge():
 	assert(has_hand_item())
 	get_hand_item().release_charge(total_charge, charge_primary)
+	on_hand_action_executed()
 	is_charging= false
 	total_charge= 0
 
@@ -234,6 +242,7 @@ func get_tile_collision()-> Vector2:
 func equip_hand_item(item: HandItem):
 	await unequip_hand_item()
 	assert(not hand_item_obj and main_hand.get_child_count() == 0)
+	
 	var obj_scene: PackedScene
 	if item.type == HandItem.Type.THROWABLE:
 		obj_scene= virtual_thrower_scene 
@@ -251,6 +260,15 @@ func unequip_hand_item():
 		get_hand_item().queue_free()
 		hand_item_obj= null
 		await get_tree().process_frame
+
+
+func on_hand_action_executed():
+	if get_hand_item() is VirtualProjectileThrower:
+		inventory.sub_item(get_current_inventory_item())
+		if get_current_inventory_item().amount > 0:
+			get_hand_item().on_equip()
+		else:
+			get_hand_item().queue_free()
 
 
 func has_hand_item()-> bool:
@@ -369,3 +387,8 @@ func set_mining(b: bool):
 	else:
 		block_breaker.show()
 		animation_player_hand.play("mine")
+
+
+func set_charging(b: bool):
+	is_charging= b
+	total_charge= 0
