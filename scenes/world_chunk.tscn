@@ -7,6 +7,11 @@
 [node name="World Chunk" type="TileMap"]
 tile_set = ExtResource("1_y7mm8")
 format = 2
+layer_0/name = "terrain"
+layer_1/name = "fluids"
+layer_1/z_index = 20
+layer_1/navigation_enabled = false
+layer_1/tile_data = PackedInt32Array()
 script = ExtResource("2_xk4iw")
 auto_generate_tiles = false
 block_break_particles = ExtResource("3_d7efb")

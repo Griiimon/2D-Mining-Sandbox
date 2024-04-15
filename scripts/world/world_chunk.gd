@@ -38,6 +38,8 @@ func generate_tiles():
 func set_block(pos: Vector2i, block: Block):
 	var block_id: int= DataManager.get_block_id(block)
 	set_cell(0, pos, block_id, Vector2i.ZERO)
+	if block.is_fluid:
+		set_cell(1, pos, block_id, Vector2i.ZERO)
 	block.on_spawn(world, get_global_pos(pos))
 	
 
