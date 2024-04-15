@@ -96,6 +96,12 @@ func get_block_hardness(tile_pos: Vector2i)-> float:
 	return block.hardness
 
 
+func set_block(tile_pos: Vector2i, block: Block):
+	var chunk: WorldChunk= get_chunk_at(tile_pos)
+	if chunk:
+		chunk.set_block(chunk.get_local_pos(tile_pos), block)
+
+
 func delete_block(tile_pos: Vector2i):
 	var chunk: WorldChunk= get_chunk_at(tile_pos)
 	if not chunk: 

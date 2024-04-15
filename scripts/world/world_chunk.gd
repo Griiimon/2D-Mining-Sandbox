@@ -29,11 +29,17 @@ func generate_tiles():
 	for x in SIZE:
 		for y in SIZE:
 			var local_pos= Vector2i(x, y)
-			var global_pos= local_pos + coords * SIZE
+			var global_pos= get_global_pos(local_pos)
 			var block_id: int= generator.get_block_id(global_pos)
-			set_cell(0, local_pos, block_id, Vector2i.ZERO)
-			DataManager.get_block(block_id).on_spawn(world, global_pos)
+			var block: Block= DataManager.get_block(block_id)
+			set_block(local_pos, block)
 
+
+func set_block(pos: Vector2i, block: Block):
+	var block_id: int= DataManager.get_block_id(block)
+	set_cell(0, pos, block_id, Vector2i.ZERO)
+	block.on_spawn(world, get_global_pos(pos))
+	
 
 func _tile_data_runtime_update(_layer, _coords, _tile_data):
 	pass
@@ -52,6 +58,10 @@ func get_block_id(tile_pos: Vector2i)-> int:
 
 func get_local_pos(tile_pos: Vector2i)-> Vector2i:
 	return Vector2i(wrapi(tile_pos.x, 0, SIZE), wrapi(tile_pos.y, 0, SIZE))
+
+
+func get_global_pos(tile_pos: Vector2i)-> Vector2i:
+	return  tile_pos + coords * SIZE
 
 
 func break_block(tile_pos: Vector2i, with_drops: bool= true):
