@@ -27,6 +27,12 @@ func _ready():
 		add_child(player)
 		camera.follow_node= player
 
+	post_init()
+
+
+func post_init():
+	pass
+
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
