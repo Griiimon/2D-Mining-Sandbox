@@ -33,7 +33,6 @@ generator = ExtResource("8_4yhic")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("8_3qg1m")
-free_cam = true
 speed = 1000.0
 
 [node name="Bat" parent="." instance=ExtResource("12_vyhcf")]
