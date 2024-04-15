@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://dc0j27pwmaoye"]
+
+[ext_resource type="Script" path="res://scripts/world/world.gd" id="1_pmjc8"]
+[ext_resource type="PackedScene" uid="uid://bvx4bb7jk0sr7" path="res://scenes/world_item.tscn" id="2_xrbq3"]
+[ext_resource type="PackedScene" uid="uid://dre4owqmev6mn" path="res://scenes/world_chunk.tscn" id="3_x61oj"]
+[ext_resource type="Resource" uid="uid://rchstnfrc547" path="res://resources/terrain generators/default.tres" id="4_4gpyw"]
+[ext_resource type="Script" path="res://scripts/world/chunk_updater.gd" id="5_qqsjj"]
+[ext_resource type="Resource" uid="uid://di6fjtt37v77v" path="res://resources/effects/explosion_particles.tres" id="5_snubo"]
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("chunks")]
+script = ExtResource("1_pmjc8")
+world_item_scene = ExtResource("2_xrbq3")
+world_chunk_scene = ExtResource("3_x61oj")
+chunks = NodePath("Chunks")
+generator = ExtResource("4_4gpyw")
+explosion_particles = ExtResource("5_snubo")
+
+[node name="Chunk Updater" type="Node" parent="."]
+script = ExtResource("5_qqsjj")
+
+[node name="Update Timer" type="Timer" parent="Chunk Updater"]
+autostart = true
+
+[node name="Chunks" type="Node2D" parent="."]
+
+[connection signal="initial_run_completed" from="Chunk Updater" to="." method="_on_chunk_updater_initial_run_completed"]
+[connection signal="timeout" from="Chunk Updater/Update Timer" to="Chunk Updater" method="_on_update_timer_timeout"]

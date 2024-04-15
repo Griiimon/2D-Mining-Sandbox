@@ -1,13 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbhvqow2nbc0k"]
+[gd_scene load_steps=12 format=3 uid="uid://cbhvqow2nbc0k"]
 
 [ext_resource type="Script" path="res://scripts/test_game.gd" id="1_desap"]
-[ext_resource type="Script" path="res://scripts/world/world.gd" id="2_f1sv7"]
 [ext_resource type="Resource" uid="uid://bkrr445vap63e" path="res://resources/loadouts/full_loadout.tres" id="2_jkm7x"]
 [ext_resource type="Script" path="res://scripts/resources/cheats.gd" id="2_p63yw"]
 [ext_resource type="Script" path="res://scripts/resources/game_settings.gd" id="2_ru5vw"]
-[ext_resource type="PackedScene" uid="uid://bvx4bb7jk0sr7" path="res://scenes/world_item.tscn" id="3_4uoyr"]
-[ext_resource type="Script" path="res://scripts/world/chunk_updater.gd" id="4_ii2m7"]
-[ext_resource type="PackedScene" uid="uid://dre4owqmev6mn" path="res://scenes/world_chunk.tscn" id="5_im1ga"]
+[ext_resource type="PackedScene" uid="uid://dc0j27pwmaoye" path="res://scenes/world.tscn" id="6_dkwx3"]
 [ext_resource type="PackedScene" uid="uid://d4mufsk5s6ksm" path="res://scenes/player.tscn" id="7_mja2y"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="8_3qg1m"]
 [ext_resource type="Resource" uid="uid://coin0o2iwsbjj" path="res://resources/terrain generators/stone_only.tres" id="8_4yhic"]
@@ -31,22 +28,8 @@ settings = SubResource("Resource_bmphr")
 cheats = SubResource("Resource_g2rh2")
 player_scene = ExtResource("7_mja2y")
 
-[node name="World" type="Node2D" parent="." node_paths=PackedStringArray("chunks")]
-script = ExtResource("2_f1sv7")
-world_item_scene = ExtResource("3_4uoyr")
-world_chunk_scene = ExtResource("5_im1ga")
-chunks = NodePath("Chunks")
+[node name="World" parent="." instance=ExtResource("6_dkwx3")]
 generator = ExtResource("8_4yhic")
-
-[node name="Chunk Updater" type="Node" parent="World"]
-script = ExtResource("4_ii2m7")
-min_distance = 50
-max_distance = 100
-
-[node name="Update Timer" type="Timer" parent="World/Chunk Updater"]
-autostart = true
-
-[node name="Chunks" type="Node2D" parent="World"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("8_3qg1m")
@@ -54,6 +37,3 @@ free_cam = true
 speed = 1000.0
 
 [node name="Bat" parent="." instance=ExtResource("12_vyhcf")]
-
-[connection signal="initial_run_completed" from="World/Chunk Updater" to="World" method="_on_chunk_updater_initial_run_completed"]
-[connection signal="timeout" from="World/Chunk Updater/Update Timer" to="World/Chunk Updater" method="_on_update_timer_timeout"]
