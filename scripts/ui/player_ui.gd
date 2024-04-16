@@ -35,6 +35,10 @@ func _unhandled_input(event):
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				current_hotbar_slot_idx+= 1
 
+	elif event is InputEventKey:
+		if event.is_pressed() and event.keycode >= KEY_1 and event.keycode <= KEY_9:
+			current_hotbar_slot_idx= event.keycode - KEY_1
+
 
 func select_current_hotbar_slot(enable: bool= true):
 	var slot: HotbarSlot= hbox_hotbar.get_child(current_hotbar_slot_idx)
