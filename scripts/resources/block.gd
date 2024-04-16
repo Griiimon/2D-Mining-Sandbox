@@ -51,3 +51,8 @@ func on_neighbor_update(_world: World, _block_pos: Vector2i, _neighbor_pos: Vect
 func move(world: World, block_pos: Vector2i, direction: Vector2i):
 	world.delete_block(block_pos)
 	world.set_block(block_pos + direction, self)
+
+
+func replace(world: World, block_pos: Vector2i, new_block: Block):
+	world.delete_block(block_pos)
+	world.set_block(block_pos, new_block)
