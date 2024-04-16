@@ -16,6 +16,8 @@ const TILE_SIZE= 32
 
 var tick_entities: Array[BaseBlockEntity]
 
+var neighbor_updates: Array[Vector2i]
+
 
 func _ready():
 	if generator:
@@ -32,6 +34,8 @@ func _physics_process(_delta):
 	if Engine.get_physics_frames() % (60 / BLOCK_TICKS) == 0:
 		for chunk in get_chunks():
 			chunk.tick_blocks()
+
+	execute_neighbor_updates()
 
 
 func get_block(tile_pos: Vector2i)-> Block:
@@ -51,6 +55,34 @@ func get_block_id(tile_pos: Vector2i):
 
 func get_block_id_at(pos: Vector2)-> int:
 	return get_block_id(get_tile(pos))
+
+
+func schedule_block(tile_pos: Vector2i):
+	get_chunk_at(tile_pos).schedule_block(tile_pos)
+
+
+func unschedule_block(tile_pos: Vector2i):
+	get_chunk_at(tile_pos).unschedule_block(tile_pos)
+
+
+func trigger_neighbor_update(origin_pos: Vector2i):
+	if origin_pos in neighbor_updates: return
+	NodeDebugger.msg(self, str("trigger neighbor update ", origin_pos), 2)
+	neighbor_updates.append(origin_pos)
+
+
+func execute_neighbor_updates():
+	for origin_pos in neighbor_updates:
+		for x in [-1, 0, 1]:
+			for y in [-1, 0, 1]:
+				if x != 0 or y != 0:
+					var pos: Vector2i= origin_pos + Vector2i(x, y)
+					var block: Block= get_block(pos)
+					if block:
+						NodeDebugger.msg(self, str("block neighbor update at ", pos, " origin ", origin_pos), 3)
+						block.on_neighbor_update(self, pos, origin_pos)
+
+	neighbor_updates.clear()
 
 
 func get_tile(pos: Vector2)-> Vector2i:
@@ -102,18 +134,18 @@ func get_block_hardness(tile_pos: Vector2i)-> float:
 	return block.hardness
 
 
-func set_block(tile_pos: Vector2i, block: Block):
+func set_block(tile_pos: Vector2i, block: Block, trigger_neighbor_update: bool= true):
 	var chunk: WorldChunk= get_chunk_at(tile_pos)
 	if chunk:
-		chunk.set_block(chunk.get_local_pos(tile_pos), block)
+		chunk.set_block(chunk.get_local_pos(tile_pos), block, trigger_neighbor_update)
 
 
-func delete_block(tile_pos: Vector2i):
+func delete_block(tile_pos: Vector2i, trigger_neighbor_update: bool= true):
 	var chunk: WorldChunk= get_chunk_at(tile_pos)
 	if not chunk: 
 		assert(false)
 		return null
-	chunk.delete_block(tile_pos)
+	chunk.delete_block(tile_pos, trigger_neighbor_update)
 
 
 func break_block(tile_pos: Vector2i, with_drops: bool= true):
@@ -162,7 +194,7 @@ func _on_chunk_updater_initial_run_completed():
 	var settings: GameSettings= Global.game.settings
 	for x in range(-settings.spawn_clearing_radius, settings.spawn_clearing_radius):
 		for y in range(-settings.spawn_clearing_radius, settings.spawn_clearing_radius):
-			delete_block(settings.player_spawn + Vector2i(x, y))
+			delete_block(settings.player_spawn + Vector2i(x, y), false)
 
 	initialization_finished.emit()
 

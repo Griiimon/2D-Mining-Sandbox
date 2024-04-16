@@ -33,22 +33,40 @@ func generate_tiles():
 			var global_pos= get_global_pos(local_pos)
 			var block_id: int= generator.get_block_id(global_pos)
 			var block: Block= DataManager.get_block(block_id)
-			set_block(local_pos, block)
+			set_block(local_pos, block, false)
 
 
 func tick_blocks():
 	for block_pos in scheduled_blocks:
-		get_block(block_pos).on_tick(world, block_pos)
+		get_block(block_pos).on_tick(world, get_global_pos(block_pos))
 
 
-func set_block(pos: Vector2i, block: Block):
+func set_block(tile_pos: Vector2i, block: Block, trigger_neighbor_update: bool= true):
+	if not block:
+		delete_block(tile_pos, trigger_neighbor_update)
+		return
+
 	var block_id: int= DataManager.get_block_id(block)
-	set_cell(0, pos, block_id, Vector2i.ZERO)
+
+	tile_pos= get_local_pos(tile_pos)
+	set_cell(0, tile_pos, block_id, Vector2i.ZERO)
 	if block.is_fluid:
-		set_cell(1, pos, block_id, Vector2i.ZERO)
-	block.on_spawn(world, get_global_pos(pos))
+		set_cell(1, tile_pos, block_id, Vector2i.ZERO)
+	block.on_spawn(world, get_global_pos(tile_pos))
 	if block.schedule_tick:
-		scheduled_blocks.append(pos)
+		scheduled_blocks.append(tile_pos)
+	
+	if trigger_neighbor_update:
+		world.trigger_neighbor_update(get_global_pos(tile_pos))
+
+
+func delete_block(tile_pos: Vector2i, trigger_neighbor_update: bool= true):
+	set_cell(0, get_local_pos(tile_pos), -1)
+	set_cell(1, get_local_pos(tile_pos), -1)
+	scheduled_blocks.erase(tile_pos)
+	
+	if trigger_neighbor_update:
+		world.trigger_neighbor_update(get_global_pos(tile_pos))
 
 
 func get_block(tile_pos: Vector2i)-> Block:
@@ -94,9 +112,14 @@ func break_block(tile_pos: Vector2i, with_drops: bool= true):
 		block.on_break(world, tile_pos)
 
 
-func delete_block(tile_pos: Vector2i):
-	set_cell(0, get_local_pos(tile_pos), -1)
-	set_cell(1, get_local_pos(tile_pos), -1)
+func schedule_block(tile_pos: Vector2i):
+	tile_pos= get_local_pos(tile_pos)
+	if not tile_pos in scheduled_blocks:
+		scheduled_blocks.append(tile_pos)
+
+
+func unschedule_block(tile_pos: Vector2i):
+	tile_pos= get_local_pos(tile_pos)
 	scheduled_blocks.erase(tile_pos)
 
 
