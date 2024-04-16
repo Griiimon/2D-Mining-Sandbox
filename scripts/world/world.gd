@@ -4,6 +4,7 @@ extends Node2D
 signal initialization_finished
 
 const ENTITY_TICKS= 60
+const BLOCK_TICKS= 5
 
 const TILE_SIZE= 32
 
@@ -24,8 +25,13 @@ func _ready():
 func _physics_process(_delta):
 	if Engine.is_editor_hint(): return
 	
-	for entity in tick_entities:
-		entity.tick(self)
+	if Engine.get_physics_frames() % (60 / ENTITY_TICKS) == 0:
+		for entity in tick_entities:
+			entity.tick(self)
+
+	if Engine.get_physics_frames() % (60 / BLOCK_TICKS) == 0:
+		for chunk in get_chunks():
+			chunk.tick_blocks()
 
 
 func get_block(tile_pos: Vector2i)-> Block:

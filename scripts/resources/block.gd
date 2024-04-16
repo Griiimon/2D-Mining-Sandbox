@@ -15,6 +15,7 @@ extends Resource
 @export var other_tool_produces_drops: bool= false
 
 @export_category("Special")
+@export var schedule_tick: bool= false
 @export var is_air: bool= false
 @export var is_fluid: bool= false
 
@@ -41,3 +42,12 @@ func on_break(_world: World, _block_pos: Vector2i):
 
 func on_tick(_world: World, _block_pos: Vector2i):
 	pass
+
+
+func on_neighbor_update(_world: World, _block_pos: Vector2i, _neighbor_pos: Vector2i):
+	pass
+
+
+func move(world: World, block_pos: Vector2i, direction: Vector2i):
+	world.delete_block(block_pos)
+	world.set_block(block_pos + direction, self)

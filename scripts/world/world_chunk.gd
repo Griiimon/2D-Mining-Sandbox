@@ -10,6 +10,7 @@ const SIZE= 32
 
 var world: World
 
+var scheduled_blocks: Array[Vector2i]= []
 
 
 func _ready():
@@ -35,13 +36,27 @@ func generate_tiles():
 			set_block(local_pos, block)
 
 
+func tick_blocks():
+	for block_pos in scheduled_blocks:
+		get_block(block_pos).on_tick(world, block_pos)
+
+
 func set_block(pos: Vector2i, block: Block):
 	var block_id: int= DataManager.get_block_id(block)
 	set_cell(0, pos, block_id, Vector2i.ZERO)
 	if block.is_fluid:
 		set_cell(1, pos, block_id, Vector2i.ZERO)
 	block.on_spawn(world, get_global_pos(pos))
-	
+	if block.schedule_tick:
+		scheduled_blocks.append(pos)
+
+
+func get_block(tile_pos: Vector2i)-> Block:
+	var block_id: int= get_block_id(tile_pos)
+	if block_id == -1:
+		return null
+	return DataManager.get_block(block_id)
+
 
 func _tile_data_runtime_update(_layer, _coords, _tile_data):
 	pass
@@ -73,7 +88,7 @@ func break_block(tile_pos: Vector2i, with_drops: bool= true):
 		var world_pos: Vector2= map_to_local(tile_pos)
 		if with_drops and block.drop:
 			world.spawn_item(block.drop, world_pos)
-		set_cell(0, get_local_pos(tile_pos), -1)
+		delete_block(get_local_pos(tile_pos))
 
 		Effects.spawn_particle_system(world_pos, block_break_particles.duplicate().set_color(block.particle_color))
 		block.on_break(world, tile_pos)
@@ -81,6 +96,8 @@ func break_block(tile_pos: Vector2i, with_drops: bool= true):
 
 func delete_block(tile_pos: Vector2i):
 	set_cell(0, get_local_pos(tile_pos), -1)
+	set_cell(1, get_local_pos(tile_pos), -1)
+	scheduled_blocks.erase(tile_pos)
 
 
 func get_world_tile_pos()-> Vector2i:
