@@ -17,7 +17,6 @@ extends Resource
 @export_category("Special")
 @export var is_air: bool= false
 @export var is_fluid: bool= false
-@export var fill_ratio: float= 1.0
 
 
 

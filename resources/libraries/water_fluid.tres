@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FluidLibraryItem" load_steps=5 format=3 uid="uid://cgmmoqhmdec5r"]
+
+[ext_resource type="Resource" uid="uid://d4hbmp48eqem4" path="res://resources/blocks/water_block.tres" id="1_g3ggm"]
+[ext_resource type="Resource" uid="uid://cotoue1kmmwxo" path="res://resources/blocks/water_half_block.tres" id="2_7v15h"]
+[ext_resource type="Resource" uid="uid://cdsr7rdwvpfcd" path="res://resources/blocks/water_quarter_block.tres" id="3_an7fv"]
+[ext_resource type="Script" path="res://scripts/resources/fluid_library_item.gd" id="4_owjfv"]
+
+[resource]
+script = ExtResource("4_owjfv")
+blocks = Array[Resource("res://scripts/resources/block.gd")]([ExtResource("1_g3ggm"), ExtResource("2_7v15h"), ExtResource("3_an7fv")])

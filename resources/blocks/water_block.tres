@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Block" load_steps=3 format=3 uid="uid://d4hbmp48eqem4"]
+[gd_resource type="Resource" script_class="FluidBlock" load_steps=3 format=3 uid="uid://d4hbmp48eqem4"]
 
-[ext_resource type="Script" path="res://scripts/resources/block.gd" id="1_jejvt"]
+[ext_resource type="Script" path="res://scripts/custom blocks/fluid_block.gd" id="1_ljf0c"]
 [ext_resource type="Texture2D" uid="uid://cl5xbxp01bj06" path="res://textures/blocks/water.png" id="2_mnx4h"]
 
 [resource]
-script = ExtResource("1_jejvt")
+script = ExtResource("1_ljf0c")
+fill_ratio = 1.0
 name = "water"
 texture = ExtResource("2_mnx4h")
 hardness = 0.0
