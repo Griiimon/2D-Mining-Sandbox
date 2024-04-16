@@ -6,7 +6,13 @@ add sounds
 track all spawned items globally, and check all if inside despawned chunk and delete 
 check where they are when spawned, and once again when frozen
 
-tilemap foreground layer (for water, add water tile to foreground layer in addition to bg layer)
+level editor
+
+challenges ( game mode )
+
+fix get out of low water
+
+water simulation ( half blocks, schedule tick, on neighbor update )
 
 hotbar keys
 
