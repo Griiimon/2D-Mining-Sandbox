@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="FluidLibrary" load_steps=2 format=3 uid="uid://mq2j0xwm1xqy"]
+
+[ext_resource type="Script" path="res://scripts/resources/fluid_library.gd" id="1_rs3uy"]
+
+[resource]
+script = ExtResource("1_rs3uy")
+fluids = Array[Resource("res://scripts/resources/fluid_library_item.gd")]([])

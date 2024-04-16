@@ -9,6 +9,8 @@ var blocks_lookup: Dictionary
 
 var furnace_recipes: Dictionary
 
+var fluid_library: FluidLibrary
+
 var tile_set: TileSet
 
 
@@ -23,11 +25,14 @@ func _init():
 
 	load_resource_folder_into_dictionary("res://resources/recipes/furnace", furnace_recipes, "ingredient")
 
+	fluid_library= load("res://resources/libraries/fluid_library.tres")
+
 	late_init.call_deferred()
 
 
 func late_init():
 	WorldChunk.create_tileset()
+	fluid_library.build()
 
 
 func load_resource_folder_into_array(folder: String, array: Array):
