@@ -197,6 +197,7 @@ func mining_logic(delta)-> bool:
 		
 	if mining_progress >= total_mining_effort or Global.game.cheats.instant_mine:
 		get_world().break_block(selected_block_pos, get_hand_object_type() == block.mining_tool)
+		NodeDebugger.msg(self, str("mined block ", selected_block_pos), 1)
 		return false
 	else:
 		block_breaker.position= get_world().map_to_local(selected_block_pos)
