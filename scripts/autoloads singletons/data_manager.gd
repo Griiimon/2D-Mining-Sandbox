@@ -66,5 +66,6 @@ func get_block(id: int)-> Block:
 
 
 func get_block_id(block: Block)-> int:
-	assert(blocks_lookup.has(block))
+	if not blocks_lookup.has(block):
+		return -1
 	return blocks_lookup[block]
