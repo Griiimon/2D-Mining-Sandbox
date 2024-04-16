@@ -3,9 +3,12 @@ extends CharacterBody2D
 
 const DROP_THROW_FORCE= 300
 
-@export var speed = 300.0
-@export var jump_velocity = -400.0
-@export var mining_speed= 1.0
+@export var speed: float = 300.0
+@export var jump_velocity: float = -400.0
+@export var mining_speed: float= 1.0
+@export var swim_speed: float= 100.0
+@export var swim_acceleration: float= 1.0
+@export var swim_damping: float= 0.1
 @export var freeze: bool= false
 @export var loadout: PlayerLoadout
 
@@ -26,6 +29,8 @@ const DROP_THROW_FORCE= 300
 @onready var animation_player_feet = $"AnimationPlayer Feet"
 
 @onready var ui: UI= $"Player UI"
+@onready var low_tile_detector: TileDetector = $"Low Tile Detector"
+@onready var high_tile_detector: TileDetector = $"High Tile Detector"
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -50,6 +55,7 @@ var inventory: Inventory= Inventory.new()
 var is_charging: bool= false: set= set_charging
 var charge_primary: bool= true
 var total_charge: float
+
 
 
 func _ready():
@@ -116,17 +122,27 @@ func _physics_process(delta):
 
 
 func movement(delta):
+	if is_swimming():
+		swim(delta)
+		return
+	
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		if low_tile_detector.is_in_fluid():
+			velocity.y+= gravity / 20 * delta
+		else:
+			velocity.y+= gravity * delta
 
-	var direction = Input.get_axis("left", "right")
+	var max_speed: float= get_max_speed()
+	
+	var direction= Input.get_axis("left", "right")
 	if direction:
-		velocity.x = direction * speed
+		velocity.x= direction * max_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		#velocity.x= move_toward(velocity.x, 0, speed)
+		velocity.x= 0
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
+		velocity.y= jump_velocity
 		animation_player_feet.play("jump")
 	elif is_on_floor():
 		if abs(velocity.x) > 0:
@@ -135,6 +151,23 @@ func movement(delta):
 			animation_player_feet.play("RESET")
 
 	move_and_slide()
+
+
+func swim(delta):
+	animation_player_feet.play("RESET")
+
+	var direction= Input.get_axis("left", "right")
+	if direction:
+		velocity.x= move_toward(velocity.x, direction * swim_speed, swim_acceleration)
+
+	if Input.is_action_pressed("jump"):
+		velocity.y= -swim_speed
+	elif Input.is_action_pressed("down") and not is_on_floor():
+		velocity.y= swim_speed
+	
+	move_and_slide()
+	
+	velocity*= 1 - delta * swim_damping
 
 
 func interaction_logic():
@@ -392,3 +425,16 @@ func set_mining(b: bool):
 func set_charging(b: bool):
 	is_charging= b
 	total_charge= 0
+
+
+func is_swimming()-> bool:
+	return low_tile_detector.is_in_fluid() and high_tile_detector.is_in_fluid()
+
+
+func get_max_speed()-> float:
+	var result: float= speed
+	
+	if low_tile_detector.is_in_fluid() or high_tile_detector.is_in_fluid():
+		result/= 2
+	
+	return result
