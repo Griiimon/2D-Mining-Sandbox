@@ -8,7 +8,10 @@ func _ready():
 
 func post_init():
 		var y:= 8
-		for x in 8:
+		for x in 12:
+			world.set_block(Vector2i(x, y - 1), load("res://resources/blocks/air_block.tres"))
 			world.set_block(Vector2i(x, y), load("res://resources/blocks/water_block.tres"))
 			if x > 3:
 				world.set_block(Vector2i(x, y + 1), load("res://resources/blocks/water_block.tres"))
+				if x > 6:
+					world.set_block(Vector2i(x, y + 2), load("res://resources/blocks/water_block.tres"))
