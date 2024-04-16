@@ -159,3 +159,7 @@ func _on_chunk_updater_initial_run_completed():
 			delete_block(settings.player_spawn + Vector2i(x, y))
 
 	initialization_finished.emit()
+
+
+func is_air_at(tile_pos: Vector2i)-> bool:
+	return get_block(tile_pos) == null
