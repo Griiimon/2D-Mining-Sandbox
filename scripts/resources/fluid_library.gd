@@ -18,12 +18,12 @@ func is_same_fluid(block1: Block, block2: Block)-> bool:
 	return get_fluid(block1) == get_fluid(block2)
 
 
-func get_lower_fluid_block(block: Block)-> Block:
+func get_lower_fluid_block(block: Block, depth: int= 1)-> Block:
 	var fluid: FluidLibraryItem= get_fluid(block)
 	var idx: int= fluid.blocks.find(block)
-	if idx == len(fluid.blocks) - 1:
+	if idx >= len(fluid.blocks) - depth:
 		return null
-	return fluid.blocks[idx + 1]
+	return fluid.blocks[idx + depth]
 
 
 func get_fluid(block: Block)-> FluidLibraryItem:
