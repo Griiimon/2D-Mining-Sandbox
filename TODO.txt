@@ -1,6 +1,11 @@
 restructure project to put code/scene/asset into same folder
 even block resources into block folders and scan the entire subfolder system for those tres
 
+make DataManager scene and use export vars instead of hardcoded paths?
+
+dont delete chunks in chunk update if they have been changed
+save the chunk completely once changed and dont queue_free but remove all tiles and hide
+
 add sounds
 
 track all spawned items globally, and check all if inside despawned chunk and delete 
