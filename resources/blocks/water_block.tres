@@ -15,5 +15,6 @@ particle_color = Color(0.478431, 0.643137, 1, 1)
 mining_tool = 0
 other_tool_penalty = 4.0
 other_tool_produces_drops = false
+schedule_tick = true
 is_air = false
 is_fluid = true
