@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_w2vbq")
-fill_ratio = 0.5
+fill_ratio = 1
 name = "water_half"
 texture = ExtResource("2_ib1yt")
 hardness = 0.0

@@ -1,8 +1,9 @@
 class_name FluidBlock
 extends Block
 
+enum FillRatio { FULL, HALF, QUARTER }
 
-@export var fill_ratio: float= 1.0
+@export var fill_ratio: FillRatio
 
 
 func on_tick(world: World, block_pos: Vector2i):
@@ -10,7 +11,11 @@ func on_tick(world: World, block_pos: Vector2i):
 		move(world, block_pos, Vector2i.DOWN)
 		return
 	
-	# TODO check fluid block below with fill < 1
+	#var this_block: FluidBlock= world.get_block(block_pos)
+	#var block_below: Block= world.get_block(block_pos + Vector2i.DOWN)
+	#
+	#if block_below.is_fluid and not (block_below as FluidBlock).is_full() and DataManager.fluid_library.is_same_fluid(this_block, block_below):
+	
 	
 	if can_split():
 		var potential_split_pos: Array[Vector2i]
@@ -35,8 +40,8 @@ func on_tick(world: World, block_pos: Vector2i):
 
 
 func on_neighbor_update(world: World, block_pos: Vector2i, neighbor_pos: Vector2i):
-	#if neighbor_pos.y >= block_pos.y:
-	world.schedule_block(block_pos)
+	if neighbor_pos.y >= block_pos.y:
+		world.schedule_block(block_pos)
 
 
 func can_split()-> bool:
