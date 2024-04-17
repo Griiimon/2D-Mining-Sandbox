@@ -23,5 +23,6 @@ func on_exit():
 
 
 func _on_movement_detection_body_entered(body):
+	assert(body is Player)
 	if is_current_state():
 		wake_up.emit()
