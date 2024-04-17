@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 const DROP_THROW_FORCE= 300
+const FLY_SPEED_FACTOR= 4.0
 
 @export var speed: float = 300.0
 @export var jump_velocity: float = -400.0
@@ -126,6 +127,10 @@ func movement(delta):
 		swim(delta)
 		return
 	
+	if Global.game.cheats.fly:
+		fly(delta)
+		return
+	
 	if not is_on_floor():
 		if low_tile_detector.is_in_fluid():
 			velocity.y+= gravity / 20 * delta
@@ -153,7 +158,7 @@ func movement(delta):
 	move_and_slide()
 
 
-func swim(delta):
+func swim(delta: float):
 	animation_player_feet.play("RESET")
 
 	var direction= Input.get_axis("left", "right")
@@ -168,6 +173,12 @@ func swim(delta):
 	move_and_slide()
 	
 	velocity*= 1 - delta * swim_damping
+
+
+func fly(delta: float):
+	var direction: Vector2= Input.get_vector("left", "right", "up", "down")
+	velocity= direction * speed * FLY_SPEED_FACTOR
+	move_and_slide()
 
 
 func interaction_logic():
