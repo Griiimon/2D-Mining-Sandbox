@@ -14,6 +14,10 @@ const TILE_SIZE= 32
 @export var generator: TerrainGenerator
 @export var explosion_particles: ParticleSettings
 
+@onready var chunk_updater: ChunkUpdater = $"Chunk Updater"
+@onready var mob_spawner: MobSpawner = $"Mob Spawner"
+
+
 var tick_entities: Array[BaseBlockEntity]
 
 var neighbor_updates: Array[Vector2i]
@@ -24,7 +28,13 @@ var chunk_storage:= {}
 func _ready():
 	if generator:
 		generator.initialize()
-		
+
+
+func start():
+	chunk_updater.start()
+	mob_spawner.start()
+	initialization_finished.emit()
+
 
 func _physics_process(_delta):
 	if Engine.is_editor_hint(): return
@@ -222,7 +232,7 @@ func _on_chunk_updater_initial_run_completed():
 		for y in range(-settings.spawn_clearing_radius, settings.spawn_clearing_radius):
 			delete_block(settings.player_spawn + Vector2i(x, y), false)
 
-	initialization_finished.emit()
+	start()
 
 
 func is_air_at(tile_pos: Vector2i)-> bool:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dc0j27pwmaoye"]
+[gd_scene load_steps=9 format=3 uid="uid://dc0j27pwmaoye"]
 
 [ext_resource type="Script" path="res://scripts/world/world.gd" id="1_pmjc8"]
 [ext_resource type="PackedScene" uid="uid://bvx4bb7jk0sr7" path="res://scenes/world_item.tscn" id="2_xrbq3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/world/chunk_updater.gd" id="5_qqsjj"]
 [ext_resource type="Resource" uid="uid://di6fjtt37v77v" path="res://resources/effects/explosion_particles.tres" id="5_snubo"]
 [ext_resource type="PackedScene" uid="uid://vgl3mtr5d37f" path="res://scenes/components/debug_component.tscn" id="7_4bafo"]
+[ext_resource type="Script" path="res://scripts/world/mob_spawner.gd" id="7_otmna"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("chunks")]
 script = ExtResource("1_pmjc8")
@@ -20,7 +21,11 @@ explosion_particles = ExtResource("5_snubo")
 script = ExtResource("5_qqsjj")
 
 [node name="Update Timer" type="Timer" parent="Chunk Updater"]
-autostart = true
+
+[node name="Mob Spawner" type="Node" parent="."]
+script = ExtResource("7_otmna")
+
+[node name="Timer" type="Timer" parent="Mob Spawner"]
 
 [node name="Chunks" type="Node2D" parent="."]
 
@@ -31,3 +36,4 @@ prefix = "World"
 
 [connection signal="initial_run_completed" from="Chunk Updater" to="." method="_on_chunk_updater_initial_run_completed"]
 [connection signal="timeout" from="Chunk Updater/Update Timer" to="Chunk Updater" method="_on_update_timer_timeout"]
+[connection signal="timeout" from="Mob Spawner/Timer" to="Mob Spawner" method="_on_timer_timeout"]
