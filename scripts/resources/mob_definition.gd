@@ -4,5 +4,5 @@ extends Resource
 
 @export var name: String
 @export var scene: PackedScene
-@export var spawner: MobSpawner
+@export var spawner: MobSpawnerDefinition
 
