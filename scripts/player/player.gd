@@ -450,3 +450,7 @@ func get_max_speed()-> float:
 		result/= 2
 	
 	return result
+
+
+func get_tile_distance(tile: Vector2i)-> int:
+	return (get_world().get_tile(global_position) - tile).length()
