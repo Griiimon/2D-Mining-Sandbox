@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dre4owqmev6mn"]
+[gd_scene load_steps=3 format=3 uid="uid://dre4owqmev6mn"]
 
-[ext_resource type="TileSet" uid="uid://h81ag4sh2qm6" path="res://resources/tile_set.tres" id="1_y7mm8"]
 [ext_resource type="Script" path="res://scripts/world/world_chunk.gd" id="2_xk4iw"]
 [ext_resource type="Resource" uid="uid://tt4hj6pt3b1a" path="res://resources/effects/block_break_particles.tres" id="3_d7efb"]
 
 [node name="World Chunk" type="TileMap"]
-tile_set = ExtResource("1_y7mm8")
 format = 2
 layer_0/name = "terrain"
 layer_1/name = "fluids"
