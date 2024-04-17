@@ -24,6 +24,7 @@ script = ExtResource("5_qqsjj")
 
 [node name="Mob Spawner" type="Node" parent="."]
 script = ExtResource("7_otmna")
+min_player_distance = 30
 
 [node name="Timer" type="Timer" parent="Mob Spawner"]
 wait_time = 0.1
