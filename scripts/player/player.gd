@@ -30,7 +30,7 @@ const DROP_THROW_FORCE= 300
 
 @onready var ui: UI= $"Player UI"
 @onready var low_tile_detector: TileDetector = $"Low Tile Detector"
-@onready var high_tile_detector: TileDetector = $"High Tile Detector"
+@onready var mid_tile_detector: TileDetector = $"Mid Tile Detector"
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -429,13 +429,13 @@ func set_charging(b: bool):
 
 
 func is_swimming()-> bool:
-	return low_tile_detector.is_in_fluid() and high_tile_detector.is_in_fluid()
+	return low_tile_detector.is_in_fluid() and mid_tile_detector.is_in_fluid()
 
 
 func get_max_speed()-> float:
 	var result: float= speed
 	
-	if low_tile_detector.is_in_fluid() or high_tile_detector.is_in_fluid():
+	if low_tile_detector.is_in_fluid() or mid_tile_detector.is_in_fluid():
 		result/= 2
 	
 	return result

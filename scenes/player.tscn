@@ -362,10 +362,10 @@ position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_nwn3q")
 
 [node name="Low Tile Detector" parent="." instance=ExtResource("7_4vqib")]
-position = Vector2(0, 25)
+position = Vector2(0, 32)
 
-[node name="High Tile Detector" parent="." instance=ExtResource("7_4vqib")]
-position = Vector2(0, -15)
+[node name="Mid Tile Detector" parent="." instance=ExtResource("7_4vqib")]
+position = Vector2(0, -8)
 
 [node name="Player UI" parent="." instance=ExtResource("4_8hau5")]
 
