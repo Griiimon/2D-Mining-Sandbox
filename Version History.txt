@@ -2,6 +2,8 @@
 # v0.3          #
 ##################
 
+- despawn items with chunks
+- save changed chunks to memory
 - block scheduling
 - water
 - grenades
