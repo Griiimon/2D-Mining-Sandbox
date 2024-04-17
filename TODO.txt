@@ -6,7 +6,7 @@ flowing water (down) on alternate tile?
 
 make DataManager scene and use export vars instead of hardcoded paths?
 
-enemy spawner
+only spawn mobs out of sight
 
 add sounds
 
