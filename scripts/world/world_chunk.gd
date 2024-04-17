@@ -12,6 +12,10 @@ var world: World
 
 var scheduled_blocks: Array[Vector2i]= []
 
+var has_changes: bool= false: set= set_changes
+
+var ignore_changes: bool= true
+
 
 func _ready():
 	world= get_parent().get_parent()
@@ -26,6 +30,7 @@ func _ready():
 
 
 func generate_tiles():
+	assert(ignore_changes)
 	var generator: TerrainGenerator= world.generator
 	for x in SIZE:
 		for y in SIZE:
@@ -34,6 +39,7 @@ func generate_tiles():
 			var block_id: int= generator.get_block_id(global_pos)
 			var block: Block= DataManager.get_block(block_id)
 			set_block(local_pos, block, false)
+	ignore_changes= false
 
 
 func tick_blocks():
@@ -46,6 +52,7 @@ func tick_blocks():
 			# TODO i would like to store a failed attempt and only 
 			# unschedule after a second failed attempt ( additional array )
 			unschedule_block(block_pos)
+
 
 func set_block(tile_pos: Vector2i, block: Block, trigger_neighbor_update: bool= true):
 	if not block:
@@ -64,6 +71,7 @@ func set_block(tile_pos: Vector2i, block: Block, trigger_neighbor_update: bool= 
 	
 	if trigger_neighbor_update:
 		world.trigger_neighbor_update(get_global_pos(tile_pos))
+	has_changes= true
 
 
 func delete_block(tile_pos: Vector2i, trigger_neighbor_update: bool= true):
@@ -73,6 +81,7 @@ func delete_block(tile_pos: Vector2i, trigger_neighbor_update: bool= true):
 	
 	if trigger_neighbor_update:
 		world.trigger_neighbor_update(get_global_pos(tile_pos))
+	has_changes= true
 
 
 func get_block(tile_pos: Vector2i)-> Block:
@@ -135,6 +144,31 @@ func get_world_tile_pos()-> Vector2i:
 
 func get_world_tile_pos_center()-> Vector2i:
 	return coords * SIZE + Vector2i.ONE * SIZE / 2
+
+
+func save()-> ChunkStorage:
+	var storage:= ChunkStorage.new()
+	for x in SIZE:
+		for y in SIZE:
+			storage.tiles.append(get_block_id(Vector2i(x, y)))
+	return storage
+
+
+func restore(storage: ChunkStorage):
+	ignore_changes= true
+	var tiles: Array[int]= storage.tiles.duplicate()
+	for x in SIZE:
+		for y in SIZE:
+			set_block(Vector2i(x, y), DataManager.get_block(tiles.pop_front()), false)
+	ignore_changes= false
+
+
+func set_changes(b: bool):
+	if not b:
+		has_changes= false
+		return
+	if not ignore_changes:
+		has_changes= b
 
 
 # creates a tile-set automatically from block textures

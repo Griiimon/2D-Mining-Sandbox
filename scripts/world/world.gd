@@ -18,6 +18,8 @@ var tick_entities: Array[BaseBlockEntity]
 
 var neighbor_updates: Array[Vector2i]
 
+var chunk_storage:= {}
+
 
 func _ready():
 	if generator:
@@ -114,13 +116,23 @@ func get_chunks()-> Array[WorldChunk]:
 	return result
 
 
-func create_chunk(chunk_coords: Vector2i):
+func create_chunk(chunk_coords: Vector2i, storage: ChunkStorage= null):
 	var chunk: WorldChunk= world_chunk_scene.instantiate()
 	chunk.name= str(chunk_coords)
 	chunk.position= chunk_coords * WorldChunk.SIZE * TILE_SIZE
 	chunks.add_child(chunk)
 	chunk.coords= chunk_coords
-	chunk.generate_tiles()
+	if storage:
+		chunk.restore(storage)
+	else:
+		chunk.generate_tiles()
+
+
+func get_chunk_storage(chunk_coords: Vector2i)-> ChunkStorage:
+	var key: String= str(chunk_coords)
+	if not chunk_storage.has(key):
+		return null
+	return chunk_storage[key]
 
 
 func map_to_local(tile_pos: Vector2i)-> Vector2:
