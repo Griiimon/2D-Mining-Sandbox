@@ -8,6 +8,6 @@ extends Camera2D
 
 func _process(delta):
 	if free_cam:
-		position+= Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * speed * delta
+		position+= Input.get_vector("left", "right", "up", "down") * speed * delta
 	elif follow_node:
 		position= follow_node.global_position
