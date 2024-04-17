@@ -39,6 +39,7 @@ func run(non_blocking: bool= true):
 		if distance > max_distance:
 			if chunk.has_changes:
 				world.chunk_storage[str(chunk.coords)]= chunk.save()
+			chunk.cleanup()
 			chunk.queue_free()
 
 

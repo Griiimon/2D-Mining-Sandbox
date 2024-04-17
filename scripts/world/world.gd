@@ -172,13 +172,27 @@ func spawn_item(item: Item, pos: Vector2)-> WorldItem:
 	var world_item: WorldItem= world_item_scene.instantiate()
 	world_item.position= pos
 	add_child(world_item)
-	
 	world_item.item= item
+
+	world_item.register(self)
+
 	return world_item
 
 
 func throw_item(item: Item, pos: Vector2, velocity: Vector2):
 	spawn_item(item, pos).velocity= velocity
+
+
+func register_item(item: WorldItem)-> WorldChunk:
+	var chunk: WorldChunk= get_chunk_at(get_tile(item.global_position))
+	assert(chunk)
+	if not item in chunk.items:
+		chunk.items.append(item)
+	return chunk
+
+
+func unregister_item(item: WorldItem, chunk: WorldChunk):
+	chunk.items.erase(item)
 
 
 func spawn_block_entity(tile_pos: Vector2i, entity_scene: PackedScene):

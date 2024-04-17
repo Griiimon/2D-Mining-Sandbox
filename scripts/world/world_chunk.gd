@@ -12,9 +12,12 @@ var world: World
 
 var scheduled_blocks: Array[Vector2i]= []
 
+var items: Array[WorldItem]= []
+
 var has_changes: bool= false: set= set_changes
 
 var ignore_changes: bool= true
+
 
 
 func _ready():
@@ -161,6 +164,13 @@ func restore(storage: ChunkStorage):
 		for y in SIZE:
 			set_block(Vector2i(x, y), DataManager.get_block(tiles.pop_front()), false)
 	ignore_changes= false
+
+
+func cleanup():
+	for item in items:
+		if is_instance_valid(item):
+			item.queue_free()
+	items.clear()
 
 
 func set_changes(b: bool):

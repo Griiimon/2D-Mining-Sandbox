@@ -23,9 +23,13 @@ var freeze: bool= false: set= set_freeze
 
 var bounce_tween: Tween
 
+var registered_to_chunk: WorldChunk
+
 
 func _ready():
 	pickup_delay.wait_time= randf_range(0, 0.3)
+
+	# wait for shapecast to get collider information. necessary?
 	set_physics_process(false)
 	await get_tree().physics_frame
 	set_physics_process(true)
@@ -79,6 +83,10 @@ func _physics_process(delta):
 	position+= velocity * delta
 
 
+func register(world: World):
+	registered_to_chunk= world.register_item(self)
+
+
 func _on_body_entered(body):
 	assert(body is Player)
 	
@@ -118,6 +126,10 @@ func set_freeze(b: bool):
 	
 	freeze= b
 	if freeze:
+		var world: World= registered_to_chunk.world
+		world.unregister_item(self, registered_to_chunk)
+		register(world)
+		
 		velocity= Vector2.ZERO
 		bounce_tween= create_tween()
 		bounce_tween.tween_property(sprite, "position:y", -5, 0.5)
