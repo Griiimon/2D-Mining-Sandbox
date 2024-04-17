@@ -62,6 +62,8 @@ func find_furnace_recipe_for(ore: Item)-> FurnaceRecipe:
 
 func get_block(id: int)-> Block:
 	assert(id < len(blocks))
+	if id == -1:
+		return null
 	return blocks[id]
 
 
