@@ -21,6 +21,8 @@ func _ready():
 
 
 func late_ready():
+	if not chunk_viewer:
+		chunk_viewer= get_viewport().get_camera_2d()
 	run(false)
 	initial_run_completed.emit()
 
