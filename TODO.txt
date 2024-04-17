@@ -2,23 +2,18 @@ restructure project to put code/scene/asset into same folder
 even block resources into block folders and scan the entire subfolder system for those tres
 
 fluid simulation ( 3/4 blocks? )
+flowing water (down) on alternate tile?
 
 make DataManager scene and use export vars instead of hardcoded paths?
 
-dont delete chunks in chunk update if they have been changed
-save the chunk completely once changed and dont queue_free but remove all tiles and hide
+enemy spawner
 
 add sounds
-
-track all spawned items globally, and check all if inside despawned chunk and delete 
-check where they are when spawned, and once again when frozen
 
 level editor
 
 challenges ( game mode )
-
-fix get out of low water
-
+ 
 hand gun
 
 basePlayer class and extend with default character "Classico"
@@ -27,6 +22,6 @@ character selection screen
 
 health bar ( auto regenerate ), fall damage
 
-world item damp when bouncing on floor
-
 crafting
+
+build menu, place (artificial) blocks and block entities
