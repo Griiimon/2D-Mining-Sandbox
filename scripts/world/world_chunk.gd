@@ -37,9 +37,15 @@ func generate_tiles():
 
 
 func tick_blocks():
-	for block_pos in scheduled_blocks:
-		get_block(block_pos).on_tick(world, get_global_pos(block_pos))
-
+	for block_pos in scheduled_blocks.duplicate():
+		var block: Block= get_block(block_pos)
+		if block:
+			block.on_tick(world, get_global_pos(block_pos))
+		else:
+			assert(false)
+			# TODO i would like to store a failed attempt and only 
+			# unschedule after a second failed attempt ( additional array )
+			unschedule_block(block_pos)
 
 func set_block(tile_pos: Vector2i, block: Block, trigger_neighbor_update: bool= true):
 	if not block:
