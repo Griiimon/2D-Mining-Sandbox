@@ -7,10 +7,11 @@ var hand_object: Node2D
 func on_equip():
 	var projectile: Projectile= type.scene.instantiate()
 	
-	get_hand().add_child(projectile)
+	add_child(projectile)
 	hand_object= projectile.visual
+
 	# reparent visual representation of projectile to virtual thrower
-	hand_object.reparent(get_player().main_hand.connector, false)
+	hand_object.reparent(self, false)
 	projectile.queue_free()
 
 
