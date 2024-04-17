@@ -20,6 +20,7 @@ player_loadout = ExtResource("2_jkm7x")
 [sub_resource type="Resource" id="Resource_g2rh2"]
 script = ExtResource("2_p63yw")
 instant_mine = false
+fly = false
 
 [node name="Test Game" type="Node" node_paths=PackedStringArray("world")]
 script = ExtResource("1_desap")
