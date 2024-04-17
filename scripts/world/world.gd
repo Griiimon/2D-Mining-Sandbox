@@ -57,11 +57,11 @@ func get_block(tile_pos: Vector2i)-> Block:
 	return DataManager.blocks[block_id]
 
 
-func get_block_id(tile_pos: Vector2i):
+func get_block_id(tile_pos: Vector2i)-> int:
 	var chunk: WorldChunk= get_chunk_at(tile_pos)
 	if not chunk: 
-		assert(false)
-		return null
+		NodeDebugger.msg(self, "get_block_id() null chunk", DebugComponent.Type.WARNING)
+		return -1
 	return chunk.get_block_id(tile_pos)
 
 
