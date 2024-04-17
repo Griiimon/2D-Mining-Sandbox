@@ -17,7 +17,7 @@ func set_attack_state(b: bool):
 			action_player.play(END_ATTACK_ANIMATION_ACTION)
 
 
-func release_charge(total_charge: float, primary: bool):
+func release_charge(_total_charge: float, _primary: bool):
 	pass
 
 

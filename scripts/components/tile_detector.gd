@@ -7,7 +7,7 @@ var current_tile: Vector2i
 var current_block: Block
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	current_tile= Global.game.world.get_tile(global_position)
 	current_block= Global.game.world.get_block(current_tile)
 

@@ -16,6 +16,7 @@ func on_equip():
 
 
 func release_charge(total_charge: float, primary: bool):
+	if not primary: return
 	var projectile: Projectile= type.scene.instantiate()
 	projectile.position= get_hand().global_position
 	hand_object.queue_free()

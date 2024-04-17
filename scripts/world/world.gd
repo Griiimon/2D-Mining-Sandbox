@@ -29,11 +29,11 @@ func _ready():
 func _physics_process(_delta):
 	if Engine.is_editor_hint(): return
 	
-	if Engine.get_physics_frames() % (60 / ENTITY_TICKS) == 0:
+	if Engine.get_physics_frames() % int(60.0 / ENTITY_TICKS) == 0:
 		for entity in tick_entities:
 			entity.tick(self)
 
-	if Engine.get_physics_frames() % (60 / BLOCK_TICKS) == 0:
+	if Engine.get_physics_frames() % int(60.0 / BLOCK_TICKS) == 0:
 		for chunk in get_chunks():
 			chunk.tick_blocks()
 
@@ -146,18 +146,18 @@ func get_block_hardness(tile_pos: Vector2i)-> float:
 	return block.hardness
 
 
-func set_block(tile_pos: Vector2i, block: Block, trigger_neighbor_update: bool= true):
+func set_block(tile_pos: Vector2i, block: Block, neighbor_update: bool= true):
 	var chunk: WorldChunk= get_chunk_at(tile_pos)
 	if chunk:
-		chunk.set_block(chunk.get_local_pos(tile_pos), block, trigger_neighbor_update)
+		chunk.set_block(chunk.get_local_pos(tile_pos), block, neighbor_update)
 
 
-func delete_block(tile_pos: Vector2i, trigger_neighbor_update: bool= true):
+func delete_block(tile_pos: Vector2i, neighbor_update: bool= true):
 	var chunk: WorldChunk= get_chunk_at(tile_pos)
 	if not chunk: 
 		assert(false)
 		return null
-	chunk.delete_block(tile_pos, trigger_neighbor_update)
+	chunk.delete_block(tile_pos, neighbor_update)
 
 
 func break_block(tile_pos: Vector2i, with_drops: bool= true):

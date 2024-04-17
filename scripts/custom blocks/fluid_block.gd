@@ -18,7 +18,7 @@ func on_tick(world: World, block_pos: Vector2i):
 	
 	
 	if can_split():
-		var potential_split_pos: Array[Vector2i]
+		var potential_split_pos: Array[Vector2i]= []
 		for x in [-1, 1]:
 			var pos: Vector2i= block_pos + Vector2i(x, 0)
 			if world.is_air_at(pos):

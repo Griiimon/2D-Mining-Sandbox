@@ -175,7 +175,7 @@ func swim(delta: float):
 	velocity*= 1 - delta * swim_damping
 
 
-func fly(delta: float):
+func fly(_delta: float):
 	var direction: Vector2= Input.get_vector("left", "right", "up", "down")
 	velocity= direction * speed * FLY_SPEED_FACTOR
 	move_and_slide()
@@ -395,7 +395,7 @@ func check_hotbar_hand_item():
 		equip_hand_item(item)
 
 
-func _on_animation_player_hand_animation_finished(anim_name):
+func _on_animation_player_hand_animation_finished(_anim_name: String):
 	is_executing_action= false
 
 
