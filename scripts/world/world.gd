@@ -214,6 +214,12 @@ func spawn_block_entity(tile_pos: Vector2i, entity_scene: PackedScene):
 		tick_entities.append(entity)
 
 
+func spawn_mob(mob_def: MobDefinition, tile: Vector2i):
+	var mob= mob_def.scene.instantiate()
+	mob.position= map_to_local(tile)
+	add_child(mob)
+
+
 func explosion(center: Vector2i, damage: float, radius: float, block_dmg_factor: float= 1):
 	for x in range(-radius, radius):
 		for y in range(-radius, radius):
@@ -237,3 +243,12 @@ func _on_chunk_updater_initial_run_completed():
 
 func is_air_at(tile_pos: Vector2i)-> bool:
 	return get_block(tile_pos) == null
+
+
+func is_air_at_rect(rect: Rect2i):
+	for x in rect.size.x:
+		for y in rect.size.y:
+			var tile: Vector2i= rect.position + Vector2i(x, y)
+			if not is_air_at(tile):
+				return false
+	return true

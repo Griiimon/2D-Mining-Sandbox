@@ -26,6 +26,7 @@ script = ExtResource("5_qqsjj")
 script = ExtResource("7_otmna")
 
 [node name="Timer" type="Timer" parent="Mob Spawner"]
+wait_time = 0.1
 
 [node name="Chunks" type="Node2D" parent="."]
 
