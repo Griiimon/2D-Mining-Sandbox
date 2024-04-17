@@ -1,23 +1,17 @@
 class_name ChunkUpdater
-extends Node
+extends WorldComponent
 
 signal initial_run_completed
 
 const DELAY_FRAMES= 10
 
-@export var disabled: bool= false
 @export var chunk_viewer: Node2D
 @export var min_distance: int= 100
 @export var max_distance: int= 200
 
 
-var world: World
 var busy:= false
 
-
-func _ready():
-	world= get_parent()
-	late_ready.call_deferred()
 
 
 func late_ready():
@@ -27,8 +21,12 @@ func late_ready():
 	initial_run_completed.emit()
 
 
+func start():
+	$"Update Timer".start()
+
+
 func run(non_blocking: bool= true):
-	if disabled or busy: return
+	if not enabled or busy: return
 	
 	busy= true
 	
