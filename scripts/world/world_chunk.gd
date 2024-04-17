@@ -173,6 +173,10 @@ func cleanup():
 	items.clear()
 
 
+func get_random_tile()-> Vector2i:
+	return get_global_pos(Vector2i(randi_range(0, SIZE), randi_range(0, SIZE)))
+
+
 func set_changes(b: bool):
 	if not b:
 		has_changes= false
