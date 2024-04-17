@@ -1,7 +1,7 @@
 class_name MobSpawner
 extends WorldComponent
 
-
+@export var min_player_distance: int= 50
 
 func start():
 	$Timer.start()
@@ -10,9 +10,13 @@ func start():
 func _on_timer_timeout():
 	if not enabled: return
 	
-	var chunk: WorldChunk= world.get_chunks().pick_random()
+	var tile: Vector2i
 	
-	var tile: Vector2i= chunk.get_random_tile()
+	while true:
+		var chunk: WorldChunk= world.get_chunks().pick_random()
+		tile= chunk.get_random_tile()
+		if Global.game.player.get_tile_distance(tile) > min_player_distance:
+			break
 	
 	var mob_def: MobDefinition= DataManager.mobs.pick_random()
 	
