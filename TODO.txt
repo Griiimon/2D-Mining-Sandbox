@@ -3,8 +3,6 @@ even block resources into block folders and scan the entire subfolder system for
 
 fluid simulation ( 3/4 blocks? )
 
-fix continuous arming/de-arming of grenades causes crash. visual object still exists while thrower was deleted
-
 make DataManager scene and use export vars instead of hardcoded paths?
 
 dont delete chunks in chunk update if they have been changed
