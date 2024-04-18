@@ -2,6 +2,7 @@
 # v0.3          #
 ##################
 
+- mob spawner
 - despawn items with chunks
 - save changed chunks to memory
 - block scheduling
