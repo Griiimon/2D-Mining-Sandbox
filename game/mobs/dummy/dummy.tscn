@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://xkfp7o6wk8ur"]
+
+[ext_resource type="Script" path="res://game/mobs/mob.gd" id="1_i5dmw"]
+[ext_resource type="PackedScene" uid="uid://bdy43ueb6q1kq" path="res://game/components/damage system/health_component.tscn" id="1_od0nu"]
+[ext_resource type="Script" path="res://game/components/damage system/hurtbox.gd" id="2_hj4ty"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4u0h"]
+resource_local_to_scene = true
+size = Vector2(45, 70)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tb2on"]
+resource_local_to_scene = true
+radius = 20.0
+height = 70.0
+
+[node name="Dummy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_i5dmw")
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_od0nu")]
+max_hitpoints = 10
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_hj4ty")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_x4u0h")
+debug_color = Color(0, 0.6, 0.0313726, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_tb2on")
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="Body"]
+points = PackedVector2Array(-16, 32, 0, 8, 16, 32)
+width = 7.0
+default_color = Color(0.760784, 0.0784314, 0.258824, 1)
+joint_mode = 1
+
+[node name="Line2D2" type="Line2D" parent="Body"]
+points = PackedVector2Array(0, 8, 0, -16, -8, -24, 0, -32, 8, -24, 0, -16)
+width = 7.0
+default_color = Color(0.760425, 0.0771346, 0.259539, 1)
+joint_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="Body"]
+points = PackedVector2Array(-24, -8, 24, -8)
+width = 5.0
+default_color = Color(0.760425, 0.0771346, 0.259539, 1)

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhvbs1jyh6255"]
+
+[ext_resource type="Texture2D" uid="uid://ck7fbo86yi3bq" path="res://game/effects/block break animation/block_break_animation.png" id="1_fbptg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vicw0"]
+atlas = ExtResource("1_fbptg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58tn3"]
+atlas = ExtResource("1_fbptg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1bt2"]
+atlas = ExtResource("1_fbptg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sq4hw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vicw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58tn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1bt2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_sq4hw")

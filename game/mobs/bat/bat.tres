@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MobDefinition" load_steps=5 format=3 uid="uid://d25jy036kgko6"]
+
+[ext_resource type="PackedScene" uid="uid://cxq2roo6n5xo6" path="res://game/mobs/bat/bat.tscn" id="1_d8jw3"]
+[ext_resource type="Script" path="res://game/mobs/mob_definition.gd" id="1_e5f3d"]
+[ext_resource type="Script" path="res://game/world/mob_spawner_definition.gd" id="3_to7kb"]
+
+[sub_resource type="Resource" id="Resource_0fdw0"]
+script = ExtResource("3_to7kb")
+faction = 1
+probability = 10.0
+empty_radius = 1
+
+[resource]
+script = ExtResource("1_e5f3d")
+name = "bat"
+scene = ExtResource("1_d8jw3")
+spawner = SubResource("Resource_0fdw0")

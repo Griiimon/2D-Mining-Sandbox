@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="PlayerLoadout" load_steps=7 format=3 uid="uid://c8feqy48gw426"]
+
+[ext_resource type="Script" path="res://game/player/player_loadout.gd" id="1_3iant"]
+[ext_resource type="Resource" uid="uid://de53vt430ls03" path="res://game/items/pickaxe/pickaxe.tres" id="1_sboo3"]
+[ext_resource type="Script" path="res://game/player/inventory_item.gd" id="2_bl56k"]
+[ext_resource type="Resource" uid="uid://c0uy4aakxock" path="res://game/items/sword/sword.tres" id="3_fxccw"]
+
+[sub_resource type="Resource" id="Resource_262tr"]
+script = ExtResource("2_bl56k")
+item = ExtResource("1_sboo3")
+amount = 1
+
+[sub_resource type="Resource" id="Resource_kxhpa"]
+script = ExtResource("2_bl56k")
+item = ExtResource("3_fxccw")
+amount = 1
+
+[resource]
+script = ExtResource("1_3iant")
+inventory_items = Array[ExtResource("2_bl56k")]([SubResource("Resource_262tr"), SubResource("Resource_kxhpa")])

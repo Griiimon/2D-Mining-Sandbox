@@ -11,17 +11,17 @@ config_version=5
 [application]
 
 config/name="2D Mining"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://game/game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://textures/items/pickaxe.png"
+config/icon="res://game/items/pickaxe/pickaxe.png"
 
 [autoload]
 
 DataManager="*res://scripts/autoloads singletons/data_manager.gd"
-Effects="*res://scripts/autoloads singletons/effects.gd"
-NodeDebugger="*res://scripts/autoloads singletons/node_debugger.gd"
+Effects="*res://game/effects/effects.gd"
+NodeDebugger="*res://game/components/debug component/node_debugger.gd"
 Global="*res://scripts/autoloads singletons/global.gd"
-DebugHud="*res://scenes/ui/debug_hud.tscn"
+DebugHud="*res://game/ui/debug_hud.tscn"
 
 [editor]
 

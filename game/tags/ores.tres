@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Tag" load_steps=2 format=3 uid="uid://f3gfebet4jby"]
+
+[ext_resource type="Script" path="res://game/tags/tag.gd" id="1_pd0o4"]
+
+[resource]
+script = ExtResource("1_pd0o4")
+name = "ores"

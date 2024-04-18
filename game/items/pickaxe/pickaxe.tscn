@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://beruoxj04jcop"]
+
+[ext_resource type="Script" path="res://game/player/hand_item_object.gd" id="1_vdc2h"]
+
+[sub_resource type="Curve" id="Curve_sr264"]
+_data = [Vector2(0, 0.501887), 0.0, 0.0, 0, 0, Vector2(0.496429, 1), 0.0, 0.0, 0, 0, Vector2(0.989286, 0.501887), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Pickaxe" type="Node2D"]
+script = ExtResource("1_vdc2h")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, -30)
+width = 3.0
+default_color = Color(0.396078, 0.211765, 0.0313726, 1)
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PackedVector2Array(-15, -25, 0, -30, 15, -25)
+width = 5.0
+width_curve = SubResource("Curve_sr264")
+default_color = Color(0.517647, 0.501961, 0.478431, 1)
+joint_mode = 2

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkgkei4ukw0aw"]
+
+[ext_resource type="Script" path="res://game/effects/particles/my_particle_system.gd" id="1_q8vc4"]
+[ext_resource type="PackedScene" uid="uid://ltp3ayav31k3" path="res://game/effects/particles/particle.tscn" id="2_dgl5g"]
+
+[node name="Particle System" type="Node2D"]
+script = ExtResource("1_q8vc4")
+particle_scene = ExtResource("2_dgl5g")

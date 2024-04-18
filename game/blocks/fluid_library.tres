@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FluidLibrary" load_steps=3 format=3 uid="uid://b4403wlk4dsx6"]
+
+[ext_resource type="Resource" uid="uid://bys57w7lsd5mg" path="res://game/blocks/water blocks/water_fluid.tres" id="1_pjw4n"]
+[ext_resource type="Script" path="res://game/blocks/fluid_library.gd" id="1_rs3uy"]
+
+[resource]
+script = ExtResource("1_rs3uy")
+fluids = Array[Resource("res://game/blocks/fluid_library_item.gd")]([ExtResource("1_pjw4n")])

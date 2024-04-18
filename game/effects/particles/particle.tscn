@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ltp3ayav31k3"]
+
+[ext_resource type="Script" path="res://game/effects/particles/my_particle.gd" id="1_qow25"]
+
+[node name="Particle" type="Node2D"]
+script = ExtResource("1_qow25")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = false

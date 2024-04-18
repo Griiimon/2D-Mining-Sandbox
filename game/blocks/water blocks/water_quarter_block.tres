@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="FluidBlock" load_steps=3 format=3 uid="uid://cdsr7rdwvpfcd"]
+
+[ext_resource type="Script" path="res://game/blocks/fluid_block.gd" id="1_254yr"]
+[ext_resource type="Texture2D" uid="uid://cj1nb3ibx7llb" path="res://game/blocks/water blocks/water_quarter.png" id="2_tdurh"]
+
+[resource]
+script = ExtResource("1_254yr")
+fill_ratio = 2
+name = "water_quarter"
+texture = ExtResource("2_tdurh")
+hardness = 0.0
+has_collision = false
+tags = null
+particle_color = Color(0.478431, 0.643137, 1, 1)
+mining_tool = 0
+other_tool_penalty = null
+other_tool_produces_drops = null
+schedule_tick = true
+is_air = null
+is_fluid = true

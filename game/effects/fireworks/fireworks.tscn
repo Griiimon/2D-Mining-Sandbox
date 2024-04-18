@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjebmmuxqjrgl"]
+
+[ext_resource type="Script" path="res://game/effects/fireworks/fireworks.gd" id="1_e4bbd"]
+[ext_resource type="PackedScene" uid="uid://bir30swo4r34p" path="res://game/effects/fireworks/single_fireworks.tscn" id="2_chqft"]
+
+[node name="Fireworks" type="Node2D"]
+script = ExtResource("1_e4bbd")
+effect_scene = ExtResource("2_chqft")
+amount = 50
+interval = 0.1

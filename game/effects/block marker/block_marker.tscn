@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7kuvqlnmagen"]
+
+[ext_resource type="Texture2D" uid="uid://biaeaiewj158o" path="res://game/effects/block marker/block_marker.png" id="1_j2dhe"]
+
+[node name="Block Marker" type="Sprite2D"]
+texture = ExtResource("1_j2dhe")

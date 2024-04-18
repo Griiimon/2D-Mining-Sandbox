@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dvmim47wemg41"]
+
+[ext_resource type="Script" path="res://game/items/item.gd" id="1_x0nph"]
+[ext_resource type="Resource" uid="uid://f3gfebet4jby" path="res://game/tags/ores.tres" id="2_pvgap"]
+[ext_resource type="Texture2D" uid="uid://7vys5sdr1ckv" path="res://game/items/coal ore/coal.png" id="3_xlmvy"]
+
+[resource]
+script = ExtResource("1_x0nph")
+name = "coal"
+texture = ExtResource("3_xlmvy")
+can_stack = true
+tags = Array[Resource("res://scripts/resources/tag.gd")]([ExtResource("2_pvgap")])
+fuel_value = 5.0

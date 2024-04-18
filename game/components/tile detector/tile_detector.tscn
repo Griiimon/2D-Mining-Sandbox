@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://kp5ss4gudwu3"]
+
+[ext_resource type="Script" path="res://game/components/tile detector/tile_detector.gd" id="1_36qpg"]
+
+[node name="Tile Detector" type="Node2D"]
+process_physics_priority = -10
+script = ExtResource("1_36qpg")

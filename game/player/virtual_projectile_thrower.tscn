@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcor34lsh3lfc"]
+
+[ext_resource type="Script" path="res://game/player/virtual_projectile_thrower.gd" id="1_bpmb3"]
+
+[node name="Virtual Projectile Thrower" type="Node2D"]
+script = ExtResource("1_bpmb3")

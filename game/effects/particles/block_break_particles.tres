@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ParticleSettings" load_steps=2 format=3 uid="uid://tt4hj6pt3b1a"]
+
+[ext_resource type="Script" path="res://game/effects/particles/particle_setting.gd" id="1_6of2l"]
+
+[resource]
+script = ExtResource("1_6of2l")
+num_particles = 20
+size = 3.0
+color = Color(1, 1, 1, 1)
+explosiveness = 1.0
+min_lifetime = 1.0
+max_lifetime = 2.0
+fade = true
+initial_min_velocity = 50.0
+initial_max_velocity = 100.0
+gravity = 500.0
+direction = Vector2(0, -1)
+spread_angle = 90.0
+terrain_collision = true
+bounce = 0.5
+damping = 0.0

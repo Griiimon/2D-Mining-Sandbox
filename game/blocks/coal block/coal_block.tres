@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Block" load_steps=5 format=3 uid="uid://d12w8mbqpsyov"]
+
+[ext_resource type="Resource" uid="uid://dvmim47wemg41" path="res://game/items/coal ore/coal_ore.tres" id="1_k1vqc"]
+[ext_resource type="Script" path="res://game/blocks/block.gd" id="2_mayaq"]
+[ext_resource type="Resource" uid="uid://sq7bx4hrpblf" path="res://game/tags/ore_blocks.tres" id="3_m6ydf"]
+[ext_resource type="Texture2D" uid="uid://cscruo81ch07t" path="res://game/blocks/coal block/coal.png" id="4_3ohq5"]
+
+[resource]
+script = ExtResource("2_mayaq")
+name = "coal"
+texture = ExtResource("4_3ohq5")
+drop = ExtResource("1_k1vqc")
+hardness = 1.0
+has_collision = true
+tags = Array[Resource("res://game/tags/tag.gd")]([ExtResource("3_m6ydf")])
+particle_color = Color(0, 0, 0, 1)
+mining_tool = 1
+other_tool_penalty = 4.0
+other_tool_produces_drops = false
+schedule_tick = false
+is_air = false
+is_fluid = false

@@ -1,0 +1,34 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdykicosk4xdy"]
+
+[ext_resource type="Script" path="res://game/game.gd" id="1_blqru"]
+[ext_resource type="Script" path="res://game/cheats.gd" id="2_43t25"]
+[ext_resource type="Script" path="res://game/game_settings.gd" id="2_kke0s"]
+[ext_resource type="PackedScene" uid="uid://d4mufsk5s6ksm" path="res://game/player/player.tscn" id="2_pa4jp"]
+[ext_resource type="Script" path="res://game/ui/camera.gd" id="5_jn5ho"]
+[ext_resource type="PackedScene" uid="uid://dc0j27pwmaoye" path="res://game/world/world.tscn" id="5_xagwd"]
+[ext_resource type="Resource" uid="uid://cdcf6aptu5uo4" path="res://game/world/terrain generator/generators/large_caves.tres" id="6_45tpe"]
+
+[sub_resource type="Resource" id="Resource_lqxxk"]
+script = ExtResource("2_kke0s")
+world_seed = 0
+player_spawn = Vector2i(0, 0)
+spawn_clearing_radius = 4
+
+[sub_resource type="Resource" id="Resource_2wtjc"]
+script = ExtResource("2_43t25")
+instant_mine = false
+fly = true
+
+[node name="Game" type="Node" node_paths=PackedStringArray("world")]
+script = ExtResource("1_blqru")
+world = NodePath("World")
+settings = SubResource("Resource_lqxxk")
+cheats = SubResource("Resource_2wtjc")
+player_scene = ExtResource("2_pa4jp")
+
+[node name="World" parent="." instance=ExtResource("5_xagwd")]
+generator = ExtResource("6_45tpe")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("5_jn5ho")
+speed = 1000.0

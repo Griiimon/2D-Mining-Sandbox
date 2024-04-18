@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="FluidLibrary" load_steps=3 format=3 uid="uid://dgsn8bh2sp5x1"]
-
-[ext_resource type="Script" path="res://scripts/resources/fluid_library.gd" id="1_kegew"]
-[ext_resource type="Resource" uid="uid://cgmmoqhmdec5r" path="res://resources/libraries/water_fluid.tres" id="1_xjb2u"]
-
-[resource]
-script = ExtResource("1_kegew")
-fluids = Array[Resource("res://scripts/resources/fluid_library_item.gd")]([ExtResource("1_xjb2u")])

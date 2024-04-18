@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bir30swo4r34p"]
+
+[ext_resource type="Script" path="res://game/effects/fireworks/single_fireworks.gd" id="1_e4bbd"]
+
+[node name="Fireworks" type="CPUParticles2D"]
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.91
+initial_velocity_max = 234.85
+damping_min = 1.515
+damping_max = 1.515
+scale_amount_min = 1.5
+scale_amount_max = 2.5
+hue_variation_min = -0.29
+script = ExtResource("1_e4bbd")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

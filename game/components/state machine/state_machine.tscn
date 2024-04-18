@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckqb12s3uef52"]
+
+[ext_resource type="Script" path="res://game/components/state machine/finite_state_machine.gd" id="1_akvim"]
+
+[node name="State Machine" type="Node"]
+script = ExtResource("1_akvim")

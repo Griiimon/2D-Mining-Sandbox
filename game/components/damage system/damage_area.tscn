@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://11yl63tyw2c4"]
+
+[ext_resource type="Script" path="res://game/components/damage system/damage_area.gd" id="1_n6qpu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrq17"]
+resource_local_to_scene = true
+
+[node name="DamageArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+monitorable = false
+script = ExtResource("1_n6qpu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hrq17")
+debug_color = Color(0.596078, 0.223529, 0.231373, 0.419608)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

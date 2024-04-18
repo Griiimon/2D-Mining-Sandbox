@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vgl3mtr5d37f"]
+
+[ext_resource type="Script" path="res://game/components/debug component/debug_component.gd" id="1_snrr8"]
+
+[node name="Debug Component" type="Node"]
+script = ExtResource("1_snrr8")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://uq60ihcsuow5"]
+
+[ext_resource type="Script" path="res://game/components/interaction target/interaction_target.gd" id="1_eskap"]
+
+[node name="Interaction Target" type="Area2D"]
+collision_layer = 16
+monitoring = false
+script = ExtResource("1_eskap")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(0.797158, 0.421571, 0.0909174, 0.42)
+
+[node name="Label Offset" type="Node2D" parent="."]
