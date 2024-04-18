@@ -170,12 +170,16 @@ func cleanup():
 	for item in items:
 		if is_instance_valid(item):
 			item.queue_free()
+	world.remove_mobs_in_rect(get_rect())
 	items.clear()
 
 
 func get_random_tile()-> Vector2i:
 	return get_global_pos(Vector2i(randi_range(0, SIZE), randi_range(0, SIZE)))
 
+
+func get_rect()-> Rect2:
+	return Rect2(coords * SIZE * World.TILE_SIZE, Vector2.ONE * SIZE * World.TILE_SIZE) 
 
 func set_changes(b: bool):
 	if not b:

@@ -31,6 +31,8 @@ wait_time = 0.1
 
 [node name="Chunks" type="Node2D" parent="."]
 
+[node name="Mobs" type="Node2D" parent="."]
+
 [node name="Debug Component" parent="." instance=ExtResource("7_4bafo")]
 enabled = true
 max_detail_level = 4
