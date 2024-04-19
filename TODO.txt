@@ -1,10 +1,9 @@
-restructure project to put code/scene/asset into same folder
-even block resources into block folders and scan the entire subfolder system for those tres
-
 fluid simulation ( 3/4 blocks? )
 flowing water (down) on alternate tile?
 
-make DataManager scene and use export vars instead of hardcoded paths?
+fix take product from furnace overwrites inventory amount
+
+fix furnace multiple ores => 1 product
 
 add sounds
 
@@ -13,8 +12,6 @@ level editor
 challenges ( game mode )
  
 hand gun
-
-basePlayer class and extend with default character "Classico"
 
 character selection screen
 
