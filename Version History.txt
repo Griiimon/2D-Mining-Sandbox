@@ -1,4 +1,13 @@
 ##################
+# v0.4          #
+##################
+
+- El Classico character
+- base player scene
+- autoload scenes, no more hardcoded paths
+- directories restructured
+
+##################
 # v0.3          #
 ##################
 
