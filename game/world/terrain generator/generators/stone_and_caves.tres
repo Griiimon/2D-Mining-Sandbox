@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_0omqx"]
 script = ExtResource("2_camgi")
-blocks = Array[Resource("res://scripts/resources/block.gd")]([ExtResource("1_evbbc")])
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("1_evbbc")])
 noise_threshold = 0.0
 
 [sub_resource type="Resource" id="Resource_g0ypn"]

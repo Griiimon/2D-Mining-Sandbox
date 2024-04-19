@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_xsb8v"]
 script = ExtResource("2_616wy")
-blocks = Array[Resource("res://scripts/resources/block.gd")]([ExtResource("1_qemkp")])
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("1_qemkp")])
 noise_threshold = 0.0
 
 [sub_resource type="Resource" id="Resource_wjd63"]
