@@ -1,9 +1,12 @@
 fluid simulation ( 3/4 blocks? )
 flowing water (down) on alternate tile?
 
-fix take product from furnace overwrites inventory amount
+grenade charge animation
 
-fix furnace multiple ores => 1 product
+deal damage to player, mobs and block entities
+damage area should deal damage to solid block entities!?
+
+base mob scene with correct collision setup
 
 add sounds
 
@@ -20,3 +23,5 @@ health bar ( auto regenerate ), fall damage
 crafting
 
 build menu, place (artificial) blocks and block entities
+
+full inventory plus equipment slots
