@@ -88,11 +88,11 @@ func can_player_add_ore(player: BasePlayer)-> bool:
 
 func custom_interaction_hint(player: BasePlayer, default_hint: String)-> String:
 	if can_player_take_product(player) and product_amount > 0:
-		return "Take Product"
+		return "Take Product (%d)" % [product_amount]
 	elif can_player_add_fuel(player):
-		return "Add Fuel"
+		return "Add Fuel (%d)" % [fuel]
 	elif can_player_add_ore(player):
-		return "Add Ore"
+		return "Add Ore (%d)" % [ore_amount]
 	elif is_burning:
 		return "Wait for Product"
 	
