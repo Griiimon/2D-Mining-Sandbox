@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bfleajb856jir"
-path="res://.godot/imported/hotbar_selection.png-26458726beee4f4ea5a5d9a968dd5cb9.ctex"
+path="res://.godot/imported/hotbar_selection.png-ae2d28297ed4a4b215c10f2e5a4dc9a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/player/hotbar_selection.png"
-dest_files=["res://.godot/imported/hotbar_selection.png-26458726beee4f4ea5a5d9a968dd5cb9.ctex"]
+source_file="res://game/player/hotbar/hotbar_selection.png"
+dest_files=["res://.godot/imported/hotbar_selection.png-ae2d28297ed4a4b215c10f2e5a4dc9a5.ctex"]
 
 [params]
 

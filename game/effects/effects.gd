@@ -1,7 +1,8 @@
 extends Node
 
-const particle_system_scene= preload("res://scenes/effects/particle_system.tscn")
-const fireworks_scene= preload("res://scenes/effects/fireworks.tscn")
+@export var particle_system_scene: PackedScene
+@export var fireworks_scene: PackedScene
+
 
 func spawn_particle_system(pos: Vector2, settings: ParticleSettings):
 	var system: MyParticleSystem= particle_system_scene.instantiate()

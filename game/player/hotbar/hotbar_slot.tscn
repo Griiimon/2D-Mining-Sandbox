@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3a35hbblyx6o"]
 
-[ext_resource type="Script" path="res://game/player/hotbar_slot.gd" id="1_pcgvu"]
-[ext_resource type="Texture2D" uid="uid://bfleajb856jir" path="res://game/player/hotbar_selection.png" id="2_3eqn3"]
+[ext_resource type="Script" path="res://game/player/hotbar/hotbar_slot.gd" id="1_pcgvu"]
+[ext_resource type="Texture2D" uid="uid://bfleajb856jir" path="res://game/player/hotbar/hotbar_selection.png" id="2_3eqn3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h18t"]
 bg_color = Color(0.752941, 0.654902, 0.564706, 0.529412)

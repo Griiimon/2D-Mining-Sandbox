@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dre4owqmev6mn"]
 
-[ext_resource type="Script" path="res://game/world/world_chunk.gd" id="2_xk4iw"]
+[ext_resource type="Script" path="res://game/world/chunks/world_chunk.gd" id="2_xk4iw"]
 [ext_resource type="Resource" uid="uid://tt4hj6pt3b1a" path="res://game/effects/particles/block_break_particles.tres" id="3_d7efb"]
 
 [node name="World Chunk" type="TileMap"]

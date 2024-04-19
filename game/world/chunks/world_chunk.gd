@@ -191,7 +191,8 @@ func set_changes(b: bool):
 
 # creates a tile-set automatically from block textures
 static func create_tileset():
-	DataManager.tile_set= load(DataManager.ORIG_TILE_SET_PATH).duplicate()
+	var tile_set_path: String= DataManager.tile_set.resource_path
+	DataManager.tile_set= DataManager.orig_tile_set.duplicate()
 
 	var collision_polygon:= [Vector2(0, 0), Vector2(World.TILE_SIZE, 0), Vector2(World.TILE_SIZE, World.TILE_SIZE),  Vector2(0, World.TILE_SIZE)]
 
@@ -212,4 +213,4 @@ static func create_tileset():
 			tile_data.set_collision_polygon_points(0, 0, collision_polygon)
 
 
-	ResourceSaver.save(DataManager.tile_set, DataManager.TILE_SET_PATH)
+	ResourceSaver.save(DataManager.tile_set, tile_set_path)

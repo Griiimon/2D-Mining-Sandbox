@@ -17,11 +17,11 @@ config/icon="res://game/items/pickaxe/pickaxe.png"
 
 [autoload]
 
-DataManager="*res://scripts/autoloads singletons/data_manager.gd"
-Effects="*res://game/effects/effects.gd"
 NodeDebugger="*res://game/components/debug component/node_debugger.gd"
-Global="*res://scripts/autoloads singletons/global.gd"
+Global="*res://game/autoload singletons/global.gd"
 DebugHud="*res://game/ui/debug_hud.tscn"
+DataManager="*res://game/autoload singletons/data_manager.tscn"
+Effects="*res://game/effects/effects.tscn"
 
 [editor]
 

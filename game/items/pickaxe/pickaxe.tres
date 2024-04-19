@@ -15,5 +15,5 @@ secondary_action_animation = ""
 name = "pickaxe"
 texture = ExtResource("3_o577b")
 can_stack = false
-tags = Array[Resource("res://scripts/resources/tag.gd")]([])
+tags = Array[Resource("res://game/tags/tag.gd")]([])
 fuel_value = 0.0

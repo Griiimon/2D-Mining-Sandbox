@@ -12,6 +12,6 @@ texture = ExtResource("4_2qug3")
 drop = ExtResource("1_4enba")
 hardness = 1.5
 has_collision = true
-tags = Array[Resource("res://scripts/resources/tag.gd")]([ExtResource("3_8ggku")])
+tags = Array[Resource("res://game/tags/tag.gd")]([ExtResource("3_8ggku")])
 particle_color = Color(0.596078, 0.317647, 0.207843, 1)
 is_air = false

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game/player/player_loadout.gd" id="1_3iant"]
 [ext_resource type="Resource" uid="uid://de53vt430ls03" path="res://game/items/pickaxe/pickaxe.tres" id="1_sboo3"]
-[ext_resource type="Script" path="res://game/player/inventory_item.gd" id="2_bl56k"]
+[ext_resource type="Script" path="res://game/player/inventory/inventory_item.gd" id="2_bl56k"]
 [ext_resource type="Resource" uid="uid://c0uy4aakxock" path="res://game/items/sword/sword.tres" id="3_fxccw"]
 
 [sub_resource type="Resource" id="Resource_262tr"]

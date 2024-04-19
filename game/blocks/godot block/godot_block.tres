@@ -9,6 +9,6 @@ name = "godot"
 texture = ExtResource("2_n76qi")
 hardness = 5.0
 has_collision = true
-tags = Array[Resource("res://scripts/resources/tag.gd")]([])
+tags = Array[Resource("res://game/tags/tag.gd")]([])
 particle_color = Color(0.337255, 0.34902, 0.968627, 1)
 is_air = false

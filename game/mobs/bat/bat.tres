@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cxq2roo6n5xo6" path="res://game/mobs/bat/bat.tscn" id="1_d8jw3"]
 [ext_resource type="Script" path="res://game/mobs/mob_definition.gd" id="1_e5f3d"]
-[ext_resource type="Script" path="res://game/world/mob_spawner_definition.gd" id="3_to7kb"]
+[ext_resource type="Script" path="res://game/world/components/mob spawner/mob_spawner_definition.gd" id="3_to7kb"]
 
 [sub_resource type="Resource" id="Resource_0fdw0"]
 script = ExtResource("3_to7kb")

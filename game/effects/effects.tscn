@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvx1a27afhiht"]
+
+[ext_resource type="Script" path="res://game/effects/effects.gd" id="1_5yddy"]
+[ext_resource type="PackedScene" uid="uid://dkgkei4ukw0aw" path="res://game/effects/particles/particle_system.tscn" id="2_0nf60"]
+[ext_resource type="PackedScene" uid="uid://cjebmmuxqjrgl" path="res://game/effects/fireworks/fireworks.tscn" id="3_kxgqw"]
+
+[node name="Effects" type="Node"]
+script = ExtResource("1_5yddy")
+particle_system_scene = ExtResource("2_0nf60")
+fireworks_scene = ExtResource("3_kxgqw")

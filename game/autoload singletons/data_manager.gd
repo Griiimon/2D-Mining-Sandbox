@@ -26,7 +26,7 @@ var mobs: Array[MobDefinition]
 
 
 
-func _init():
+func _ready():
 	load_resource_folder_into_array(blocks_path, blocks, blocks_suffix)
 	
 	for i in len(blocks):
@@ -38,10 +38,10 @@ func _init():
 
 	load_resource_folder_into_array(mobs_path, mobs, mobs_suffix)
 
-	late_init.call_deferred()
+	late_ready.call_deferred()
 
 
-func late_init():
+func late_ready():
 	WorldChunk.create_tileset()
 	fluid_library.build()
 

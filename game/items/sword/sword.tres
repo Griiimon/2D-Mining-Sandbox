@@ -15,5 +15,5 @@ secondary_action_animation = "swing"
 name = "sword"
 texture = ExtResource("3_5ajcn")
 can_stack = false
-tags = Array[Resource("res://scripts/resources/tag.gd")]([])
+tags = Array[Resource("res://game/tags/tag.gd")]([])
 fuel_value = 0.0

@@ -17,5 +17,5 @@ charge_secondary_action = false
 name = "grenade"
 texture = ExtResource("3_843g5")
 can_stack = true
-tags = Array[Resource("res://scripts/resources/tag.gd")]([])
+tags = Array[Resource("res://game/tags/tag.gd")]([])
 fuel_value = 0.0

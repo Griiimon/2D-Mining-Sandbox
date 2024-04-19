@@ -214,6 +214,11 @@ func spawn_block_entity(tile_pos: Vector2i, entity_scene: PackedScene):
 	if entity.register_tick:
 		tick_entities.append(entity)
 
+func spawn_mob(mob_def: MobDefinition, tile: Vector2i):
+	var mob= mob_def.scene.instantiate()
+	mob.position= map_to_local(tile)
+	add_child(mob)
+
 
 func remove_mobs_in_rect(rect: Rect2):
 	for mob in mobs.get_children():

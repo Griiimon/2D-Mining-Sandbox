@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b4uyq2o7u54dp"]
 
 [ext_resource type="Script" path="res://game/player/player_ui.gd" id="1_cefh8"]
-[ext_resource type="PackedScene" uid="uid://d3a35hbblyx6o" path="res://game/player/hotbar_slot.tscn" id="2_8gj2r"]
+[ext_resource type="PackedScene" uid="uid://d3a35hbblyx6o" path="res://game/player/hotbar/hotbar_slot.tscn" id="2_8gj2r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82jp2"]
 bg_color = Color(0.34902, 0.34902, 0.34902, 0.423529)

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PlayerLoadout" load_steps=17 format=3 uid="uid://bkrr445vap63e"]
 
 [ext_resource type="Resource" uid="uid://de53vt430ls03" path="res://game/items/pickaxe/pickaxe.tres" id="1_g0e2q"]
-[ext_resource type="Script" path="res://game/player/inventory_item.gd" id="2_k0fc7"]
+[ext_resource type="Script" path="res://game/player/inventory/inventory_item.gd" id="2_k0fc7"]
 [ext_resource type="Resource" uid="uid://c0uy4aakxock" path="res://game/items/sword/sword.tres" id="3_ne423"]
 [ext_resource type="Script" path="res://game/player/player_loadout.gd" id="4_a2iic"]
 [ext_resource type="Resource" uid="uid://dvmim47wemg41" path="res://game/items/coal ore/coal_ore.tres" id="4_u6vlg"]
