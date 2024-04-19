@@ -45,8 +45,9 @@ func add_new_item(item: Item, amount: int= 1):
 
 
 func add_item_to_slot(slot_idx: int, item: Item, amount: int= 1):
+	assert(not items[slot_idx].item or item == items[slot_idx].item)
 	items[slot_idx].item= item
-	items[slot_idx].amount= amount
+	items[slot_idx].amount+= amount
 	updated()
 
 
