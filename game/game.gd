@@ -8,7 +8,7 @@ extends Node
 
 @onready var camera = $Camera2D
 
-var player: Player
+var player: BasePlayer
 
 
 func _init():

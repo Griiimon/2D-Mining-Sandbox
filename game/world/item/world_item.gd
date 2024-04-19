@@ -39,7 +39,7 @@ func _physics_process(delta):
 	var being_pulled:= false
 	
 	for body in magnet_range.get_overlapping_bodies():
-		assert(body is Player)
+		assert(body is BasePlayer)
 		
 		if not pickup_cooldown.is_stopped():
 			continue
@@ -49,7 +49,7 @@ func _physics_process(delta):
 			continue
 		
 
-		var player: Player= body
+		var player: BasePlayer= body
 		if player.can_pickup(item):
 			velocity+= (player.global_position - global_position).normalized() * pull_force
 			being_pulled= true
@@ -88,12 +88,12 @@ func register(world: World):
 
 
 func _on_body_entered(body):
-	assert(body is Player)
+	assert(body is BasePlayer)
 	
 	if not pickup_cooldown.is_stopped():
 		return
 
-	var player: Player= body
+	var player: BasePlayer= body
 	if player.can_pickup(item):
 		player.pickup(item)
 		queue_free()

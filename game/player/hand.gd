@@ -1,7 +1,7 @@
 extends Node2D
 class_name Hand
 
-@export var player: Player
+@export var player: BasePlayer
 
 @onready var connector = $Connector
 

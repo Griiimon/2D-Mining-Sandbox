@@ -33,5 +33,5 @@ func get_hand()-> Hand:
 	return get_parent().get_parent()
 
 
-func get_player()-> Player:
+func get_player()-> BasePlayer:
 	return get_hand().player

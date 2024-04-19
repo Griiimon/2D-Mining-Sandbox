@@ -211,23 +211,6 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_v8cep"]
-resource_name = "Walk"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Hip:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.380482, -0.349066]
-}
-
 [sub_resource type="Animation" id="Animation_7fwcn"]
 resource_name = "jump"
 tracks/0/type = "value"
@@ -243,11 +226,28 @@ tracks/0/keys = {
 "values": [0.0, 0.872665, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_v8cep"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Hip:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.380482, -0.349066]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ve3ko"]
 _data = {
 "RESET": SubResource("Animation_1dm2i"),
-"Walk": SubResource("Animation_v8cep"),
-"jump": SubResource("Animation_7fwcn")
+"jump": SubResource("Animation_7fwcn"),
+"walk": SubResource("Animation_v8cep")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nwn3q"]
@@ -260,10 +260,6 @@ z_index = 10
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_bv43x")
-speed = 100.0
-jump_velocity = -300.0
-swim_speed = 30.0
-swim_damping = 1.0
 loadout = ExtResource("2_lyhgw")
 body = NodePath("Body")
 look_pivot = NodePath("Body/Look Pivot")

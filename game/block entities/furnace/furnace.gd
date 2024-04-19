@@ -49,7 +49,7 @@ func tick(world: World):
 		NodeDebugger.msg(self, "start recipe " + ore_type.name)
 
 
-func interact(player: Player):
+func interact(player: BasePlayer):
 	if can_player_take_product(player):
 		if product_amount > 0:
 			NodeDebugger.msg(self, "take product")
@@ -71,22 +71,22 @@ func interact(player: Player):
 					player.inventory.sub_item(inv_item)
 
 
-func can_player_take_product(player: Player)-> bool:
+func can_player_take_product(player: BasePlayer)-> bool:
 	return player.is_current_inventory_slot_empty() or player.get_current_inventory_item().item == product_type
 
 
-func can_player_add_fuel(player: Player)-> bool:
+func can_player_add_fuel(player: BasePlayer)-> bool:
 		var inv_item: InventoryItem= player.get_current_inventory_item()
 		return inv_item.item and inv_item.item.fuel_value > 0
 
 
-func can_player_add_ore(player: Player)-> bool:
+func can_player_add_ore(player: BasePlayer)-> bool:
 	var inv_item: InventoryItem= player.get_current_inventory_item()
 	var recipe: FurnaceRecipe= DataManager.find_furnace_recipe_for(inv_item.item)
 	return recipe and ( ore_type == null or ore_type == inv_item.item )
 
 
-func custom_interaction_hint(player: Player, default_hint: String)-> String:
+func custom_interaction_hint(player: BasePlayer, default_hint: String)-> String:
 	if can_player_take_product(player) and product_amount > 0:
 		return "Take Product"
 	elif can_player_add_fuel(player):

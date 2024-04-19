@@ -26,9 +26,6 @@ const FLY_SPEED_FACTOR= 4.0
 @export var virtual_thrower_scene: PackedScene
 
 
-@onready var animation_player_hand = $"AnimationPlayer Hand"
-@onready var animation_player_feet = $"AnimationPlayer Feet"
-
 @onready var ui: UI= $"Player UI"
 @onready var low_tile_detector: TileDetector = $"Low Tile Detector"
 @onready var mid_tile_detector: TileDetector = $"Mid Tile Detector"
@@ -148,19 +145,31 @@ func movement(delta):
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y= jump_velocity
-		animation_player_feet.play("jump")
+		on_movement_jump()
 	elif is_on_floor():
 		if abs(velocity.x) > 0:
-			animation_player_feet.play("Walk")
+			on_movement_walk()
 		else:
-			animation_player_feet.play("RESET")
+			on_movement_stop()
 
 	move_and_slide()
 
 
-func swim(delta: float):
-	animation_player_feet.play("RESET")
+func on_movement_jump():
+	pass
 
+
+func on_movement_walk():
+	pass
+
+
+func on_movement_stop():
+	pass
+
+
+func swim(delta: float):
+	on_swim()
+	
 	var direction= Input.get_axis("left", "right")
 	if direction:
 		velocity.x= move_toward(velocity.x, direction * swim_speed, swim_acceleration)
@@ -173,6 +182,10 @@ func swim(delta: float):
 	move_and_slide()
 	
 	velocity*= 1 - delta * swim_damping
+
+
+func on_swim():
+	pass
 
 
 func fly(_delta: float):
@@ -245,8 +258,12 @@ func mouse_actions():
 					on_hand_action_executed()
 
 			if action_name:
-				animation_player_hand.play(action_name)
+				on_hand_action(action_name)
 				is_executing_action= true
+
+
+func on_hand_action(_action_name: String):
+	pass
 
 
 func select_block():
@@ -428,10 +445,18 @@ func set_mining(b: bool):
 	if not is_mining:
 		mining_progress= 0
 		block_breaker.hide()
-		animation_player_hand.play("RESET")
+		on_stop_mining()
 	else:
 		block_breaker.show()
-		animation_player_hand.play("mine")
+		on_start_mining()
+
+
+func on_start_mining():
+	pass
+
+
+func on_stop_mining():
+	pass
 
 
 func set_charging(b: bool):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4mufsk5s6ksm"]
+[gd_scene load_steps=11 format=3 uid="uid://d4mufsk5s6ksm"]
 
 [ext_resource type="Script" path="res://game/player/base_player.gd" id="1_lm5hc"]
 [ext_resource type="Resource" uid="uid://c8feqy48gw426" path="res://game/player/loadouts/default_loadout.tres" id="2_dv4ej"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://kp5ss4gudwu3" path="res://game/components/tile detector/tile_detector.tscn" id="7_oj8sg"]
 [ext_resource type="PackedScene" uid="uid://b4uyq2o7u54dp" path="res://game/player/player_ui.tscn" id="8_6jpol"]
 [ext_resource type="PackedScene" uid="uid://vgl3mtr5d37f" path="res://game/components/debug component/debug_component.tscn" id="9_ypbfg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp3om"]
+size = Vector2(30, 60)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nwn3q"]
 resource_local_to_scene = true
@@ -33,6 +36,7 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Interaction Area"]
 position = Vector2(20, 0)
+shape = SubResource("RectangleShape2D_cp3om")
 debug_color = Color(0.584314, 0.905882, 0.172549, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

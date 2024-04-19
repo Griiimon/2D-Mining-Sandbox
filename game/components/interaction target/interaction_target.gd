@@ -29,11 +29,11 @@ func _ready():
 		collision_shape.shape= coll_shapes[0].shape
 
 
-func interact(player: Player):
+func interact(player: BasePlayer):
 	parent.interact(player)
 
 
-func get_interaction_hint(player: Player)-> String:
+func get_interaction_hint(player: BasePlayer)-> String:
 	if parent.has_method(CUSTOM_HINT_METHOD):
 		return parent.call(CUSTOM_HINT_METHOD, player, default_hint)
 
