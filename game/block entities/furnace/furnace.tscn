@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bonrl4spbueh8"]
+[gd_scene load_steps=8 format=3 uid="uid://bonrl4spbueh8"]
 
 [ext_resource type="PackedScene" uid="uid://crokjugu1888g" path="res://game/block entities/base_block_entity.tscn" id="1_vbgah"]
 [ext_resource type="Script" path="res://game/block entities/furnace/furnace.gd" id="2_i6m4i"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cja4g0evfsll1" path="res://game/block entities/furnace/furnace_working.png" id="4_7nije"]
 [ext_resource type="Script" path="res://game/components/interaction target/interaction_target.gd" id="5_rdwmr"]
 [ext_resource type="PackedScene" uid="uid://vgl3mtr5d37f" path="res://game/components/debug component/debug_component.tscn" id="6_1ku78"]
+[ext_resource type="PackedScene" uid="uid://bdy43ueb6q1kq" path="res://game/components/damage system/health_component.tscn" id="7_folhb"]
 
 [node name="Furnace" instance=ExtResource("1_vbgah")]
+collision_layer = 256
 script = ExtResource("2_i6m4i")
 default_texture = ExtResource("3_uaepq")
 working_texture = ExtResource("4_7nije")
@@ -30,5 +32,6 @@ debug_color = Color(0.796078, 0.423529, 0.0901961, 0.419608)
 position = Vector2(32, -80)
 
 [node name="Debug Component" parent="." index="3" instance=ExtResource("6_1ku78")]
-enabled = true
 prefix = "Furnace"
+
+[node name="HealthComponent" parent="." index="4" instance=ExtResource("7_folhb")]
