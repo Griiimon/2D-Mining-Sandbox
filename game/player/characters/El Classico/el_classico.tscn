@@ -1,0 +1,331 @@
+[gd_scene load_steps=14 format=3 uid="uid://baufx6u2wjni6"]
+
+[ext_resource type="PackedScene" uid="uid://d4mufsk5s6ksm" path="res://game/player/base_player.tscn" id="1_aa1lj"]
+[ext_resource type="Script" path="res://game/player/characters/El Classico/el_classico.gd" id="2_ulbl5"]
+[ext_resource type="Script" path="res://game/player/hand.gd" id="3_pwspx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwxew"]
+resource_local_to_scene = true
+radius = 15.0
+height = 75.0
+
+[sub_resource type="Animation" id="Animation_6y2c6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Look Pivot/Shoulder:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Look Pivot/Shoulder/Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.349066]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Look Pivot/Shoulder/Hand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 16)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Look Pivot/Shoulder:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6kfkf"]
+resource_name = "mine"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Look Pivot/Shoulder:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.453786]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Look Pivot/Shoulder/Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.349066, -0.471239, 0.453786]
+}
+
+[sub_resource type="Animation" id="Animation_t0jmi"]
+resource_name = "stab"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Look Pivot/Shoulder/Hand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.349066, 0.0, 0.0, 0.349066]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Look Pivot/Shoulder/Hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(8, 16), Vector2(24, 16), Vector2(24, 16), Vector2(8, 16)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Look Pivot/Shoulder/Hand")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"set_attack_state"
+}, {
+"args": [false],
+"method": &"set_attack_state"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_d6p8w"]
+resource_name = "swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Look Pivot/Shoulder/Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(8, 16), Vector2(30, 16), Vector2(12, 16), Vector2(8, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Look Pivot/Shoulder/Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.349066]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Look Pivot/Shoulder:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Look Pivot/Shoulder:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -1.16937, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qvefq"]
+_data = {
+"RESET": SubResource("Animation_6y2c6"),
+"mine": SubResource("Animation_6kfkf"),
+"stab": SubResource("Animation_t0jmi"),
+"swing": SubResource("Animation_d6p8w")
+}
+
+[sub_resource type="Animation" id="Animation_1dm2i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Hip:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7fwcn"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Hip:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_v8cep"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Hip:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.380482, -0.349066]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ve3ko"]
+_data = {
+"RESET": SubResource("Animation_1dm2i"),
+"jump": SubResource("Animation_7fwcn"),
+"walk": SubResource("Animation_v8cep")
+}
+
+[node name="El Classico" node_paths=PackedStringArray("body", "look_pivot", "ray_cast", "main_hand", "interaction_area") instance=ExtResource("1_aa1lj")]
+script = ExtResource("2_ulbl5")
+body = NodePath("Body")
+look_pivot = NodePath("Body/Look Pivot")
+ray_cast = NodePath("Body/Look Pivot/RayCast2D")
+main_hand = NodePath("Body/Look Pivot/Shoulder/Hand")
+interaction_area = NodePath("Body/Interaction Area")
+
+[node name="Torso" type="Polygon2D" parent="Body" index="1"]
+color = Color(0.380392, 0.380392, 0.87451, 1)
+polygon = PackedVector2Array(-16, 8, -12, -24, 8, -24, 8, -8, 12, 8, 8, 8)
+
+[node name="Pants" type="Polygon2D" parent="Body" index="2"]
+position = Vector2(0, -8)
+color = Color(0.352941, 0.129412, 0.133333, 1)
+polygon = PackedVector2Array(-16, 16, 12, 16, 8, 32, -12, 32)
+
+[node name="Head" type="Line2D" parent="Body" index="3"]
+position = Vector2(-2, -31)
+points = PackedVector2Array(0, 0, 0.001, 0)
+width = 20.0
+default_color = Color(0.992157, 0.556863, 0.592157, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Nose" type="Line2D" parent="Body/Head" index="0"]
+position = Vector2(10, 0)
+points = PackedVector2Array(0, 0, 0.001, 0)
+width = 4.0
+default_color = Color(0.992157, 0.556863, 0.592157, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Eye" type="Line2D" parent="Body/Head" index="1"]
+z_index = 1
+position = Vector2(4, -4)
+points = PackedVector2Array(0, 0, 0.001, 0)
+width = 4.0
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Hip" type="Node2D" parent="Body" index="4"]
+position = Vector2(-8, 8)
+
+[node name="Shoe" type="Polygon2D" parent="Body/Hip" index="0"]
+position = Vector2(13, -21)
+color = Color(0.152941, 0.152941, 0.152941, 1)
+polygon = PackedVector2Array(-16, 32, -16, 48, 8, 48, 8, 40, -5, 37, -8, 32)
+
+[node name="Look Pivot" type="Node2D" parent="Body" index="5"]
+position = Vector2(-8, -16)
+
+[node name="RayCast2D" type="RayCast2D" parent="Body/Look Pivot" index="0"]
+target_position = Vector2(100, 0)
+collision_mask = 5
+
+[node name="Shoulder" type="Node2D" parent="Body/Look Pivot" index="1"]
+
+[node name="Hand" type="Line2D" parent="Body/Look Pivot/Shoulder" index="0" node_paths=PackedStringArray("player")]
+position = Vector2(8, 16)
+rotation = 0.349066
+points = PackedVector2Array(0, 0, 5, 0)
+default_color = Color(0.991973, 0.555872, 0.591136, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("3_pwspx")
+player = NodePath("../../../..")
+
+[node name="Connector" type="Node2D" parent="Body/Look Pivot/Shoulder/Hand" index="0"]
+position = Vector2(6.5, 0)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_cwxew")
+
+[node name="AnimationPlayer Hand" type="AnimationPlayer" parent="." index="6"]
+libraries = {
+"": SubResource("AnimationLibrary_qvefq")
+}
+
+[node name="AnimationPlayer Feet" type="AnimationPlayer" parent="." index="7"]
+libraries = {
+"": SubResource("AnimationLibrary_ve3ko")
+}

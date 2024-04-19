@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://game/cheats.gd" id="2_p63yw"]
 [ext_resource type="Script" path="res://game/game_settings.gd" id="2_ru5vw"]
 [ext_resource type="PackedScene" uid="uid://dc0j27pwmaoye" path="res://game/world/world.tscn" id="6_dkwx3"]
-[ext_resource type="PackedScene" uid="uid://d4mufsk5s6ksm" path="res://game/player/player.tscn" id="7_mja2y"]
+[ext_resource type="PackedScene" uid="uid://d4mufsk5s6ksm" path="res://game/player/base_player.tscn" id="7_mja2y"]
 [ext_resource type="Script" path="res://game/ui/camera.gd" id="8_3qg1m"]
 [ext_resource type="Resource" uid="uid://coin0o2iwsbjj" path="res://game/world/terrain generator/generators/stone_only.tres" id="8_4yhic"]
 [ext_resource type="PackedScene" uid="uid://cxq2roo6n5xo6" path="res://game/mobs/bat/bat.tscn" id="12_vyhcf"]
