@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://d4mufsk5s6ksm"]
+
+[ext_resource type="Script" path="res://game/player/base_player.gd" id="1_lm5hc"]
+[ext_resource type="Resource" uid="uid://c8feqy48gw426" path="res://game/player/loadouts/default_loadout.tres" id="2_dv4ej"]
+[ext_resource type="PackedScene" uid="uid://b7kuvqlnmagen" path="res://game/effects/block marker/block_marker.tscn" id="3_6qduw"]
+[ext_resource type="PackedScene" uid="uid://bhvbs1jyh6255" path="res://game/effects/block break animation/block_break_animation.tscn" id="4_qiuqw"]
+[ext_resource type="PackedScene" uid="uid://dcor34lsh3lfc" path="res://game/player/virtual_projectile_thrower.tscn" id="5_auas0"]
+[ext_resource type="PackedScene" uid="uid://kp5ss4gudwu3" path="res://game/components/tile detector/tile_detector.tscn" id="7_oj8sg"]
+[ext_resource type="PackedScene" uid="uid://b4uyq2o7u54dp" path="res://game/player/player_ui.tscn" id="8_6jpol"]
+[ext_resource type="PackedScene" uid="uid://vgl3mtr5d37f" path="res://game/components/debug component/debug_component.tscn" id="9_ypbfg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nwn3q"]
+resource_local_to_scene = true
+radius = 15.0
+height = 75.0
+
+[node name="Base Player" type="CharacterBody2D" node_paths=PackedStringArray("body", "interaction_area")]
+z_index = 10
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_lm5hc")
+loadout = ExtResource("2_dv4ej")
+body = NodePath("Body")
+interaction_area = NodePath("Body/Interaction Area")
+block_marker_scene = ExtResource("3_6qduw")
+block_breaker_scene = ExtResource("4_qiuqw")
+virtual_thrower_scene = ExtResource("5_auas0")
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Interaction Area" type="Area2D" parent="Body"]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Interaction Area"]
+position = Vector2(20, 0)
+debug_color = Color(0.584314, 0.905882, 0.172549, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_nwn3q")
+
+[node name="Low Tile Detector" parent="." instance=ExtResource("7_oj8sg")]
+position = Vector2(0, 32)
+
+[node name="Mid Tile Detector" parent="." instance=ExtResource("7_oj8sg")]
+position = Vector2(0, -8)
+
+[node name="Player UI" parent="." instance=ExtResource("8_6jpol")]
+
+[node name="Debug Component" parent="." instance=ExtResource("9_ypbfg")]
+max_detail_level = 1
+prefix = "Player"
+
+[connection signal="hotbar_slot_changed" from="Player UI" to="." method="_on_player_ui_hotbar_slot_changed"]

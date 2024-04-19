@@ -1,15 +1,15 @@
-class_name Player
+class_name BasePlayer
 extends CharacterBody2D
 
 const DROP_THROW_FORCE= 300
 const FLY_SPEED_FACTOR= 4.0
 
-@export var speed: float = 300.0
-@export var jump_velocity: float = -400.0
+@export var speed: float = 100.0
+@export var jump_velocity: float = -300.0
 @export var mining_speed: float= 1.0
-@export var swim_speed: float= 100.0
+@export var swim_speed: float= 30.0
 @export var swim_acceleration: float= 1.0
-@export var swim_damping: float= 0.1
+@export var swim_damping: float= 1
 @export var freeze: bool= false
 @export var loadout: PlayerLoadout
 
