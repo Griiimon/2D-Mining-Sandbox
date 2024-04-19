@@ -4,6 +4,7 @@ extends Node
 @export var world: World
 @export var settings: GameSettings
 @export var cheats: Cheats
+@export var can_toggle_cheats: bool= true
 @export var player_scene: PackedScene
 
 @onready var camera = $Camera2D
@@ -37,6 +38,10 @@ func post_init():
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
+
 	elif Input.is_action_just_pressed("toggle_free_cam"):
 		camera.free_cam= not camera.free_cam
 		player.freeze= camera.free_cam
+
+	elif Input.is_action_just_pressed("toggle_fly"):
+		cheats.fly= not cheats.fly
