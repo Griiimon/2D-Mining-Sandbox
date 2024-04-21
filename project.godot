@@ -28,6 +28,10 @@ Effects="*res://game/effects/effects.tscn"
 movie_writer/movie_file="C:/_CODING/godot/2D-Mining/gameplay.avi"
 movie_writer/fps=30
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/sound_material_matrix/plugin.cfg")
+
 [input]
 
 drop_item={
