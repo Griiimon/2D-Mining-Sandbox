@@ -3,8 +3,11 @@ flowing water (down) on alternate tile?
 
 grenade charge animation
 
+fix damage area deal damage to solid entity ( doesnt seem to trigger any body_entered signal at all )
+
 deal damage to player, mobs and block entities
-damage area should deal damage to solid block entities!?
+
+base player auto add raycast to look pivot on ready
 
 base mob scene with correct collision setup
 
