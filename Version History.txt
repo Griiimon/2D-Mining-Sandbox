@@ -2,6 +2,8 @@
 # v0.4          #
 ##################
 
+- 
+- material sound matrix plugin
 - El Classico character
 - base player scene
 - autoload scenes, no more hardcoded paths
