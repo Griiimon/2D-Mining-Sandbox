@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb1w68ko6r18x"]
+
+[ext_resource type="Script" path="res://addons/sound_material_matrix/sound_matrix_item.gd" id="1_ihg51"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5x3q"]
+bg_color = Color(0.729412, 0.180392, 0.027451, 1)
+
+[node name="SoundMatrixItem" type="TextEdit"]
+custom_minimum_size = Vector2(80, 40)
+theme_override_styles/read_only = SubResource("StyleBoxFlat_p5x3q")
+script = ExtResource("1_ihg51")

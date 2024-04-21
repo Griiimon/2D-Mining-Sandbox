@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdb7u3b18tcnd"]
+
+[ext_resource type="Script" path="res://addons/sound_material_matrix/matrix_view.gd" id="1_j1fae"]
+[ext_resource type="PackedScene" uid="uid://bb1w68ko6r18x" path="res://addons/sound_material_matrix/sound_matrix_item.tscn" id="2_a8xt4"]
+[ext_resource type="Resource" uid="uid://d32unr47s5ii7" path="res://game/audio/material_sound_library.tres" id="3_4kcs4"]
+
+[node name="Matrix View" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j1fae")
+item_scene = ExtResource("2_a8xt4")
+library = ExtResource("3_4kcs4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 7
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Button Load" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Load"
+
+[node name="Button Save" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button Load" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button Save" to="." method="_on_button_save_pressed"]
