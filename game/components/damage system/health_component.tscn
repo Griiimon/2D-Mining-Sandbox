@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://game/components/damage system/health_component.gd" id="1_bxnl5"]
 
-[node name="HealthComponent" type="Node"]
+[node name="Health Component" type="Node"]
 script = ExtResource("1_bxnl5")
