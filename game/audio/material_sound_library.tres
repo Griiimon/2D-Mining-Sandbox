@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MaterialSoundLibrary" load_steps=2 format=3 uid="uid://d32unr47s5ii7"]
+
+[ext_resource type="Script" path="res://game/audio/material_sound_library.gd" id="1_fs44k"]
+
+[resource]
+script = ExtResource("1_fs44k")
+sound_paths = {}
