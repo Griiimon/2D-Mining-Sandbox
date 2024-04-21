@@ -46,7 +46,7 @@ var selected_block_pos: Vector2i
 
 var hand_item_obj: HandItemObject
 
-var is_executing_action: bool= false
+var is_executing_hand_action: bool= false
 
 var inventory: Inventory= Inventory.new()
 
@@ -236,7 +236,7 @@ func mouse_actions():
 		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 			release_charge()
 
-	elif not is_executing_action:
+	elif not is_executing_hand_action:
 
 		if has_hand_object():
 			var action_name: String
@@ -258,8 +258,9 @@ func mouse_actions():
 					on_hand_action_executed()
 
 			if action_name:
+				NodeDebugger.msg(self, "hand action " + action_name, 2)
 				on_hand_action(action_name)
-				is_executing_action= true
+				is_executing_hand_action= true
 
 
 func on_hand_action(_action_name: String):
@@ -278,6 +279,7 @@ func select_block():
 
 func release_charge():
 	assert(has_hand_object())
+	NodeDebugger.msg(self, "release charge", 2)
 	get_hand_object().release_charge(total_charge, charge_primary)
 	on_hand_action_executed()
 	is_charging= false
@@ -412,8 +414,9 @@ func check_hotbar_hand_item():
 		equip_hand_item(item)
 
 
-func _on_animation_player_hand_animation_finished(_anim_name: String):
-	is_executing_action= false
+func on_hand_action_finished(_anim_name: String= ""):
+	NodeDebugger.msg(self, "hand action finished", 2)
+	is_executing_hand_action= false
 
 
 func assert_export_scenes():
