@@ -4,4 +4,6 @@ const TERRAIN_COLLISION_LAYER= 1
 const HURTBOX_COLLISION_LAYER= 7
 const SOLID_ENTITY_COLLISION_LAYER= 8
 
+const HEALT_COMPONENT_NODE= "Health Component"
+
 var game: Game
