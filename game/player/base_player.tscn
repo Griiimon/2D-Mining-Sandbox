@@ -32,6 +32,7 @@ virtual_thrower_scene = ExtResource("5_auas0")
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Interaction Area" type="Area2D" parent="Body"]
+collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Interaction Area"]
