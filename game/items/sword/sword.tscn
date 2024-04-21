@@ -18,7 +18,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DamageArea:enabled")
+tracks/0/path = NodePath("Damage Area:enabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -34,7 +34,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DamageArea:enabled")
+tracks/0/path = NodePath("Damage Area:enabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -50,7 +50,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DamageArea:enabled")
+tracks/0/path = NodePath("Damage Area:enabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -71,15 +71,14 @@ _data = {
 script = ExtResource("1_k0drm")
 action_player = NodePath("ActionPlayer")
 
-[node name="DamageArea" type="Area2D" parent="."]
+[node name="Damage Area" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 0
-monitorable = false
 script = ExtResource("2_osbnv")
 damage = SubResource("Resource_2e6p0")
 enabled = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Area"]
 position = Vector2(12, 0)
 shape = SubResource("RectangleShape2D_c8o6y")
 disabled = true
@@ -102,4 +101,4 @@ libraries = {
 "": SubResource("AnimationLibrary_05des")
 }
 
-[connection signal="area_entered" from="DamageArea" to="DamageArea" method="_on_area_entered"]
+[connection signal="area_entered" from="Damage Area" to="Damage Area" method="_on_area_entered"]
