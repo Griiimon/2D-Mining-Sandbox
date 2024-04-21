@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bdy43ueb6q1kq" path="res://game/components/damage system/health_component.tscn" id="7_folhb"]
 
 [node name="Furnace" instance=ExtResource("1_vbgah")]
-collision_layer = 256
+collision_layer = 128
 script = ExtResource("2_i6m4i")
 default_texture = ExtResource("3_uaepq")
 working_texture = ExtResource("4_7nije")
@@ -19,8 +19,12 @@ register_tick = true
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_uaepq")
 
+[node name="CollisionShape2D" parent="." index="1"]
+disabled = false
+
 [node name="Interaction Target" type="Area2D" parent="." index="2"]
 collision_layer = 16
+collision_mask = 0
 monitoring = false
 script = ExtResource("5_rdwmr")
 default_hint = ""
@@ -34,4 +38,4 @@ position = Vector2(32, -80)
 [node name="Debug Component" parent="." index="3" instance=ExtResource("6_1ku78")]
 prefix = "Furnace"
 
-[node name="HealthComponent" parent="." index="4" instance=ExtResource("7_folhb")]
+[node name="Health Component" parent="." index="4" instance=ExtResource("7_folhb")]
