@@ -2,6 +2,6 @@ extends Node
 
 const TERRAIN_COLLISION_LAYER= 1
 const HURTBOX_COLLISION_LAYER= 7
-
+const SOLID_ENTITY_COLLISION_LAYER= 8
 
 var game: Game
