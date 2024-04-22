@@ -8,6 +8,7 @@ signal state_changed(new_state: StateMachineState)
 @export var debug: bool= false
 
 
+
 func _process(delta: float):
 	if current_state:
 		current_state.on_process(delta)
