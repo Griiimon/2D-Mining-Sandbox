@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlb6166tyk62s"]
+
+[ext_resource type="Script" path="res://game/mobs/base_mob.gd" id="1_dfw3s"]
+[ext_resource type="Script" path="res://game/components/damage system/health_component.gd" id="2_55nb4"]
+[ext_resource type="Script" path="res://game/components/state machine/finite_state_machine.gd" id="3_154u3"]
+[ext_resource type="PackedScene" uid="uid://d3r0rply8mfj" path="res://game/components/damage system/hurtbox.tscn" id="3_qmg8d"]
+
+[node name="Base Mob" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 135
+script = ExtResource("1_dfw3s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_55nb4")
+
+[node name="Hurt Box" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_qmg8d")]
+health_component = NodePath("../HealthComponent")
+
+[node name="State Machine" type="Node" parent="."]
+script = ExtResource("3_154u3")

@@ -21,7 +21,6 @@ func on_exit():
 	visual.scale.y= 1
 
 
-
 func _on_movement_detection_body_entered(body):
 	assert(body is BasePlayer)
 	if is_current_state():

@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://game/ui/camera.gd" id="8_3qg1m"]
 [ext_resource type="Resource" uid="uid://coin0o2iwsbjj" path="res://game/world/terrain generator/generators/stone_only.tres" id="8_4yhic"]
 [ext_resource type="PackedScene" uid="uid://xkfp7o6wk8ur" path="res://game/mobs/dummy/dummy.tscn" id="10_upluk"]
-[ext_resource type="PackedScene" uid="uid://cxq2roo6n5xo6" path="res://game/mobs/bat/bat.tscn" id="12_vyhcf"]
+[ext_resource type="PackedScene" uid="uid://dx7aae3y68pyh" path="res://game/mobs/bat/bat.tscn" id="12_vyhcf"]
 
 [sub_resource type="Resource" id="Resource_bmphr"]
 script = ExtResource("2_ru5vw")
