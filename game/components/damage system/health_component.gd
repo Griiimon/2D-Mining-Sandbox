@@ -5,6 +5,7 @@ signal report_damage
 
 
 @export var max_hitpoints: int= 100
+@export var regeneration_per_sec: float= 0
 @export var invulnerable: bool= false
 @export var has_custom_damage_logic: bool= false
 
@@ -49,3 +50,8 @@ func receive_damage(damage: Damage):
 			get_parent().die()
 		else:
 			get_parent().queue_free()
+
+
+func _process(delta):
+	if regeneration_per_sec and hitpoints < max_hitpoints:
+		hitpoints= min(hitpoints + regeneration_per_sec * delta, max_hitpoints)
