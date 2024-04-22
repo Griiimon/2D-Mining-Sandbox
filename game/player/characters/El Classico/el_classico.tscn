@@ -246,11 +246,12 @@ _data = {
 "walk": SubResource("Animation_v8cep")
 }
 
-[node name="El Classico" node_paths=PackedStringArray("look_pivot", "ray_cast", "main_hand") instance=ExtResource("1_aa1lj")]
+[node name="El Classico" node_paths=PackedStringArray("body", "look_pivot", "main_hand", "interaction_area") instance=ExtResource("1_aa1lj")]
 script = ExtResource("2_ulbl5")
+body = NodePath("Body")
 look_pivot = NodePath("Body/Look Pivot")
-ray_cast = NodePath("Body/Look Pivot/RayCast2D")
 main_hand = NodePath("Body/Look Pivot/Shoulder/Hand")
+interaction_area = NodePath("Body/Interaction Area")
 
 [node name="Torso" type="Polygon2D" parent="Body" index="1"]
 color = Color(0.380392, 0.380392, 0.87451, 1)
@@ -296,11 +297,7 @@ polygon = PackedVector2Array(-16, 32, -16, 48, 8, 48, 8, 40, -5, 37, -8, 32)
 [node name="Look Pivot" type="Node2D" parent="Body" index="5"]
 position = Vector2(-8, -16)
 
-[node name="RayCast2D" type="RayCast2D" parent="Body/Look Pivot" index="0"]
-target_position = Vector2(100, 0)
-collision_mask = 133
-
-[node name="Shoulder" type="Node2D" parent="Body/Look Pivot" index="1"]
+[node name="Shoulder" type="Node2D" parent="Body/Look Pivot" index="0"]
 
 [node name="Hand" type="Line2D" parent="Body/Look Pivot/Shoulder" index="0" node_paths=PackedStringArray("player")]
 position = Vector2(8, 16)
@@ -318,10 +315,6 @@ position = Vector2(6.5, 0)
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CapsuleShape2D_cwxew")
 
-[node name="Debug Component" parent="." index="5"]
-enabled = true
-max_detail_level = 4
-
 [node name="AnimationPlayer Hand" type="AnimationPlayer" parent="." index="6"]
 libraries = {
 "": SubResource("AnimationLibrary_qvefq")
@@ -331,5 +324,8 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_ve3ko")
 }
+
+[node name="Debug Component" parent="." index="8"]
+max_detail_level = 4
 
 [connection signal="animation_finished" from="AnimationPlayer Hand" to="." method="on_hand_action_finished"]

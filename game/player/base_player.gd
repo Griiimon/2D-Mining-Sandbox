@@ -23,7 +23,6 @@ const FLY_SPEED_FACTOR= 4.0
 @export_category("Components")
 @export var body: Node2D
 @export var look_pivot: Node2D
-@export var ray_cast: RayCast2D
 @export var main_hand: Hand
 @export var interaction_area: Area2D
 
@@ -31,7 +30,7 @@ const FLY_SPEED_FACTOR= 4.0
 @export var block_marker_scene: PackedScene
 @export var block_breaker_scene: PackedScene
 @export var virtual_thrower_scene: PackedScene
-
+@export var mine_raycast_scene: PackedScene
 
 @onready var ui: UI= $"Player UI"
 @onready var low_tile_detector: TileDetector = $"Low Tile Detector"
@@ -40,6 +39,8 @@ const FLY_SPEED_FACTOR= 4.0
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+var ray_cast: RayCast2D
 
 # rectangle to mark the block we are currently looking at
 var block_marker: Sprite2D
@@ -70,6 +71,9 @@ func _ready():
 	var game: Game= get_parent()
 	assert(game)
 	game.player= self
+	
+	ray_cast= mine_raycast_scene.instantiate()
+	look_pivot.add_child(ray_cast)
 	
 	inventory.update_callback= update_hotbar
 	
@@ -441,12 +445,12 @@ func fall_damage():
 func assert_export_scenes():
 	assert(body)
 	assert(look_pivot)
-	assert(ray_cast)
 	assert(main_hand)
 	assert(interaction_area)
 	assert(block_breaker_scene)
 	assert(block_marker_scene)
 	assert(virtual_thrower_scene)
+	assert(mine_raycast_scene)
 
 
 func init_block_indicators():

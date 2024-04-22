@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://d4mufsk5s6ksm"]
+[gd_scene load_steps=13 format=3 uid="uid://d4mufsk5s6ksm"]
 
 [ext_resource type="Script" path="res://game/player/base_player.gd" id="1_lm5hc"]
 [ext_resource type="Resource" uid="uid://c8feqy48gw426" path="res://game/player/loadouts/default_loadout.tres" id="2_dv4ej"]
 [ext_resource type="PackedScene" uid="uid://b7kuvqlnmagen" path="res://game/effects/block marker/block_marker.tscn" id="3_6qduw"]
 [ext_resource type="PackedScene" uid="uid://bhvbs1jyh6255" path="res://game/effects/block break animation/block_break_animation.tscn" id="4_qiuqw"]
 [ext_resource type="PackedScene" uid="uid://dcor34lsh3lfc" path="res://game/player/virtual_projectile_thrower.tscn" id="5_auas0"]
+[ext_resource type="PackedScene" uid="uid://d1tn6k71bbasx" path="res://game/player/mine_raycast.tscn" id="6_2mh75"]
 [ext_resource type="PackedScene" uid="uid://kp5ss4gudwu3" path="res://game/components/tile detector/tile_detector.tscn" id="7_oj8sg"]
 [ext_resource type="PackedScene" uid="uid://b4uyq2o7u54dp" path="res://game/player/player_ui.tscn" id="8_6jpol"]
 [ext_resource type="PackedScene" uid="uid://bdy43ueb6q1kq" path="res://game/components/damage system/health_component.tscn" id="8_ku2ig"]
@@ -18,28 +19,17 @@ resource_local_to_scene = true
 radius = 15.0
 height = 75.0
 
-[node name="Base Player" type="CharacterBody2D"]
+[node name="Base Player" type="CharacterBody2D" node_paths=PackedStringArray("body")]
 z_index = 10
 collision_layer = 2
 collision_mask = 133
 script = ExtResource("1_lm5hc")
-speed = null
-jump_velocity = null
-mining_speed = null
-swim_speed = null
-swim_acceleration = null
-swim_damping = null
-fall_damage_speed = null
-fall_damage_scale = null
-freeze = null
 loadout = ExtResource("2_dv4ej")
+body = NodePath("")
 block_marker_scene = ExtResource("3_6qduw")
 block_breaker_scene = ExtResource("4_qiuqw")
 virtual_thrower_scene = ExtResource("5_auas0")
-body = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":null)
-
-interaction_area = Object(Area2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":0,"collision_layer":0,"collision_mask":16,"collision_priority":1.0,"input_pickable":true,"monitoring":true,"monitorable":true,"priority":0,"gravity_space_override":0,"gravity_point":false,"gravity_point_unit_distance":0.0,"gravity_point_center":Vector2(0, 1),"gravity_direction":Vector2(0, 1),"gravity":980.0,"linear_damp_space_override":0,"linear_damp":0.1,"angular_damp_space_override":0,"angular_damp":1.0,"audio_bus_override":false,"audio_bus_name":&"Master","script":null)
-
+mine_raycast_scene = ExtResource("6_2mh75")
 
 [node name="Body" type="Node2D" parent="."]
 
