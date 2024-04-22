@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://xkfp7o6wk8ur"]
 
-[ext_resource type="Script" path="res://game/mobs/mob.gd" id="1_i5dmw"]
+[ext_resource type="Script" path="res://game/mobs/base_mob.gd" id="1_i5dmw"]
 [ext_resource type="PackedScene" uid="uid://bdy43ueb6q1kq" path="res://game/components/damage system/health_component.tscn" id="1_od0nu"]
 [ext_resource type="Script" path="res://game/components/damage system/hurtbox.gd" id="2_hj4ty"]
 
