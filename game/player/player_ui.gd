@@ -83,7 +83,6 @@ func set_interaction_hint(text: String= "", pos: Vector2= Vector2.ZERO):
 
 	await get_tree().process_frame
 	interaction_hint.position= get_viewport().canvas_transform * pos - Vector2(interaction_hint.size.x / 2, 0)
-	#interaction_hint.
 
 
 func set_current_hotbar_slot(idx: int):
