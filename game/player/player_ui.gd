@@ -53,17 +53,17 @@ func update_health():
 	if is_equal_approx(ratio, 1.0):
 		health_bar.hide()
 	else:
-		health_bar.progress= ratio * 100
+		health_bar.value= ratio * 100
 		health_bar.show()
 
 
-func hurt_effect():
+func hurt_effect(_damage, _hitpoints):
 	if hurt_effect_tween and hurt_effect_tween.is_running():
 		hurt_effect_tween.kill()
 	hurt_effect_tween= create_tween()
 	hurt_effect_tween.tween_property(health_bar, "modulate", Color.TRANSPARENT, 0.1)
 	hurt_effect_tween.tween_property(health_bar, "modulate", Color.WHITE, 0.1)
-	hurt_effect_tween.set_loops(5)
+	hurt_effect_tween.set_loops(3)
 
 
 func select_current_hotbar_slot(enable: bool= true):
