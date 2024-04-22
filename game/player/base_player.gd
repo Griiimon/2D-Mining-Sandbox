@@ -4,12 +4,19 @@ extends CharacterBody2D
 const DROP_THROW_FORCE= 300
 const FLY_SPEED_FACTOR= 4.0
 
+@export_category("Movement")
 @export var speed: float = 100.0
 @export var jump_velocity: float = -300.0
 @export var mining_speed: float= 1.0
 @export var swim_speed: float= 30.0
 @export var swim_acceleration: float= 1.0
 @export var swim_damping: float= 1
+
+@export_category("Health")
+@export var fall_damage_speed: float= 600
+@export var fall_damage_scale: float= 0.5
+
+@export_category("Misc")
 @export var freeze: bool= false
 @export var loadout: PlayerLoadout
 
@@ -29,6 +36,7 @@ const FLY_SPEED_FACTOR= 4.0
 @onready var ui: UI= $"Player UI"
 @onready var low_tile_detector: TileDetector = $"Low Tile Detector"
 @onready var mid_tile_detector: TileDetector = $"Mid Tile Detector"
+@onready var health: HealthComponent = $"Health Component"
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -151,6 +159,13 @@ func movement(delta):
 			on_movement_walk()
 		else:
 			on_movement_stop()
+
+	if not is_on_floor():
+		var collision: KinematicCollision2D= move_and_collide(velocity * delta, true)
+		if collision and collision.get_normal().dot(Vector2.UP) > 0:
+			NodeDebugger.msg(self, str("fall speed ", velocity.y), 1)
+			if velocity.y > fall_damage_speed:
+				fall_damage()
 
 	move_and_slide()
 
@@ -417,6 +432,10 @@ func check_hotbar_hand_item():
 func on_hand_action_finished(_anim_name: String= ""):
 	NodeDebugger.msg(self, "hand action finished", 2)
 	is_executing_hand_action= false
+
+
+func fall_damage():
+	health.receive_damage(Damage.new((velocity.y - fall_damage_speed) * fall_damage_scale, Damage.Type.FALL))
 
 
 func assert_export_scenes():

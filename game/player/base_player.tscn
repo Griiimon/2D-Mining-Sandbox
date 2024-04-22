@@ -23,6 +23,15 @@ z_index = 10
 collision_layer = 2
 collision_mask = 133
 script = ExtResource("1_lm5hc")
+speed = null
+jump_velocity = null
+mining_speed = null
+swim_speed = null
+swim_acceleration = null
+swim_damping = null
+fall_damage_speed = null
+fall_damage_scale = null
+freeze = null
 loadout = ExtResource("2_dv4ej")
 body = NodePath("Body")
 interaction_area = NodePath("Body/Interaction Area")
@@ -57,6 +66,7 @@ health = NodePath("../Health Component")
 [node name="Health Component" parent="." instance=ExtResource("8_ku2ig")]
 
 [node name="Debug Component" parent="." instance=ExtResource("9_ypbfg")]
+enabled = true
 max_detail_level = 1
 prefix = "Player"
 
