@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d4mufsk5s6ksm"]
+[gd_scene load_steps=12 format=3 uid="uid://d4mufsk5s6ksm"]
 
 [ext_resource type="Script" path="res://game/player/base_player.gd" id="1_lm5hc"]
 [ext_resource type="Resource" uid="uid://c8feqy48gw426" path="res://game/player/loadouts/default_loadout.tres" id="2_dv4ej"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dcor34lsh3lfc" path="res://game/player/virtual_projectile_thrower.tscn" id="5_auas0"]
 [ext_resource type="PackedScene" uid="uid://kp5ss4gudwu3" path="res://game/components/tile detector/tile_detector.tscn" id="7_oj8sg"]
 [ext_resource type="PackedScene" uid="uid://b4uyq2o7u54dp" path="res://game/player/player_ui.tscn" id="8_6jpol"]
+[ext_resource type="PackedScene" uid="uid://bdy43ueb6q1kq" path="res://game/components/damage system/health_component.tscn" id="8_ku2ig"]
 [ext_resource type="PackedScene" uid="uid://vgl3mtr5d37f" path="res://game/components/debug component/debug_component.tscn" id="9_ypbfg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp3om"]
@@ -50,7 +51,10 @@ position = Vector2(0, 32)
 [node name="Mid Tile Detector" parent="." instance=ExtResource("7_oj8sg")]
 position = Vector2(0, -8)
 
-[node name="Player UI" parent="." instance=ExtResource("8_6jpol")]
+[node name="Player UI" parent="." node_paths=PackedStringArray("health") instance=ExtResource("8_6jpol")]
+health = NodePath("../Health Component")
+
+[node name="Health Component" parent="." instance=ExtResource("8_ku2ig")]
 
 [node name="Debug Component" parent="." instance=ExtResource("9_ypbfg")]
 max_detail_level = 1

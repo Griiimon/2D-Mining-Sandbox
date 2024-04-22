@@ -3,13 +3,17 @@ extends CanvasLayer
 
 signal hotbar_slot_changed
 
+@export var health: HealthComponent
 @export var hotbar_slot_scene: PackedScene
 
 @onready var hbox_hotbar = %"HBox Hotbar"
 @onready var interaction_hint: Label= %"Interaction Hint"
+@onready var health_bar: ProgressBar = %"ProgressBar Health"
 
 
 var current_hotbar_slot_idx: int: set= set_current_hotbar_slot
+
+var hurt_effect_tween: Tween
 
 
 
@@ -19,12 +23,16 @@ func _ready():
 		hbox_hotbar.add_child(slot)
 		slot.selected= i == 0
 
+	health.report_damage.connect(hurt_effect)
+
 
 func _process(_delta):
 	if Input.is_action_just_pressed("previous_hotbar_item"):
 		current_hotbar_slot_idx-= 1
 	elif Input.is_action_just_pressed("next_hotbar_item"):
 		current_hotbar_slot_idx+= 1
+
+	update_health()
 
 
 func _unhandled_input(event):
@@ -38,6 +46,24 @@ func _unhandled_input(event):
 	elif event is InputEventKey:
 		if event.is_pressed() and event.keycode >= KEY_1 and event.keycode <= KEY_9:
 			current_hotbar_slot_idx= event.keycode - KEY_1
+
+
+func update_health():
+	var ratio: float= health.hitpoints / health.max_hitpoints
+	if is_equal_approx(ratio, 1.0):
+		health_bar.hide()
+	else:
+		health_bar.progress= ratio * 100
+		health_bar.show()
+
+
+func hurt_effect():
+	if hurt_effect_tween and hurt_effect_tween.is_running():
+		hurt_effect_tween.kill()
+	hurt_effect_tween= create_tween()
+	hurt_effect_tween.tween_property(health_bar, "modulate", Color.TRANSPARENT, 0.1)
+	hurt_effect_tween.tween_property(health_bar, "modulate", Color.WHITE, 0.1)
+	hurt_effect_tween.set_loops(5)
 
 
 func select_current_hotbar_slot(enable: bool= true):

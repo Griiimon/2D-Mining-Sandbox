@@ -13,7 +13,7 @@ signal report_damage
 @export var whitelist : Array[Damage.Type]
 @export var blacklist : Array[Damage.Type]
 
-var hitpoints
+var hitpoints: float
 
 
 func _ready():

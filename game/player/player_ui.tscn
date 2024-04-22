@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4uyq2o7u54dp"]
+[gd_scene load_steps=8 format=3 uid="uid://b4uyq2o7u54dp"]
 
 [ext_resource type="Script" path="res://game/player/player_ui.gd" id="1_cefh8"]
 [ext_resource type="PackedScene" uid="uid://d3a35hbblyx6o" path="res://game/player/hotbar/hotbar_slot.tscn" id="2_8gj2r"]
@@ -22,6 +22,24 @@ font_size = 20
 font_color = Color(0.972549, 0.890196, 0.894118, 1)
 outline_size = 1
 outline_color = Color(0.87451, 0.254902, 0.498039, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vepwu"]
+bg_color = Color(0.6, 0.6, 0.6, 0.12549)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_noruo"]
+bg_color = Color(0.843137, 0.101961, 0.0156863, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="Player UI" type="CanvasLayer"]
 script = ExtResource("1_cefh8")
@@ -87,3 +105,20 @@ offset_left = -5.0
 offset_right = 5.0
 offset_bottom = 23.0
 grow_horizontal = 2
+
+[node name="MarginContainer Health" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 30
+
+[node name="ProgressBar Health" type="ProgressBar" parent="MarginContainer Health"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(500, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_vepwu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_noruo")
+value = 90.0
+show_percentage = false
