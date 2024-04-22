@@ -2,7 +2,8 @@
 # v0.4          #
 ##################
 
-- 
+- fall damage
+- player health bar
 - material sound matrix plugin
 - El Classico character
 - base player scene
