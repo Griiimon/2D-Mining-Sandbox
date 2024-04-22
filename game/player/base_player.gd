@@ -265,21 +265,19 @@ func mouse_actions():
 				if hand_item_type.charge_primary_action:
 					is_charging= true
 					charge_primary= true
-				else:
-					on_hand_action_executed()
 
 			elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 				action_name= hand_item_type.secondary_action_animation
 				if hand_item_type.charge_secondary_action:
 					is_charging= true
 					charge_primary= false
-				else:
-					on_hand_action_executed()
 
 			if action_name:
 				NodeDebugger.msg(self, "hand action " + action_name, 2)
 				on_hand_action(action_name)
 				is_executing_hand_action= true
+				if not is_charging:
+					hand_action_executed(action_name)
 
 
 func on_hand_action(_action_name: String):
@@ -300,7 +298,7 @@ func release_charge():
 	assert(has_hand_object())
 	NodeDebugger.msg(self, "release charge", 2)
 	get_hand_object().release_charge(total_charge, charge_primary)
-	on_hand_action_executed()
+	hand_action_executed()
 	is_charging= false
 	total_charge= 0
 
@@ -345,13 +343,27 @@ func unequip_hand_item():
 		await get_tree().process_frame
 
 
-func on_hand_action_executed():
+func hand_action_executed(action_name: String= ""):
 	if get_hand_object() is VirtualProjectileThrower:
 		inventory.sub_item(get_current_inventory_item())
 		if get_current_inventory_item().amount > 0:
 			get_hand_object().on_equip()
 		else:
 			get_hand_object().queue_free()
+	
+	if action_name:
+		subscribe_hand_action_finished(action_name, hand_action_finished)
+	else:
+		hand_action_finished(action_name)
+
+
+func hand_action_finished(action_name: String= ""):
+	is_executing_hand_action= false
+	on_hand_action_finished()
+
+
+func subscribe_hand_action_finished(_action_name: String, _method: Callable):
+	assert(false, "Override this method in your custom character class")
 
 
 func has_hand_object()-> bool:
@@ -433,9 +445,8 @@ func check_hotbar_hand_item():
 		equip_hand_item(item)
 
 
-func on_hand_action_finished(_anim_name: String= ""):
-	NodeDebugger.msg(self, "hand action finished", 2)
-	is_executing_hand_action= false
+func on_hand_action_finished():
+	pass
 
 
 func fall_damage():
