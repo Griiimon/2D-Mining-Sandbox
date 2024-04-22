@@ -1,15 +1,14 @@
 fluid simulation ( 3/4 blocks? )
 flowing water (down) on alternate tile?
 
-grenade charge animation
+player state machines: mining, attacking, building
 
-fix damage area deal damage to solid entity ( doesnt seem to trigger any body_entered signal at all )
+deal explosion damage to player, mobs and block entities
 
-deal damage to player, mobs and block entities
+destroy block entity when floor is removed
 
-base player auto add raycast to look pivot on ready
-
-base mob scene with correct collision setup
+draw custom scene in editor ( auto generate tile set, editor button) on big tilemap and auto slice into chunks on start
+custom_level.tscn
 
 add sounds
 
@@ -21,10 +20,18 @@ hand gun
 
 character selection screen
 
-health bar ( auto regenerate ), fall damage
-
 crafting
 
 build menu, place (artificial) blocks and block entities
 
 full inventory plus equipment slots
+
+player death + respawn ( game ui RESPAWN/QUIT ?)
+drop inventory
+
+photo booth tool for making profile pictures of characters etc 
+
+fix damage area deal damage to solid entity ( doesnt seem to trigger any body_entered signal at all )
+try intersect_shape. which will only work for overlaps tho, not triggering signals
+
+dummy hurt effect
