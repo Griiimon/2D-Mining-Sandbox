@@ -26,3 +26,18 @@ static func load_directory_recursively(path: String)-> Array[String]:
 		result.append(path + file)
 	
 	return result
+
+
+static func get_health(node: Node)-> HealthComponent:
+	if node is HurtBox:
+		return (node as HurtBox).health_component
+	if node is BaseBlockEntity:
+		return node.get_node_or_null(Global.HEALT_COMPONENT_NODE)
+	return null
+
+
+static func build_mask(bits: Array[int])-> int:
+	var result:= 0
+	for bit in bits:
+		result+= int(pow(2, bit - 1))
+	return result
