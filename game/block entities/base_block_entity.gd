@@ -15,4 +15,5 @@ func _ready():
 
 
 func _exit_tree():
-	Global.game.world.unregister_entity(self)
+	if register_tick:
+		Global.game.world.unregister_block_entity(self)
