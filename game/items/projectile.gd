@@ -10,7 +10,7 @@ class_name Projectile
 
 
 func _ready():
-	assert(collision_layer == Utils.build_mask(Global.PROJECTILE_COLLISION_LAYER),\
+	assert(collision_layer == Utils.build_mask([Global.PROJECTILE_COLLISION_LAYER]),\
 			str(name, " should be on Collision Layer ", Global.PROJECTILE_COLLISION_LAYER))
 
 	collision_mask= Utils.build_mask([Global.TERRAIN_COLLISION_LAYER, Global.PLAYER_COLLISION_LAYER,\
