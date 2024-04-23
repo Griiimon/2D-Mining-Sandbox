@@ -53,7 +53,7 @@ func tick_blocks():
 		else:
 			assert(false)
 			# TODO i would like to store a failed attempt and only 
-			# unschedule after a second failed attempt ( additional array )
+			# unschedule after a second failed attempt ( additional array? )
 			unschedule_block(block_pos)
 
 
