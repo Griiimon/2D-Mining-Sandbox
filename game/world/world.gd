@@ -237,6 +237,24 @@ func explosion(center: Vector2i, damage: float, radius: float, block_dmg_factor:
 				if block and damage * block_dmg_factor > block.hardness:
 					delete_block(tile)
 	
+	var query:= PhysicsShapeQueryParameters2D.new()
+	query.transform.origin= map_to_local(center)
+	var circle:= CircleShape2D.new()
+	circle.radius= radius * TILE_SIZE
+	query.shape= circle
+	query.collide_with_areas= true
+	query.collision_mask= Utils.build_mask([Global.SOLID_ENTITY_COLLISION_LAYER, Global.HURTBOX_COLLISION_LAYER])
+	
+	var result: Array[Dictionary]= get_world_2d().direct_space_state.intersect_shape(query)
+	
+	var dmg:= Damage.new(damage, Damage.Type.EXPLOSION)
+	for intersect in result:
+		if intersect.is_empty(): continue
+		
+		var health: HealthComponent= Utils.get_health(intersect.collider)
+		if health:
+			health.receive_damage(dmg)
+			NodeDebugger.msg(self, "deal explosion damage to " + intersect.collider.name, 2)
 	Effects.spawn_particle_system(map_to_local(center), explosion_particles)
 
 
