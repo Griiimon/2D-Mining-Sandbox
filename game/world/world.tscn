@@ -33,6 +33,8 @@ wait_time = 0.1
 
 [node name="Mobs" type="Node2D" parent="."]
 
+[node name="Block Entities" type="Node2D" parent="."]
+
 [node name="Debug Component" parent="." instance=ExtResource("7_4bafo")]
 max_detail_level = 4
 prefix = "World"

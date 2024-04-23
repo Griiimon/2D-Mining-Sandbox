@@ -17,6 +17,7 @@ const TILE_SIZE= 32
 @onready var chunk_updater: ChunkUpdater = $"Chunk Updater"
 @onready var mob_spawner: MobSpawner = $"Mob Spawner"
 @onready var mobs = $Mobs
+@onready var block_entities = $"Block Entities"
 
 
 var tick_entities: Array[BaseBlockEntity]
@@ -24,6 +25,7 @@ var tick_entities: Array[BaseBlockEntity]
 var neighbor_updates: Array[Vector2i]
 
 var chunk_storage:= {}
+
 
 
 func _ready():
@@ -209,7 +211,7 @@ func unregister_item(item: WorldItem, chunk: WorldChunk):
 func spawn_block_entity(tile_pos: Vector2i, entity_scene: PackedScene):
 	var entity: BaseBlockEntity= entity_scene.instantiate()
 	entity.position= tile_pos * TILE_SIZE
-	mobs.add_child(entity)
+	block_entities.add_child(entity)
 	
 	if entity.register_tick:
 		tick_entities.append(entity)
@@ -217,7 +219,7 @@ func spawn_block_entity(tile_pos: Vector2i, entity_scene: PackedScene):
 func spawn_mob(mob_def: MobDefinition, tile: Vector2i):
 	var mob= mob_def.scene.instantiate()
 	mob.position= map_to_local(tile)
-	add_child(mob)
+	mobs.add_child(mob)
 
 
 func remove_mobs_in_rect(rect: Rect2):
