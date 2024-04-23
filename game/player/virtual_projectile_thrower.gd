@@ -23,5 +23,14 @@ func release_charge(total_charge: float, primary: bool):
 	projectile.position= get_hand().global_position
 	hand_object.queue_free()
 	Global.game.world.add_child(projectile)
-	
+
+	projectile.add_collision_exception_with(Global.game.player)
 	projectile.shoot(get_player().get_look_direction() * total_charge * throw_force)
+
+	remove_projectile_collision_exception(projectile)
+
+
+func remove_projectile_collision_exception(projectile: Projectile):
+	await get_tree().create_timer(0.5).timeout
+	projectile.remove_collision_exception_with(Global.game.player)
+
