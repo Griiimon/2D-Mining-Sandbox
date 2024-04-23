@@ -1,11 +1,9 @@
 fluid simulation ( 3/4 blocks? )
 flowing water (down) on alternate tile?
 
-player state machines: mining, attacking, building
+player state machine: mining, attacking, building
 
-deal explosion damage to player, mobs and block entities
-
-destroy block entity when floor is removed
+destroy block entity when floor is removed ( but not when chunk despawns! )
 
 draw custom scene in editor ( auto generate tile set, editor button) on big tilemap and auto slice into chunks on start
 custom_level.tscn
