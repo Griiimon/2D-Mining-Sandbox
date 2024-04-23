@@ -1,6 +1,8 @@
 class_name VirtualProjectileThrower
 extends HandItemObject
 
+@export var throw_force: float= 500
+
 var hand_object: Node2D
 
 
@@ -21,4 +23,5 @@ func release_charge(total_charge: float, primary: bool):
 	projectile.position= get_hand().global_position
 	hand_object.queue_free()
 	Global.game.world.add_child(projectile)
-	projectile.shoot(get_player().get_look_direction() * total_charge * 500)
+	
+	projectile.shoot(get_player().get_look_direction() * total_charge * throw_force)
