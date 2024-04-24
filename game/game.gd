@@ -23,10 +23,7 @@ func _ready():
 	await world.initialization_finished
 	
 	if not player:
-		player= player_scene.instantiate()
-		player.position= settings.player_spawn
-		add_child(player)
-		camera.follow_node= player
+		spawn_player()
 
 	post_init()
 
@@ -45,3 +42,12 @@ func _process(_delta):
 
 	elif Input.is_action_just_pressed("toggle_fly"):
 		cheats.fly= not cheats.fly
+
+
+func spawn_player():
+	player= player_scene.instantiate()
+	player.position= settings.player_spawn
+	add_child(player)
+	camera.follow_node= player
+
+	player.tree_exited.connect(spawn_player)
