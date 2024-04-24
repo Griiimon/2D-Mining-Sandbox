@@ -307,3 +307,9 @@ func is_air_at_rect(rect: Rect2i):
 			if not is_air_at(tile):
 				return false
 	return true
+
+
+func is_block_solid_at(tile: Vector2i)-> bool:
+	var block: Block= get_block(tile)
+	if not block: return false
+	return block.is_solid()
