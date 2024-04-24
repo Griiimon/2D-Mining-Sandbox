@@ -39,6 +39,6 @@ func finish_foundation(world: World):
 
 func check_foundation(world: World):
 	for tile in foundation:
-		if world.is_block_solid(tile): return
+		if world.is_block_solid_at(tile): return
 	
 	queue_free()
