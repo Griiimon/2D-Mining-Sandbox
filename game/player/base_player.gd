@@ -299,11 +299,11 @@ func is_current_inventory_slot_empty()-> bool:
 
 
 func update_hotbar():
-	ui.update_hotbar(inventory)
+	ui.update_hotbar()
 
 
 func update_inventory():
-	ui.update_inventory(inventory)
+	ui.update_inventory()
 
 
 func get_look_direction()-> Vector2:

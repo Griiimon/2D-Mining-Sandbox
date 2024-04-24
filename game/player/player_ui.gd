@@ -89,16 +89,16 @@ func select_current_hotbar_slot(enable: bool= true):
 	slot.selected= enable
 
 
-func update_hotbar(inventory: Inventory):
+func update_hotbar():
 	for i in HOTBAR_SIZE:
 		var slot: HotbarSlot= hbox_hotbar.get_child(i)
-		slot.set_item(inventory.items[i])
+		slot.set_item(player.inventory.items[i])
 
 
-func update_main_inventory(inventory: Inventory):
+func update_main_inventory():
 	for i in Inventory.SIZE - HOTBAR_SIZE:
-		var slot: InventorySlot= hbox_hotbar.get_child(i + HOTBAR_SIZE)
-		slot.set_item(inventory.items[i])
+		var slot: InventorySlot= grid_container_inventory.get_child(i + HOTBAR_SIZE)
+		slot.set_item(player.inventory.items[i])
 
 
 func set_interaction_hint(text: String= "", pos: Vector2= Vector2.ZERO):
@@ -123,19 +123,23 @@ func set_source_inventory_slot(idx: int):
 func transfer_inventory_item(target_idx: int):
 	if source_inventory_slot < 0: return
 	
-	var source_item: InventoryItem= get_inventory_slot(source_inventory_slot)
+	var source_item: InventoryItem= get_inventory_item(source_inventory_slot)
 	if not source_item.item or not source_item.amount:
 		return
 	
-	var target_item: InventoryItem= get_inventory_slot(target_idx)
+	var target_item: InventoryItem= get_inventory_item(target_idx)
 	if target_item.item and (target_item.item != source_item.item or not target_item.item.can_stack):
 		return
 
 	target_item.amount+= source_item.amount
-	inventory.clear_item(source_item)
+	player.inventory.clear_item(source_item)
 	update_inventory()
 
 
-func update_inventory(inventory: Inventory):
-	update_hotbar(inventory)
-	update_main_inventory(inventory)
+func get_inventory_item(idx: int)-> InventoryItem:
+	return player.inventory.items[idx]
+	
+
+func update_inventory():
+	update_hotbar()
+	update_main_inventory()
