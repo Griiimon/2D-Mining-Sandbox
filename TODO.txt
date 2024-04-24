@@ -1,7 +1,9 @@
 fluid simulation ( 3/4 blocks? )
 flowing water (down) on alternate tile?
 
-player state machine: mining, attacking, building
+crafting UI
+
+rename all amount to count
 
 draw custom scene in editor ( auto generate tile set, editor button) on big tilemap and auto slice into chunks on start
 custom_level.tscn
@@ -14,13 +16,11 @@ hand gun
 
 character selection screen
 
-crafting
-
 build menu, place (artificial) blocks and block entities
 
 full inventory plus equipment slots
 
-player death drop inventory
+player death state machine state, drop inventory
 
 photo booth tool for making profile pictures of characters etc 
 
@@ -28,3 +28,5 @@ fix damage area deal damage to solid entity ( doesnt seem to trigger any body_en
 try intersect_shape. which will only work for overlaps tho, not triggering signals
 
 dummy hurt effect
+
+mob spawner density etc checks
