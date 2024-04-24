@@ -58,7 +58,8 @@ position = Vector2(0, 32)
 [node name="Mid Tile Detector" parent="." instance=ExtResource("7_oj8sg")]
 position = Vector2(0, -8)
 
-[node name="Player UI" parent="." node_paths=PackedStringArray("health") instance=ExtResource("8_6jpol")]
+[node name="Player UI" parent="." node_paths=PackedStringArray("player", "health") instance=ExtResource("8_6jpol")]
+player = NodePath("..")
 health = NodePath("../Health Component")
 
 [node name="Health Component" parent="." instance=ExtResource("8_ku2ig")]

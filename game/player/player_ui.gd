@@ -3,27 +3,41 @@ extends CanvasLayer
 
 signal hotbar_slot_changed
 
+const HOTBAR_SIZE= 9
+
+@export var player: BasePlayer
 @export var health: HealthComponent
 @export var hotbar_slot_scene: PackedScene
+@export var inventory_slot_scene: PackedScene
 
 @onready var hbox_hotbar = %"HBox Hotbar"
 @onready var interaction_hint: Label= %"Interaction Hint"
 @onready var health_bar: ProgressBar = %"ProgressBar Health"
+@onready var main_inventory = $"CenterContainer Inventory"
+@onready var grid_container_inventory: GridContainer = %"GridContainer Inventory"
 
 
 var current_hotbar_slot_idx: int: set= set_current_hotbar_slot
+
+var source_inventory_slot: int= -1
 
 var hurt_effect_tween: Tween
 
 
 
 func _ready():
-	for i in Inventory.SIZE:
+	for i in HOTBAR_SIZE:
 		var slot: HotbarSlot= hotbar_slot_scene.instantiate()
 		hbox_hotbar.add_child(slot)
 		slot.selected= i == 0
+		slot.left_clicked.connect(set_source_inventory_slot.bind(i))
 
 	health.report_damage.connect(hurt_effect)
+
+	for i in Inventory.SIZE - HOTBAR_SIZE:
+		var slot: InventorySlot= inventory_slot_scene.instantiate()
+		grid_container_inventory.add_child(slot)
+		slot.left_clicked.connect(set_source_inventory_slot.bind(i + HOTBAR_SIZE))
 
 
 func _process(_delta):
@@ -31,6 +45,10 @@ func _process(_delta):
 		current_hotbar_slot_idx-= 1
 	elif Input.is_action_just_pressed("next_hotbar_item"):
 		current_hotbar_slot_idx+= 1
+
+	if Input.is_action_just_pressed("toggle_inventory"):
+		main_inventory.visible= not main_inventory.visible
+		player.freeze= not player.freeze
 
 	update_health()
 
@@ -72,8 +90,14 @@ func select_current_hotbar_slot(enable: bool= true):
 
 
 func update_hotbar(inventory: Inventory):
-	for i in Inventory.SIZE:
+	for i in HOTBAR_SIZE:
 		var slot: HotbarSlot= hbox_hotbar.get_child(i)
+		slot.set_item(inventory.items[i])
+
+
+func update_main_inventory(inventory: Inventory):
+	for i in Inventory.SIZE - HOTBAR_SIZE:
+		var slot: InventorySlot= hbox_hotbar.get_child(i + HOTBAR_SIZE)
 		slot.set_item(inventory.items[i])
 
 
@@ -90,3 +114,28 @@ func set_current_hotbar_slot(idx: int):
 	current_hotbar_slot_idx= wrapi(idx, 0, 9)
 	select_current_hotbar_slot()
 	hotbar_slot_changed.emit()
+
+
+func set_source_inventory_slot(idx: int):
+	source_inventory_slot= idx
+
+
+func transfer_inventory_item(target_idx: int):
+	if source_inventory_slot < 0: return
+	
+	var source_item: InventoryItem= get_inventory_slot(source_inventory_slot)
+	if not source_item.item or not source_item.amount:
+		return
+	
+	var target_item: InventoryItem= get_inventory_slot(target_idx)
+	if target_item.item and (target_item.item != source_item.item or not target_item.item.can_stack):
+		return
+
+	target_item.amount+= source_item.amount
+	inventory.clear_item(source_item)
+	update_inventory()
+
+
+func update_inventory(inventory: Inventory):
+	update_hotbar(inventory)
+	update_main_inventory(inventory)

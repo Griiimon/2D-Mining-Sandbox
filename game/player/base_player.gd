@@ -70,7 +70,7 @@ func _ready():
 	ray_cast= mine_raycast_scene.instantiate()
 	look_pivot.add_child(ray_cast)
 	
-	inventory.update_callback= update_hotbar
+	inventory.update_callback= update_inventory
 	
 	init_block_indicators()
 
@@ -300,6 +300,10 @@ func is_current_inventory_slot_empty()-> bool:
 
 func update_hotbar():
 	ui.update_hotbar(inventory)
+
+
+func update_inventory():
+	ui.update_inventory(inventory)
 
 
 func get_look_direction()-> Vector2:

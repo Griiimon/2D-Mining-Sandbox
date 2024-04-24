@@ -1,6 +1,6 @@
 class_name Inventory
 
-const SIZE= 9
+const SIZE= 33		# include 9 for hotbar
 
 
 var items: Array[InventoryItem]

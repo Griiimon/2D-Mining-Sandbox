@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4uyq2o7u54dp"]
+[gd_scene load_steps=10 format=3 uid="uid://b4uyq2o7u54dp"]
 
 [ext_resource type="Script" path="res://game/player/player_ui.gd" id="1_cefh8"]
-[ext_resource type="PackedScene" uid="uid://d3a35hbblyx6o" path="res://game/player/hotbar/hotbar_slot.tscn" id="2_8gj2r"]
+[ext_resource type="PackedScene" uid="uid://dco5af8vue5ff" path="res://game/player/hotbar/hotbar_slot.tscn" id="2_8gj2r"]
+[ext_resource type="PackedScene" uid="uid://dtq28wgfpmux8" path="res://game/player/inventory/inventory_slot.tscn" id="3_gh4v7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82jp2"]
 bg_color = Color(0.34902, 0.34902, 0.34902, 0.423529)
@@ -41,9 +42,13 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fvvx"]
+bg_color = Color(0.6, 0.6, 0.478431, 0.741176)
+
 [node name="Player UI" type="CanvasLayer"]
 script = ExtResource("1_cefh8")
 hotbar_slot_scene = ExtResource("2_8gj2r")
+inventory_slot_scene = ExtResource("3_gh4v7")
 
 [node name="MarginContainer Hotbar" type="MarginContainer" parent="."]
 anchors_preset = 7
@@ -122,3 +127,54 @@ theme_override_styles/background = SubResource("StyleBoxFlat_vepwu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_noruo")
 value = 90.0
 show_percentage = false
+
+[node name="CenterContainer Inventory" type="CenterContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer Inventory"]
+custom_minimum_size = Vector2(800, 400)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer Inventory/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer Crafting" type="MarginContainer" parent="CenterContainer Inventory/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 15
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer Inventory/PanelContainer/HBoxContainer/MarginContainer Crafting"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1fvvx")
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer Inventory/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer Inventory" type="MarginContainer" parent="CenterContainer Inventory/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer Inventory/PanelContainer/HBoxContainer/MarginContainer Inventory"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer Inventory/PanelContainer/HBoxContainer/MarginContainer Inventory/PanelContainer"]
+layout_mode = 2
+
+[node name="GridContainer Inventory" type="GridContainer" parent="CenterContainer Inventory/PanelContainer/HBoxContainer/MarginContainer Inventory/PanelContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 8

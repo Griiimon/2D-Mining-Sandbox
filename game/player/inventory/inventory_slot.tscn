@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtq28wgfpmux8"]
+
+[ext_resource type="Script" path="res://game/player/inventory/inventory_slot.gd" id="1_nahyv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h18t"]
+bg_color = Color(0.752941, 0.654902, 0.564706, 0.529412)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="Inventory Slot" type="PanelContainer"]
+custom_minimum_size = Vector2(40, 40)
+theme_override_styles/panel = SubResource("StyleBoxFlat_7h18t")
+script = ExtResource("1_nahyv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 1
+
+[node name="Amount" type="Label" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

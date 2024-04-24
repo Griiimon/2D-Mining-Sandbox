@@ -1,39 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3a35hbblyx6o"]
+[gd_scene load_steps=4 format=3 uid="uid://dco5af8vue5ff"]
 
+[ext_resource type="PackedScene" uid="uid://dtq28wgfpmux8" path="res://game/player/inventory/inventory_slot.tscn" id="1_b3x2d"]
 [ext_resource type="Script" path="res://game/player/hotbar/hotbar_slot.gd" id="1_pcgvu"]
 [ext_resource type="Texture2D" uid="uid://bfleajb856jir" path="res://game/player/hotbar/hotbar_selection.png" id="2_3eqn3"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h18t"]
-bg_color = Color(0.752941, 0.654902, 0.564706, 0.529412)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[node name="Hotbar Slot" type="PanelContainer"]
-custom_minimum_size = Vector2(40, 40)
-theme_override_styles/panel = SubResource("StyleBoxFlat_7h18t")
+[node name="Hotbar Slot" instance=ExtResource("1_b3x2d")]
 script = ExtResource("1_pcgvu")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 3
-
-[node name="Selection" type="TextureRect" parent="."]
+[node name="Selection" type="TextureRect" parent="." index="1"]
 visible = false
 layout_mode = 2
 texture = ExtResource("2_3eqn3")
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 1
-
-[node name="Amount" type="Label" parent="MarginContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 8
-text = "0"
-horizontal_alignment = 2
-vertical_alignment = 2
