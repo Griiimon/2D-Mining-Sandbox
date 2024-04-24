@@ -37,7 +37,12 @@ const FLY_SPEED_FACTOR= 4.0
 @onready var low_tile_detector: TileDetector = $"Low Tile Detector"
 @onready var mid_tile_detector: TileDetector = $"Mid Tile Detector"
 @onready var health: HealthComponent = $"Health Component"
+
 @onready var state_machine: FiniteStateMachine = $"State Machine"
+@onready var default_state: BasePlayerState = $"State Machine/Default"
+@onready var mining_state: BasePlayerState = $"State Machine/Mining"
+@onready var item_using_state: BasePlayerState = $"State Machine/Item Using"
+@onready var item_charging_state: BasePlayerState = $"State Machine/Item Charging"
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -49,16 +54,9 @@ var block_marker: Sprite2D
 # overlay to indicate the breaking progress of the currently mined block
 var block_breaker: AnimatedSprite2D
 
-
 var hand_item_obj: HandItemObject
 
-var is_executing_hand_action: bool= false
-
 var inventory: Inventory= Inventory.new()
-
-var is_charging: bool= false: set= set_charging
-var charge_primary: bool= true
-var total_charge: float
 
 
 
@@ -101,9 +99,6 @@ func _process(_delta):
 
 
 func _physics_process(delta):
-	if is_charging:
-		total_charge+= delta
-
 	if freeze: return
 
 	movement(delta)
@@ -199,13 +194,11 @@ func on_hand_action(_action_name: String):
 	pass
 
 
-func release_charge():
+func release_charge(charge_primary: bool, total_charge: float):
 	assert(has_hand_object())
 	NodeDebugger.msg(self, "release charge", 2)
 	get_hand_object().release_charge(total_charge, charge_primary)
 	hand_action_executed()
-	is_charging= false
-	total_charge= 0
 
 
 func equip_hand_item(item: HandItem):
@@ -246,8 +239,8 @@ func hand_action_executed(action_name: String= ""):
 
 
 func hand_action_finished(action_name: String= ""):
-	is_executing_hand_action= false
 	on_hand_action_finished()
+	state_machine.change_state(default_state)
 
 
 func subscribe_hand_action_finished(_action_name: String, _method: Callable):
@@ -320,7 +313,6 @@ func get_world()-> World:
 
 
 func _on_player_ui_hotbar_slot_changed():
-	is_mining= false
 	await unequip_hand_item()
 	check_hotbar_hand_item()
 
@@ -370,11 +362,6 @@ func on_stop_mining():
 	pass
 
 
-func set_charging(b: bool):
-	is_charging= b
-	total_charge= 0
-
-
 func is_swimming()-> bool:
 	return low_tile_detector.is_in_fluid() and mid_tile_detector.is_in_fluid()
 
@@ -390,3 +377,23 @@ func get_max_speed()-> float:
 
 func get_tile_distance(tile: Vector2i)-> int:
 	return (get_world().get_tile(global_position) - tile).length()
+
+
+func _on_charge_item():
+	state_machine.change_state(item_charging_state)
+
+
+func _on_start_mining():
+	state_machine.change_state(mining_state)
+
+
+func _on_use_item():
+	state_machine.change_state(item_using_state)
+
+
+func _on_stop_mining():
+	state_machine.change_state(default_state)
+
+
+func _on_stop_using_item():
+	state_machine.change_state(default_state)
