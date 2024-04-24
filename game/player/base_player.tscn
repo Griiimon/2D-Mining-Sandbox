@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d4mufsk5s6ksm"]
+[gd_scene load_steps=19 format=3 uid="uid://d4mufsk5s6ksm"]
 
 [ext_resource type="Script" path="res://game/player/base_player.gd" id="1_lm5hc"]
 [ext_resource type="Resource" uid="uid://c8feqy48gw426" path="res://game/player/loadouts/default_loadout.tres" id="2_dv4ej"]
@@ -11,6 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://bdy43ueb6q1kq" path="res://game/components/damage system/health_component.tscn" id="8_ku2ig"]
 [ext_resource type="PackedScene" uid="uid://vgl3mtr5d37f" path="res://game/components/debug component/debug_component.tscn" id="9_ypbfg"]
 [ext_resource type="PackedScene" uid="uid://d3r0rply8mfj" path="res://game/components/damage system/hurtbox.tscn" id="11_1dyk4"]
+[ext_resource type="PackedScene" uid="uid://ckqb12s3uef52" path="res://game/components/state machine/state_machine.tscn" id="12_7bify"]
+[ext_resource type="Script" path="res://game/player/default_state.gd" id="13_1nu48"]
+[ext_resource type="Script" path="res://game/player/mining_state.gd" id="14_ags7n"]
+[ext_resource type="Script" path="res://game/player/item_using_state.gd" id="15_a05yj"]
+[ext_resource type="Script" path="res://game/player/item_charging_state.gd" id="15_tqa1s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp3om"]
 size = Vector2(30, 60)
@@ -66,4 +71,31 @@ prefix = "Player"
 [node name="Hurt Box" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("11_1dyk4")]
 health_component = NodePath("../Health Component")
 
+[node name="State Machine" parent="." node_paths=PackedStringArray("current_state") instance=ExtResource("12_7bify")]
+current_state = NodePath("Default")
+debug = true
+
+[node name="Default" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
+script = ExtResource("13_1nu48")
+player = NodePath("../..")
+
+[node name="Mining" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
+script = ExtResource("14_ags7n")
+player = NodePath("../..")
+
+[node name="Item Using" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
+script = ExtResource("15_a05yj")
+player = NodePath("../..")
+
+[node name="Item Charging" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
+script = ExtResource("15_tqa1s")
+player = NodePath("../..")
+
 [connection signal="hotbar_slot_changed" from="Player UI" to="." method="_on_player_ui_hotbar_slot_changed"]
+[connection signal="hotbar_slot_changed" from="Player UI" to="State Machine/Mining" method="_on_player_ui_hotbar_slot_changed"]
+[connection signal="charge_item" from="State Machine/Default" to="." method="_on_charge_item"]
+[connection signal="start_mining" from="State Machine/Default" to="." method="_on_start_mining"]
+[connection signal="use_item" from="State Machine/Default" to="." method="_on_use_item"]
+[connection signal="stop_mining" from="State Machine/Mining" to="." method="_on_stop_mining"]
+[connection signal="stop_using_item" from="State Machine/Item Using" to="." method="_on_stop_using_item"]
+[connection signal="release_charge" from="State Machine/Item Charging" to="." method="release_charge"]
