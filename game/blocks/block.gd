@@ -56,3 +56,7 @@ func move(world: World, block_pos: Vector2i, direction: Vector2i):
 func replace(world: World, block_pos: Vector2i, new_block: Block):
 	world.delete_block(block_pos)
 	world.set_block(block_pos, new_block)
+
+
+func is_solid()-> bool:
+	return not is_fluid and not is_air
