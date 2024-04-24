@@ -26,6 +26,8 @@ var neighbor_updates: Array[Vector2i]
 
 var chunk_storage:= {}
 
+var block_change_subscriptions:= {}
+
 
 
 func _ready():
@@ -50,7 +52,7 @@ func _physics_process(_delta):
 		for chunk in get_chunks():
 			chunk.tick_blocks()
 
-	execute_neighbor_updates()
+	execute_block_updates()
 
 
 func get_block(tile_pos: Vector2i)-> Block:
@@ -86,8 +88,12 @@ func trigger_neighbor_update(origin_pos: Vector2i):
 	neighbor_updates.append(origin_pos)
 
 
-func execute_neighbor_updates():
+func execute_block_updates():
 	for origin_pos in neighbor_updates:
+		if origin_pos in block_change_subscriptions:
+			for callable in block_change_subscriptions[origin_pos]:
+				callable.call(self)
+		
 		for x in [-1, 0, 1]:
 			for y in [-1, 0, 1]:
 				if x != 0 or y != 0:
@@ -225,6 +231,20 @@ func unregister_block_entity(entity: BaseBlockEntity):
 	tick_entities.erase(entity)
 
 
+func subscribe_to_block_change(block_pos: Vector2i, callable: Callable):
+	if not block_pos in block_change_subscriptions:
+		block_change_subscriptions[block_pos]= []
+	block_change_subscriptions[block_pos].append(callable)
+
+
+func unsubscribe_from_block_change(block_pos: Vector2i, obj: Object):
+	if not block_pos in block_change_subscriptions:
+		return
+	for callable: Callable in block_change_subscriptions[block_pos].duplicate():
+		if callable.get_object() == obj:
+			block_change_subscriptions[block_pos].erase(callable)
+	
+	
 func spawn_mob(mob_def: MobDefinition, tile: Vector2i):
 	var mob= mob_def.scene.instantiate()
 	mob.position= map_to_local(tile)
