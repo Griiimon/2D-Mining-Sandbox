@@ -397,3 +397,7 @@ func _on_stop_mining():
 
 func _on_stop_using_item():
 	state_machine.change_state(default_state)
+
+
+func _on_crafting_product_finished(product, count):
+	add_item_to_inventory(product, count)
