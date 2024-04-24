@@ -32,10 +32,12 @@ const FLY_SPEED_FACTOR= 4.0
 @export var virtual_thrower_scene: PackedScene
 @export var mine_raycast_scene: PackedScene
 
+
 @onready var ui: UI= $"Player UI"
 @onready var low_tile_detector: TileDetector = $"Low Tile Detector"
 @onready var mid_tile_detector: TileDetector = $"Mid Tile Detector"
 @onready var health: HealthComponent = $"Health Component"
+@onready var state_machine: FiniteStateMachine = $"State Machine"
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -47,11 +49,6 @@ var block_marker: Sprite2D
 # overlay to indicate the breaking progress of the currently mined block
 var block_breaker: AnimatedSprite2D
 
-var is_mining: bool= false: set= set_mining
-
-var mining_progress: float
-
-var selected_block_pos: Vector2i
 
 var hand_item_obj: HandItemObject
 
@@ -110,25 +107,10 @@ func _physics_process(delta):
 	if freeze: return
 
 	movement(delta)
-	interaction_logic()
-	
+
 	if Input.is_action_just_pressed("drop_item") and has_hand_object():
 		drop_hand_item()
 
-	
-	if ray_cast.is_colliding() and is_raycast_hitting_terrain():
-		select_block()
-		
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			if can_mine():
-				is_mining= mining_logic(delta)
-		else:
-			is_mining= false
-	else:
-		block_marker.hide()
-		is_mining= false
-		
-		mouse_actions()
 
 
 func movement(delta):
@@ -213,85 +195,8 @@ func fly(_delta: float):
 	move_and_slide()
 
 
-func interaction_logic():
-	var areas: Array[Area2D]= interaction_area.get_overlapping_areas()
-
-	if areas.is_empty(): 
-		ui.set_interaction_hint()
-		return
-	
-	var interaction_target: InteractionTarget= areas[0]
-
-	ui.set_interaction_hint(interaction_target.get_interaction_hint(self), interaction_target.label_offset.global_position)
-
-	if Input.is_action_just_pressed("interact"):
-		interaction_target.interact(self)
-
-
-func mining_logic(delta)-> bool:
-	mining_progress+= mining_speed * delta
-	var block: Block= get_world().get_block(selected_block_pos)
-	if not block:
-		return false
-
-	var total_mining_effort= block.hardness
-	if get_hand_object_type() != block.mining_tool:
-		total_mining_effort*= 1 + block.other_tool_penalty
-		
-	if mining_progress >= total_mining_effort or Global.game.cheats.instant_mine:
-		get_world().break_block(selected_block_pos, get_hand_object_type() == block.mining_tool)
-		NodeDebugger.msg(self, str("mined block ", selected_block_pos), 1)
-		return false
-	else:
-		block_breaker.position= get_world().map_to_local(selected_block_pos)
-		var frames: int= block_breaker.sprite_frames.get_frame_count("default")
-		block_breaker.frame= int(frames * mining_progress / total_mining_effort)
-		
-	return true
-
-
-func mouse_actions():
-	if is_charging:
-		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-			release_charge()
-
-	elif not is_executing_hand_action:
-
-		if has_hand_object():
-			var action_name: String
-			var hand_item_type: HandItem= get_hand_object().type
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-				action_name= hand_item_type.primary_action_animation
-				if hand_item_type.charge_primary_action:
-					is_charging= true
-					charge_primary= true
-
-			elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-				action_name= hand_item_type.secondary_action_animation
-				if hand_item_type.charge_secondary_action:
-					is_charging= true
-					charge_primary= false
-
-			if action_name:
-				NodeDebugger.msg(self, "hand action " + action_name, 2)
-				on_hand_action(action_name)
-				is_executing_hand_action= true
-				if not is_charging:
-					hand_action_executed(action_name)
-
-
 func on_hand_action(_action_name: String):
 	pass
-
-
-func select_block():
-	var new_block_pos: = get_world().get_tile(get_tile_collision())
-	if new_block_pos != selected_block_pos:
-		mining_progress= 0
-	selected_block_pos= new_block_pos
-	
-	block_marker.position= get_world().map_to_local(selected_block_pos)
-	block_marker.show()
 
 
 func release_charge():
@@ -301,23 +206,6 @@ func release_charge():
 	hand_action_executed()
 	is_charging= false
 	total_charge= 0
-
-
-func is_raycast_hitting_terrain()-> bool: 
-	if ray_cast.get_collider() is TileMap:
-		return true
-	return false
-
-
-func get_tile_collision()-> Vector2:
-	var point: Vector2= ray_cast.get_collision_point()
-	
-	# apply fix for collision rounding issue on tile border
-	# by moving the collision point into the tile
-	
-	point+= -ray_cast.get_collision_normal() * 0.1
-	DebugHud.send("fixed tile collision", str(point))
-	return point
 
 
 func equip_hand_item(item: HandItem):
@@ -380,8 +268,6 @@ func get_hand_object_type()-> HandItem.Type:
 	return get_hand_object().type.type
 
 
-func can_mine()-> bool:
-	return not has_hand_object() or get_hand_object().can_mine()
 
 
 func drop_hand_item():
@@ -474,18 +360,6 @@ func init_block_indicators():
 	add_child(block_breaker)
 	block_breaker.top_level= true
 	block_breaker.hide()
-
-
-func set_mining(b: bool):
-	if b == is_mining: return
-	is_mining= b
-	if not is_mining:
-		mining_progress= 0
-		block_breaker.hide()
-		on_stop_mining()
-	else:
-		block_breaker.show()
-		on_start_mining()
 
 
 func on_start_mining():
