@@ -216,9 +216,9 @@ func spawn_block_entity(tile_pos: Vector2i, entity_scene: PackedScene):
 	if entity.register_tick:
 		tick_entities.append(entity)
 
-	for x in entity.size:
-		entity.add_foundation_tile(Vector2i(tile_pos.x + x, tile_pos.y + size))
-	entity.finish_foundation()
+	for x in entity.size.x:
+		entity.add_foundation_tile(Vector2i(tile_pos.x + x, tile_pos.y + entity.size.y))
+	entity.finish_foundation(self)
 
 
 func unregister_block_entity(entity: BaseBlockEntity):
