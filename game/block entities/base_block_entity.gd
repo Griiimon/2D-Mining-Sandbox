@@ -34,7 +34,7 @@ func add_foundation_tile(tile: Vector2i):
 
 func finish_foundation(world: World):
 	for tile in foundation:
-		world.subscribe_to_block_change(tile, check_foundation.bind(world))
+		world.subscribe_to_block_change(tile, check_foundation)
 
 
 func check_foundation(world: World):
