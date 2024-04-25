@@ -31,6 +31,7 @@ func _ready():
 		hbox_hotbar.add_child(slot)
 		slot.selected= i == 0
 		slot.left_clicked.connect(set_source_inventory_slot.bind(i))
+		slot.right_clicked.connect(transfer_inventory_item.bind(i))
 
 	health.report_damage.connect(hurt_effect)
 
@@ -38,6 +39,7 @@ func _ready():
 		var slot: InventorySlot= inventory_slot_scene.instantiate()
 		grid_container_inventory.add_child(slot)
 		slot.left_clicked.connect(set_source_inventory_slot.bind(i + HOTBAR_SIZE))
+		slot.right_clicked.connect(transfer_inventory_item.bind(i + HOTBAR_SIZE))
 
 
 func _process(_delta):
@@ -97,8 +99,8 @@ func update_hotbar():
 
 func update_main_inventory():
 	for i in Inventory.SIZE - HOTBAR_SIZE:
-		var slot: InventorySlot= grid_container_inventory.get_child(i + HOTBAR_SIZE)
-		slot.set_item(player.inventory.items[i])
+		var slot: InventorySlot= grid_container_inventory.get_child(i)
+		slot.set_item(player.inventory.items[i + HOTBAR_SIZE])
 
 
 func set_interaction_hint(text: String= "", pos: Vector2= Vector2.ZERO):
@@ -122,6 +124,7 @@ func set_source_inventory_slot(idx: int):
 
 func transfer_inventory_item(target_idx: int):
 	if source_inventory_slot < 0: return
+	if source_inventory_slot == target_idx: return
 	
 	var source_item: InventoryItem= get_inventory_item(source_inventory_slot)
 	if not source_item.item or not source_item.amount:
@@ -131,6 +134,7 @@ func transfer_inventory_item(target_idx: int):
 	if target_item.item and (target_item.item != source_item.item or not target_item.item.can_stack):
 		return
 
+	target_item.item= source_item.item
 	target_item.amount+= source_item.amount
 	player.inventory.clear_item(source_item)
 	update_inventory()

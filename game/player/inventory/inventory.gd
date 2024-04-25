@@ -7,6 +7,8 @@ var items: Array[InventoryItem]
 
 var update_callback: Callable
 
+
+
 func _init():
 	for i in SIZE:
 		items.append(InventoryItem.new())
@@ -59,8 +61,12 @@ func find_empty_slot()-> int:
 
 
 func clear_slot(idx: int):
-	items[idx].item= null
-	items[idx].amount= 0
+	clear_item(items[idx])
+
+
+func clear_item(inv_item: InventoryItem):
+	inv_item.item= null
+	inv_item.amount= 0
 	updated()
 
 

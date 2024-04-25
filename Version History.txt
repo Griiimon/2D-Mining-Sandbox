@@ -2,6 +2,7 @@
 # v0.4          #
 ##################
 
+- inventory UI
 - player respawn
 - fall damage
 - player health bar

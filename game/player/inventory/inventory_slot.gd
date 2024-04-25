@@ -8,6 +8,9 @@ signal right_clicked
 @onready var amount_label: Label = $MarginContainer/Amount
 
 
+var click_tween: Tween
+
+
 
 func set_item(inv_item: InventoryItem):
 	if not inv_item.item:
@@ -24,7 +27,32 @@ func set_item(inv_item: InventoryItem):
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT and can_click():
+			if has_item():
+				start_tween(Color.SEA_GREEN)
+			else:
+				start_tween(Color.SALMON)
 			left_clicked.emit()
-		else:
+
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			if has_item():
+				start_tween(Color.SALMON)
+			else:
+				start_tween(Color.SEA_GREEN)
 			right_clicked.emit()
+
+
+func start_tween(color: Color):
+	if click_tween and click_tween.is_running():
+		click_tween.kill()
+
+	click_tween= create_tween()
+	modulate= color
+	click_tween.tween_property(self, "modulate", Color.WHITE, 0.2)
+
+
+func has_item()-> bool:
+	return texture_rect.texture != null
+
+func can_click()-> bool:
+	return true
