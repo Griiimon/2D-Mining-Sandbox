@@ -3,7 +3,7 @@
 ##################
 
 - inventory UI
-- player respawn
+- player death and respawn
 - fall damage
 - player health bar
 - material sound matrix plugin
