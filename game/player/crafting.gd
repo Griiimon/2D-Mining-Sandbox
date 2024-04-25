@@ -1,7 +1,7 @@
 extends Node
 class_name BasePlayerCrafting
 
-signal product_finished(product, count)
+signal recipe_crafted(recipe)
 
 
 class QueueItem:
@@ -30,7 +30,7 @@ func _physics_process(delta):
 	if progress >= item.recipe.crafting_duration:
 		progress= 0
 		item.count-= 1
-		product_finished.emit(item.recipe.product, item.recipe.product_count)
+		recipe_crafted.emit(item.recipe)
 		
 		if item.count == 0:
 			queue.pop_front()
