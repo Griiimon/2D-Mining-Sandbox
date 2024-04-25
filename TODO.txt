@@ -3,7 +3,11 @@ flowing water (down) on alternate tile?
 
 crafting UI
 
-rename all amount to count
+rename all amount to count, except amount arguments
+
+safe respawn, shapecast down or disable first fall damage
+
+override player state machine script
 
 draw custom scene in editor ( auto generate tile set, editor button) on big tilemap and auto slice into chunks on start
 custom_level.tscn
@@ -18,10 +22,6 @@ character selection screen
 
 build menu, place (artificial) blocks and block entities
 
-full inventory plus equipment slots
-
-player death state machine state, drop inventory
-
 photo booth tool for making profile pictures of characters etc 
 
 fix damage area deal damage to solid entity ( doesnt seem to trigger any body_entered signal at all )
@@ -30,3 +30,7 @@ try intersect_shape. which will only work for overlaps tho, not triggering signa
 dummy hurt effect
 
 mob spawner density etc checks
+
+equipment slots
+
+player death drop inventory
