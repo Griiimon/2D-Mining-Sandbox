@@ -111,7 +111,6 @@ func _physics_process(delta):
 		drop_hand_item()
 
 
-
 func movement(delta):
 	if is_swimming():
 		swim(delta)
@@ -263,8 +262,6 @@ func get_hand_object_type()-> HandItem.Type:
 	if not has_hand_object():
 		return HandItem.Type.NONE
 	return get_hand_object().type.type
-
-
 
 
 func drop_hand_item():
