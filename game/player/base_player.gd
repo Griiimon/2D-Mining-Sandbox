@@ -33,16 +33,20 @@ const FLY_SPEED_FACTOR= 4.0
 @export var mine_raycast_scene: PackedScene
 
 
-@onready var ui: UI= $"Player UI"
+@onready var ui: UI = $"Player UI"
 @onready var low_tile_detector: TileDetector = $"Low Tile Detector"
 @onready var mid_tile_detector: TileDetector = $"Mid Tile Detector"
+@onready var collision_shape: CollisionShape2D  = $CollisionShape2D
 @onready var health: HealthComponent = $"Health Component"
+@onready var hurtbox = $"Hurt Box"
+@onready var crafting = $Crafting
 
 @onready var state_machine: FiniteStateMachine = $"State Machine"
 @onready var default_state: BasePlayerState = $"State Machine/Default"
 @onready var mining_state: BasePlayerState = $"State Machine/Mining"
 @onready var item_using_state: BasePlayerState = $"State Machine/Item Using"
 @onready var item_charging_state: BasePlayerState = $"State Machine/Item Charging"
+@onready var dying_state: BasePlayerState = $"State Machine/Dying"
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -403,5 +407,21 @@ func _on_stop_using_item():
 	state_machine.change_state(default_state)
 
 
-func _on_crafting_product_finished(product, count):
-	add_item_to_inventory(product, count)
+func die():
+	state_machine.change_state(dying_state)
+	
+
+func _on_crafting_recipe_crafted(recipe: CraftingRecipe):
+	inventory.block_update_callback= true
+	inventory.sub_ingredients(recipe.ingredients)
+	inventory.block_update_callback= false
+	add_item_to_inventory(recipe.product, recipe.count)
+
+
+func init_death():
+	freeze= true
+	collision_shape.set_deferred("disabled", true)
+	health.queue_free()
+	hurtbox.queue_free()
+	crafting.queue_free()
+	ui.queue_free()	
