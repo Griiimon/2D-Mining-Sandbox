@@ -424,4 +424,4 @@ func init_death():
 	health.queue_free()
 	hurtbox.queue_free()
 	crafting.queue_free()
-	ui.queue_free()	
+	ui.queue_free()
