@@ -9,3 +9,7 @@ extends Resource
 
 @export_category("Misc")
 @export var fuel_value: float= 0
+
+
+func get_display_name()-> String:
+	return name.capitalize()
