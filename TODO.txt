@@ -1,9 +1,7 @@
 fluid simulation ( 3/4 blocks? )
 flowing water (down) on alternate tile?
 
-crafting UI
-
-rename all amount to count, except amount arguments
+MyNamedResource with name, get_display_name()
 
 safe respawn, shapecast down or disable first fall damage
 
@@ -16,20 +14,24 @@ add sounds
 
 challenges ( game mode )
  
-hand gun
-
 character selection screen
 
 build menu, place (artificial) blocks and block entities
 
+mob spawner density etc checks
+
+
+-------- v5 ---------------
+
+
 photo booth tool for making profile pictures of characters etc 
+
+crafting queue
 
 fix damage area deal damage to solid entity ( doesnt seem to trigger any body_entered signal at all )
 try intersect_shape. which will only work for overlaps tho, not triggering signals
 
 dummy hurt effect
-
-mob spawner density etc checks
 
 equipment slots
 
