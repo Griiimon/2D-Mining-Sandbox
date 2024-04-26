@@ -30,7 +30,18 @@ func select_item(item: CraftingListItem):
 	for child: CraftingListItem in vbox_list.get_children():
 		if child != selected_item:
 			child.deselet()
+	
+	set_ingredients(item.recipe)
+	
 	button_craft.disabled= false
+
+
+func set_ingredients(recipe: CraftingRecipe):
+	Utils.free_children(vbox_ingredients)
+	for ingredient in recipe.ingredients:
+		var label:= Label.new()
+		label.text= "%dx %s" % [ingredient.amount, ingredient.item.get_display_name()]
+		vbox_ingredients.add_child(label)
 
 
 func _on_button_craft_pressed():
