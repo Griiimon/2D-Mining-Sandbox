@@ -41,6 +41,8 @@ func _ready():
 		slot.left_clicked.connect(set_source_inventory_slot.bind(i + HOTBAR_SIZE))
 		slot.right_clicked.connect(transfer_inventory_item.bind(i + HOTBAR_SIZE))
 
+	main_inventory.hide()
+
 
 func _process(_delta):
 	if Input.is_action_just_pressed("previous_hotbar_item"):

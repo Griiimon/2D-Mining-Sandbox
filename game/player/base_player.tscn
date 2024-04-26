@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://game/player/item_using_state.gd" id="15_a05yj"]
 [ext_resource type="Script" path="res://game/player/item_charging_state.gd" id="15_tqa1s"]
 [ext_resource type="Script" path="res://game/player/dying_state.gd" id="17_58hxt"]
-[ext_resource type="Script" path="res://game/player/crafting.gd" id="17_noi44"]
+[ext_resource type="Script" path="res://game/player/crafting/crafting.gd" id="17_noi44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp3om"]
 size = Vector2(30, 60)

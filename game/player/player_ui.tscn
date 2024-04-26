@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://game/player/player_ui.gd" id="1_cefh8"]
 [ext_resource type="PackedScene" uid="uid://dco5af8vue5ff" path="res://game/player/hotbar/hotbar_slot.tscn" id="2_8gj2r"]
 [ext_resource type="PackedScene" uid="uid://dtq28wgfpmux8" path="res://game/player/inventory/inventory_slot.tscn" id="3_gh4v7"]
+[ext_resource type="PackedScene" uid="uid://d05k54ks64l8d" path="res://game/player/crafting/crafting_ui.tscn" id="4_xvfww"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82jp2"]
 bg_color = Color(0.34902, 0.34902, 0.34902, 0.423529)
@@ -41,9 +42,6 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fvvx"]
-bg_color = Color(0.6, 0.6, 0.478431, 0.741176)
 
 [node name="Player UI" type="CanvasLayer"]
 script = ExtResource("1_cefh8")
@@ -129,7 +127,6 @@ value = 90.0
 show_percentage = false
 
 [node name="CenterContainer Inventory" type="CenterContainer" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -144,17 +141,8 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer Inventory/PanelContainer"]
 layout_mode = 2
 
-[node name="MarginContainer Crafting" type="MarginContainer" parent="CenterContainer Inventory/PanelContainer/HBoxContainer"]
+[node name="Crafting UI" parent="CenterContainer Inventory/PanelContainer/HBoxContainer" instance=ExtResource("4_xvfww")]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 15
-
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer Inventory/PanelContainer/HBoxContainer/MarginContainer Crafting"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1fvvx")
 
 [node name="VSeparator" type="VSeparator" parent="CenterContainer Inventory/PanelContainer/HBoxContainer"]
 layout_mode = 2
