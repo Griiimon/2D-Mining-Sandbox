@@ -15,8 +15,7 @@ var selected_item: CraftingListItem
 
 
 func build():
-	for child in vbox_list.get_children():
-		child.free()
+	Utils.free_children(vbox_list)
 
 	for recipe in DataManager.crafting_recipes:
 		var item: CraftingListItem= craft_list_item_scene.instantiate()
@@ -49,6 +48,8 @@ func _on_button_craft_pressed():
 
 
 func _on_visibility_changed():
-	if Utils.is_starting(): return
+	# to avoid it being triggered when instantiated
+	await get_tree().process_frame
+
 	if visible:
 		build()
