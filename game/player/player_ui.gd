@@ -26,6 +26,9 @@ var hurt_effect_tween: Tween
 
 
 func _ready():
+	assert(player)
+	assert(health)
+	
 	for i in HOTBAR_SIZE:
 		var slot: HotbarSlot= hotbar_slot_scene.instantiate()
 		hbox_hotbar.add_child(slot)
@@ -33,14 +36,16 @@ func _ready():
 		slot.left_clicked.connect(set_source_inventory_slot.bind(i))
 		slot.right_clicked.connect(transfer_inventory_item.bind(i))
 
-	health.report_damage.connect(hurt_effect)
-
 	for i in Inventory.SIZE - HOTBAR_SIZE:
 		var slot: InventorySlot= inventory_slot_scene.instantiate()
 		grid_container_inventory.add_child(slot)
 		slot.left_clicked.connect(set_source_inventory_slot.bind(i + HOTBAR_SIZE))
 		slot.right_clicked.connect(transfer_inventory_item.bind(i + HOTBAR_SIZE))
 
+	health.report_damage.connect(hurt_effect)
+	
+	%"Crafting UI".craft.connect(player.craft)
+	
 	main_inventory.hide()
 
 

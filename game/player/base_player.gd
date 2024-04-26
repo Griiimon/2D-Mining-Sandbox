@@ -39,7 +39,7 @@ const FLY_SPEED_FACTOR= 4.0
 @onready var collision_shape: CollisionShape2D  = $CollisionShape2D
 @onready var health: HealthComponent = $"Health Component"
 @onready var hurtbox = $"Hurt Box"
-@onready var crafting = $Crafting
+@onready var crafting: PlayerCrafting = $Crafting
 
 @onready var state_machine: FiniteStateMachine = $"State Machine"
 @onready var default_state: BasePlayerState = $"State Machine/Default"
@@ -425,3 +425,7 @@ func init_death():
 	hurtbox.queue_free()
 	crafting.queue_free()
 	ui.queue_free()
+
+
+func craft(recipe: CraftingRecipe, count: int):
+	crafting.add(recipe, count)

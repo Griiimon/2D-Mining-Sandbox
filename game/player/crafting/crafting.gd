@@ -1,5 +1,5 @@
 extends Node
-class_name BasePlayerCrafting
+class_name PlayerCrafting
 
 signal recipe_crafted(recipe)
 

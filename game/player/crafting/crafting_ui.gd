@@ -1,7 +1,7 @@
 extends MarginContainer
 class_name CraftingUI
 
-signal craft(recipe, amount)
+signal craft(recipe, count)
 
 @export var craft_list_item_scene: PackedScene
 

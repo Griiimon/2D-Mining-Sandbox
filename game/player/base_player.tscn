@@ -32,6 +32,15 @@ z_index = 10
 collision_layer = 2
 collision_mask = 133
 script = ExtResource("1_lm5hc")
+speed = null
+jump_velocity = null
+mining_speed = null
+swim_speed = null
+swim_acceleration = null
+swim_damping = null
+fall_damage_speed = null
+fall_damage_scale = null
+freeze = null
 loadout = ExtResource("2_dv4ej")
 block_marker_scene = ExtResource("3_6qduw")
 block_breaker_scene = ExtResource("4_qiuqw")
@@ -74,6 +83,10 @@ prefix = "Player"
 [node name="Hurt Box" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("11_1dyk4")]
 health_component = NodePath("../Health Component")
 
+[node name="Crafting" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("17_noi44")
+player = NodePath("..")
+
 [node name="State Machine" parent="." node_paths=PackedStringArray("current_state") instance=ExtResource("12_7bify")]
 current_state = NodePath("Default")
 debug = true
@@ -98,16 +111,12 @@ player = NodePath("../..")
 script = ExtResource("17_58hxt")
 player = NodePath("../..")
 
-[node name="Crafting" type="Node" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("17_noi44")
-player = NodePath("..")
-
 [connection signal="hotbar_slot_changed" from="Player UI" to="." method="_on_player_ui_hotbar_slot_changed"]
 [connection signal="hotbar_slot_changed" from="Player UI" to="State Machine/Mining" method="_on_player_ui_hotbar_slot_changed"]
+[connection signal="recipe_crafted" from="Crafting" to="." method="_on_crafting_recipe_crafted"]
 [connection signal="charge_item" from="State Machine/Default" to="." method="_on_charge_item"]
 [connection signal="start_mining" from="State Machine/Default" to="." method="_on_start_mining"]
 [connection signal="use_item" from="State Machine/Default" to="." method="_on_use_item"]
 [connection signal="stop_mining" from="State Machine/Mining" to="." method="_on_stop_mining"]
 [connection signal="stop_using_item" from="State Machine/Item Using" to="." method="_on_stop_using_item"]
 [connection signal="release_charge" from="State Machine/Item Charging" to="." method="release_charge"]
-[connection signal="recipe_crafted" from="Crafting" to="." method="_on_crafting_recipe_crafted"]
