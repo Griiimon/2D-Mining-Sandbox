@@ -415,7 +415,7 @@ func _on_crafting_recipe_crafted(recipe: CraftingRecipe):
 	inventory.block_update_callback= true
 	inventory.sub_ingredients(recipe.ingredients)
 	inventory.block_update_callback= false
-	add_item_to_inventory(recipe.product, recipe.count)
+	add_item_to_inventory(recipe.product, recipe.product_count)
 
 
 func init_death():
