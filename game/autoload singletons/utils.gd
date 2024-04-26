@@ -41,3 +41,7 @@ static func build_mask(bits: Array[int])-> int:
 	for bit in bits:
 		result+= int(pow(2, bit - 1))
 	return result
+
+
+static func is_starting()-> bool:
+	return Engine.get_process_frames() == 0
