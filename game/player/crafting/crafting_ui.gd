@@ -13,11 +13,11 @@ signal craft(recipe, amount)
 var selected_item: CraftingListItem
 
 
-func _ready():
-	build()
-
 
 func build():
+	for child in vbox_list.get_children():
+		child.free()
+
 	for recipe in DataManager.crafting_recipes:
 		var item: CraftingListItem= craft_list_item_scene.instantiate()
 		vbox_list.add_child(item)
@@ -35,3 +35,9 @@ func select_item(item: CraftingListItem):
 
 func _on_button_craft_pressed():
 	craft.emit(selected_item.recipe, spinbox_products.value)
+
+
+func _on_visibility_changed():
+	if Utils.is_starting(): return
+	if visible:
+		build()

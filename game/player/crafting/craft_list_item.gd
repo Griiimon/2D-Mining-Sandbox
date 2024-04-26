@@ -12,12 +12,13 @@ var available: bool= false
 func init(_recipe: CraftingRecipe, player: BasePlayer):
 	recipe= _recipe
 	update(player)
+	deselect()
 
 
 func _on_gui_input(event):
 	if not available: return
 	
-	if event in InputEventMouseButton:
+	if event is InputEventMouseButton:
 		if event.pressed:
 			select()
 
@@ -32,4 +33,5 @@ func deselect():
 
 
 func update(player: BasePlayer):
-	label.modulate= Color.WHITE if player.inventory.has_ingredients(recipe.ingredients) else Color.RED
+	available= player.inventory.has_ingredients(recipe.ingredients)
+	label.modulate= Color.WHITE if available else Color.RED

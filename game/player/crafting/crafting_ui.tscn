@@ -12,6 +12,7 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 15
 script = ExtResource("1_frjua")
+craft_list_item_scene = ExtResource("2_pe03b")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
@@ -32,9 +33,6 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer Crafting List" instance=ExtResource("2_pe03b")]
-layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -71,4 +69,5 @@ value = 1.0
 rounded = true
 alignment = 2
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button Craft" to="." method="_on_button_craft_pressed"]
