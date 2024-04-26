@@ -62,6 +62,8 @@ var hand_item_obj: HandItemObject
 
 var inventory: Inventory= Inventory.new()
 
+# disable fall damage when spawned
+var disable_fall_damage: bool= true
 
 
 func _ready():
@@ -148,9 +150,12 @@ func movement(delta):
 	if not is_on_floor():
 		var collision: KinematicCollision2D= move_and_collide(velocity * delta, true)
 		if collision and collision.get_normal().dot(Vector2.UP) > 0:
-			NodeDebugger.msg(self, str("fall speed ", velocity.y), 1)
-			if velocity.y > fall_damage_speed:
-				fall_damage()
+			if not disable_fall_damage:
+				NodeDebugger.msg(self, str("fall speed ", velocity.y), 2)
+				if velocity.y > fall_damage_speed:
+					fall_damage()
+			else:
+				disable_fall_damage= false
 
 	move_and_slide()
 
