@@ -19,7 +19,7 @@ func set_item(inv_item: InventoryItem):
 	else:
 		texture_rect.texture= inv_item.item.texture
 		if inv_item.item.can_stack:
-			amount_label.text= str(inv_item.amount)
+			amount_label.text= str(inv_item.count)
 			amount_label.show()
 		else:
 			amount_label.hide()

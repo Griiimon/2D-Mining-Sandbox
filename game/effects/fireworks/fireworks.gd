@@ -2,12 +2,12 @@ class_name Fireworks
 extends Node2D
 
 @export var effect_scene: PackedScene
-@export var amount: int= 20
+@export var count: int= 20
 @export var interval: float = 0.2
 @export var max_distance: int= 500
 
 @onready var next_effect: float= interval
-@onready var effects_left: int= amount
+@onready var effects_left: int= count
 
 
 func _process(delta):

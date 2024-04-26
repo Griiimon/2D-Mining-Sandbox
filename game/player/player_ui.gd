@@ -134,7 +134,7 @@ func transfer_inventory_item(target_idx: int):
 	if source_inventory_slot == target_idx: return
 	
 	var source_item: InventoryItem= get_inventory_item(source_inventory_slot)
-	if not source_item.item or not source_item.amount:
+	if not source_item.item or not source_item.count:
 		return
 	
 	var target_item: InventoryItem= get_inventory_item(target_idx)
@@ -142,7 +142,7 @@ func transfer_inventory_item(target_idx: int):
 		return
 
 	target_item.item= source_item.item
-	target_item.amount+= source_item.amount
+	target_item.count+= source_item.count
 	player.inventory.clear_item(source_item)
 	update_inventory()
 

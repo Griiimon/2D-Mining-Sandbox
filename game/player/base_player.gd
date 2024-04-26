@@ -86,7 +86,7 @@ func late_ready():
 	if Global.game.settings.player_loadout:
 		priority_loadout= Global.game.settings.player_loadout
 	for inv_item in priority_loadout.inventory_items:
-		add_item_to_inventory(inv_item.item, inv_item.amount)
+		add_item_to_inventory(inv_item.item, inv_item.count)
 
 
 func _process(_delta):
@@ -231,7 +231,7 @@ func unequip_hand_item():
 func hand_action_executed(action_name: String= ""):
 	if get_hand_object() is VirtualProjectileThrower:
 		inventory.sub_item(get_current_inventory_item())
-		if get_current_inventory_item().amount > 0:
+		if get_current_inventory_item().count > 0:
 			get_hand_object().on_equip()
 		else:
 			get_hand_object().queue_free()
@@ -283,8 +283,8 @@ func pickup(item: Item):
 	add_item_to_inventory(item)
 
 
-func add_item_to_inventory(item: Item, amount: int= 1):
-	inventory.add_new_item(item, amount)
+func add_item_to_inventory(item: Item, count: int= 1):
+	inventory.add_new_item(item, count)
 	
 	if not has_hand_object():
 		check_hotbar_hand_item()

@@ -40,7 +40,7 @@ func set_ingredients(recipe: CraftingRecipe):
 	Utils.free_children(vbox_ingredients)
 	for ingredient in recipe.ingredients:
 		var label:= Label.new()
-		label.text= "%dx %s" % [ingredient.amount, ingredient.item.get_display_name()]
+		label.text= "%dx %s" % [ingredient.count, ingredient.item.get_display_name()]
 		vbox_ingredients.add_child(label)
 
 
