@@ -41,12 +41,7 @@ const FLY_SPEED_FACTOR= 4.0
 @onready var hurtbox = $"Hurt Box"
 @onready var crafting: PlayerCrafting = $Crafting
 
-@onready var state_machine: FiniteStateMachine = $"State Machine"
-@onready var default_state: PlayerState = $"State Machine/Default"
-@onready var mining_state: PlayerState = $"State Machine/Mining"
-@onready var item_using_state: PlayerState = $"State Machine/Item Using"
-@onready var item_charging_state: PlayerState = $"State Machine/Item Charging"
-@onready var dying_state: PlayerState = $"State Machine/Dying"
+@onready var state_machine: PlayerStateMachine = $"State Machine"
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -248,7 +243,7 @@ func hand_action_executed(action_name: String= ""):
 
 func hand_action_finished(action_name: String= ""):
 	on_hand_action_finished()
-	state_machine.change_state(default_state)
+	state_machine.change_state(state_machine.default_state)
 
 
 func subscribe_hand_action_finished(_action_name: String, _method: Callable):
@@ -389,28 +384,8 @@ func get_tile_distance(tile: Vector2i)-> int:
 	return (get_world().get_tile(global_position) - tile).length()
 
 
-func _on_charge_item():
-	state_machine.change_state(item_charging_state)
-
-
-func _on_start_mining():
-	state_machine.change_state(mining_state)
-
-
-func _on_use_item():
-	state_machine.change_state(item_using_state)
-
-
-func _on_stop_mining():
-	state_machine.change_state(default_state)
-
-
-func _on_stop_using_item():
-	state_machine.change_state(default_state)
-
-
 func die():
-	state_machine.change_state(dying_state)
+	state_machine.change_state(state_machine.dying_state)
 	
 
 func _on_crafting_recipe_crafted(recipe: CraftingRecipe):
