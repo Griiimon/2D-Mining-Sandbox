@@ -26,6 +26,9 @@ var hurt_effect_tween: Tween
 
 
 func _ready():
+	assert(player)
+	assert(health)
+	
 	for i in HOTBAR_SIZE:
 		var slot: HotbarSlot= hotbar_slot_scene.instantiate()
 		hbox_hotbar.add_child(slot)
@@ -33,13 +36,17 @@ func _ready():
 		slot.left_clicked.connect(set_source_inventory_slot.bind(i))
 		slot.right_clicked.connect(transfer_inventory_item.bind(i))
 
-	health.report_damage.connect(hurt_effect)
-
 	for i in Inventory.SIZE - HOTBAR_SIZE:
 		var slot: InventorySlot= inventory_slot_scene.instantiate()
 		grid_container_inventory.add_child(slot)
 		slot.left_clicked.connect(set_source_inventory_slot.bind(i + HOTBAR_SIZE))
 		slot.right_clicked.connect(transfer_inventory_item.bind(i + HOTBAR_SIZE))
+
+	health.report_damage.connect(hurt_effect)
+	
+	%"Crafting UI".craft.connect(player.craft)
+	
+	main_inventory.hide()
 
 
 func _process(_delta):
@@ -127,7 +134,7 @@ func transfer_inventory_item(target_idx: int):
 	if source_inventory_slot == target_idx: return
 	
 	var source_item: InventoryItem= get_inventory_item(source_inventory_slot)
-	if not source_item.item or not source_item.amount:
+	if not source_item.item or not source_item.count:
 		return
 	
 	var target_item: InventoryItem= get_inventory_item(target_idx)
@@ -135,7 +142,7 @@ func transfer_inventory_item(target_idx: int):
 		return
 
 	target_item.item= source_item.item
-	target_item.amount+= source_item.amount
+	target_item.count+= source_item.count
 	player.inventory.clear_item(source_item)
 	update_inventory()
 

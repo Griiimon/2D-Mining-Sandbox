@@ -60,3 +60,7 @@ func replace(world: World, block_pos: Vector2i, new_block: Block):
 
 func is_solid()-> bool:
 	return not is_fluid and not is_air
+
+
+func get_display_name()-> String:
+	return name.capitalize() + " Block"

@@ -39,7 +39,7 @@ const FLY_SPEED_FACTOR= 4.0
 @onready var collision_shape: CollisionShape2D  = $CollisionShape2D
 @onready var health: HealthComponent = $"Health Component"
 @onready var hurtbox = $"Hurt Box"
-@onready var crafting = $Crafting
+@onready var crafting: PlayerCrafting = $Crafting
 
 @onready var state_machine: FiniteStateMachine = $"State Machine"
 @onready var default_state: BasePlayerState = $"State Machine/Default"
@@ -62,6 +62,8 @@ var hand_item_obj: HandItemObject
 
 var inventory: Inventory= Inventory.new()
 
+# disable fall damage when spawned
+var disable_fall_damage: bool= true
 
 
 func _ready():
@@ -86,7 +88,7 @@ func late_ready():
 	if Global.game.settings.player_loadout:
 		priority_loadout= Global.game.settings.player_loadout
 	for inv_item in priority_loadout.inventory_items:
-		add_item_to_inventory(inv_item.item, inv_item.amount)
+		add_item_to_inventory(inv_item.item, inv_item.count)
 
 
 func _process(_delta):
@@ -147,9 +149,12 @@ func movement(delta):
 	if not is_on_floor():
 		var collision: KinematicCollision2D= move_and_collide(velocity * delta, true)
 		if collision and collision.get_normal().dot(Vector2.UP) > 0:
-			NodeDebugger.msg(self, str("fall speed ", velocity.y), 1)
-			if velocity.y > fall_damage_speed:
-				fall_damage()
+			if not disable_fall_damage:
+				NodeDebugger.msg(self, str("fall speed ", velocity.y), 2)
+				if velocity.y > fall_damage_speed:
+					fall_damage()
+			else:
+				disable_fall_damage= false
 
 	move_and_slide()
 
@@ -230,7 +235,7 @@ func unequip_hand_item():
 func hand_action_executed(action_name: String= ""):
 	if get_hand_object() is VirtualProjectileThrower:
 		inventory.sub_item(get_current_inventory_item())
-		if get_current_inventory_item().amount > 0:
+		if get_current_inventory_item().count > 0:
 			get_hand_object().on_equip()
 		else:
 			get_hand_object().queue_free()
@@ -280,8 +285,8 @@ func pickup(item: Item):
 	add_item_to_inventory(item)
 
 
-func add_item_to_inventory(item: Item, amount: int= 1):
-	inventory.add_new_item(item, amount)
+func add_item_to_inventory(item: Item, count: int= 1):
+	inventory.add_new_item(item, count)
 	
 	if not has_hand_object():
 		check_hotbar_hand_item()
@@ -412,7 +417,7 @@ func _on_crafting_recipe_crafted(recipe: CraftingRecipe):
 	inventory.block_update_callback= true
 	inventory.sub_ingredients(recipe.ingredients)
 	inventory.block_update_callback= false
-	add_item_to_inventory(recipe.product, recipe.count)
+	add_item_to_inventory(recipe.product, recipe.product_count)
 
 
 func init_death():
@@ -421,4 +426,8 @@ func init_death():
 	health.queue_free()
 	hurtbox.queue_free()
 	crafting.queue_free()
-	ui.queue_free()	
+	ui.queue_free()
+
+
+func craft(recipe: CraftingRecipe, count: int):
+	crafting.add(recipe, count)

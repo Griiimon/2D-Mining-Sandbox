@@ -2,6 +2,7 @@
 # v0.4          #
 ##################
 
+- crafting
 - inventory UI
 - player death and respawn
 - fall damage

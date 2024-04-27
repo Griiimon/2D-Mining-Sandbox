@@ -8,6 +8,7 @@ extends Node
 @export var orig_tile_set: TileSet
 @export_dir var blocks_path: String
 @export var blocks_suffix: String
+@export_dir var crafting_recipe_path: String
 @export_dir var furnace_recipe_path: String
 @export_dir var mobs_path: String
 @export var mobs_suffix: String
@@ -17,6 +18,7 @@ extends Node
 var blocks: Array[Block]
 var blocks_lookup: Dictionary
 
+var crafting_recipes: Array[CraftingRecipe]
 var furnace_recipes: Dictionary
 
 
@@ -34,6 +36,8 @@ func _ready():
 
 	if Engine.is_editor_hint(): return
 
+	load_resource_folder_into_array(crafting_recipe_path, crafting_recipes)
+
 	load_resource_folder_into_dictionary(furnace_recipe_path, furnace_recipes, "ingredient")
 
 	load_resource_folder_into_array(mobs_path, mobs, mobs_suffix)
@@ -46,7 +50,7 @@ func late_ready():
 	fluid_library.build()
 
 
-func load_resource_folder_into_array(folder: String, array: Array, suffix: String):
+func load_resource_folder_into_array(folder: String, array: Array, suffix: String= ".tres"):
 	#folder+= "/"
 	#var dir:= DirAccess.open(folder)
 	#
