@@ -22,6 +22,7 @@ Global="*res://game/autoload singletons/global.gd"
 DebugHud="*res://game/ui/debug_hud.tscn"
 DataManager="*res://game/autoload singletons/data_manager.tscn"
 Effects="*res://game/effects/effects.tscn"
+SoundPlayer="*res://game/audio/sound_player.tscn"
 
 [editor]
 

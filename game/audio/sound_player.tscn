@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b47fbnpmt50ao"]
+
+[ext_resource type="Script" path="res://game/audio/sound_player.gd" id="1_ubgcs"]
+[ext_resource type="Resource" uid="uid://dug8fqdiebex7" path="res://game/audio/sound_library.tres" id="2_vw4cd"]
+[ext_resource type="Resource" uid="uid://d32unr47s5ii7" path="res://game/audio/material_sound_library.tres" id="3_nvfae"]
+
+[node name="Sound Player" type="Node"]
+script = ExtResource("1_ubgcs")
+library = ExtResource("2_vw4cd")
+material_library = ExtResource("3_nvfae")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 5
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+max_polyphony = 5
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+max_polyphony = 5
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+max_polyphony = 5
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="."]
+max_polyphony = 5
