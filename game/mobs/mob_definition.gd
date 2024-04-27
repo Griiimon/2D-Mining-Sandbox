@@ -1,8 +1,7 @@
 class_name MobDefinition
-extends Resource
+extends MyNamedResource
 
 
-@export var name: String
 @export var scene: PackedScene
 @export var spawner: MobSpawnerDefinition
 

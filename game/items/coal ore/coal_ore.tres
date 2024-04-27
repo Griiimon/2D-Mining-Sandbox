@@ -6,8 +6,8 @@
 
 [resource]
 script = ExtResource("1_x0nph")
-name = "coal"
 texture = ExtResource("3_xlmvy")
 can_stack = true
 tags = Array[Resource("res://game/tags/tag.gd")]([ExtResource("2_pvgap")])
 fuel_value = 5.0
+name = "coal_ore"

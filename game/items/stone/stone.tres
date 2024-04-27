@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("1_jcmka")
-name = "stone"
 texture = ExtResource("2_8ll2a")
 can_stack = true
 tags = Array[Resource("res://game/tags/tag.gd")]([])
 fuel_value = 0.0
+name = "stone"

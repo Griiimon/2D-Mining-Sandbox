@@ -6,8 +6,8 @@
 
 [resource]
 script = ExtResource("1_26ueg")
-name = "iron"
 texture = ExtResource("3_42i5d")
 can_stack = true
 tags = Array[Resource("res://game/tags/tag.gd")]([ExtResource("2_pnluo")])
 fuel_value = 0.0
+name = "iron_ore"
