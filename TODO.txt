@@ -1,12 +1,6 @@
 fluid simulation ( 3/4 blocks? )
 flowing water (down) on alternate tile?
 
-MyNamedResource with name, get_display_name()
-
-safe respawn, shapecast down or disable first fall damage
-
-override player state machine script
-
 draw custom scene in editor ( auto generate tile set, editor button) on big tilemap and auto slice into chunks on start
 custom_level.tscn
 
@@ -19,6 +13,8 @@ character selection screen
 build menu, place (artificial) blocks and block entities
 
 mob spawner density etc checks
+
+modularize UI into more custom scenes
 
 
 -------- v5 ---------------
