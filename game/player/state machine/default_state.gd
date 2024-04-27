@@ -1,4 +1,4 @@
-extends BasePlayerState
+extends PlayerState
 
 signal start_mining
 signal use_item

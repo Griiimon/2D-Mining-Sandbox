@@ -12,12 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://vgl3mtr5d37f" path="res://game/components/debug component/debug_component.tscn" id="9_ypbfg"]
 [ext_resource type="PackedScene" uid="uid://d3r0rply8mfj" path="res://game/components/damage system/hurtbox.tscn" id="11_1dyk4"]
 [ext_resource type="PackedScene" uid="uid://ckqb12s3uef52" path="res://game/components/state machine/state_machine.tscn" id="12_7bify"]
-[ext_resource type="Script" path="res://game/player/state machine/default_state.gd" id="13_1nu48"]
-[ext_resource type="Script" path="res://game/player/state machine/mining_state.gd" id="14_ags7n"]
-[ext_resource type="Script" path="res://game/player/state machine/item_using_state.gd" id="15_a05yj"]
-[ext_resource type="Script" path="res://game/player/state machine/item_charging_state.gd" id="15_tqa1s"]
-[ext_resource type="Script" path="res://game/player/state machine/dying_state.gd" id="17_58hxt"]
+[ext_resource type="Script" path="res://game/player/state machine/default_state.gd" id="14_urqh1"]
+[ext_resource type="Script" path="res://game/player/state machine/mining_state.gd" id="15_ips6r"]
+[ext_resource type="Script" path="res://game/player/state machine/item_using_state.gd" id="16_cekgf"]
+[ext_resource type="Script" path="res://game/player/state machine/item_charging_state.gd" id="17_b3ibu"]
 [ext_resource type="Script" path="res://game/player/crafting/crafting.gd" id="17_noi44"]
+[ext_resource type="Script" path="res://game/player/state machine/dying_state.gd" id="18_xdhrf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp3om"]
 size = Vector2(30, 60)
@@ -32,6 +32,15 @@ z_index = 10
 collision_layer = 2
 collision_mask = 133
 script = ExtResource("1_lm5hc")
+speed = null
+jump_velocity = null
+mining_speed = null
+swim_speed = null
+swim_acceleration = null
+swim_damping = null
+fall_damage_speed = null
+fall_damage_scale = null
+freeze = null
 loadout = ExtResource("2_dv4ej")
 block_marker_scene = ExtResource("3_6qduw")
 block_breaker_scene = ExtResource("4_qiuqw")
@@ -83,23 +92,23 @@ current_state = NodePath("Default")
 debug = true
 
 [node name="Default" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
-script = ExtResource("13_1nu48")
+script = ExtResource("14_urqh1")
 player = NodePath("../..")
 
 [node name="Mining" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
-script = ExtResource("14_ags7n")
+script = ExtResource("15_ips6r")
 player = NodePath("../..")
 
 [node name="Item Using" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
-script = ExtResource("15_a05yj")
+script = ExtResource("16_cekgf")
 player = NodePath("../..")
 
 [node name="Item Charging" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
-script = ExtResource("15_tqa1s")
+script = ExtResource("17_b3ibu")
 player = NodePath("../..")
 
 [node name="Dying" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
-script = ExtResource("17_58hxt")
+script = ExtResource("18_xdhrf")
 player = NodePath("../..")
 
 [connection signal="hotbar_slot_changed" from="Player UI" to="." method="_on_player_ui_hotbar_slot_changed"]

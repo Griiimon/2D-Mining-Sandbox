@@ -1,4 +1,4 @@
-extends BasePlayerState
+extends PlayerState
 
 signal release_charge(primary, total_charge)
 

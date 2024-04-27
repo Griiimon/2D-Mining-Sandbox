@@ -1,4 +1,4 @@
-extends BasePlayerState
+extends PlayerState
 
 signal stop_mining
 

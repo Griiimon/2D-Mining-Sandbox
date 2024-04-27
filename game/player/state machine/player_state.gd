@@ -1,5 +1,5 @@
 extends StateMachineState
-class_name BasePlayerState
+class_name PlayerState
 
 @export var player: BasePlayer
 

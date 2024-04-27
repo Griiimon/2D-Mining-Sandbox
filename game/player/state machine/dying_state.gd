@@ -1,4 +1,4 @@
-extends BasePlayerState
+extends PlayerState
 
 
 func on_enter():
