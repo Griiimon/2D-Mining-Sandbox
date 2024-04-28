@@ -22,7 +22,7 @@ func init(player: BasePlayer):
 	buildables.clear()
 	
 	for block in DataManager.blocks:
-		if block is ArtificialBlock:
+		if block.is_artificial:
 			buildables.append(Buildable.new(Buildable.Type.Block, block))
 
 	for entity in DataManager.block_entities:
