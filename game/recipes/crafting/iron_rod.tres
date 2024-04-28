@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" load_steps=6 format=3 uid="uid://b27k78hiayhqv"]
+
+[ext_resource type="Script" path="res://game/recipes/crafting_recipe.gd" id="1_fqw84"]
+[ext_resource type="Resource" uid="uid://bhhsycxt24sle" path="res://game/items/iron ingot/iron_ingot.tres" id="1_v616o"]
+[ext_resource type="Script" path="res://game/player/inventory/inventory_item.gd" id="2_ont73"]
+[ext_resource type="Resource" uid="uid://dv31mtwe5t883" path="res://game/items/iron rod/iron_rod.tres" id="3_8ii0h"]
+
+[sub_resource type="Resource" id="Resource_rmabx"]
+script = ExtResource("2_ont73")
+item = ExtResource("1_v616o")
+count = 1
+
+[resource]
+script = ExtResource("1_fqw84")
+product = ExtResource("3_8ii0h")
+product_count = 1
+ingredients = Array[ExtResource("2_ont73")]([SubResource("Resource_rmabx")])
+crafting_duration = 1.0
