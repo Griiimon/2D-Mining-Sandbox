@@ -15,6 +15,7 @@ const HOTBAR_SIZE= 9
 @onready var health_bar: ProgressBar = %"ProgressBar Health"
 @onready var main_inventory = $"CenterContainer Inventory"
 @onready var grid_container_inventory: GridContainer = %"GridContainer Inventory"
+@onready var crafting_ui = %"Crafting UI"
 
 
 var current_hotbar_slot_idx: int: set= set_current_hotbar_slot
@@ -154,3 +155,4 @@ func get_inventory_item(idx: int)-> InventoryItem:
 func update_inventory():
 	update_hotbar()
 	update_main_inventory()
+	crafting_ui.build()
