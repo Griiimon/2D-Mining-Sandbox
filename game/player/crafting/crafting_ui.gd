@@ -28,7 +28,7 @@ func select_item(item: CraftingListItem):
 	selected_item= item
 	for child: CraftingListItem in vbox_list.get_children():
 		if child != selected_item:
-			child.deselet()
+			child.deselect()
 	
 	set_ingredients(item.recipe)
 	
