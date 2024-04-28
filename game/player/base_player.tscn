@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d4mufsk5s6ksm"]
+[gd_scene load_steps=23 format=3 uid="uid://d4mufsk5s6ksm"]
 
 [ext_resource type="Script" path="res://game/player/base_player.gd" id="1_lm5hc"]
 [ext_resource type="Resource" uid="uid://c8feqy48gw426" path="res://game/player/loadouts/default_loadout.tres" id="2_dv4ej"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://game/player/state machine/item_charging_state.gd" id="17_b3ibu"]
 [ext_resource type="Script" path="res://game/player/crafting/crafting.gd" id="17_noi44"]
 [ext_resource type="Script" path="res://game/player/state machine/dying_state.gd" id="18_xdhrf"]
+[ext_resource type="Script" path="res://game/player/state machine/building_state.gd" id="20_r6xgo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp3om"]
 size = Vector2(30, 60)
@@ -101,6 +102,10 @@ player = NodePath("../..")
 
 [node name="Dying" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
 script = ExtResource("18_xdhrf")
+player = NodePath("../..")
+
+[node name="Building" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
+script = ExtResource("20_r6xgo")
 player = NodePath("../..")
 
 [connection signal="hotbar_slot_changed" from="Player UI" to="." method="_on_player_ui_hotbar_slot_changed"]
