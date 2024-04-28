@@ -1,6 +1,8 @@
 class_name BaseBlockEntity
 extends StaticBody2D
 
+
+@export var entity_name: String
 # size in tiles
 @export var size: Vector2i= Vector2i.ONE
 @export var register_tick: bool= false
@@ -42,3 +44,7 @@ func check_foundation(world: World):
 		if world.is_block_solid_at(tile): return
 	
 	queue_free()
+
+
+func get_display_name()-> String:
+	return entity_name.capitalize()
