@@ -206,8 +206,6 @@ static func create_tileset():
 			source.texture= block.texture
 			source.create_tile(Vector2i.ZERO)
 			
-			if block.
-			
 		DataManager.tile_set.add_source(source)
 		
 		if block.has_collision:
