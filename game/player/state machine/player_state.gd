@@ -24,6 +24,9 @@ func select_block():
 	player.block_marker.show()
 
 
+func get_empty_tile()-> Vector2i:
+	
+
 func on_selected_block_changed():
 	pass
 

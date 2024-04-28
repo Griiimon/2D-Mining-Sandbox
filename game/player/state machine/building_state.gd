@@ -22,7 +22,7 @@ func on_enter():
 
 func on_physics_process(delta: float):
 	if player.ray_cast.is_colliding():
-		#empty_tile= get_empty_tile()
+		empty_tile= get_empty_tile()
 
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			build.emit(entity_scene, empty_tile)
