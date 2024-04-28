@@ -15,8 +15,14 @@ extends MyNamedResource
 
 @export_category("Special")
 @export var schedule_tick: bool= false
+@export var is_artificial: bool= false
 @export var is_air: bool= false
 @export var is_fluid: bool= false
+@export var can_flip_horizontal: bool= false
+@export var can_flip_vertical: bool= false
+@export var can_rotate: bool= false
+
+
 @export var custom_collsion_polygon: PackedVector2Array
 
 
