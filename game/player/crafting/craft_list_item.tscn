@@ -23,6 +23,5 @@ theme_override_constants/margin_bottom = 2
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
-text = "Pickaxe"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
