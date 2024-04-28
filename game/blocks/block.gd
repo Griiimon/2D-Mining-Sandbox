@@ -23,7 +23,7 @@ extends MyNamedResource
 @export var can_rotate: bool= false
 
 
-@export var custom_collsion_polygon: PackedVector2Array
+@export var custom_collision_polygon: PackedVector2Array
 
 
 func has_tag(tag_name: String)-> bool:
