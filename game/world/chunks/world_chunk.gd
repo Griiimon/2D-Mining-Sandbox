@@ -210,7 +210,7 @@ static func create_tileset():
 		if block.has_collision:
 			var tile_data: TileData= source.get_tile_data(Vector2i.ZERO, 0)
 			tile_data.add_collision_polygon(0)
-			tile_data.set_collision_polygon_points(0, 0, collision_polygon)
+			tile_data.set_collision_polygon_points(0, 0, block.custom_collision_polygon if block.custom_collision_polygon else collision_polygon)
 
 
 	ResourceSaver.save(DataManager.tile_set, tile_set_path)

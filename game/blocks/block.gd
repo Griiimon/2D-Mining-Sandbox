@@ -17,7 +17,7 @@ extends MyNamedResource
 @export var schedule_tick: bool= false
 @export var is_air: bool= false
 @export var is_fluid: bool= false
-
+@export var custom_collsion_polygon: PackedVector2Array
 
 
 func has_tag(tag_name: String)-> bool:
