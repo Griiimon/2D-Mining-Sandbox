@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c6l1jqs4ln37t"]
+
+[node name="CenterContainer Build Menu" type="CenterContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
