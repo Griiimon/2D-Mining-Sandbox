@@ -82,7 +82,7 @@ player = NodePath("..")
 
 [node name="State Machine" parent="." node_paths=PackedStringArray("current_state") instance=ExtResource("12_7bify")]
 script = ExtResource("14_7l24f")
-current_state = NodePath("Default")
+current_state = NodePath("Building")
 
 [node name="Default" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
 script = ExtResource("14_urqh1")
@@ -107,8 +107,6 @@ player = NodePath("../..")
 [node name="Building" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
 script = ExtResource("20_r6xgo")
 player = NodePath("../..")
-auto_play_animation = null
-auto_stop_animation = null
 
 [connection signal="hotbar_slot_changed" from="Player UI" to="." method="_on_player_ui_hotbar_slot_changed"]
 [connection signal="hotbar_slot_changed" from="Player UI" to="State Machine/Mining" method="_on_player_ui_hotbar_slot_changed"]
