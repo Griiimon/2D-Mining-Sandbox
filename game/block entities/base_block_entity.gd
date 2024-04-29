@@ -39,11 +39,12 @@ func finish_foundation(world: World):
 		world.subscribe_to_block_change(tile, check_foundation)
 
 
-func check_foundation(world: World):
+func check_foundation(world: World, auto_delete: bool= true):
 	for tile in foundation:
 		if world.is_block_solid_at(tile): return
 	
-	queue_free()
+	if auto_delete:
+		queue_free()
 
 
 func get_display_name()-> String:
