@@ -25,7 +25,7 @@ func select_block():
 
 
 func get_empty_tile()-> Vector2i:
-	return get_tile_collision(false)
+	return get_world().get_tile(get_tile_collision(false))
 
 func on_selected_block_changed():
 	pass
