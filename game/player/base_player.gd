@@ -406,3 +406,15 @@ func init_death():
 
 func craft(recipe: CraftingRecipe, count: int):
 	crafting.add(recipe, count)
+
+
+func is_in_tile(tile_pos: Vector2i)-> bool:
+	var query= PhysicsShapeQueryParameters2D.new()
+	var shape:= RectangleShape2D.new()
+	shape.size= Vector2.ONE * World.TILE_SIZE
+	query.shape= shape
+	query.transform.origin= get_world().map_to_local(tile_pos)
+	query.collision_mask= Utils.build_mask([Global.PLAYER_COLLISION_LAYER])
+	if get_world_2d().direct_space_state.intersect_shape(query):
+		return true
+	return false
