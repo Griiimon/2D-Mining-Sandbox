@@ -25,7 +25,7 @@ func select_block():
 
 
 func get_empty_tile()-> Vector2i:
-	
+	return get_tile_collision(false)
 
 func on_selected_block_changed():
 	pass
@@ -37,13 +37,13 @@ func is_raycast_hitting_terrain()-> bool:
 	return false
 
 
-func get_tile_collision()-> Vector2:
+func get_tile_collision(inside: bool= true)-> Vector2:
 	var point: Vector2= player.ray_cast.get_collision_point()
 	
 	# apply fix for collision rounding issue on tile border
-	# by moving the collision point into the tile
+	# by moving the collision point into or out of the tile
 	
-	point+= -player.ray_cast.get_collision_normal() * 0.1
+	point+= ( -1 if inside else 1 ) * player.ray_cast.get_collision_normal() * 0.1
 	DebugHud.send("fixed tile collision", str(point))
 	return point
 
