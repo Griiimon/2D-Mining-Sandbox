@@ -5,6 +5,7 @@ extends Area2D
 @export var interval: float= 0
 @export var damage_solid_block_entity: bool= true
 @export var enabled: bool= true: set= set_enabled
+@export var can_damage_player: bool= true
 
 @onready var collision_shape = $CollisionShape2D
 
@@ -29,6 +30,8 @@ func _on_area_entered(area):
 	assert(area is HurtBox, "Damage Area encountered a non HurtBox " + area.name)
 	var hurtbox= area as HurtBox
 	if hurtbox == exclude_hurtbox: return
+	if not can_damage_player and hurtbox.get_parent() is BasePlayer:
+		return
 	hurtbox.receive_damage(damage)
 
 
