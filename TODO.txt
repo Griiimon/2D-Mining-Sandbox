@@ -1,6 +1,8 @@
 fluid simulation ( 3/4 blocks? )
 flowing water (down) on alternate tile?
 
+nodedebugger msg = send as in debughud
+
 draw custom scene in editor ( auto generate tile set, editor button) on big tilemap and auto slice into chunks on start
 custom_level.tscn
 
