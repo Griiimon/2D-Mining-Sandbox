@@ -3,6 +3,11 @@ extends TileMap
 
 const SIZE= 32
 
+const TERRAIN_LAYER= 0
+const FLUID_LAYER= 1
+const GHOST_LAYER= 2
+
+
 @export var coords: Vector2i
 @export var auto_generate_tiles: bool= true
 
@@ -65,9 +70,10 @@ func set_block(tile_pos: Vector2i, block: Block, trigger_neighbor_update: bool= 
 	var block_id: int= DataManager.get_block_id(block)
 
 	tile_pos= get_local_pos(tile_pos)
-	set_cell(0, tile_pos, block_id, Vector2i.ZERO)
+	set_cell(TERRAIN_LAYER, tile_pos, block_id, Vector2i.ZERO)
 	if block.is_fluid:
-		set_cell(1, tile_pos, block_id, Vector2i.ZERO)
+		set_cell(FLUID_LAYER, tile_pos, block_id, Vector2i.ZERO)
+	
 	block.on_spawn(world, get_global_pos(tile_pos))
 	if block.schedule_tick:
 		scheduled_blocks.append(tile_pos)
@@ -78,8 +84,8 @@ func set_block(tile_pos: Vector2i, block: Block, trigger_neighbor_update: bool= 
 
 
 func delete_block(tile_pos: Vector2i, trigger_neighbor_update: bool= true):
-	set_cell(0, get_local_pos(tile_pos), -1)
-	set_cell(1, get_local_pos(tile_pos), -1)
+	set_cell(TERRAIN_LAYER, get_local_pos(tile_pos), -1)
+	set_cell(FLUID_LAYER, get_local_pos(tile_pos), -1)
 	scheduled_blocks.erase(tile_pos)
 	
 	if trigger_neighbor_update:
