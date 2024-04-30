@@ -89,3 +89,10 @@ func get_block_id(block: Block)-> int:
 	if not blocks_lookup.has(block):
 		return -1
 	return blocks_lookup[block]
+
+
+func get_block_from_name(_name: String)-> Block:
+	for block in blocks:
+		if block.name == _name:
+			return block
+	return null
