@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Block" load_steps=2 format=3 uid="uid://dgy1dr3pel8e5"]
+[gd_resource type="Resource" script_class="Block" load_steps=3 format=3 uid="uid://dgy1dr3pel8e5"]
 
 [ext_resource type="Script" path="res://game/blocks/block.gd" id="1_ck1y5"]
+[ext_resource type="Texture2D" uid="uid://o2dedghpikjq" path="res://game/blocks/stone ramp/stone_ramp.png" id="2_xworq"]
 
 [resource]
 script = ExtResource("1_ck1y5")
+texture = ExtResource("2_xworq")
 hardness = 0.5
 has_collision = true
 tags = Array[Resource("res://game/tags/tag.gd")]([])
@@ -18,5 +20,5 @@ is_fluid = false
 can_flip_horizontal = true
 can_flip_vertical = false
 can_rotate = false
-custom_collsion_polygon = PackedVector2Array(0, 0, 32, 32, 0, 32, 0, 0)
-name = ""
+custom_collision_polygon = PackedVector2Array(0, 0, 32, 32, 0, 32, 0, 0)
+name = "stone_ramp"
