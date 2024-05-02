@@ -117,3 +117,6 @@ player = NodePath("../..")
 [connection signal="stop_mining" from="State Machine/Mining" to="State Machine" method="_on_stop_mining"]
 [connection signal="stop_using_item" from="State Machine/Item Using" to="State Machine" method="_on_stop_using_item"]
 [connection signal="release_charge" from="State Machine/Item Charging" to="." method="release_charge"]
+[connection signal="build_block" from="State Machine/Building" to="State Machine" method="_on_place_block"]
+[connection signal="build_entity" from="State Machine/Building" to="State Machine" method="_on_building_build_entity"]
+[connection signal="cancel" from="State Machine/Building" to="State Machine" method="_on_building_cancel"]
