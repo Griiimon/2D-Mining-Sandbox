@@ -3,16 +3,19 @@ flowing water (down) on alternate tile?
 
 nodedebugger msg = send as in debughud
 
+store & restore block state
+
+craft 2 x stone slab from stone
+	ramp= 1 slab, full stone block (artificial)= 2 slabs
+
 draw custom scene in editor ( auto generate tile set, editor button) on big tilemap and auto slice into chunks on start
 custom_level.tscn
 
 add sounds
 
-challenges ( game mode )
+challenges ( game mode with objective message on start up )
  
 character selection screen
-
-build menu, place (artificial) blocks and block entities
 
 mob spawner density etc checks
 
