@@ -95,4 +95,5 @@ func get_block_from_name(_name: String)-> Block:
 	for block in blocks:
 		if block.name == _name:
 			return block
+	push_warning("get_block_from_name(%s): cant find block" % [_name])
 	return null
