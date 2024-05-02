@@ -46,7 +46,7 @@ func generate_tiles():
 			var global_pos= get_global_pos(local_pos)
 			var block_id: int= generator.get_block_id(global_pos)
 			var block: Block= DataManager.get_block(block_id)
-			set_block(local_pos, block, false)
+			set_block(block, local_pos, Block.State.NONE, false)
 	ignore_changes= false
 
 
@@ -62,7 +62,7 @@ func tick_blocks():
 			unschedule_block(block_pos)
 
 
-func set_block(tile_pos: Vector2i, block: Block, trigger_neighbor_update: bool= true):
+func set_block(block: Block, tile_pos: Vector2i, state: Block.State= Block.State.NONE, trigger_neighbor_update: bool= true):
 	if not block:
 		delete_block(tile_pos, trigger_neighbor_update)
 		return
@@ -168,7 +168,7 @@ func restore(storage: ChunkStorage):
 	var tiles: Array[int]= storage.tiles.duplicate()
 	for x in SIZE:
 		for y in SIZE:
-			set_block(Vector2i(x, y), DataManager.get_block(tiles.pop_front()), false)
+			set_block(DataManager.get_block(tiles.pop_front()), Vector2i(x, y), Block.State.NONE, false)
 	ignore_changes= false
 
 

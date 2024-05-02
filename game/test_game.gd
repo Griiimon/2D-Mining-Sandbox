@@ -3,7 +3,7 @@ extends Game
 
 func _ready():
 	super()
-	world.spawn_block_entity(Vector2i(-7, 6), load("res://game/block entities/furnace/furnace.tscn"))
+	world.spawn_block_entity(load("res://game/block entities/furnace/furnace.tscn"), Vector2i(-7, 6))
 
 
 func post_init():
@@ -11,8 +11,8 @@ func post_init():
 	var y:= 8
 	for x in 12:
 		world.delete_block(Vector2i(x, y - 1), false)
-		world.set_block(Vector2i(x, y), water_block, false)
+		world.set_block(water_block, Vector2i(x, y), Block.State.NONE, false)
 		if x > 3:
-			world.set_block(Vector2i(x, y + 1), water_block, false)
+			world.set_block(water_block, Vector2i(x, y + 1), Block.State.NONE, false)
 			if x > 6:
-				world.set_block(Vector2i(x, y + 2), water_block, false)
+				world.set_block(water_block, Vector2i(x, y + 2), Block.State.NONE, false)

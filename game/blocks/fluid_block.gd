@@ -28,7 +28,7 @@ func on_tick(world: World, block_pos: Vector2i):
 			var split_product: Block= get_split_block(len(potential_split_pos))
 			
 			for pos in potential_split_pos:
-				world.set_block(pos, split_product)
+				world.set_block(split_product, pos)
 			
 			replace(world, block_pos, get_split_block())
 			

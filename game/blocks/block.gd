@@ -1,6 +1,9 @@
 class_name Block
 extends MyNamedResource
 
+enum State { NONE, FLIP_HORIZONTAL, FLIP_VERTICAL, ROTATE_90_DEG, ROTATE_180_DEG, ROTATE_270_DEG }
+
+
 @export var texture: Texture2D
 @export var drop: Item
 @export var hardness: float= 0.5
@@ -22,8 +25,8 @@ extends MyNamedResource
 @export var can_flip_vertical: bool= false
 @export var can_rotate: bool= false
 
-
 @export var custom_collision_polygon: PackedVector2Array
+
 
 
 func has_tag(tag_name: String)-> bool:
@@ -55,12 +58,12 @@ func on_neighbor_update(_world: World, _block_pos: Vector2i, _neighbor_pos: Vect
 
 func move(world: World, block_pos: Vector2i, direction: Vector2i):
 	world.delete_block(block_pos)
-	world.set_block(block_pos + direction, self)
+	world.set_block(self, block_pos + direction)
 
 
 func replace(world: World, block_pos: Vector2i, new_block: Block):
 	world.delete_block(block_pos)
-	world.set_block(block_pos, new_block)
+	world.set_block(new_block, block_pos)
 
 
 func is_solid()-> bool:

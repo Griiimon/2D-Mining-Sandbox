@@ -165,10 +165,10 @@ func get_block_hardness(tile_pos: Vector2i)-> float:
 	return block.hardness
 
 
-func set_block(tile_pos: Vector2i, block: Block, neighbor_update: bool= true):
+func set_block(block: Block, tile_pos: Vector2i, state: Block.State= Block.State.NONE, neighbor_update: bool= true):
 	var chunk: WorldChunk= get_chunk_at(tile_pos)
 	if chunk:
-		chunk.set_block(chunk.get_local_pos(tile_pos), block, neighbor_update)
+		chunk.set_block(block, chunk.get_local_pos(tile_pos), state, neighbor_update)
 
 
 func delete_block(tile_pos: Vector2i, neighbor_update: bool= true):
@@ -214,7 +214,7 @@ func unregister_item(item: WorldItem, chunk: WorldChunk):
 	chunk.items.erase(item)
 
 
-func spawn_block_entity(tile_pos: Vector2i, entity_scene: PackedScene):
+func spawn_block_entity(entity_scene: PackedScene, tile_pos: Vector2i):
 	var entity: BaseBlockEntity= entity_scene.instantiate()
 	entity.position= tile_pos * TILE_SIZE
 	block_entities.add_child(entity)
