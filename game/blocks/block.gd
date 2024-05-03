@@ -66,7 +66,7 @@ func replace(world: World, block_pos: Vector2i, new_block: Block):
 	world.set_block(new_block, block_pos)
 
 
-func get_state_from_alt(alt_tile: int)-> State:
+static func get_state_from_alt(alt_tile: int)-> State:
 	if alt_tile & TileSetAtlasSource.TRANSFORM_FLIP_H:
 		return Block.State.FLIP_HORIZONTAL
 	elif alt_tile & TileSetAtlasSource.TRANSFORM_FLIP_V:
@@ -74,7 +74,7 @@ func get_state_from_alt(alt_tile: int)-> State:
 	return Block.State.NONE
 
 
-func get_alt_from_state(state: State)-> int:
+static func get_alt_from_state(state: State)-> int:
 	var alt:= 0
 	match state:
 		Block.State.FLIP_HORIZONTAL:
