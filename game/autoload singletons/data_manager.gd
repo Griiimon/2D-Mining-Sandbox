@@ -1,8 +1,5 @@
-#@tool
 extends Node
 
-#const TILE_SET_PATH= "res://resources/tile_set.tres"
-#const ORIG_TILE_SET_PATH= "res://resources/orig_tile_set.tres"
 
 @export var tile_set: TileSet
 @export var orig_tile_set: TileSet
@@ -23,8 +20,6 @@ var furnace_recipes: Dictionary
 
 
 var mobs: Array[MobDefinition]
-
-#var tile_set: TileSet
 
 
 
