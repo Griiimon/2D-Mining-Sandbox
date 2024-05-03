@@ -73,6 +73,7 @@ func handle_block_input():
 func handle_block_pos_update():
 	block_pos= empty_tile
 	block_sprite.position= player.get_world().map_to_local(block_pos)
+	block_sprite.show()
 
 
 func handle_block_entity_input():
@@ -94,8 +95,8 @@ func handle_block_entity_pos_update():
 	
 	if valid_pos == null: return
 	
-	ghost.show()
 	ghost.position= get_world().map_to_local(valid_pos) - Vector2.ONE * World.TILE_SIZE / 2
+	ghost.show()
 	
 	DebugHud.send("Ghost Pos", str(ghost.position))
 
@@ -118,11 +119,12 @@ func init_block(_block: Block):
 	block= _block
 	block_sprite= Sprite2D.new()
 	block_sprite.texture= block.texture
-	block_sprite.modulate= get_ghost_modulate_color(false)
+	block_sprite.modulate= get_ghost_modulate_color(true)
 	add_child(block_sprite)
 	
 	block_sprite.top_level= true
- 
+	block_sprite.hide()
+
 
 func set_block_pos(tile_pos: Vector2i):
 	if block_pos == tile_pos: return
