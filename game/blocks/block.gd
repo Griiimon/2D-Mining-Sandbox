@@ -18,12 +18,9 @@ enum State { NONE, FLIP_HORIZONTAL, FLIP_VERTICAL, ROTATE_90_DEG, ROTATE_180_DEG
 
 @export_category("Special")
 @export var schedule_tick: bool= false
-@export var is_artificial: bool= false
 @export var is_air: bool= false
 @export var is_fluid: bool= false
-@export var can_flip_horizontal: bool= false
-@export var can_flip_vertical: bool= false
-@export var can_rotate: bool= false
+
 
 @export var custom_collision_polygon: PackedVector2Array
 

@@ -1,10 +1,14 @@
-[gd_resource type="Resource" script_class="Block" load_steps=3 format=3 uid="uid://dgy1dr3pel8e5"]
+[gd_resource type="Resource" script_class="ArtificialBlock" load_steps=3 format=3 uid="uid://dgy1dr3pel8e5"]
 
-[ext_resource type="Script" path="res://game/blocks/block.gd" id="1_cor8b"]
+[ext_resource type="Script" path="res://game/blocks/artificial_block.gd" id="1_kggtx"]
 [ext_resource type="Texture2D" uid="uid://o2dedghpikjq" path="res://game/blocks/stone ramp/stone_ramp.png" id="2_1c6xs"]
 
 [resource]
-script = ExtResource("1_cor8b")
+script = ExtResource("1_kggtx")
+ingredients = Array[Resource("res://game/player/inventory/inventory_item.gd")]([])
+can_flip_horizontal = true
+can_flip_vertical = false
+can_rotate = false
 texture = ExtResource("2_1c6xs")
 hardness = 0.5
 has_collision = true
@@ -14,11 +18,7 @@ mining_tool = 1
 other_tool_penalty = 4.0
 other_tool_produces_drops = false
 schedule_tick = false
-is_artificial = true
 is_air = false
 is_fluid = false
-can_flip_horizontal = true
-can_flip_vertical = false
-can_rotate = false
 custom_collision_polygon = PackedVector2Array(-16, -16, 16, 16, 0, 16, -16, -16)
 name = "stone_ramp"
