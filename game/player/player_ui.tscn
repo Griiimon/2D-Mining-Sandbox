@@ -50,7 +50,7 @@ script = ExtResource("1_cefh8")
 hotbar_slot_scene = ExtResource("2_8gj2r")
 inventory_slot_scene = ExtResource("3_gh4v7")
 
-[node name="MarginContainer Hotbar" type="MarginContainer" parent="."]
+[node name="Hotbar" type="MarginContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -65,18 +65,18 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/margin_bottom = 20
 
-[node name="Hotbar" type="PanelContainer" parent="MarginContainer Hotbar"]
+[node name="Hotbar" type="PanelContainer" parent="Hotbar"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_82jp2")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer Hotbar/Hotbar"]
+[node name="MarginContainer" type="MarginContainer" parent="Hotbar/Hotbar"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBox Hotbar" type="HBoxContainer" parent="MarginContainer Hotbar/Hotbar/MarginContainer"]
+[node name="HBox Hotbar" type="HBoxContainer" parent="Hotbar/Hotbar/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
@@ -101,23 +101,13 @@ label_settings = SubResource("LabelSettings_cj0bk")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer Interaction Hint" type="CenterContainer" parent="."]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -5.0
-offset_right = 5.0
-offset_bottom = 23.0
-grow_horizontal = 2
-
-[node name="MarginContainer Health" type="MarginContainer" parent="."]
+[node name="Health" type="MarginContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 30
 
-[node name="ProgressBar Health" type="ProgressBar" parent="MarginContainer Health"]
+[node name="ProgressBar Health" type="ProgressBar" parent="Health"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(500, 20)
@@ -128,7 +118,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_noruo")
 value = 90.0
 show_percentage = false
 
-[node name="CenterContainer Inventory" type="CenterContainer" parent="."]
+[node name="Inventory" type="CenterContainer" parent="."]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,21 +127,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer Inventory"]
+[node name="PanelContainer" type="PanelContainer" parent="Inventory"]
 custom_minimum_size = Vector2(800, 400)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer Inventory/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Inventory/PanelContainer"]
 layout_mode = 2
 
-[node name="Crafting UI" parent="CenterContainer Inventory/PanelContainer/HBoxContainer" instance=ExtResource("4_xvfww")]
+[node name="Crafting UI" parent="Inventory/PanelContainer/HBoxContainer" instance=ExtResource("4_xvfww")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VSeparator" type="VSeparator" parent="CenterContainer Inventory/PanelContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Inventory/PanelContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer Inventory" type="MarginContainer" parent="CenterContainer Inventory/PanelContainer/HBoxContainer"]
+[node name="MarginContainer Inventory" type="MarginContainer" parent="Inventory/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -159,18 +149,18 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 15
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer Inventory/PanelContainer/HBoxContainer/MarginContainer Inventory"]
+[node name="PanelContainer" type="PanelContainer" parent="Inventory/PanelContainer/HBoxContainer/MarginContainer Inventory"]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="CenterContainer Inventory/PanelContainer/HBoxContainer/MarginContainer Inventory/PanelContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Inventory/PanelContainer/HBoxContainer/MarginContainer Inventory/PanelContainer"]
 layout_mode = 2
 
-[node name="GridContainer Inventory" type="GridContainer" parent="CenterContainer Inventory/PanelContainer/HBoxContainer/MarginContainer Inventory/PanelContainer/CenterContainer"]
+[node name="GridContainer Inventory" type="GridContainer" parent="Inventory/PanelContainer/HBoxContainer/MarginContainer Inventory/PanelContainer/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 6
 theme_override_constants/v_separation = 6
 columns = 8
 
-[node name="CenterContainer Build Menu" parent="." instance=ExtResource("5_0rt6d")]
+[node name="Build Menu" parent="." instance=ExtResource("5_0rt6d")]
 script = ExtResource("6_k7hvb")

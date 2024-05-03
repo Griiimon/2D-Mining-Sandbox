@@ -13,7 +13,7 @@ const HOTBAR_SIZE= 9
 @onready var hbox_hotbar = %"HBox Hotbar"
 @onready var interaction_hint: Label= %"Interaction Hint"
 @onready var health_bar: ProgressBar = %"ProgressBar Health"
-@onready var main_inventory = $"CenterContainer Inventory"
+@onready var main_inventory = $"Inventory"
 @onready var grid_container_inventory: GridContainer = %"GridContainer Inventory"
 @onready var crafting_ui = %"Crafting UI"
 
