@@ -17,7 +17,7 @@ spawn_clearing_radius = 4
 [sub_resource type="Resource" id="Resource_2wtjc"]
 script = ExtResource("2_43t25")
 instant_mine = false
-fly = true
+fly = false
 
 [node name="Game" type="Node" node_paths=PackedStringArray("world")]
 script = ExtResource("1_blqru")
