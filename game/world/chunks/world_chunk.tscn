@@ -11,5 +11,6 @@ layer_1/z_index = 20
 layer_1/navigation_enabled = false
 layer_1/tile_data = PackedInt32Array()
 script = ExtResource("2_xk4iw")
+coords = null
 auto_generate_tiles = false
 block_break_particles = ExtResource("3_d7efb")
