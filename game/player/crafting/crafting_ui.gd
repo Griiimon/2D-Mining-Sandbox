@@ -6,6 +6,7 @@ signal craft(recipe, count)
 @export var craft_list_item_scene: PackedScene
 
 @onready var vbox_list = %"VBoxContainer Crafting List"
+@onready var ingredients = %Ingredients
 @onready var vbox_ingredients = %"VBoxContainer Crafting Ingredients"
 @onready var button_craft: Button = %"Button Craft"
 @onready var spinbox_products: SpinBox = %"SpinBox Products"
@@ -15,6 +16,9 @@ var selected_item: CraftingListItem
 
 
 func build():
+	selected_item= null
+	button_craft.disabled= true
+
 	Utils.free_children(vbox_list)
 
 	for recipe in DataManager.crafting_recipes:
@@ -22,6 +26,8 @@ func build():
 		vbox_list.add_child(item)
 		item.init(recipe, Global.game.player)
 		item.selected.connect(select_item.bind(item))
+
+	ingredients.hide()
 
 
 func select_item(item: CraftingListItem):
@@ -41,10 +47,12 @@ func set_ingredients(recipe: CraftingRecipe):
 		var label:= Label.new()
 		label.text= "%dx %s" % [ingredient.count, ingredient.item.get_display_name()]
 		vbox_ingredients.add_child(label)
+	ingredients.show()
 
 
 func _on_button_craft_pressed():
-	craft.emit(selected_item.recipe, spinbox_products.value)
+	if selected_item and is_instance_valid(selected_item):
+		craft.emit(selected_item.recipe, spinbox_products.value)
 
 
 func _on_visibility_changed():

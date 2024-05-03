@@ -406,6 +406,7 @@ func init_death():
 
 func craft(recipe: CraftingRecipe, count: int):
 	crafting.add(recipe, count)
+	ui.crafting_ui.build()
 
 
 func is_in_tile(tile_pos: Vector2i)-> bool:
