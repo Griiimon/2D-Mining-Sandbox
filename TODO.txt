@@ -3,8 +3,6 @@ flowing water (down) on alternate tile?
 
 nodedebugger msg = send as in debughud
 
-store & restore block state
-
 craft 2 x stone slab from stone
 	ramp= 1 slab, full stone block (artificial)= 2 slabs
 
@@ -19,11 +17,10 @@ character selection screen
 
 mob spawner density etc checks
 
-modularize UI into more custom scenes
-
 
 -------- v5 ---------------
 
+modularize UI into more custom scenes
 
 photo booth tool for making profile pictures of characters etc 
 
