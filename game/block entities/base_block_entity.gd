@@ -13,8 +13,8 @@ var foundation: Array[Vector2i]
 
 func _ready():
 	assert(type)
-	collision_shape.shape.size= size * World.TILE_SIZE
-	collision_shape.position= size * World.TILE_SIZE / 2
+	collision_shape.shape.size= type.size * World.TILE_SIZE
+	collision_shape.position= type.size * World.TILE_SIZE / 2
 	
 
 func _exit_tree():
@@ -22,7 +22,7 @@ func _exit_tree():
 
 
 func on_despawn():
-	if register_tick:
+	if type.register_tick:
 		Global.game.world.unregister_block_entity(self)
 		for tile in foundation:
 			Global.game.world.unsubscribe_from_block_change(tile, self)
@@ -46,4 +46,4 @@ func check_foundation(world: World, auto_delete: bool= true):
 
 
 func get_display_name()-> String:
-	return entity_name.capitalize()
+	return type.get_display_name()

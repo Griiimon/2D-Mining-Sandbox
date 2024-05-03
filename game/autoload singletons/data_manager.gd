@@ -5,6 +5,7 @@ extends Node
 @export var orig_tile_set: TileSet
 @export_dir var blocks_path: String
 @export var blocks_suffix: String
+@export_dir var block_entities_path: String
 @export_dir var crafting_recipe_path: String
 @export_dir var furnace_recipe_path: String
 @export_dir var mobs_path: String
@@ -14,6 +15,8 @@ extends Node
 
 var blocks: Array[Block]
 var blocks_lookup: Dictionary
+
+var block_entities: Array[BlockEntityDefinition]
 
 var crafting_recipes: Array[CraftingRecipe]
 var furnace_recipes: Dictionary
@@ -30,6 +33,8 @@ func _ready():
 		blocks_lookup[blocks[i]]= i
 
 	if Engine.is_editor_hint(): return
+
+	load_resource_folder_into_array(block_entities_path, block_entities)
 
 	load_resource_folder_into_array(crafting_recipe_path, crafting_recipes)
 

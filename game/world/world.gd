@@ -218,16 +218,17 @@ func unregister_item(item: WorldItem, chunk: WorldChunk):
 	chunk.items.erase(item)
 
 
-func spawn_block_entity(entity_scene: PackedScene, tile_pos: Vector2i):
-	var entity: BaseBlockEntity= entity_scene.instantiate()
+func spawn_block_entity(definition: BlockEntityDefinition, tile_pos: Vector2i):
+	var entity: BaseBlockEntity= definition.scene.instantiate()
+	entity.type= definition
 	entity.position= tile_pos * TILE_SIZE
 	block_entities.add_child(entity)
 	
-	if entity.register_tick:
+	if definition.register_tick:
 		tick_entities.append(entity)
 
-	for x in entity.size.x:
-		entity.add_foundation_tile(Vector2i(tile_pos.x + x, tile_pos.y + entity.size.y))
+	for x in definition.size.x:
+		entity.add_foundation_tile(Vector2i(tile_pos.x + x, tile_pos.y + definition.size.y))
 	entity.finish_foundation(self)
 
 

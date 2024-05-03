@@ -11,13 +11,16 @@ class Buildable:
 		type= _type
 		ptr= _ptr
 
+
 	func can_build(inventory: Inventory)-> bool:
 		var ingredients: Array[InventoryItem]
 		match type:
 			Type.Block:
 				ingredients= (ptr as ArtificialBlock).ingredients
 			Type.Entity:
-				ingredients= 
+				ingredients= (ptr as BlockEntityDefinition).ingredients
+
+		return inventory.has_ingredients(ingredients)
 
 
 @onready var item_list = %ItemList
@@ -37,8 +40,8 @@ func init():
 		buildables.append(Buildable.new(Buildable.Type.Entity, entity))
 
 
-func build_list(player: BasePlayer)
+func build_list(player: BasePlayer):
 	item_list.clear()
 	
-	for buildable in buildables:
+	#for buildable in buildables:
 		

@@ -13,9 +13,6 @@ collision_layer = 128
 script = ExtResource("2_i6m4i")
 default_texture = ExtResource("3_uaepq")
 working_texture = ExtResource("4_7nije")
-entity_name = "furnace"
-size = Vector2i(2, 2)
-register_tick = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_uaepq")
