@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BlockEntityDefinition" load_steps=3 format=3 uid="uid://qyy7pybmchnl"]
+
+[ext_resource type="PackedScene" uid="uid://bonrl4spbueh8" path="res://game/block entities/furnace/furnace.tscn" id="1_pi57r"]
+[ext_resource type="Script" path="res://game/block entities/block_entity_definition.gd" id="1_ryrt4"]
+
+[resource]
+script = ExtResource("1_ryrt4")
+scene = ExtResource("1_pi57r")
+size = Vector2i(2, 2)
+register_tick = true
+name = "furnace"
