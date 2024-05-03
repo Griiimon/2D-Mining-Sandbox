@@ -70,14 +70,8 @@ func set_block(block: Block, tile_pos: Vector2i, state: Block.State= Block.State
 	var block_id: int= DataManager.get_block_id(block)
 
 	tile_pos= get_local_pos(tile_pos)
-	var alternate_id:= 0
-	match state:
-		Block.State.FLIP_HORIZONTAL:
-			alternate_id+= TileSetAtlasSource.TRANSFORM_FLIP_H
-		Block.State.FLIP_VERTICAL:
-			alternate_id+= TileSetAtlasSource.TRANSFORM_FLIP_V
-		
-	set_cell(TERRAIN_LAYER, tile_pos, block_id, Vector2i.ZERO, alternate_id)
+
+	set_cell(TERRAIN_LAYER, tile_pos, block_id, Vector2i.ZERO, Block.get_alt_from_state(state))
 	if block.is_fluid:
 		set_cell(FLUID_LAYER, tile_pos, block_id, Vector2i.ZERO)
 	
@@ -166,7 +160,11 @@ func save()-> ChunkStorage:
 	var storage:= ChunkStorage.new()
 	for x in SIZE:
 		for y in SIZE:
-			storage.tiles.append(get_block_id(Vector2i(x, y)))
+			var tile_pos:= Vector2i(x, y)
+			storage.tiles.append(get_block_id(tile_pos))
+			var alternative_tile: int= get_cell_alternative_tile(TERRAIN_LAYER, tile_pos)
+			if alternative_tile:
+				storage.alternative_tiles[tile_pos]= alternative_tile
 	return storage
 
 
@@ -175,7 +173,11 @@ func restore(storage: ChunkStorage):
 	var tiles: Array[int]= storage.tiles.duplicate()
 	for x in SIZE:
 		for y in SIZE:
-			set_block(DataManager.get_block(tiles.pop_front()), Vector2i(x, y), Block.State.NONE, false)
+			var tile_pos:= Vector2i(x, y)
+			var alternative_tile:= 0
+			if storage.alternative_tiles.has(tile_pos):
+				alternative_tile= storage.alternative_tiles[tile_pos]
+			set_block(DataManager.get_block(tiles.pop_front()), tile_pos, Block.get_state_from_alt(alternative_tile), false)
 	ignore_changes= false
 
 
