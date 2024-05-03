@@ -1,8 +1,11 @@
-[gd_scene format=3 uid="uid://c6l1jqs4ln37t"]
+[gd_scene load_steps=2 format=3 uid="uid://c6l1jqs4ln37t"]
 
-[node name="CenterContainer Build Menu" type="CenterContainer"]
+[ext_resource type="Script" path="res://game/player/build_menu.gd" id="1_ghuom"]
+
+[node name="Build Menu" type="CenterContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_ghuom")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
