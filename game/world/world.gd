@@ -111,8 +111,11 @@ func get_tile(pos: Vector2)-> Vector2i:
 	if not chunk: 
 		assert(false)
 		return Vector2i.ZERO
-	DebugHud.send("get_tile() chunk", str(chunk.coords))
 	return chunk.local_to_map(pos)
+
+
+func local_to_map(pos: Vector2)-> Vector2i:
+	return get_tile(pos)
 
 
 func get_chunk_coords_at(tile_pos: Vector2i)-> Vector2i:
