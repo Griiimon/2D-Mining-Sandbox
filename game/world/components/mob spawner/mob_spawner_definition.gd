@@ -6,6 +6,8 @@ enum Faction { FRIENDLY, NEUTRAL, HOSTILE }
 @export var faction: Faction
 @export var probability: float= 10.0
 @export var empty_radius: int= 3
+@export var min_distance_to_same: int= 20
+@export var min_distance_to_other: int= 10
 
 
 
@@ -17,6 +19,3 @@ func can_spawn(tile: Vector2i, world: World)-> bool:
 		return false
 	
 	return true
-	
-	
-	

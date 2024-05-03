@@ -247,6 +247,8 @@ func unsubscribe_from_block_change(block_pos: Vector2i, obj: Object):
 	
 func spawn_mob(mob_def: MobDefinition, tile: Vector2i):
 	var mob= mob_def.scene.instantiate()
+	mob.type= mob_def
+	mob.world= self
 	mob.position= map_to_local(tile)
 	mobs.add_child(mob)
 
@@ -255,6 +257,14 @@ func remove_mobs_in_rect(rect: Rect2):
 	for mob in mobs.get_children():
 		if rect.has_point(mob.global_position):
 			mob.queue_free()
+
+
+func get_closest_mob(tile: Vector2i, type: MobDefinition)-> BaseMob:
+	var closest: BaseMob= null
+	for mob in mobs:
+		if not closest or closest.distance_to_tile(tile) > mob.distance_to_tile(tile):
+			closest= mob
+	return closest
 
 
 func explosion(center: Vector2i, damage: float, radius: float, block_dmg_factor: float= 1):
