@@ -107,11 +107,12 @@ func execute_block_updates():
 
 
 func get_tile(pos: Vector2)-> Vector2i:
-	var chunk: WorldChunk= get_chunk_at((pos / WorldChunk.SIZE).floor())
-	if not chunk: 
-		assert(false)
-		return Vector2i.ZERO
-	return chunk.local_to_map(pos)
+	#var chunk: WorldChunk= get_chunk_at((pos / WorldChunk.SIZE).floor())
+	#if not chunk: 
+		#assert(false)
+		#return Vector2i.ZERO
+	#return chunk.local_to_map(pos)
+	return (pos / TILE_SIZE).floor()
 
 
 func local_to_map(pos: Vector2)-> Vector2i:
@@ -262,11 +263,15 @@ func remove_mobs_in_rect(rect: Rect2):
 			mob.queue_free()
 
 
-func get_closest_mob(tile: Vector2i, type: MobDefinition)-> BaseMob:
+func get_closest_mob(tile: Vector2i, type: MobDefinition= null)-> BaseMob:
 	var closest: BaseMob= null
-	for mob in mobs:
+	for mob in mobs.get_children():
+		if type and type != mob.type:
+			continue
+			
 		if not closest or closest.distance_to_tile(tile) > mob.distance_to_tile(tile):
 			closest= mob
+
 	return closest
 
 
