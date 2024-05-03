@@ -70,7 +70,14 @@ func set_block(block: Block, tile_pos: Vector2i, state: Block.State= Block.State
 	var block_id: int= DataManager.get_block_id(block)
 
 	tile_pos= get_local_pos(tile_pos)
-	set_cell(TERRAIN_LAYER, tile_pos, block_id, Vector2i.ZERO)
+	var alternate_id:= 0
+	match state:
+		Block.State.FLIP_HORIZONTAL:
+			alternate_id+= TileSetAtlasSource.TRANSFORM_FLIP_H
+		Block.State.FLIP_VERTICAL:
+			alternate_id+= TileSetAtlasSource.TRANSFORM_FLIP_V
+		
+	set_cell(TERRAIN_LAYER, tile_pos, block_id, Vector2i.ZERO, alternate_id)
 	if block.is_fluid:
 		set_cell(FLUID_LAYER, tile_pos, block_id, Vector2i.ZERO)
 	
