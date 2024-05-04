@@ -1,18 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6l1jqs4ln37t"]
+[gd_scene load_steps=3 format=3 uid="uid://c6l1jqs4ln37t"]
 
 [ext_resource type="Script" path="res://game/player/build_menu.gd" id="1_ghuom"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qab31"]
+bg_color = Color(0.870588, 0.870588, 0.870588, 0.737255)
+
 [node name="Build Menu" type="CenterContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_ghuom")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qab31")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
 
 [node name="ItemList" type="ItemList" parent="PanelContainer/MarginContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 500)
 layout_mode = 2
+allow_search = false
+max_columns = 0

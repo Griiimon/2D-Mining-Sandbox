@@ -5,17 +5,18 @@ signal hotbar_slot_changed
 
 const HOTBAR_SIZE= 9
 
-@export var player: BasePlayer
 @export var health: HealthComponent
 @export var hotbar_slot_scene: PackedScene
 @export var inventory_slot_scene: PackedScene
 
+@onready var player: BasePlayer= get_parent()
 @onready var hbox_hotbar = %"HBox Hotbar"
 @onready var interaction_hint: Label= %"Interaction Hint"
 @onready var health_bar: ProgressBar = %"ProgressBar Health"
 @onready var main_inventory = $"Inventory"
 @onready var grid_container_inventory: GridContainer = %"GridContainer Inventory"
-@onready var crafting_ui = %"Crafting UI"
+@onready var crafting_ui: CraftingUI = %"Crafting UI"
+@onready var build_menu: BuildMenu = $"Build Menu"
 
 
 var current_hotbar_slot_idx: int: set= set_current_hotbar_slot
@@ -156,3 +157,11 @@ func update_inventory():
 	update_hotbar()
 	update_main_inventory()
 	crafting_ui.build()
+
+
+func toggle_build_menu():
+	if build_menu.visible:
+		build_menu.hide()
+	else:
+		build_menu.build_list(player)
+		build_menu.show()

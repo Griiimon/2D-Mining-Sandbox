@@ -7,6 +7,9 @@ signal charge_item
 
 
 func on_physics_process(delta: float):
+	if Input.is_action_just_pressed("toggle_build_menu"):
+		player.ui.toggle_build_menu()
+
 	interaction_logic()
 	
 	if player.ray_cast.is_colliding() and is_raycast_hitting_terrain():

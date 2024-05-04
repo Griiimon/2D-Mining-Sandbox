@@ -23,10 +23,25 @@ class Buildable:
 		return inventory.has_ingredients(ingredients)
 
 
+	func get_display_name()-> String:
+		match type:
+			Type.Block:
+				return (ptr as ArtificialBlock).get_display_name()
+			Type.Entity:
+				return (ptr as BlockEntityDefinition).get_display_name()
+		assert(false)
+		return ""
+
+
+
 @onready var item_list = %ItemList
 
 
 var buildables: Array[Buildable]
+
+
+func _ready():
+	init()
 
 
 func init():
@@ -43,5 +58,5 @@ func init():
 func build_list(player: BasePlayer):
 	item_list.clear()
 	
-	#for buildable in buildables:
-		
+	for buildable in buildables:
+		item_list.add_item(buildable.get_display_name())
