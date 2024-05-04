@@ -13,14 +13,13 @@ add sounds
 
 challenges ( game mode with objective message on start up )
  
-character selection screen
+character selection screen ( ItemList )
 
-mob spawner density etc checks
+modularize UI into more custom scenes
 
 
 -------- v5 ---------------
 
-modularize UI into more custom scenes
 
 photo booth tool for making profile pictures of characters etc 
 
