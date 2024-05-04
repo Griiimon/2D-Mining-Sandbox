@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://mujvas0562ey"]
+[gd_scene load_steps=3 format=3 uid="uid://2ejptqf8her3"]
 
-[ext_resource type="Script" path="res://game/player/crafting/craft_list_item.gd" id="1_y2jgx"]
+[ext_resource type="Script" path="res://game/player/ui_list_item.gd" id="1_dj0sy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7bwh3"]
 bg_color = Color(0.6, 0.6, 0.6, 0.27451)
@@ -9,9 +9,9 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 
-[node name="Crafting List Item" type="PanelContainer"]
+[node name="UI List Item" type="PanelContainer"]
 theme_override_styles/panel = SubResource("StyleBoxFlat_7bwh3")
-script = ExtResource("1_y2jgx")
+script = ExtResource("1_dj0sy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

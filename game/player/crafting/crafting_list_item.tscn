@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bduueya3vfmwh"]
+
+[ext_resource type="PackedScene" uid="uid://2ejptqf8her3" path="res://game/player/ui_list_item.tscn" id="1_4ytru"]
+[ext_resource type="Script" path="res://game/player/crafting/craft_list_item.gd" id="2_f5q5x"]
+
+[node name="Crafting List Item" instance=ExtResource("1_4ytru")]
+script = ExtResource("2_f5q5x")
