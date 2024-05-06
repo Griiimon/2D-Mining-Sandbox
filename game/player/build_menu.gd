@@ -1,43 +1,16 @@
 extends Control
 class_name BuildMenu
 
-class Buildable:
-	enum Type { Block, Entity }
-
-	var type: Type
-	var ptr
-
-	func _init(_type: Type, _ptr):
-		type= _type
-		ptr= _ptr
+signal select_buildable(buildable)
 
 
-	func can_build(inventory: Inventory)-> bool:
-		var ingredients: Array[InventoryItem]
-		match type:
-			Type.Block:
-				ingredients= (ptr as ArtificialBlock).ingredients
-			Type.Entity:
-				ingredients= (ptr as BlockEntityDefinition).ingredients
+@export var build_list_item_scene: PackedScene
 
-		return inventory.has_ingredients(ingredients)
-
-
-	func get_display_name()-> String:
-		match type:
-			Type.Block:
-				return (ptr as ArtificialBlock).get_display_name()
-			Type.Entity:
-				return (ptr as BlockEntityDefinition).get_display_name()
-		assert(false)
-		return ""
-
-
-
-@onready var item_list = %ItemList
+@onready var list = %"VBoxContainer Buildables"
 
 
 var buildables: Array[Buildable]
+
 
 
 func _ready():
@@ -49,14 +22,22 @@ func init():
 	
 	for block in DataManager.blocks:
 		if block is ArtificialBlock:
-			buildables.append(Buildable.new(Buildable.Type.Block, block))
+			buildables.append(Buildable.new(Buildable.Type.BLOCK, block))
 
 	for entity in DataManager.block_entities:
-		buildables.append(Buildable.new(Buildable.Type.Entity, entity))
+		buildables.append(Buildable.new(Buildable.Type.ENTITY, entity))
 
 
 func build_list(player: BasePlayer):
-	item_list.clear()
-	
+	Utils.free_children(list)
+
 	for buildable in buildables:
-		item_list.add_item(buildable.get_display_name())
+		var item: BuildListItem= build_list_item_scene.instantiate()
+		list.add_child(item)
+		item.init(buildable, Global.game.player)
+		item.selected.connect(select_item.bind(item))
+
+
+func select_item(item: BuildListItem):
+	hide()
+	select_buildable.emit(item.buildable)

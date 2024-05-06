@@ -163,3 +163,5 @@ columns = 8
 
 [node name="Build Menu" parent="." instance=ExtResource("5_0rt6d")]
 visible = false
+
+[connection signal="select_buildable" from="Build Menu" to="." method="_on_build_menu_select_buildable"]

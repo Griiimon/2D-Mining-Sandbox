@@ -1,4 +1,5 @@
 extends PlayerState
+class_name PlayerBuildingState
 
 signal build_entity(scene, tile_pos)
 signal build_block(block, block_state, tile_pos)
@@ -7,7 +8,7 @@ signal cancel
 enum Type { ENTITY, BLOCK }
 
 var type: Type
-var entity_scene: PackedScene
+var block_entity_definition: BlockEntityDefinition
 var ghost: BaseBlockEntity
 var ghost_orig_collision_layer: int
 
@@ -20,12 +21,19 @@ var empty_tile: Vector2i
 
 
 
-func on_enter():
-	init_block(DataManager.get_block_from_name("stone_ramp"))
+func init(buildable: Buildable):
+	match buildable.type:
+		Buildable.Type.BLOCK:
+			init_block(buildable.ptr)
+		Buildable.Type.ENTITY:
+			init_block_entity(buildable.ptr)
 
 
 func on_exit():
-	block_sprite.queue_free()
+	if ghost:
+		ghost.queue_free()
+	if block_sprite:
+		block_sprite.queue_free()
 
 
 func on_physics_process(delta: float):
@@ -78,15 +86,16 @@ func handle_block_pos_update():
 
 func handle_block_entity_input():
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		build_entity.emit(entity_scene, empty_tile)
+		build_entity.emit(block_entity_definition, empty_tile)
 
 
 func handle_block_entity_pos_update():
 	var valid_pos= null
 	
+	var size: Vector2i= block_entity_definition.size
 	# TODO remove duplicate positions ( if size.x/y == 1 )
-	var test_positions= [ empty_tile, empty_tile - Vector2i(ghost.size.x - 1, 0),\
-			empty_tile - Vector2i(0, ghost.size.y - 1), empty_tile - ghost.size - Vector2i.ONE]
+	var test_positions= [ empty_tile, empty_tile - Vector2i(size.x - 1, 0),\
+			empty_tile - Vector2i(0, size.y - 1), empty_tile - size - Vector2i.ONE]
 
 	for pos in test_positions:
 		if player.get_world().can_spawn_block_entity_at(ghost, pos):
@@ -101,10 +110,11 @@ func handle_block_entity_pos_update():
 	DebugHud.send("Ghost Pos", str(ghost.position))
 
 
-func init_block_entity(scene: PackedScene):
+func init_block_entity(be_definition: BlockEntityDefinition):
 	type= Type.ENTITY
-	ghost= scene.instantiate()
-	
+	block_entity_definition= be_definition
+	ghost= be_definition.scene.instantiate()
+	ghost.type= be_definition
 	ghost_orig_collision_layer= ghost.collision_layer
 	ghost.collision_layer= 0
 	add_child(ghost)

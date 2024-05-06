@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnlnuruo3l4ha"]
+
+[ext_resource type="PackedScene" uid="uid://2ejptqf8her3" path="res://game/player/ui_list_item.tscn" id="1_w7g2u"]
+[ext_resource type="Script" path="res://game/player/build_list_item.gd" id="2_7f1q8"]
+
+[node name="Build List Item" instance=ExtResource("1_w7g2u")]
+script = ExtResource("2_7f1q8")

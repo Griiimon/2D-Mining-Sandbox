@@ -2,6 +2,8 @@ class_name UI
 extends CanvasLayer
 
 signal hotbar_slot_changed
+signal select_buildable(buildable)
+
 
 const HOTBAR_SIZE= 9
 
@@ -161,7 +163,18 @@ func update_inventory():
 
 func toggle_build_menu():
 	if build_menu.visible:
-		build_menu.hide()
+		close_build_menu()
 	else:
 		build_menu.build_list(player)
 		build_menu.show()
+		player.freeze= true
+
+
+func close_build_menu():
+	build_menu.hide()
+	player.freeze= false
+
+
+func _on_build_menu_select_buildable(buildable: Buildable):
+	close_build_menu()
+	select_buildable.emit(buildable)
