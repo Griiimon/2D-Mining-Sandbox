@@ -22,7 +22,21 @@ func release_charge(_total_charge: float, _primary: bool):
 
 
 func on_equip():
-	pass
+	var damage_areas= Utils.find_custom_children(self, DamageArea)
+	if damage_areas:
+		var damage_area: DamageArea= damage_areas[0] as DamageArea
+		
+		var entity_parent: Node
+		entity_parent= Utils.find_custom_parent(self, BasePlayer)
+		if not entity_parent:
+			entity_parent= Utils.find_custom_parent(self, BaseMob)
+		
+		if not entity_parent: return
+		
+		var hurt_boxes= Utils.find_custom_children(entity_parent, HurtBox)
+		if hurt_boxes:
+			var hurt_box: HurtBox= hurt_boxes[0] as HurtBox
+			damage_area.exclude_hurtbox= hurt_box
 
 
 func can_mine()-> bool:
