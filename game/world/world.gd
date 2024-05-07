@@ -306,11 +306,12 @@ func explosion(center: Vector2i, damage: float, radius: float, block_dmg_factor:
 	Effects.spawn_particle_system(map_to_local(center), explosion_particles)
 
 
-func can_spawn_block_entity_at(entity: BaseBlockEntity, tile_pos: Vector2i)-> bool:
-	for x in entity.size.x:
-		for y in entity.size.y:
+func can_spawn_block_entity_at(entity_definition: BlockEntityDefinition, tile_pos: Vector2i)-> bool:
+	for x in entity_definition.size.x:
+		for y in entity_definition.size.y:
 			if not is_air_at(tile_pos + Vector2i(x, y)):
 				return false
+
 	# TODO run foundation check
 	return true
 
