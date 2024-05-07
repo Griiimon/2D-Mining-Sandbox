@@ -59,5 +59,12 @@ static func find_custom_children(parent: Node, type)-> Array[Node]:
 	return result
 
 
+static func find_custom_parent(child: Node, type)-> Node:
+	if not child.get_parent(): return null
+	if is_instance_of(child.get_parent(), type):
+		return child.get_parent()
+	return find_custom_parent(child.get_parent(), type)
+
+
 static func is_starting()-> bool:
 	return Engine.get_process_frames() == 0
