@@ -47,5 +47,17 @@ static func free_children(node: Node):
 	for child in node.get_children():
 		child.free()
 
+
+static func find_custom_children(parent: Node, type)-> Array[Node]:
+	var result: Array[Node]= []
+	
+	for child in parent.get_children():
+		if is_instance_of(child, type):
+			result.append(child)
+		result.append_array(find_custom_children(child, type))
+	
+	return result
+
+
 static func is_starting()-> bool:
 	return Engine.get_process_frames() == 0
