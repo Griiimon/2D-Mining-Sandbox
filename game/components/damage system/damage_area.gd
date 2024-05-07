@@ -1,4 +1,5 @@
 extends Area2D
+class_name DamageArea
 
 @export var damage: Damage
 @export var exclude_hurtbox: HurtBox
