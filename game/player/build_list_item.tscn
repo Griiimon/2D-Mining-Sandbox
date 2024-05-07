@@ -5,3 +5,4 @@
 
 [node name="Build List Item" instance=ExtResource("1_w7g2u")]
 script = ExtResource("2_7f1q8")
+wait_for_button_release = true

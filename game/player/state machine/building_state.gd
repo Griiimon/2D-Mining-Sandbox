@@ -8,8 +8,9 @@ signal cancel
 enum Type { ENTITY, BLOCK }
 
 var type: Type
-var block_entity_definition: BlockEntityDefinition
+var entity_definition: BlockEntityDefinition
 var ghost: BaseBlockEntity
+var ghost_pos: Vector2i
 var ghost_orig_collision_layer: int
 
 var block: Block
@@ -64,7 +65,7 @@ func on_physics_process(delta: float):
 
 
 func handle_block_input(): 
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_action_just_pressed("build"):
 		build_block.emit(block, block_state, block_pos)
 		return
 
@@ -85,36 +86,37 @@ func handle_block_pos_update():
 
 
 func handle_block_entity_input():
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		build_entity.emit(block_entity_definition, empty_tile)
+	if Input.is_action_just_pressed("build"):
+		build_entity.emit(entity_definition, ghost_pos)
+		cancel.emit()
 
 
 func handle_block_entity_pos_update():
 	var valid_pos= null
 	
-	var size: Vector2i= block_entity_definition.size
+	var size: Vector2i= entity_definition.size
 	# TODO remove duplicate positions ( if size.x/y == 1 )
 	var test_positions= [ empty_tile, empty_tile - Vector2i(size.x - 1, 0),\
 			empty_tile - Vector2i(0, size.y - 1), empty_tile - size - Vector2i.ONE]
 
 	for pos in test_positions:
-		if player.get_world().can_spawn_block_entity_at(ghost, pos):
+		if player.get_world().can_spawn_block_entity_at(entity_definition, pos):
 			valid_pos= pos
 			break
 	
 	if valid_pos == null: return
-	
-	ghost.position= get_world().map_to_local(valid_pos) - Vector2.ONE * World.TILE_SIZE / 2
+	ghost_pos= valid_pos
+	ghost.position= get_world().map_to_local(ghost_pos) - Vector2.ONE * World.TILE_SIZE / 2
 	ghost.show()
 	
 	DebugHud.send("Ghost Pos", str(ghost.position))
 
 
-func init_block_entity(be_definition: BlockEntityDefinition):
+func init_block_entity(_entity_definition: BlockEntityDefinition):
 	type= Type.ENTITY
-	block_entity_definition= be_definition
-	ghost= be_definition.scene.instantiate()
-	ghost.type= be_definition
+	entity_definition= _entity_definition
+	ghost= entity_definition.scene.instantiate()
+	ghost.type= entity_definition
 	ghost_orig_collision_layer= ghost.collision_layer
 	ghost.collision_layer= 0
 	add_child(ghost)
