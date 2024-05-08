@@ -3,8 +3,9 @@ flowing water (down) on alternate tile?
 
 nodedebugger msg = send as in debughud
 
-craft 2 x stone slab from stone
-	ramp= 1 slab, full stone block (artificial)= 2 slabs
+when building multiple blocks cancel if ingredients check fails
+
+furnace recipe
 
 draw custom scene in editor ( auto generate tile set, editor button) on big tilemap and auto slice into chunks on start
 custom_level.tscn
