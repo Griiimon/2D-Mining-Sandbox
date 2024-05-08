@@ -7,6 +7,8 @@ signal select_buildable(buildable)
 @export var build_list_item_scene: PackedScene
 
 @onready var list = %"VBoxContainer Buildables"
+@onready var ingredients_panel = %Ingredients
+@onready var ingredients = %"VBox Ingredients"
 
 
 var buildables: Array[Buildable]
@@ -27,6 +29,8 @@ func init():
 	for entity in DataManager.block_entities:
 		buildables.append(Buildable.new(Buildable.Type.ENTITY, entity))
 
+	ingredients_panel.hide()
+
 
 func build_list(player: BasePlayer):
 	Utils.free_children(list)
@@ -36,8 +40,19 @@ func build_list(player: BasePlayer):
 		list.add_child(item)
 		item.init(buildable, Global.game.player)
 		item.selected.connect(select_item.bind(item))
+		item.mouse_entered.connect(hover_item.bind(item))
+
+
+func set_ingredients(buildable: Buildable):
+	Utils.free_children(ingredients)
+	Utils.make_ingredient_list(ingredients, buildable.get_ingredients())
+	ingredients_panel.show()
 
 
 func select_item(item: BuildListItem):
 	hide()
 	select_buildable.emit(item.buildable)
+
+
+func hover_item(item: BuildListItem):
+	set_ingredients(item.buildable)

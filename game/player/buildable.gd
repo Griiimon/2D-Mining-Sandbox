@@ -11,14 +11,18 @@ func _init(_type: Type, _ptr):
 
 
 func can_build(inventory: Inventory)-> bool:
-	var ingredients: Array[InventoryItem]
+	return inventory.has_ingredients(get_ingredients())
+
+
+func get_ingredients()-> Array[InventoryItem]:
 	match type:
 		Type.BLOCK:
-			ingredients= (ptr as ArtificialBlock).ingredients
+			return (ptr as ArtificialBlock).ingredients
 		Type.ENTITY:
-			ingredients= (ptr as BlockEntityDefinition).ingredients
-
-	return inventory.has_ingredients(ingredients)
+			return (ptr as BlockEntityDefinition).ingredients
+	
+	assert(false)
+	return []
 
 
 func get_display_name()-> String:
