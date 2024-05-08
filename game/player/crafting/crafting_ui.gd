@@ -43,10 +43,7 @@ func select_item(item: CraftingListItem):
 
 func set_ingredients(recipe: CraftingRecipe):
 	Utils.free_children(ingredients)
-	for ingredient in recipe.ingredients:
-		var label:= Label.new()
-		label.text= "%dx %s" % [ingredient.count, ingredient.item.get_display_name()]
-		ingredients.add_child(label)
+	Utils.make_ingredient_list(ingredients, recipe.ingredients)
 	ingredients_panel.show()
 
 
