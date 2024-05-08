@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dnlnuruo3l4ha" path="res://game/player/build_list_item.tscn" id="2_3y0wf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qab31"]
-bg_color = Color(0.870588, 0.870588, 0.870588, 0.737255)
+bg_color = Color(0.692264, 0.69579, 0.511405, 0.835294)
 
 [node name="Build Menu" type="CenterContainer"]
 anchors_preset = 15
@@ -22,6 +22,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qab31")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
