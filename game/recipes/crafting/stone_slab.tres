@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" load_steps=6 format=3 uid="uid://c0t1f5wh4nef4"]
+
+[ext_resource type="Resource" uid="uid://jkfdi3kaaiof" path="res://game/items/stone/stone.tres" id="1_ase0j"]
+[ext_resource type="Script" path="res://game/recipes/crafting_recipe.gd" id="1_lkt6n"]
+[ext_resource type="Script" path="res://game/player/inventory/inventory_item.gd" id="2_tcpdr"]
+[ext_resource type="Resource" uid="uid://boaaatfynuoc2" path="res://game/items/stone slab/stone_slab.tres" id="3_5kgcw"]
+
+[sub_resource type="Resource" id="Resource_dhgvo"]
+script = ExtResource("2_tcpdr")
+item = ExtResource("1_ase0j")
+count = 1
+
+[resource]
+script = ExtResource("1_lkt6n")
+product = ExtResource("3_5kgcw")
+product_count = 2
+ingredients = Array[ExtResource("2_tcpdr")]([SubResource("Resource_dhgvo")])
+crafting_duration = 1.0
