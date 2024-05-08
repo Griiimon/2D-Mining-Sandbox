@@ -1,11 +1,18 @@
-[gd_resource type="Resource" script_class="ArtificialBlock" load_steps=3 format=3 uid="uid://dgy1dr3pel8e5"]
+[gd_resource type="Resource" script_class="ArtificialBlock" load_steps=6 format=3 uid="uid://dgy1dr3pel8e5"]
 
+[ext_resource type="Resource" uid="uid://boaaatfynuoc2" path="res://game/items/stone slab/stone_slab.tres" id="1_bytlu"]
 [ext_resource type="Script" path="res://game/blocks/artificial_block.gd" id="1_kggtx"]
 [ext_resource type="Texture2D" uid="uid://o2dedghpikjq" path="res://game/blocks/stone ramp/stone_ramp.png" id="2_1c6xs"]
+[ext_resource type="Script" path="res://game/player/inventory/inventory_item.gd" id="2_ie2bc"]
+
+[sub_resource type="Resource" id="Resource_nwumi"]
+script = ExtResource("2_ie2bc")
+item = ExtResource("1_bytlu")
+count = 1
 
 [resource]
 script = ExtResource("1_kggtx")
-ingredients = Array[Resource("res://game/player/inventory/inventory_item.gd")]([])
+ingredients = Array[ExtResource("2_ie2bc")]([SubResource("Resource_nwumi")])
 can_flip_horizontal = true
 can_flip_vertical = false
 can_rotate = false
