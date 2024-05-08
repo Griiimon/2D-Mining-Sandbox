@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="ArtificialBlock" load_steps=7 format=3 uid="uid://bal3ch3w4ct8g"]
+
+[ext_resource type="Script" path="res://game/blocks/artificial_block.gd" id="1_23gcm"]
+[ext_resource type="Resource" uid="uid://jkfdi3kaaiof" path="res://game/items/stone/stone.tres" id="1_ermyp"]
+[ext_resource type="Resource" uid="uid://boaaatfynuoc2" path="res://game/items/stone slab/stone_slab.tres" id="2_1i68k"]
+[ext_resource type="Script" path="res://game/player/inventory/inventory_item.gd" id="3_vk0dm"]
+[ext_resource type="Texture2D" uid="uid://bjbjl8vhp2qqm" path="res://game/blocks/smooth stone block/smooth_stone_block.png" id="5_tc07o"]
+
+[sub_resource type="Resource" id="Resource_u7n4x"]
+script = ExtResource("3_vk0dm")
+item = ExtResource("2_1i68k")
+count = 2
+
+[resource]
+script = ExtResource("1_23gcm")
+ingredients = Array[ExtResource("3_vk0dm")]([SubResource("Resource_u7n4x")])
+can_flip_horizontal = false
+can_flip_vertical = false
+can_rotate = false
+texture = ExtResource("5_tc07o")
+drop = ExtResource("1_ermyp")
+hardness = 0.5
+has_collision = true
+tags = Array[Resource("res://game/tags/tag.gd")]([])
+particle_color = Color(0.566298, 0.566298, 0.566298, 1)
+mining_tool = 1
+other_tool_penalty = 4.0
+other_tool_produces_drops = false
+schedule_tick = false
+is_air = false
+is_fluid = false
+custom_collision_polygon = PackedVector2Array()
+name = ""
