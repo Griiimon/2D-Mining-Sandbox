@@ -60,8 +60,7 @@ func _process(_delta):
 		current_hotbar_slot_idx+= 1
 
 	if Input.is_action_just_pressed("toggle_inventory"):
-		main_inventory.visible= not main_inventory.visible
-		player.freeze= not player.freeze
+		toggle_inventory_window()
 
 	update_health()
 
@@ -161,10 +160,25 @@ func update_inventory():
 	crafting_ui.build()
 
 
+func toggle_inventory_window(): 
+	if main_inventory.visible:
+		close_inventory_window()
+	else:
+		close_windows()
+		main_inventory.show()
+		player.freeze= true
+
+
+func close_inventory_window():
+	main_inventory.hide()
+	player.freeze= false
+
+
 func toggle_build_menu():
 	if build_menu.visible:
 		close_build_menu()
 	else:
+		close_windows()
 		build_menu.build_list(player)
 		build_menu.show()
 		player.freeze= true
@@ -175,6 +189,13 @@ func close_build_menu():
 	player.freeze= false
 
 
+func close_windows():
+	close_build_menu()
+	close_inventory_window()
+
+
 func _on_build_menu_select_buildable(buildable: Buildable):
 	close_build_menu()
 	select_buildable.emit(buildable)
+
+	
