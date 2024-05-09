@@ -31,12 +31,14 @@ func _on_stop_using_item():
 	change_state(default_state)
 
 
-func _on_place_block(block, block_state, tile_pos):
+func _on_place_block(block: Block, block_state: Block.State, tile_pos: Vector2i, ingredients: Array[InventoryItem]):
 	player.get_world().set_block(block, tile_pos, block_state)
+	player.inventory.sub_ingredients(ingredients)
 
 
-func _on_building_build_entity(block_entity_definition, tile_pos):
+func _on_building_build_entity(block_entity_definition: BlockEntityDefinition, tile_pos: Vector2i, ingredients: Array[InventoryItem]):
 	player.get_world().spawn_block_entity(block_entity_definition, tile_pos)
+	player.inventory.sub_ingredients(ingredients)
 
 
 func _on_building_cancel():

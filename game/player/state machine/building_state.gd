@@ -18,6 +18,8 @@ var block_pos: Vector2i: set= set_block_pos
 var block_state: Block.State
 var block_sprite: Sprite2D
 
+var ingredients: Array[InventoryItem]
+
 var empty_tile: Vector2i
 
 
@@ -28,6 +30,8 @@ func init(buildable: Buildable):
 			init_block(buildable.ptr)
 		Buildable.Type.ENTITY:
 			init_block_entity(buildable.ptr)
+	
+	ingredients= buildable.get_ingredients()
 
 
 func on_exit():
@@ -66,7 +70,9 @@ func on_physics_process(delta: float):
 
 func handle_block_input(): 
 	if Input.is_action_just_pressed("build"):
-		build_block.emit(block, block_state, block_pos)
+		build_block.emit(block, block_state, block_pos, ingredients)
+		if not player.inventory.has_ingredients(ingredients):
+			cancel.emit()
 		return
 
 	if Input.is_action_just_pressed("change_block_state"):
@@ -87,7 +93,7 @@ func handle_block_pos_update():
 
 func handle_block_entity_input():
 	if Input.is_action_just_pressed("build"):
-		build_entity.emit(entity_definition, ghost_pos)
+		build_entity.emit(entity_definition, ghost_pos, ingredients)
 		cancel.emit()
 
 
