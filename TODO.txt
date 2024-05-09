@@ -1,12 +1,6 @@
 fluid simulation ( 3/4 blocks? )
 flowing water (down) on alternate tile?
 
-nodedebugger msg = send as in debughud
-
-when building multiple blocks cancel if ingredients check fails
-
-furnace recipe
-
 draw custom scene in editor ( auto generate tile set, editor button) on big tilemap and auto slice into chunks on start
 custom_level.tscn
 
@@ -18,6 +12,13 @@ character selection screen ( ItemList )
 
 modularize UI into more custom scenes
 
+keymap ( github )
+
+fix warnings
+
+remove priority from terrain generator item
+
+escape closes ui windows first
 
 -------- v5 ---------------
 
