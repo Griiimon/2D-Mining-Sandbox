@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Block" load_steps=4 format=3 uid="uid://dxe3ydhcx4yc8"]
+
+[ext_resource type="Script" path="res://game/blocks/block.gd" id="1_c4il4"]
+[ext_resource type="Resource" uid="uid://b7tlou78nevvw" path="res://game/items/clay/clay.tres" id="1_x1e0u"]
+[ext_resource type="Texture2D" uid="uid://c1ddpkiolitey" path="res://game/blocks/clay block/clay.png" id="3_jkckb"]
+
+[resource]
+script = ExtResource("1_c4il4")
+texture = ExtResource("3_jkckb")
+drop = ExtResource("1_x1e0u")
+hardness = 0.2
+has_collision = true
+tags = Array[Resource("res://game/tags/tag.gd")]([])
+particle_color = Color(0.537255, 0.407843, 0.231373, 1)
+mining_tool = 2
+other_tool_penalty = 1.0
+other_tool_produces_drops = true
+schedule_tick = false
+is_air = false
+is_fluid = false
+custom_collision_polygon = PackedVector2Array()
+name = "clay"

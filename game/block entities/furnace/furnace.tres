@@ -1,11 +1,19 @@
-[gd_resource type="Resource" script_class="BlockEntityDefinition" load_steps=3 format=3 uid="uid://qyy7pybmchnl"]
+[gd_resource type="Resource" script_class="BlockEntityDefinition" load_steps=6 format=3 uid="uid://qyy7pybmchnl"]
 
+[ext_resource type="Resource" uid="uid://b7tlou78nevvw" path="res://game/items/clay/clay.tres" id="1_d1sjk"]
 [ext_resource type="PackedScene" uid="uid://bonrl4spbueh8" path="res://game/block entities/furnace/furnace.tscn" id="1_pi57r"]
 [ext_resource type="Script" path="res://game/block entities/block_entity_definition.gd" id="1_ryrt4"]
+[ext_resource type="Script" path="res://game/player/inventory/inventory_item.gd" id="2_jhohy"]
+
+[sub_resource type="Resource" id="Resource_x4nnh"]
+script = ExtResource("2_jhohy")
+item = ExtResource("1_d1sjk")
+count = 8
 
 [resource]
 script = ExtResource("1_ryrt4")
 scene = ExtResource("1_pi57r")
 size = Vector2i(2, 2)
 register_tick = true
+ingredients = Array[ExtResource("2_jhohy")]([SubResource("Resource_x4nnh")])
 name = "furnace"
