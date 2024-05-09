@@ -58,7 +58,7 @@ func mouse_actions():
 				charge_primary= false
 
 		if action_name:
-			NodeDebugger.msg(player, "hand action " + action_name, 2)
+			NodeDebugger.write(player, "hand action " + action_name, 2)
 			player.on_hand_action(action_name)
 
 			if is_charging:

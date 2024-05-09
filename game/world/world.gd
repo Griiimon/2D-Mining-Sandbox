@@ -65,7 +65,7 @@ func get_block(tile_pos: Vector2i)-> Block:
 func get_block_id(tile_pos: Vector2i)-> int:
 	var chunk: WorldChunk= get_chunk_at(tile_pos)
 	if not chunk: 
-		NodeDebugger.msg(self, "get_block_id() null chunk", DebugComponent.Type.WARNING)
+		NodeDebugger.write(self, "get_block_id() null chunk", DebugComponent.Type.WARNING)
 		return -1
 	return chunk.get_block_id(tile_pos)
 
@@ -84,7 +84,7 @@ func unschedule_block(tile_pos: Vector2i):
 
 func trigger_neighbor_update(origin_pos: Vector2i):
 	if origin_pos in neighbor_updates: return
-	NodeDebugger.msg(self, str("trigger neighbor update ", origin_pos), 2)
+	NodeDebugger.write(self, str("trigger neighbor update ", origin_pos), 2)
 	neighbor_updates.append(origin_pos)
 
 
@@ -100,7 +100,7 @@ func execute_block_updates():
 					var pos: Vector2i= origin_pos + Vector2i(x, y)
 					var block: Block= get_block(pos)
 					if block:
-						NodeDebugger.msg(self, str("block neighbor update at ", pos, " origin ", origin_pos), 3)
+						NodeDebugger.write(self, str("block neighbor update at ", pos, " origin ", origin_pos), 3)
 						block.on_neighbor_update(self, pos, origin_pos)
 
 	neighbor_updates.clear()
@@ -302,7 +302,7 @@ func explosion(center: Vector2i, damage: float, radius: float, block_dmg_factor:
 		var health: HealthComponent= Utils.get_health(intersect.collider)
 		if health:
 			health.receive_damage(dmg)
-			NodeDebugger.msg(self, "deal explosion damage to " + intersect.collider.name, 2)
+			NodeDebugger.write(self, "deal explosion damage to " + intersect.collider.name, 2)
 	Effects.spawn_particle_system(map_to_local(center), explosion_particles)
 
 

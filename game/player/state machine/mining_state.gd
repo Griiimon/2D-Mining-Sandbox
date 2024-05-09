@@ -39,7 +39,7 @@ func on_physics_process(delta: float):
 		
 	if mining_progress >= total_mining_effort or Global.game.cheats.instant_mine:
 		get_world().break_block(selected_block_pos, player.get_hand_object_type() == block.mining_tool)
-		NodeDebugger.msg(player, str("mined block ", selected_block_pos), 1)
+		NodeDebugger.write(player, str("mined block ", selected_block_pos), 1)
 		stop_mining.emit()
 		return
 	else:

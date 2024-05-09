@@ -34,7 +34,7 @@ func on_tick(world: World, block_pos: Vector2i):
 			
 			return
 	
-	NodeDebugger.msg(world, str("water block cant split ", block_pos), 4)
+	NodeDebugger.write(world, str("water block cant split ", block_pos), 4)
 	
 	world.unschedule_block(block_pos)
 

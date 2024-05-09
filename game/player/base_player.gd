@@ -145,7 +145,7 @@ func movement(delta):
 		var collision: KinematicCollision2D= move_and_collide(velocity * delta, true)
 		if collision and collision.get_normal().dot(Vector2.UP) > 0:
 			if not disable_fall_damage:
-				NodeDebugger.msg(self, str("fall speed ", velocity.y), 2)
+				NodeDebugger.write(self, str("fall speed ", velocity.y), 2)
 				if velocity.y > fall_damage_speed:
 					fall_damage()
 			else:
@@ -199,7 +199,7 @@ func on_hand_action(_action_name: String):
 
 func release_charge(charge_primary: bool, total_charge: float):
 	assert(has_hand_object())
-	NodeDebugger.msg(self, "release charge", 2)
+	NodeDebugger.write(self, "release charge", 2)
 	get_hand_object().release_charge(total_charge, charge_primary)
 	hand_action_executed()
 

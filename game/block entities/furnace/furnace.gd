@@ -26,7 +26,7 @@ func tick(world: World):
 	if is_burning:
 		ticks_to_finish-= 1
 		if ticks_to_finish == 0:
-			NodeDebugger.msg(self, "product finished")
+			NodeDebugger.write(self, "product finished")
 			product_count+= 1
 			is_burning= false
 		else:
@@ -46,26 +46,26 @@ func tick(world: World):
 		ticks_to_finish= recipe.duration * World.ENTITY_TICKS
 		is_burning= true
 	
-		NodeDebugger.msg(self, "start recipe " + ore_type.name)
+		NodeDebugger.write(self, "start recipe " + ore_type.name)
 
 
 func interact(player: BasePlayer):
 	if can_player_take_product(player):
 		if product_count > 0:
-			NodeDebugger.msg(self, "take product")
+			NodeDebugger.write(self, "take product")
 			player.inventory.add_item_to_slot(player.get_current_inventory_slot(), product_type)
 			product_count-= 1
 	else:
 		var inv_item: InventoryItem= player.get_current_inventory_item()
 		if can_player_add_fuel(player):
-			NodeDebugger.msg(self, "adding fuel")
+			NodeDebugger.write(self, "adding fuel")
 			fuel+= inv_item.item.fuel_value
 			player.inventory.sub_item(inv_item)
 		else:
 			var recipe: FurnaceRecipe= DataManager.find_furnace_recipe_for(inv_item.item)
 			if recipe:
 				if ore_type == null or ore_type == inv_item.item:
-					NodeDebugger.msg(self, "adding ore")
+					NodeDebugger.write(self, "adding ore")
 					ore_type= inv_item.item
 					ore_count+= 1
 					player.inventory.sub_item(inv_item)
