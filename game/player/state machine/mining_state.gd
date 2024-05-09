@@ -38,7 +38,8 @@ func on_physics_process(delta: float):
 		total_mining_effort*= 1 + block.other_tool_penalty
 		
 	if mining_progress >= total_mining_effort or Global.game.cheats.instant_mine:
-		get_world().break_block(selected_block_pos, player.get_hand_object_type() == block.mining_tool)
+		var do_drop: bool= block.other_tool_produces_drops or player.get_hand_object_type() == block.mining_tool
+		get_world().break_block(selected_block_pos, do_drop)
 		NodeDebugger.write(player, str("mined block ", selected_block_pos), 1)
 		stop_mining.emit()
 		return
