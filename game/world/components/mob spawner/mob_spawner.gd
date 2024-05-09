@@ -28,7 +28,7 @@ func _on_timer_timeout():
 	if spawner.can_spawn(tile, world):
 		var other_mob: BaseMob= get_world().get_closest_mob(tile)
 		if other_mob:
-			var dist: int= other_mob.distance_to_tile(tile)
+			var dist: float= other_mob.distance_to_tile(tile)
 			if dist < spawner.min_distance_to_other:
 				return
 			elif other_mob.type == mob_def and dist < spawner.min_distance_to_same:

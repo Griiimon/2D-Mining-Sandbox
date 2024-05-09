@@ -6,7 +6,7 @@ signal charge_item
 
 
 
-func on_physics_process(delta: float):
+func on_physics_process(_delta: float):
 	if Input.is_action_just_pressed("toggle_build_menu"):
 		player.ui.toggle_build_menu()
 

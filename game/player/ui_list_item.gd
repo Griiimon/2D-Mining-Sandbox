@@ -30,5 +30,5 @@ func deselect():
 	modulate= Color.WEB_GRAY
 
 
-func update(player: BasePlayer):
+func update(_player: BasePlayer):
 	label.modulate= Color.WHITE if available else Color.RED

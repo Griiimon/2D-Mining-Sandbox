@@ -31,7 +31,7 @@ func receive_damage(damage: Damage):
 	if not whitelist.is_empty() and not damage.type in whitelist:
 		return
 
-	var final_damage: int
+	var final_damage: float
 	
 	if has_custom_damage_logic:
 		final_damage= get_parent().custom_damage_logic(damage)

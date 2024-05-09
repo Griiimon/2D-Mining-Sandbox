@@ -13,7 +13,7 @@ func _ready():
 
 	if not collision_shape.shape:
 		await get_parent().ready
-		var parent_coll_shapes: Array[CollisionShape2D]
+		var parent_coll_shapes: Array[CollisionShape2D]= []
 		parent_coll_shapes.assign(get_parent().find_children("", "CollisionShape2D"))
 		if parent_coll_shapes:
 			collision_shape.shape= parent_coll_shapes[0].shape

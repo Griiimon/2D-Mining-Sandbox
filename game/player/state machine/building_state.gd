@@ -41,7 +41,7 @@ func on_exit():
 		block_sprite.queue_free()
 
 
-func on_physics_process(delta: float):
+func on_physics_process(_delta: float):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		cancel.emit()
 	

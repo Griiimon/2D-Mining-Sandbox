@@ -22,7 +22,7 @@ func _ready():
 	sprite.texture= default_texture
 
 
-func tick(world: World):
+func tick(_world: World):
 	if is_burning:
 		ticks_to_finish-= 1
 		if ticks_to_finish == 0:

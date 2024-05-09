@@ -241,7 +241,7 @@ func hand_action_executed(action_name: String= ""):
 		hand_action_finished(action_name)
 
 
-func hand_action_finished(action_name: String= ""):
+func hand_action_finished(_action_name: String= ""):
 	on_hand_action_finished()
 	state_machine.change_state(state_machine.default_state)
 
@@ -381,7 +381,7 @@ func get_max_speed()-> float:
 
 
 func get_tile_distance(tile: Vector2i)-> int:
-	return (get_world().get_tile(global_position) - tile).length()
+	return int((get_world().get_tile(global_position) - tile).length())
 
 
 func die():
