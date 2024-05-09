@@ -30,4 +30,4 @@ schedule_tick = false
 is_air = false
 is_fluid = false
 custom_collision_polygon = PackedVector2Array()
-name = ""
+name = "smooth_stone"
