@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-const ENABLED= true
+@export var enabled: bool= false
 
 class DebugHUDItem:
 	var name: String
@@ -18,8 +18,12 @@ class DebugHUDItem:
 var dict: Dictionary
 
 
+func _ready():
+	set_process(enabled)
+
+
 func send(key: String, value):
-	if not ENABLED: return
+	if not enabled: return
 	visible= true
 	if not dict.has(key):
 		var label_key= Label.new()
