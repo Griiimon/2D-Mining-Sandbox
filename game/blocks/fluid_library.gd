@@ -25,6 +25,14 @@ func get_lower_fluid_block(block: FluidBlock, depth: int= 1)-> FluidBlock:
 	return fluid.blocks[idx + depth]
 
 
+func get_higher_fluid_block(block: FluidBlock)-> FluidBlock:
+	var fluid: FluidLibraryItem= get_fluid(block)
+	var idx: int= fluid.blocks.find(block)
+	if idx == 0:
+		return null
+	return fluid.blocks[idx - 1]
+
+
 func get_split_block(block: FluidBlock, depth: int= 1)-> FluidBlock:
 	if block.fill_ratio == FluidBlock.FillRatio.FULL:
 		depth+= 1
