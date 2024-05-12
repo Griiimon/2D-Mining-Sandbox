@@ -12,11 +12,12 @@ func on_tick(world: World, block_pos: Vector2i):
 		move(world, block_pos, Vector2i.DOWN)
 		return
 	
-	#var this_block: FluidBlock= world.get_block(block_pos)
-	#var block_below: Block= world.get_block(block_pos + Vector2i.DOWN)
-	#
-	#if block_below.is_fluid and not (block_below as FluidBlock).is_full() and DataManager.fluid_library.is_same_fluid(this_block, block_below):
+	var block_below: Block= world.get_block(block_pos + Vector2i.DOWN)
 	
+	if block_below is FluidBlock:
+		if not (block_below as FluidBlock).is_full() and DataManager.fluid_library.is_same_fluid(self, block_below):
+			flow(world, block_pos, block_below)
+			return
 	
 	if can_split():
 		var potential_split_pos: Array[Vector2i]= []
@@ -45,9 +46,18 @@ func on_neighbor_update(world: World, block_pos: Vector2i, neighbor_pos: Vector2
 		world.schedule_block(block_pos)
 
 
+func flow(world: World, block_pos: Vector2i, block_below: FluidBlock):
+	replace(world, block_pos, DataManager.fluid_library.get_lower_fluid_block(self))
+	replace(world, block_pos + Vector2i.DOWN, DataManager.fluid_library.get_higher_fluid_block(block_below))
+
+
 func can_split()-> bool:
 	return get_split_block(1) != null
 
 
 func get_split_block(depth: int= 1)-> Block:
-	return DataManager.fluid_library.get_lower_fluid_block(self, depth)
+	return DataManager.fluid_library.get_split_block(self, depth)
+
+
+func is_full()-> bool:
+	return fill_ratio == FillRatio.FULL
