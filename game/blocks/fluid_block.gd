@@ -4,17 +4,12 @@ extends Block
 enum FillRatio { FULL, THREE_QUARTER, HALF, QUARTER }
 
 @export var fill_ratio: FillRatio
-@export var flowing_texture: Texture2D
 
-
-func _ready():
-	assert(flowing_texture)
 
 
 func on_tick(world: World, block_pos: Vector2i):
 	if world.is_air_at(block_pos + Vector2i.DOWN):
 		move(world, block_pos, Vector2i.DOWN)
-		world.set_block(self, block_pos, Block.State.FLOWING)
 		return
 	
 	#var this_block: FluidBlock= world.get_block(block_pos)
@@ -56,12 +51,3 @@ func can_split()-> bool:
 
 func get_split_block(depth: int= 1)-> Block:
 	return DataManager.fluid_library.get_lower_fluid_block(self, depth)
-
-
-func get_atlas_texture()-> Texture2D:
-	var image= Image.create(World.TILE_SIZE * 2, World.TILE_SIZE, false, Image.FORMAT_RGBA8)
-	var src_rect:= Rect2i(Vector2i.ZERO, Vector2i.ONE * World.TILE_SIZE)
-	image.blit_rect(texture.get_image(), src_rect, Vector2i.ZERO)
-	image.blit_rect(flowing_texture.get_image(), src_rect, Vector2i(1, 0) * World.TILE_SIZE)
-	#assert(false, str(image.get_width(), " ", image.get_height()))
-	return ImageTexture.create_from_image(image)

@@ -221,11 +221,6 @@ static func create_tileset():
 			source.texture= block.get_atlas_texture()
 			source.create_tile(Vector2i.ZERO)
 			
-			if block is FluidBlock:
-				source.create_alternative_tile(Vector2i.ZERO, 1)
-				var tile_data: TileData= source.get_tile_data(Vector2i.ZERO, 1)
-				
-				
 			
 		DataManager.tile_set.add_source(source)
 		
