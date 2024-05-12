@@ -1,7 +1,7 @@
 class_name Block
 extends MyNamedResource
 
-enum State { NONE, FLIP_HORIZONTAL, FLIP_VERTICAL, ROTATE_90_DEG, ROTATE_180_DEG, ROTATE_270_DEG }
+enum State { NONE, FLIP_HORIZONTAL, FLIP_VERTICAL, ROTATE_90_DEG, ROTATE_180_DEG, ROTATE_270_DEG, FLOWING }
 
 
 @export var texture: Texture2D
@@ -68,6 +68,8 @@ static func get_state_from_alt(alt_tile: int)-> State:
 		return Block.State.FLIP_HORIZONTAL
 	elif alt_tile & TileSetAtlasSource.TRANSFORM_FLIP_V:
 		return Block.State.FLIP_VERTICAL
+	elif alt_tile & 1:
+		return Block.State.FLOWING
 	return Block.State.NONE
 
 
@@ -78,11 +80,17 @@ static func get_alt_from_state(state: State)-> int:
 			alt+= TileSetAtlasSource.TRANSFORM_FLIP_H
 		Block.State.FLIP_VERTICAL:
 			alt+= TileSetAtlasSource.TRANSFORM_FLIP_V
+		Block.State.FLOWING:
+			alt+= 1
 	return alt
 
 
 func is_solid()-> bool:
 	return not is_fluid and not is_air
+
+
+func get_atlas_texture()-> Texture2D:
+	return texture
 
 
 func get_display_name()-> String:

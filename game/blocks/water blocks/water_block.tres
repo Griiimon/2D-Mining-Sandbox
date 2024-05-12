@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="FluidBlock" load_steps=3 format=3 uid="uid://d4hbmp48eqem4"]
+[gd_resource type="Resource" script_class="FluidBlock" load_steps=4 format=3 uid="uid://d4hbmp48eqem4"]
 
+[ext_resource type="Texture2D" uid="uid://c88ohnh35u3si" path="res://game/blocks/water blocks/water_flowing.png" id="1_hqool"]
 [ext_resource type="Script" path="res://game/blocks/fluid_block.gd" id="1_ljf0c"]
 [ext_resource type="Texture2D" uid="uid://cl5xbxp01bj06" path="res://game/blocks/water blocks/water.png" id="2_mnx4h"]
 
 [resource]
 script = ExtResource("1_ljf0c")
 fill_ratio = 0
-name = "water"
+flowing_texture = ExtResource("1_hqool")
 texture = ExtResource("2_mnx4h")
 hardness = 0.0
 has_collision = false
@@ -18,3 +19,5 @@ other_tool_produces_drops = false
 schedule_tick = true
 is_air = false
 is_fluid = true
+custom_collision_polygon = PackedVector2Array()
+name = "water"
