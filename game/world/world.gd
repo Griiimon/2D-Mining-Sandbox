@@ -1,6 +1,7 @@
 class_name World
 extends Node2D
 
+signal pre_start
 signal initialization_finished
 
 const ENTITY_TICKS= 60
@@ -36,6 +37,7 @@ func _ready():
 
 
 func start():
+	pre_start.emit()
 	chunk_updater.start()
 	mob_spawner.start()
 	initialization_finished.emit()
