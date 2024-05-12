@@ -73,7 +73,7 @@ func set_block(block: Block, tile_pos: Vector2i, state: Block.State= Block.State
 
 	set_cell(TERRAIN_LAYER, tile_pos, block_id, Vector2i.ZERO, Block.get_alt_from_state(state))
 	if block.is_fluid:
-		set_cell(FLUID_LAYER, tile_pos, block_id, Vector2i.ZERO)
+		set_cell(FLUID_LAYER, tile_pos, block_id, Vector2i.ZERO, Block.get_alt_from_state(state))
 	
 	block.on_spawn(world, get_global_pos(tile_pos))
 	if block.schedule_tick:
@@ -218,8 +218,14 @@ static func create_tileset():
 		var source:= TileSetAtlasSource.new()
 		if not block.is_air:
 			source.texture_region_size= Vector2i.ONE * World.TILE_SIZE
-			source.texture= block.texture
+			source.texture= block.get_atlas_texture()
 			source.create_tile(Vector2i.ZERO)
+			
+			if block is FluidBlock:
+				source.create_alternative_tile(Vector2i.ZERO, 1)
+				var tile_data: TileData= source.get_tile_data(Vector2i.ZERO, 1)
+				
+				
 			
 		DataManager.tile_set.add_source(source)
 		
