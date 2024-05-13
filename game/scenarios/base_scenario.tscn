@@ -46,6 +46,8 @@ label_settings = SubResource("LabelSettings_pdejf")
 
 [node name="Description Timeout" type="Timer" parent="UI/Description CenterContainer/Description Label"]
 unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
 
 [node name="Time And Objectives MarginContainer" type="MarginContainer" parent="UI"]
 visible = false
