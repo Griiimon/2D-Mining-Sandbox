@@ -11,12 +11,12 @@
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("chunks", "mob_spawner")]
 script = ExtResource("1_pmjc8")
-world_item_scene = ExtResource("2_xrbq3")
-world_chunk_scene = ExtResource("3_x61oj")
 chunks = NodePath("Chunks")
 generator = ExtResource("4_4gpyw")
 mob_spawner = NodePath("Mob Spawner")
 explosion_particles = ExtResource("5_snubo")
+world_item_scene = ExtResource("2_xrbq3")
+world_chunk_scene = ExtResource("3_x61oj")
 
 [node name="Chunk Updater" type="Node" parent="."]
 script = ExtResource("5_qqsjj")

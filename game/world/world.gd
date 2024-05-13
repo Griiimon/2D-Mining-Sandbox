@@ -8,13 +8,14 @@ const BLOCK_TICKS= 5
 
 const TILE_SIZE= 32
 
-@export var world_item_scene: PackedScene
-@export var world_chunk_scene: PackedScene
 @export var chunks: Node2D
 @export var generator: TerrainGenerator
 @export var mob_spawner: MobSpawner
 
+@export_category("Static Resources")
 @export var explosion_particles: ParticleSettings
+@export var world_item_scene: PackedScene
+@export var world_chunk_scene: PackedScene
 
 @onready var chunk_updater: ChunkUpdater = $"Chunk Updater"
 @onready var mobs = $Mobs
