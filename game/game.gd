@@ -1,6 +1,8 @@
 class_name Game
 extends Node
 
+signal game_is_over
+
 @export var world: World
 @export var settings: GameSettings
 @export var cheats: Cheats
@@ -10,6 +12,7 @@ extends Node
 @onready var camera = $Camera2D
 
 var player: BasePlayer
+
 
 
 func _init():
@@ -61,4 +64,8 @@ func spawn_player():
 	add_child(player)
 	camera.follow_node= player
 
-	player.tree_exited.connect(spawn_player)
+	player.tree_exited.connect(spawn_player if settings.respawn_on_death else game_over.bind(false))
+
+
+func game_over(win: bool):
+	game_is_over.emit(win)
