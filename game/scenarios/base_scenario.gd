@@ -2,9 +2,20 @@ extends Game
 class_name BaseScenario
 
 
+@export var description: String
+@export var has_timer: bool= true
+@export var countdown: int= 0
+
+
 @onready var level_editor = $"Level Editor"
+@onready var ui = $UI
+
+var time: float
 
 
+
+func _ready():
+	set_process(false)
 
 
 func pre_start():
@@ -15,3 +26,43 @@ func pre_start():
 	
 	level_editor.queue_free()
 	return get_tree().process_frame
+
+
+func start():
+	set_process(true)
+
+
+func _process(delta):
+	time+= delta
+	
+	if countdown and get_time() <= 0:
+		game_over(false)
+		return
+	
+	if win_condition():
+		game_over(true)
+	elif lose_condition():
+		game_over(false)
+
+
+func win_condition()-> bool:
+	return false
+
+
+func lose_condition()-> bool:
+	return false
+
+
+func update_objectives(text: String):
+	ui.update_objectives(text)
+
+
+func get_time()-> float:
+	if countdown > 0:
+		return countdown - time
+	else:
+		return time
+
+
+func _on_world_initialization_finished():
+	start()
