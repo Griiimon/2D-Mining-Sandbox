@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvdfo4xuykmdh"]
+
+[ext_resource type="Script" path="res://game/autoload singletons/game_manager.gd" id="1_tgw6f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4cu37"]
+font_size = 34
+font_color = Color(0.240994, 0.466334, 0.441528, 1)
+
+[node name="Game Manager" type="CanvasLayer"]
+script = ExtResource("1_tgw6f")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Game Over Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "You won!!"
+label_settings = SubResource("LabelSettings_4cu37")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Try Again Button" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Try again"
+
+[node name="Exit Button" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Try Again Button" to="." method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Exit Button" to="." method="_on_exit_button_pressed"]
