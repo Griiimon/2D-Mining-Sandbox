@@ -1,9 +1,3 @@
-fluid simulation ( 3/4 blocks? )
-flowing water (down) on alternate tile?
-
-draw custom scene in editor ( auto generate tile set, editor button) on big tilemap and auto slice into chunks on start
-custom_level.tscn
-
 add sounds
 
 challenges ( game mode with objective message on start up )
@@ -32,6 +26,10 @@ try intersect_shape. which will only work for overlaps tho, not triggering signa
 
 dummy hurt effect
 
-equipment slots
+equipment slots ( armor )
 
 player death drop inventory
+
+fix fluid simulation
+
+flowing water
