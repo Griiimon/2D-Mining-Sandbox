@@ -40,6 +40,8 @@ func _ready():
 func generate_tiles():
 	assert(ignore_changes)
 	var generator: TerrainGenerator= world.generator
+	if not generator: return
+	
 	for x in SIZE:
 		for y in SIZE:
 			var local_pos= Vector2i(x, y)
