@@ -1,7 +1,6 @@
 class_name World
 extends Node2D
 
-signal pre_start
 signal initialization_finished
 
 const ENTITY_TICKS= 60
@@ -32,15 +31,18 @@ var block_change_subscriptions:= {}
 
 
 func _ready():
+	set_physics_process(false)
 	if generator:
 		generator.initialize()
 
 
 func start():
-	pre_start.emit()
+	await get_parent().pre_start()
+	
 	chunk_updater.start()
 	mob_spawner.start()
 	initialization_finished.emit()
+	set_physics_process(true)
 
 
 func _physics_process(_delta):

@@ -20,16 +20,22 @@ func _ready():
 	assert(cheats)
 	assert(settings)
 	
+	set_process(false)
 	await world.initialization_finished
 	
 	if not player:
 		spawn_player()
 
 	post_init()
+	set_process(true)
 
 
 func post_init():
 	pass
+
+
+func pre_start():
+	return true
 
 
 func _process(_delta):
