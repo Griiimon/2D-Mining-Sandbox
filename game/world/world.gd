@@ -12,10 +12,11 @@ const TILE_SIZE= 32
 @export var world_chunk_scene: PackedScene
 @export var chunks: Node2D
 @export var generator: TerrainGenerator
+@export var mob_spawner: MobSpawner
+
 @export var explosion_particles: ParticleSettings
 
 @onready var chunk_updater: ChunkUpdater = $"Chunk Updater"
-@onready var mob_spawner: MobSpawner = $"Mob Spawner"
 @onready var mobs = $Mobs
 @onready var block_entities = $"Block Entities"
 
@@ -40,7 +41,10 @@ func start():
 	await get_parent().pre_start()
 	
 	chunk_updater.start()
-	mob_spawner.start()
+	
+	if mob_spawner:
+		mob_spawner.start()
+	
 	initialization_finished.emit()
 	set_physics_process(true)
 

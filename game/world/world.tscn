@@ -9,12 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://vgl3mtr5d37f" path="res://game/components/debug component/debug_component.tscn" id="7_4bafo"]
 [ext_resource type="Script" path="res://game/world/components/mob spawner/mob_spawner.gd" id="7_otmna"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("chunks")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("chunks", "mob_spawner")]
 script = ExtResource("1_pmjc8")
 world_item_scene = ExtResource("2_xrbq3")
 world_chunk_scene = ExtResource("3_x61oj")
 chunks = NodePath("Chunks")
 generator = ExtResource("4_4gpyw")
+mob_spawner = NodePath("Mob Spawner")
 explosion_particles = ExtResource("5_snubo")
 
 [node name="Chunk Updater" type="Node" parent="."]
