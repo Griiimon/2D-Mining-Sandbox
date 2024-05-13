@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dco5af8vue5ff" path="res://game/player/hotbar/hotbar_slot.tscn" id="2_8gj2r"]
 [ext_resource type="PackedScene" uid="uid://dtq28wgfpmux8" path="res://game/player/inventory/inventory_slot.tscn" id="3_gh4v7"]
 [ext_resource type="PackedScene" uid="uid://d05k54ks64l8d" path="res://game/player/crafting/crafting_ui.tscn" id="4_xvfww"]
-[ext_resource type="PackedScene" uid="uid://c6l1jqs4ln37t" path="res://build_menu.tscn" id="5_0rt6d"]
+[ext_resource type="PackedScene" uid="uid://c6l1jqs4ln37t" path="res://game/player/build_menu.tscn" id="5_0rt6d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82jp2"]
 bg_color = Color(0.34902, 0.34902, 0.34902, 0.423529)
