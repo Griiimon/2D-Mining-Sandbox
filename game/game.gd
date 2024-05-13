@@ -17,7 +17,8 @@ func _init():
 	
 
 func _ready():
-	assert(cheats)
+	if not cheats:
+		cheats= Cheats.new()
 	assert(settings)
 	
 	set_process(false)
