@@ -21,6 +21,10 @@ func _ready():
 		cheats= Cheats.new()
 	assert(settings)
 	
+	if not world:
+		world= get_node_or_null("World")
+		assert(world)
+	
 	set_process(false)
 	await world.initialization_finished
 	
