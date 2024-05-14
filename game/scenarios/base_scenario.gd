@@ -16,6 +16,7 @@ var time: float
 
 func _ready():
 	set_process(false)
+	super()
 
 
 func pre_start():
