@@ -20,6 +20,8 @@ func _init():
 	
 
 func _ready():
+	game_is_over.connect(GameManager.game_over)
+
 	if not cheats:
 		cheats= Cheats.new()
 	assert(settings)
