@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsqmffqn6t6dj"]
+[gd_scene load_steps=4 format=3 uid="uid://bsqmffqn6t6dj"]
 
 [ext_resource type="Script" path="res://game/startup.gd" id="1_dwhkv"]
+[ext_resource type="PackedScene" uid="uid://dsfm46wesfb8g" path="res://game/scenarios/iron_ingot_challenge/iron_ingot_challenge.tscn" id="2_0ry8v"]
+[ext_resource type="PackedScene" uid="uid://cq1j11s6jlegu" path="res://game/ui/main_menu.tscn" id="3_oer08"]
 
 [node name="Startup" type="Node"]
 script = ExtResource("1_dwhkv")
+skip_main_menu = true
+skip_to_scene = ExtResource("2_0ry8v")
+main_menu = ExtResource("3_oer08")
