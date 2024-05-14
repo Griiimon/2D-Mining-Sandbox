@@ -3,12 +3,11 @@ extends Node
 
 
 func run_game(scene: PackedScene):
-	get_tree().change_scene_to_packed(scene)
-	await get_tree().process_frame
-	
-	assert(get_tree().current_scene is Game)
-	
-	(get_tree().current_scene as Game).game_is_over.connect(game_over)
+	run_deferred.call_deferred(scene)
+
+
+func run_deferred(scene: PackedScene):
+	assert(get_tree().change_scene_to_packed(scene) == OK)
 
 
 func game_over(win: bool):
