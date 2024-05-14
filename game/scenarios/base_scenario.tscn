@@ -15,8 +15,6 @@ bg_color = Color(0.359069, 0.359069, 0.359069, 0.458824)
 
 [node name="Base Scenario" type="Node"]
 script = ExtResource("1_1t407")
-description = null
-can_toggle_cheats = null
 
 [node name="World" parent="." instance=ExtResource("5_suwde")]
 generator = null
