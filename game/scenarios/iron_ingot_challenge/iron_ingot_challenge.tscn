@@ -1,18 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://dsfm46wesfb8g"]
 
 [ext_resource type="PackedScene" uid="uid://c510uo66y1t16" path="res://game/scenarios/base_scenario.tscn" id="1_a7ldo"]
-[ext_resource type="Script" path="res://game/game_settings.gd" id="2_sciaj"]
+[ext_resource type="Script" path="res://game/scenarios/iron_ingot_challenge/iron_ingot_challenge.gd" id="2_y5bo5"]
 [ext_resource type="PackedScene" uid="uid://baufx6u2wjni6" path="res://game/player/characters/El Classico/el_classico.tscn" id="3_0oxmp"]
-
-[sub_resource type="Resource" id="Resource_ijtw0"]
-script = ExtResource("2_sciaj")
-world_seed = 0
-player_spawn = Vector2i(0, 0)
-spawn_clearing_radius = 0
-respawn_on_death = true
+[ext_resource type="Resource" uid="uid://buf1v5pb5n1p3" path="res://game/scenarios/iron_ingot_challenge/game_settings.tres" id="3_smhpu"]
 
 [node name="Iron Ingot Challenge" instance=ExtResource("1_a7ldo")]
-settings = SubResource("Resource_ijtw0")
+script = ExtResource("2_y5bo5")
+ingot_count = 1
+countdown = 1
+settings = ExtResource("3_smhpu")
 player_scene = ExtResource("3_0oxmp")
 
 [node name="World" parent="." index="0"]
