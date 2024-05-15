@@ -27,6 +27,12 @@ func _ready():
 		time_and_objectives_container.show()
 		time_label.show()
 		update_time()
+	
+	post_init()
+
+
+func post_init():
+	pass
 
 
 func _process(delta):

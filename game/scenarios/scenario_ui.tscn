@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://rulbjxj13xn7"]
+
+[ext_resource type="Script" path="res://game/scenarios/scenario_ui.gd" id="1_qchyy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpofj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pdejf"]
+font_size = 28
+font_color = Color(0.0196078, 0.564706, 0.0196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n42r4"]
+bg_color = Color(0.359069, 0.359069, 0.359069, 0.458824)
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_qchyy")
+
+[node name="Description CenterContainer" type="CenterContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Description CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpofj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Description CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Description Label" type="Label" parent="Description CenterContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_pdejf")
+
+[node name="Description Timeout" type="Timer" parent="Description CenterContainer/PanelContainer/MarginContainer/Description Label"]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="Time And Objectives MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="Time And Objectives MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n42r4")
+
+[node name="MarginContainer" type="MarginContainer" parent="Time And Objectives MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Time And Objectives MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Time Label" type="Label" parent="Time And Objectives MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "00:00:00"
+horizontal_alignment = 1
+
+[node name="Objectives HSeparator" type="HSeparator" parent="Time And Objectives MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Objectives Label" type="Label" parent="Time And Objectives MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="timeout" from="Description CenterContainer/PanelContainer/MarginContainer/Description Label/Description Timeout" to="." method="_on_description_timeout_timeout"]
