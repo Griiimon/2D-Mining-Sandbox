@@ -8,9 +8,11 @@ const BLOCK_TICKS= 5
 
 const TILE_SIZE= 32
 
-@export var chunks: Node2D
+@export var enable_mob_spawner: bool= true
 @export var generator: TerrainGenerator
-@export var mob_spawner: MobSpawner
+
+@export_category("Nodes")
+@export var chunks: Node2D
 
 @export_category("Static Resources")
 @export var explosion_particles: ParticleSettings
@@ -20,6 +22,7 @@ const TILE_SIZE= 32
 @onready var chunk_updater: ChunkUpdater = $"Chunk Updater"
 @onready var mobs = $Mobs
 @onready var block_entities = $"Block Entities"
+@onready var mob_spawner = $"Mob Spawner"
 
 
 var tick_entities: Array[BaseBlockEntity]
@@ -43,7 +46,7 @@ func start():
 	
 	chunk_updater.start()
 	
-	if mob_spawner:
+	if enable_mob_spawner:
 		mob_spawner.start()
 	
 	initialization_finished.emit()
