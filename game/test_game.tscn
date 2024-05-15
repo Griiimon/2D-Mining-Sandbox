@@ -16,6 +16,7 @@ script = ExtResource("2_ru5vw")
 world_seed = 0
 player_spawn = Vector2i(0, 0)
 spawn_clearing_radius = 8
+respawn_on_death = true
 player_loadout = ExtResource("2_jkm7x")
 
 [sub_resource type="Resource" id="Resource_g2rh2"]
