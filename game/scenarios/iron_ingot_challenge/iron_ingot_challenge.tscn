@@ -9,8 +9,8 @@
 [node name="Iron Ingot Challenge" instance=ExtResource("1_a7ldo")]
 script = ExtResource("2_y5bo5")
 item = ExtResource("3_6kdpx")
-item_count = 1
-countdown = 30
+item_count = 10
+countdown = 120
 settings = ExtResource("3_smhpu")
 player_scene = ExtResource("3_0oxmp")
 
