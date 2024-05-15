@@ -7,7 +7,7 @@ var objective_completed: bool= false
 
 
 func _ready():
-	description= "Create %d %ss" % [ item_count, item.get_display_name() ]
+	description= "Collect %d %ss" % [ item_count, item.get_display_name() ]
 	super()
 
 
