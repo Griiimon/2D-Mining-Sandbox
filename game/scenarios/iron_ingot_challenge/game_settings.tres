@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="GameSettings" load_steps=9 format=3 uid="uid://buf1v5pb5n1p3"]
+
+[ext_resource type="Resource" uid="uid://de53vt430ls03" path="res://game/items/pickaxe/pickaxe.tres" id="1_i354h"]
+[ext_resource type="Script" path="res://game/player/inventory/inventory_item.gd" id="2_dytm6"]
+[ext_resource type="Resource" uid="uid://b7tlou78nevvw" path="res://game/items/clay/clay.tres" id="3_r6ihk"]
+[ext_resource type="Script" path="res://game/player/player_loadout.gd" id="4_ypd0k"]
+[ext_resource type="Script" path="res://game/game_settings.gd" id="5_1cbut"]
+
+[sub_resource type="Resource" id="Resource_p0sya"]
+script = ExtResource("2_dytm6")
+item = ExtResource("1_i354h")
+count = 1
+
+[sub_resource type="Resource" id="Resource_c2vbt"]
+script = ExtResource("2_dytm6")
+item = ExtResource("3_r6ihk")
+count = 8
+
+[sub_resource type="Resource" id="Resource_xkmfw"]
+script = ExtResource("4_ypd0k")
+inventory_items = Array[ExtResource("2_dytm6")]([SubResource("Resource_p0sya"), SubResource("Resource_c2vbt")])
+
+[resource]
+script = ExtResource("5_1cbut")
+world_seed = 0
+player_spawn = Vector2i(0, 0)
+spawn_clearing_radius = 0
+respawn_on_death = true
+player_loadout = SubResource("Resource_xkmfw")
