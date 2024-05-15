@@ -20,6 +20,8 @@ func _init():
 	
 
 func _ready():
+	get_tree().paused= false
+
 	game_is_over.connect(GameManager.game_over)
 
 	if not cheats:
@@ -67,6 +69,12 @@ func spawn_player():
 	camera.follow_node= player
 
 	player.tree_exited.connect(spawn_player if settings.respawn_on_death else game_over.bind(false))
+	
+	on_player_spawned()
+
+
+func on_player_spawned():
+	pass
 
 
 func game_over(win: bool):
