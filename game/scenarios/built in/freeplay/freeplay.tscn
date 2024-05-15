@@ -25,6 +25,7 @@ script = ExtResource("1_blqru")
 world = NodePath("World")
 settings = SubResource("Resource_lqxxk")
 cheats = SubResource("Resource_2wtjc")
+can_toggle_cheats = false
 player_scene = ExtResource("4_pra6c")
 
 [node name="World" parent="." instance=ExtResource("5_xagwd")]
