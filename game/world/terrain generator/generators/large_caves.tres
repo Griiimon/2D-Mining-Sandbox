@@ -17,7 +17,6 @@ noise_threshold = 0.0
 
 [sub_resource type="Resource" id="Resource_62246"]
 script = ExtResource("3_0sel7")
-priority = 4
 min_height = -100
 max_height = 1024
 distribution = SubResource("Resource_qdcf6")
@@ -33,7 +32,6 @@ noise_threshold = 0.4
 
 [sub_resource type="Resource" id="Resource_puc8l"]
 script = ExtResource("3_0sel7")
-priority = 4
 min_height = 0
 max_height = 1024
 distribution = SubResource("Resource_q0alk")
@@ -49,7 +47,6 @@ noise_threshold = 0.39
 
 [sub_resource type="Resource" id="Resource_tk6ju"]
 script = ExtResource("3_0sel7")
-priority = 3
 min_height = 0
 max_height = 1024
 distribution = SubResource("Resource_hfx3x")
@@ -66,7 +63,6 @@ noise_threshold = 0.42
 
 [sub_resource type="Resource" id="Resource_j6re8"]
 script = ExtResource("3_0sel7")
-priority = 2
 min_height = 0
 max_height = 1024
 distribution = SubResource("Resource_b0jq7")
@@ -88,7 +84,6 @@ noise_threshold = 0.2
 
 [sub_resource type="Resource" id="Resource_wdpor"]
 script = ExtResource("3_0sel7")
-priority = 0
 min_height = 0
 max_height = 1024
 distribution = SubResource("Resource_kx2jn")
