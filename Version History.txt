@@ -2,6 +2,7 @@
 # v0.4          #
 ##################
 
+- iron ingot challenge
 - base scenario
 - level editor
 - stone slab (item), stone ramp and smooth stone block
