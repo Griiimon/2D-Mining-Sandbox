@@ -97,6 +97,15 @@ func has(item_type: Item, count: int= 0)-> bool:
 	return false
 
 
+func get_item_count(item_type: Item)-> int:
+	var total: int= 0
+	for inv_item in items:
+		if inv_item.item == item_type:
+			total+= inv_item.count
+			
+	return total
+
+
 func find_empty_slot()-> int:
 	for i in SIZE:
 		if not items[i].item:
