@@ -34,6 +34,15 @@ movie_writer/fps=30
 
 enabled=PackedStringArray("res://addons/sound_material_matrix/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://game/": "yellow",
+"res://game/blocks/": "orange",
+"res://game/items/": "teal",
+"res://media/": "gray"
+}
+
 [input]
 
 drop_item={
