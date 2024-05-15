@@ -1,7 +1,5 @@
 add sounds
 
-challenges ( game mode with objective message on start up )
- 
 character selection screen ( ItemList )
 
 modularize UI into more custom scenes
@@ -16,6 +14,7 @@ escape closes ui windows first
 
 -------- v5 ---------------
 
+make mob spawner resource
 
 photo booth tool for making profile pictures of characters etc 
 
