@@ -65,6 +65,14 @@ func _process(_delta):
 	update_health()
 
 
+func _unhandled_key_input(event):
+	var key_event: InputEventKey= event
+	if key_event.is_pressed() and key_event.keycode == KEY_ESCAPE:
+		if are_windows_open():
+			close_windows()
+			get_viewport().set_input_as_handled()
+
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
@@ -192,6 +200,10 @@ func close_build_menu():
 func close_windows():
 	close_build_menu()
 	close_inventory_window()
+
+
+func are_windows_open()-> bool:
+	return build_menu.visible or main_inventory.visible
 
 
 func _on_build_menu_select_buildable(buildable: Buildable):

@@ -8,6 +8,9 @@ extends Node
 @onready var game_over_label = %"Game Over Label"
 
 
+var game: Game
+
+
 
 func init():
 	assert(main_menu)
@@ -17,6 +20,15 @@ func init():
 		GameManager.run_game(skip_to_scene)
 	else:
 		get_tree().change_scene_to_packed(main_menu)
+
+
+func _unhandled_key_input(event):
+	var key_event: InputEventKey= event
+	if key_event.is_pressed() and key_event.keycode == KEY_ESCAPE:
+		if is_ingame():
+			load_main_menu()
+		else:
+			get_tree().quit()
 
 
 func run_game(scene: PackedScene):
@@ -43,5 +55,10 @@ func _on_exit_button_pressed():
 
 
 func load_main_menu():
+	get_tree().paused= true
 	game_over_container.hide()
 	get_tree().change_scene_to_packed.call_deferred(main_menu)
+
+
+func is_ingame()-> bool:
+	return get_tree().current_scene is Game
