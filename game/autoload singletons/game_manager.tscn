@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvdfo4xuykmdh"]
+[gd_scene load_steps=6 format=3 uid="uid://bvdfo4xuykmdh"]
 
 [ext_resource type="Script" path="res://game/autoload singletons/game_manager.gd" id="1_tgw6f"]
 [ext_resource type="PackedScene" uid="uid://dsfm46wesfb8g" path="res://game/scenarios/iron_ingot_challenge/iron_ingot_challenge.tscn" id="2_ih3os"]
 [ext_resource type="PackedScene" uid="uid://cq1j11s6jlegu" path="res://game/ui/main_menu.tscn" id="3_3k04b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx7w7"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.00351917, 0.00351917, 0.00351916, 1)
+border_blend = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_4cu37"]
 font_size = 34
@@ -15,7 +23,6 @@ skip_to_scene = ExtResource("2_ih3os")
 main_menu = ExtResource("3_3k04b")
 
 [node name="Game Over CenterContainer" type="CenterContainer" parent="."]
-process_mode = 3
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,28 +30,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Game Over CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Game Over CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vx7w7")
+
+[node name="MarginContainer" type="MarginContainer" parent="Game Over CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game Over CenterContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Game Over Label" type="Label" parent="Game Over CenterContainer/VBoxContainer"]
+[node name="Game Over Label" type="Label" parent="Game Over CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 label_settings = SubResource("LabelSettings_4cu37")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Game Over CenterContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Game Over CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Try Again Button" type="Button" parent="Game Over CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="Try Again Button" type="Button" parent="Game Over CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+process_mode = 3
 layout_mode = 2
 text = "Try again"
 
-[node name="Exit Button" type="Button" parent="Game Over CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="Exit Button" type="Button" parent="Game Over CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+process_mode = 3
 layout_mode = 2
 text = "Exit"
 
-[connection signal="pressed" from="Game Over CenterContainer/VBoxContainer/HBoxContainer/Try Again Button" to="." method="_on_try_again_button_pressed"]
-[connection signal="pressed" from="Game Over CenterContainer/VBoxContainer/HBoxContainer/Exit Button" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Game Over CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Try Again Button" to="." method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="Game Over CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Exit Button" to="." method="_on_exit_button_pressed"]
