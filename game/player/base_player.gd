@@ -71,7 +71,7 @@ func _ready():
 	ray_cast= mine_raycast_scene.instantiate()
 	look_pivot.add_child(ray_cast)
 	
-	inventory.update_callback= update_inventory
+	inventory.update.connect(update_inventory)
 	
 	init_block_indicators()
 

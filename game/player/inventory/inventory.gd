@@ -1,11 +1,12 @@
 class_name Inventory
 
+signal update
+
+
 const SIZE= 33		# include 9 for hotbar
 
 
 var items: Array[InventoryItem]
-
-var update_callback: Callable
 
 var block_update_callback: bool= false
 
@@ -13,7 +14,7 @@ var block_update_callback: bool= false
 func _init():
 	for i in SIZE:
 		items.append(InventoryItem.new())
-
+	
 
 func add_item(inv_item: InventoryItem, count: int= 1, do_update: bool= true):
 	inv_item.count+= count
@@ -114,5 +115,5 @@ func clear_item(inv_item: InventoryItem):
 
 
 func updated():
-	if update_callback and not block_update_callback:
-		update_callback.call()
+	if not block_update_callback:
+		update.emit()
