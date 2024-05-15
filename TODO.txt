@@ -4,13 +4,15 @@ character selection screen ( ItemList )
 
 modularize UI into more custom scenes
 
-keymap ( github )
-
 fix warnings
 
-remove priority from terrain generator item
+sandbox script full inventory
 
-escape closes ui windows first
+use seed from main menu
+
+options: volume, fullscreen
+
+physics smoothing
 
 -------- v5 ---------------
 
