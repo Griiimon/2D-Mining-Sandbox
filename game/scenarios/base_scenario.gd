@@ -36,7 +36,7 @@ func start():
 func _process(delta):
 	time+= delta
 	
-	if countdown and get_time() <= 0:
+	if has_timer and countdown and get_time() < 0:
 		game_over(false)
 		return
 	
