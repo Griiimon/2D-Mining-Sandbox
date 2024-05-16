@@ -9,7 +9,7 @@ extends Node
 
 
 var game: Game
-
+var character: PackedScene
 
 
 func init():
