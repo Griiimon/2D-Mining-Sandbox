@@ -4,6 +4,7 @@ extends BaseSoundPlayer
 var stream_players: Array[AudioStreamPlayer]
 
 
+
 func _ready():
 	stream_players.assign(get_children())
 
@@ -13,7 +14,8 @@ func play(sound_key: String):
 	if player:
 		if not library.has(sound_key):
 			push_error("No %s in sound library" % [sound_key])
-		
+			return
+			
 		var sound: AudioStream= library[sound_key]
 		
 		player.stream= sound
