@@ -73,13 +73,14 @@ static func make_ingredient_list(control: Control, ingredients: Array[InventoryI
 		control.add_child(label)
 
 
-static func get_time_string(time: int)-> String:
-	time= int(time)
-	var seconds = time % 60
-	var minutes = (time / 60) % 60
-	var hours = (time / 60) / 60
+static func get_time_string(time: float)-> String:
+	var time_int: int= int(time)
+	var seconds = time_int % 60
+	@warning_ignore("integer_division")
+	var minutes = (time_int / 60) % 60
+	@warning_ignore("integer_division")
+	var hours = (time_int / 60) / 60
 
-	#returns a string with the format "HH:MM:SS"
 	return "%02d:%02d:%02d" % [hours, minutes, seconds]	
 
 

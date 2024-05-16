@@ -35,7 +35,7 @@ func post_init():
 	pass
 
 
-func _process(delta):
+func _process(_delta):
 	update_time()
 
 

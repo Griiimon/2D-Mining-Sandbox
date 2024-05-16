@@ -27,7 +27,7 @@ func populate_lists():
 	game_mode_item_list.select(0)
 
 
-static func get_scene_name(scene: PackedScene)-> String:
+func get_scene_name(scene: PackedScene)-> String:
 	return scene.resource_path.rsplit("/")[-1].trim_suffix(".tscn").capitalize()
 
 
