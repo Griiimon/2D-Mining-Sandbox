@@ -24,6 +24,8 @@ DataManager="*res://game/autoload singletons/data_manager.tscn"
 Effects="*res://game/effects/effects.tscn"
 SoundPlayer="*res://game/audio/sound_player.tscn"
 GameManager="*res://game/autoload singletons/game_manager.tscn"
+UserConfig="*res://game/autoload singletons/user_config.gd"
+PositionalSoundPlayer="*res://game/audio/positional_sound_player.tscn"
 
 [editor]
 
