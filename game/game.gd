@@ -32,6 +32,9 @@ func _ready():
 		world= get_node_or_null("World")
 		assert(world)
 	
+	if GameManager.character:
+		player_scene= GameManager.character
+	
 	set_process(false)
 	await world.initialization_finished
 	
@@ -62,7 +65,8 @@ func _process(_delta):
 func spawn_player():
 	player= player_scene.instantiate()
 	player.position= settings.player_spawn
-	add_child(player)
+	add_child.call_deferred(player)
+	await get_tree().process_frame
 	camera.follow_node= player
 
 	player.tree_exited.connect(spawn_player if settings.respawn_on_death else game_over.bind(false))
