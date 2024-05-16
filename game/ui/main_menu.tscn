@@ -81,6 +81,7 @@ layout_mode = 2
 text = "Available Characters"
 
 [node name="Character ItemList" type="ItemList" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 250)
 layout_mode = 2
 
