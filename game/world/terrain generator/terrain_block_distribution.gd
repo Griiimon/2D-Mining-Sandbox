@@ -9,7 +9,11 @@ var processed_noises: Array[FastNoiseLite]
 
 
 func initialize():
-	var current_seed: int= Global.game.settings.world_seed
+	var current_seed: int
+	if GameManager.world_seed:
+		current_seed= hash(GameManager.world_seed)
+	else:
+		current_seed= Global.game.settings.world_seed
 	
 	if noise:
 		for i in blocks.size():

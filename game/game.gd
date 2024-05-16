@@ -20,13 +20,14 @@ func _init():
 	
 
 func _ready():
+	assert(settings)
+
 	get_tree().paused= false
 
 	game_is_over.connect(GameManager.game_over)
 
 	if not cheats:
 		cheats= Cheats.new()
-	assert(settings)
 	
 	if not world:
 		world= get_node_or_null("World")
@@ -35,14 +36,12 @@ func _ready():
 	if GameManager.character:
 		player_scene= GameManager.character
 	
-	if GameManager.world_seed:
-		settings.world_seed= hash(GameManager.world_seed)
-	
+
 	set_process(false)
 	await world.initialization_finished
 	
 	if not player:
-		spawn_player()
+		spawn_player.call_deferred()
 
 	post_init()
 	set_process(true)
