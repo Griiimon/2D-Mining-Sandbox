@@ -12,6 +12,10 @@ extends Node
 @export var mobs_suffix: String
 @export var fluid_library: FluidLibrary
 
+@export_dir var scenario_path
+@export_dir var builtin_scenario_path
+@export_dir var characters_path
+
 
 var blocks: Array[Block]
 var blocks_lookup: Dictionary
@@ -21,8 +25,11 @@ var block_entities: Array[BlockEntityDefinition]
 var crafting_recipes: Array[CraftingRecipe]
 var furnace_recipes: Dictionary
 
-
 var mobs: Array[MobDefinition]
+
+var builtin_scenarios: Array[PackedScene]
+var scenarios: Array[PackedScene]
+var characters: Array[PackedScene]
 
 
 
@@ -42,6 +49,8 @@ func _ready():
 
 	load_resource_folder_into_array(mobs_path, mobs, mobs_suffix)
 
+	load_scenes_folder(characters_path, characters)
+
 	late_ready.call_deferred()
 
 
@@ -51,12 +60,6 @@ func late_ready():
 
 
 func load_resource_folder_into_array(folder: String, array: Array, suffix: String= ".tres"):
-	#folder+= "/"
-	#var dir:= DirAccess.open(folder)
-	#
-	#for file in dir.get_files():
-		#var item= load(folder + file)
-		#array.append(item)
 	for file in Utils.load_directory_recursively(folder):
 		if file.ends_with(suffix):
 			array.append(load(file))
@@ -70,6 +73,20 @@ func load_resource_folder_into_dictionary(folder: String, dict: Dictionary, key:
 		var item= load(folder + file)
 		assert(key in item)
 		dict[item.get(key)]= item
+
+
+func load_scenes_folder(folder: String, array: Array[PackedScene]):
+	folder+= "/"
+	var dir:= DirAccess.open(folder)
+	
+	for sub_dir_name in dir.get_directories():
+		var path: String= folder + sub_dir_name
+		var sub_dir: DirAccess= DirAccess.open(path)
+		var scene_file_name: String= sub_dir_name.to_snake_case() + ".tscn"
+		if sub_dir.file_exists(scene_file_name):
+			array.append(load(path + "/" + scene_file_name))
+		else:
+			push_error("Can't find %s in %s" % [ scene_file_name, path])
 
 
 func find_furnace_recipe_for(ore: Item)-> FurnaceRecipe:
