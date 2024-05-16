@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://gocwok8gymun"]
+
+[ext_resource type="Script" path="res://game/components/user settings/user_settings.gd" id="1_utqh2"]
+
+[node name="User Settings" type="Node"]
+script = ExtResource("1_utqh2")
