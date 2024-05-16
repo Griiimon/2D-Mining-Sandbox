@@ -19,7 +19,7 @@ func init():
 	if skip_main_menu:
 		GameManager.run_game(skip_to_scene)
 	else:
-		get_tree().change_scene_to_packed(main_menu)
+		get_tree().change_scene_to_packed.call_deferred(main_menu)
 
 
 func _unhandled_key_input(event):
