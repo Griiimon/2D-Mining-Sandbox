@@ -1,7 +1,7 @@
 class_name MaterialSoundLibrary
 extends Resource
 
-enum Type { ROCK, METAL, THIN_METAL, LEATHER, PLASTIC, WOOD }
+enum Type { ROCK, METAL, THIN_METAL, PLASTIC, WOOD, FLESH, DIRT }
 
 
 @export var sound_paths: Dictionary
@@ -9,7 +9,12 @@ enum Type { ROCK, METAL, THIN_METAL, LEATHER, PLASTIC, WOOD }
 var sounds: Dictionary
 
 
-func get_key(type1: Type, type2: Type)-> String:
+static func get_key(type1: Type, type2: Type)-> String:
+	if type2 < type1:
+		var tmp= type1
+		type1= type2
+		type2= tmp
+
 	return str(int(type1), ",", int(type2))
 
 
@@ -21,3 +26,4 @@ func build():
 			for sound_file in arr:
 				assert(FileAccess.file_exists(sound_file))
 				sounds[key].append(load(sound_file))
+
