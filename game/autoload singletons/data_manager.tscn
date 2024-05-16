@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cvafv12dien4y"]
 
 [ext_resource type="Script" path="res://game/autoload singletons/data_manager.gd" id="1_jsysr"]
-[ext_resource type="TileSet" uid="uid://cjdcoj2bmaput" path="res://resources/tile_set.tres" id="2_7hkao"]
+[ext_resource type="TileSet" uid="uid://pkf7p0eypcko" path="res://resources/tile_set.tres" id="2_7hkao"]
 [ext_resource type="TileSet" uid="uid://oilm5db18kw1" path="res://resources/orig_tile_set.tres" id="3_1fuao"]
 [ext_resource type="Resource" uid="uid://b4403wlk4dsx6" path="res://game/blocks/fluid_library.tres" id="3_bltjv"]
 
@@ -17,4 +17,6 @@ furnace_recipe_path = "res://game/recipes/furnace"
 mobs_path = "res://game/mobs"
 mobs_suffix = ".tres"
 fluid_library = ExtResource("3_bltjv")
+scenarios_path = "res://game/scenarios"
+builtin_scenarios_path = "res://game/scenarios/built in"
 characters_path = "res://game/player/characters"
