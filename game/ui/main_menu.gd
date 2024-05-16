@@ -3,11 +3,15 @@ extends CanvasLayer
 
 @onready var character_item_list = %"Character ItemList"
 @onready var game_mode_item_list = %"Game Mode ItemList"
+@onready var seed_line_edit = %"Seed LineEdit"
 
 
 
 func _ready():
 	get_tree().paused= false
+	
+	seed_line_edit.text= GameManager.world_seed
+	
 	populate_lists()
 
 
@@ -32,6 +36,7 @@ func _on_close_button_pressed():
 
 
 func _on_play_button_pressed():
+	GameManager.world_seed= seed_line_edit.text
 	GameManager.character= DataManager.characters[character_item_list.get_selected_items()[0]]
 	var scenarios: Array[PackedScene]= DataManager.builtin_scenarios + DataManager.scenarios
 	GameManager.run_game(scenarios[game_mode_item_list.get_selected_items()[0]])

@@ -10,6 +10,8 @@ extends Node
 
 var game: Game
 var character: PackedScene
+var world_seed: String
+
 
 
 func init():
