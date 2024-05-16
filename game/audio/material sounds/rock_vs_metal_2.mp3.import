@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cd00nefuy0s5s"
+path="res://.godot/imported/rock_vs_metal_2.mp3-2c73a3af69c3210f4c0f60f939dd96d8.mp3str"
+
+[deps]
+
+source_file="res://game/audio/material sounds/rock_vs_metal_2.mp3"
+dest_files=["res://.godot/imported/rock_vs_metal_2.mp3-2c73a3af69c3210f4c0f60f939dd96d8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

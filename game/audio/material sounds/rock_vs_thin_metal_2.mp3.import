@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://xorc04av3o8n"
+path="res://.godot/imported/rock_vs_thin_metal_2.mp3-d355f5d11f37c2b7abe9e581f62107e9.mp3str"
+
+[deps]
+
+source_file="res://game/audio/material sounds/rock_vs_thin_metal_2.mp3"
+dest_files=["res://.godot/imported/rock_vs_thin_metal_2.mp3-d355f5d11f37c2b7abe9e581f62107e9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bv5eagagvae62"
+path="res://.godot/imported/plastic_vs_wood.mp3-3993367b33099d19011be7da6f9621bd.mp3str"
+
+[deps]
+
+source_file="res://game/audio/material sounds/plastic_vs_wood.mp3"
+dest_files=["res://.godot/imported/plastic_vs_wood.mp3-3993367b33099d19011be7da6f9621bd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

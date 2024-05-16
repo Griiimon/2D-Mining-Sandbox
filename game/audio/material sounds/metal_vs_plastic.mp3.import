@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cspayjyaojxb1"
+path="res://.godot/imported/metal_vs_plastic.mp3-925cbb9e920591f0e19c96192d8f93c9.mp3str"
+
+[deps]
+
+source_file="res://game/audio/material sounds/metal_vs_plastic.mp3"
+dest_files=["res://.godot/imported/metal_vs_plastic.mp3-925cbb9e920591f0e19c96192d8f93c9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
