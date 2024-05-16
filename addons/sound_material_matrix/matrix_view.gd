@@ -15,6 +15,7 @@ func _ready():
 
 
 func generate_grid():
+	Utils.free_children(grid_container)
 	var matrix_size: int= MaterialSoundLibrary.Type.size() + 1
 	grid_container.columns= matrix_size
 	
@@ -49,6 +50,7 @@ func _on_button_load_pressed():
 	print("Loading %d items" % [len(library.sound_paths.keys())])
 	for key in library.sound_paths.keys():
 		items[key]= library.sound_paths[key]
+	generate_grid()
 
 
 func _on_button_save_pressed():
