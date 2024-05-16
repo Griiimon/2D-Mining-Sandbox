@@ -4,4 +4,8 @@
 
 [resource]
 script = ExtResource("1_fs44k")
-sound_paths = {}
+sound_paths = {
+"1,1": "res://game/audio/material sounds/rock_vs_rock.mp3",
+"2,1": "res://game/audio/material sounds/rock_vs_metal_1.mp3
+res://game/audio/material sounds/rock_vs_metal_2.mp3"
+}
