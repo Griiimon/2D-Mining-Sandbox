@@ -12,8 +12,8 @@ extends Node
 @export var mobs_suffix: String
 @export var fluid_library: FluidLibrary
 
-@export_dir var scenario_path
-@export_dir var builtin_scenario_path
+@export_dir var scenarios_path
+@export_dir var builtin_scenarios_path
 @export_dir var characters_path
 
 
@@ -50,6 +50,10 @@ func _ready():
 	load_resource_folder_into_array(mobs_path, mobs, mobs_suffix)
 
 	load_scenes_folder(characters_path, characters)
+	
+	load_scenes_folder(builtin_scenarios_path, builtin_scenarios)
+
+	load_scenes_folder(scenarios_path, scenarios, builtin_scenarios_path)
 
 	late_ready.call_deferred()
 
@@ -75,12 +79,14 @@ func load_resource_folder_into_dictionary(folder: String, dict: Dictionary, key:
 		dict[item.get(key)]= item
 
 
-func load_scenes_folder(folder: String, array: Array[PackedScene]):
+func load_scenes_folder(folder: String, array: Array[PackedScene], exclude_path: String= ""):
 	folder+= "/"
 	var dir:= DirAccess.open(folder)
 	
 	for sub_dir_name in dir.get_directories():
 		var path: String= folder + sub_dir_name
+		if path == exclude_path: continue
+		
 		var sub_dir: DirAccess= DirAccess.open(path)
 		var scene_file_name: String= sub_dir_name.to_snake_case() + ".tscn"
 		if sub_dir.file_exists(scene_file_name):
