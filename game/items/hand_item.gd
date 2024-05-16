@@ -7,6 +7,7 @@ enum Type { NONE, PICK_AXE, SHOVEL, MELEE_WEAPON, THROWABLE, CUSTOM }
 @export var tier: int
 @export var scene: PackedScene
 
+@export var material: MaterialSoundLibrary.Type
 @export var mining_animation: String
 @export var primary_action_animation: String
 @export var secondary_action_animation: String

@@ -9,6 +9,7 @@ script = ExtResource("2_rcpog")
 type = 3
 tier = 0
 scene = ExtResource("1_6gf1x")
+material = 2
 mining_animation = "mine"
 primary_action_animation = "stab"
 secondary_action_animation = "swing"

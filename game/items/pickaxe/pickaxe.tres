@@ -9,6 +9,7 @@ script = ExtResource("1_0ajy6")
 type = 1
 tier = 0
 scene = ExtResource("1_6yoo4")
+material = 1
 mining_animation = "Mine"
 primary_action_animation = ""
 secondary_action_animation = ""

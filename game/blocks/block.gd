@@ -10,6 +10,8 @@ enum State { NONE, FLIP_HORIZONTAL, FLIP_VERTICAL, ROTATE_90_DEG, ROTATE_180_DEG
 @export var has_collision: bool= true
 @export var tags: Array[Tag]
 @export var particle_color: Color
+@export var material: MaterialSoundLibrary.Type= MaterialSoundLibrary.Type.ROCK
+
 
 @export_category("Tools")
 @export var mining_tool: HandItem.Type= HandItem.Type.PICK_AXE
