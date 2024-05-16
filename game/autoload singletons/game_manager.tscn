@@ -18,7 +18,6 @@ font_color = Color(0.240994, 0.466334, 0.441528, 1)
 
 [node name="Game Manager" type="CanvasLayer"]
 script = ExtResource("1_tgw6f")
-skip_main_menu = true
 skip_to_scene = ExtResource("2_d7s40")
 main_menu = ExtResource("3_3k04b")
 
