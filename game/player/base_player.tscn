@@ -91,6 +91,10 @@ player = NodePath("../..")
 script = ExtResource("15_ips6r")
 player = NodePath("../..")
 
+[node name="Sound Interval" type="Timer" parent="State Machine/Mining"]
+wait_time = 0.7
+one_shot = true
+
 [node name="Item Using" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
 script = ExtResource("16_cekgf")
 player = NodePath("../..")

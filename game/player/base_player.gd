@@ -409,6 +409,10 @@ func craft(recipe: CraftingRecipe, count: int):
 	ui.crafting_ui.build()
 
 
+func play_hand_item_sound(target_material: MaterialSoundLibrary.Type):
+	PositionalSoundPlayer.play_material_sound(get_hand_object().type.material, target_material, get_hand_object().global_position)
+
+
 func is_in_tile(tile_pos: Vector2i)-> bool:
 	var query= PhysicsShapeQueryParameters2D.new()
 	var shape:= RectangleShape2D.new()

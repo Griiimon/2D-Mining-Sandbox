@@ -2,6 +2,9 @@ extends PlayerState
 
 signal stop_mining
 
+
+@onready var sound_interval: Timer = $"Sound Interval"
+
 var mining_progress: float
 
 
@@ -47,6 +50,10 @@ func on_physics_process(delta: float):
 		player.block_breaker.position= get_world().map_to_local(selected_block_pos)
 		var frames: int= player.block_breaker.sprite_frames.get_frame_count("default")
 		player.block_breaker.frame= int(frames * mining_progress / total_mining_effort)
+
+	if sound_interval.is_stopped():
+		player.play_hand_item_sound(block.material)
+		sound_interval.start()
 
 
 func _on_player_ui_hotbar_slot_changed():
