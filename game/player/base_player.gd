@@ -75,15 +75,7 @@ func _ready():
 	
 	init_block_indicators()
 
-	late_ready.call_deferred()
-
-
-func late_ready():
-	var priority_loadout: PlayerLoadout= loadout
-	if Global.game.settings.player_loadout:
-		priority_loadout= Global.game.settings.player_loadout
-	for inv_item in priority_loadout.inventory_items:
-		add_item_to_inventory(inv_item.item, inv_item.count)
+	init_loadout()
 
 
 func _process(_delta):
@@ -393,6 +385,14 @@ func _on_crafting_recipe_crafted(recipe: CraftingRecipe):
 	inventory.sub_ingredients(recipe.ingredients)
 	inventory.block_update_callback= false
 	add_item_to_inventory(recipe.product, recipe.product_count)
+
+
+func init_loadout():
+	var priority_loadout: PlayerLoadout= loadout
+	if Global.game.settings.player_loadout:
+		priority_loadout= Global.game.settings.player_loadout
+	for inv_item in priority_loadout.inventory_items:
+		add_item_to_inventory(inv_item.item, inv_item.count)
 
 
 func init_death():
