@@ -23,6 +23,13 @@ Gameplay (V3)
 Controls:
 ------
 
+| Action                        | Key(s)               |
+|---------                      | -------------        |
+|Move                           |W/A/S/D               |
+|Use Weapon/Tool|Left Mouse Button|
+|Secondary Hand Action|Right Mouse Button|
+|                               |                      |
+
 Move					- W/A/S/D
 
 Use Weapon/Tool			- Left Mouse Button
