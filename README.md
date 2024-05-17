@@ -7,7 +7,7 @@
 ![Logo](media/banner.png)
 
  * [About](#about)
- * [Gameplay](#gameplay)
+ * [Gameplay](#gameplay (v3))
  * [Controls](#controls)
  * [How To Contribute](#contribute)
 
@@ -28,32 +28,20 @@ Controls:
 |Move                           |W/A/S/D               |
 |Use Weapon/Tool|Left Mouse Button|
 |Secondary Hand Action|Right Mouse Button|
-|                               |                      |
-
-Move					- W/A/S/D
-
-Use Weapon/Tool			- Left Mouse Button
-
-Secondary Hand Action	- Right Mouse Button
-
-Next/Prev Hotbar item	- Mouse Wheel or Q/E
-
-Drop item				- X
-
-Interact				- F
-
-Toggle Inventory		- Tab
-
-Toggle Build Menu		- B / Middle Mouse Button
-
-Rotate Block			- F
-
-Toggle free camera		- K
+|Next/Prev Hotbar item|Mouse Wheel or Q/E|
+|Drop item|X|
+|Interact|F|
+|Toggle Inventory|Tab|
+|Toggle Build Menu|B / Middle Mouse Button|
+|Rotate Block|F|
+|Toggle free camera|K|
 
 
 Cheats ( if enabled ):
 	
-Toggle fly				- F1
+| Action                        | Key(s)               |
+|---------                      | -------------        |
+|Toggle fly|F1|
 
 
 Contribute
