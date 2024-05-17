@@ -65,6 +65,7 @@ func _process(_delta):
 
 
 func spawn_player():
+	assert(player_scene)
 	player= player_scene.instantiate()
 	player.position= settings.player_spawn
 	add_child.call_deferred(player)
