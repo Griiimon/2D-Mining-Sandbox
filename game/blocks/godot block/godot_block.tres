@@ -5,10 +5,17 @@
 
 [resource]
 script = ExtResource("1_4gunf")
-name = "godot"
 texture = ExtResource("2_n76qi")
 hardness = 5.0
 has_collision = true
 tags = Array[Resource("res://game/tags/tag.gd")]([])
 particle_color = Color(0.337255, 0.34902, 0.968627, 1)
+material = 3
+mining_tool = 1
+other_tool_penalty = 4.0
+other_tool_produces_drops = false
+schedule_tick = false
 is_air = false
+is_fluid = false
+custom_collision_polygon = PackedVector2Array()
+name = "godot"
