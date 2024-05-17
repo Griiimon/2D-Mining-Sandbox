@@ -16,6 +16,8 @@ extends Node
 @export_dir var builtin_scenarios_path
 @export_dir var characters_path
 
+@export var sound_library: SoundLibrary
+@export var material_sound_library: MaterialSoundLibrary
 
 var blocks: Array[Block]
 var blocks_lookup: Dictionary
@@ -34,6 +36,9 @@ var characters: Array[PackedScene]
 
 
 func _ready():
+	sound_library.build()
+	material_sound_library.build()
+	
 	load_resource_folder_into_array(blocks_path, blocks, blocks_suffix)
 	
 	for i in len(blocks):
