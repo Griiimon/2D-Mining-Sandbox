@@ -12,11 +12,11 @@ func _ready():
 func play(sound_key: String):
 	var player: AudioStreamPlayer= get_free_player()
 	if player:
-		if not library.has(sound_key):
+		if not DataManager.sound_library.library.has(sound_key):
 			push_error("No %s in sound library" % [sound_key])
 			return
 			
-		var sound: AudioStream= library[sound_key]
+		var sound: AudioStream= DataManager.sound_library.library[sound_key]
 		
 		player.stream= sound
 		player.play()
