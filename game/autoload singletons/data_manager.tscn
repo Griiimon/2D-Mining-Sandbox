@@ -13,6 +13,7 @@ tile_set = ExtResource("2_7hkao")
 orig_tile_set = ExtResource("3_1fuao")
 blocks_path = "res://game/blocks"
 blocks_suffix = "_block.tres"
+items_path = "res://game/items"
 block_entities_path = "res://game/block entities"
 crafting_recipe_path = "res://game/recipes/crafting"
 furnace_recipe_path = "res://game/recipes/furnace"
