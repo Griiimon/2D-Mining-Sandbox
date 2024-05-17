@@ -1,9 +1,10 @@
-# 2D-Mining
-2D Mining Sandbox Community Project
+![Logo](media/banner.png)
+
+2D Mining Sandbox ( Godot )
+=============
 
 
-
-Current Gameplay ( v2 branch )
+V3 Gameplay
 
 ![Gameplay](media/gameplay.gif)
 
