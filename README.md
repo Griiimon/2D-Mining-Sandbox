@@ -1,4 +1,4 @@
-<img src="https://discordapp.com/api/guilds/1241157847463493682/widget.png?style=shield" alt="Discord Shield"/>
+[![Discord](https://img.shields.io/discord/313125603924639766.svg?color=%237289da&label=Discord&logo=discord&logoColor=%237289da)][Discord]
 
 ![Logo](media/banner.png)
 
