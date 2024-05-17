@@ -2,6 +2,9 @@
 # v0.4          #
 ##################
 
+- sandbox game mode
+- user config
+- main menu
 - iron ingot challenge
 - base scenario
 - level editor
