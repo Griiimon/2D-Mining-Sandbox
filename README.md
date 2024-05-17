@@ -1,3 +1,5 @@
+<img src="https://discordapp.com/api/guilds/1241157847463493682/widget.png?style=shield" alt="Discord Shield"/>
+
 ![Logo](media/banner.png)
 
 2D Mining Sandbox ( Godot )
