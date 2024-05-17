@@ -1,7 +1,7 @@
 extends Node
 class_name HealthComponent
 
-signal report_damage
+signal report_damage(damage: Damage, hitpoints: float)
 
 
 @export var max_hitpoints: int= 100
