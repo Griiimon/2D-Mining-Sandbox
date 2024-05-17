@@ -5,7 +5,17 @@
 [resource]
 script = ExtResource("1_fs44k")
 sound_paths = {
-"1,1": "res://game/audio/material sounds/rock_vs_rock.mp3",
-"2,1": "res://game/audio/material sounds/rock_vs_metal_1.mp3
-res://game/audio/material sounds/rock_vs_metal_2.mp3"
+"0,0": "res://game/audio/material sounds/rock_vs_rock.mp3",
+"0,1": "res://game/audio/material sounds/rock_vs_metal_1.mp3
+res://game/audio/material sounds/rock_vs_metal_2.mp3",
+"0,2": "res://game/audio/material sounds/rock_vs_thin_metal_1.mp3
+res://game/audio/material sounds/rock_vs_thin_metal_2.mp3",
+"0,3": "res://game/audio/material sounds/rock_vs_plastic.mp3",
+"0,4": "res://game/audio/material sounds/rock_vs_wood.mp3",
+"1,2": "res://game/audio/material sounds/metal_vs_thin_metal.mp3",
+"1,3": "res://game/audio/material sounds/metal_vs_plastic.mp3",
+"1,4": "res://game/audio/material sounds/metal_vs_wood.mp3",
+"2,3": "res://game/audio/material sounds/thin_metal_vs_plastic.mp3",
+"2,4": "res://game/audio/material sounds/thin_metal_vs_wood.mp3",
+"3,4": "res://game/audio/material sounds/plastic_vs_wood.mp3"
 }
