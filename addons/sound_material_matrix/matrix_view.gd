@@ -31,39 +31,48 @@ func generate_grid():
 				label.text= MaterialSoundLibrary.Type.keys()[y - 1]
 			else:
 				label= null
-				var item: TextEdit= item_scene.instantiate()
+				var item: SoundMatrixItem= item_scene.instantiate()
 				grid_container.add_child(item)
 				if y > x:
 					item.editable= false
 				else:
-					var key: String= get_key(x, y)
+					var key: String= get_key(x - 1, y - 1)
 					if items.has(key):
 						item.text= items[key]
 
-				item.text_changed.connect(text_changed.bind(item, x, y))
+					item.text_changed_or_dropped.connect(text_changed.bind(item, x - 1, y - 1))
 
 			if label:
 				grid_container.add_child(label)
 
 
 func _on_button_load_pressed():
-	print("Loading %d items" % [len(library.sound_paths.keys())])
+	items.clear()
+	#print("Loading %d SoundMatrix items" % [len(library.sound_paths.keys())])
 	for key in library.sound_paths.keys():
 		items[key]= library.sound_paths[key]
 	generate_grid()
 
 
 func _on_button_save_pressed():
-	print("Saving %d items" % [len(items.keys())])
-	for key in items.keys():
+	library.sound_paths.clear()
+	#print("Saving %d SoundMatrix items" % [len(items.keys())])
+	for key: String in items.keys():
 		library.sound_paths[key]= items[key]
 	ResourceSaver.save(library)
 
 
 func text_changed(item: TextEdit, x: int, y: int):
-	print("Update item [%d, %d] = %s" % [x, y, item.text])
-	items[get_key(x, y)]= item.text
+	#print("Update SoundMatrixItem [%d, %d] = %s" % [x, y, item.text])
+	if not item.text:
+		items.erase(get_key(x, y))
+	else:
+		items[get_key(x, y)]= item.text
 
 
 func get_key(x: int, y: int)-> String:
+	if y < x:
+		var tmp= x
+		x= y
+		y= tmp
 	return str(x, ",", y)

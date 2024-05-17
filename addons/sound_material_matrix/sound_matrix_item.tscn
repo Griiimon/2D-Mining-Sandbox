@@ -9,3 +9,5 @@ bg_color = Color(0.729412, 0.180392, 0.027451, 1)
 custom_minimum_size = Vector2(80, 40)
 theme_override_styles/read_only = SubResource("StyleBoxFlat_p5x3q")
 script = ExtResource("1_ihg51")
+
+[connection signal="text_changed" from="." to="." method="send_update"]
