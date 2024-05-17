@@ -9,10 +9,6 @@ release charge signal reconnect errors.. why?
 
 connect main menu links
 
-design github page
-
-create discord
-
 -------- v5 ---------------
 
 modularize UI into more custom scenes
