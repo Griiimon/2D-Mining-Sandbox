@@ -1,7 +1,14 @@
-[gd_resource type="Resource" script_class="SoundLibrary" load_steps=2 format=3 uid="uid://dug8fqdiebex7"]
+[gd_resource type="Resource" script_class="SoundLibrary" load_steps=5 format=3 uid="uid://dug8fqdiebex7"]
 
 [ext_resource type="Script" path="res://game/audio/sound_library.gd" id="1_6orcq"]
+[ext_resource type="Script" path="res://game/audio/sound_library_item.gd" id="1_tdyww"]
+[ext_resource type="AudioStream" uid="uid://2atyp575h0g5" path="res://game/audio/sounds/fireworks.mp3" id="2_wu60t"]
+
+[sub_resource type="Resource" id="Resource_g3ed2"]
+script = ExtResource("1_tdyww")
+key = "fireworks"
+sound = ExtResource("2_wu60t")
 
 [resource]
 script = ExtResource("1_6orcq")
-library = {}
+items = Array[ExtResource("1_tdyww")]([SubResource("Resource_g3ed2")])
