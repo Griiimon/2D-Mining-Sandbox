@@ -68,11 +68,11 @@ func spawn_player():
 	player= player_scene.instantiate()
 	player.position= settings.player_spawn
 	add_child.call_deferred(player)
+	player.ready.connect(on_player_spawned)
+
 	camera.follow_node= player
 
 	player.tree_exited.connect(spawn_player if settings.respawn_on_death else game_over.bind(false))
-	
-	on_player_spawned()
 
 
 func on_player_spawned():
