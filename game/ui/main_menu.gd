@@ -10,7 +10,8 @@ extends CanvasLayer
 func _ready():
 	get_tree().paused= false
 	
-	seed_line_edit.text= GameManager.world_seed
+	if GameManager.world_seed:
+		seed_line_edit.text= GameManager.world_seed
 	
 	populate_lists()
 

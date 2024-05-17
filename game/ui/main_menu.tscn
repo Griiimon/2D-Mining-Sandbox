@@ -13,7 +13,9 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Main Menu" type="CanvasLayer"]
 script = ExtResource("1_26fio")
 
-[node name="User Settings" parent="." instance=ExtResource("2_0t8r3")]
+[node name="User Settings" parent="." node_paths=PackedStringArray("controls") instance=ExtResource("2_0t8r3")]
+settings = Array[String](["world_seed"])
+controls = [NodePath("../PanelContainer/MarginContainer/VBoxContainer/Main Content MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Seed LineEdit")]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 15

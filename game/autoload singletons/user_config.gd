@@ -10,6 +10,7 @@ var default_settings: String="""
 	[Settings]
 	volume=50
 	fullscreen=false
+	world_seed=""
 """
 
 
