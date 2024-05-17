@@ -7,7 +7,6 @@
 ![Logo](media/banner.png)
 
  * [About](#about)
- * [Gameplay](#gameplay (v3))
  * [Controls](#controls)
  * [How To Contribute](#contribute)
 
@@ -25,7 +24,8 @@ Controls:
 
 | Action                        | Key(s)               |
 |---------                      | -------------        |
-|Move                           |W/A/S/D               |
+|Move|W/A/S/D|
+|Jump|Space|
 |Use Weapon/Tool|Left Mouse Button|
 |Secondary Hand Action|Right Mouse Button|
 |Next/Prev Hotbar item|Mouse Wheel or Q/E|
@@ -39,7 +39,7 @@ Controls:
 
 Cheats ( if enabled ):
 	
-| Action                        | Key(s)               |
+| Cheat                        | Key              |
 |---------                      | -------------        |
 |Toggle fly|F1|
 
