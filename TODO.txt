@@ -1,20 +1,21 @@
-add sounds
 
-character selection screen ( ItemList )
-
-modularize UI into more custom scenes
-
-fix warnings
-
-sandbox script full inventory
-
-use seed from main menu
-
-options: volume, fullscreen
+player on_death() classico stop animation
 
 physics smoothing
 
+fix warnings
+
+release charge signal reconnect errors.. why?
+
+connect main menu links
+
+design github page
+
+create discord
+
 -------- v5 ---------------
+
+modularize UI into more custom scenes
 
 make mob spawner resource
 
