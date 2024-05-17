@@ -1,13 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctuo5roogjlc8"]
+[gd_scene load_steps=2 format=3 uid="uid://ctuo5roogjlc8"]
 
 [ext_resource type="Script" path="res://game/audio/positional_sound_player.gd" id="1_0jw2h"]
-[ext_resource type="Resource" uid="uid://dug8fqdiebex7" path="res://game/audio/sound_library.tres" id="2_puqyh"]
-[ext_resource type="Resource" uid="uid://d32unr47s5ii7" path="res://game/audio/material_sound_library.tres" id="3_goanb"]
 
 [node name="Positional Sound Player" type="Node"]
 script = ExtResource("1_0jw2h")
-library = ExtResource("2_puqyh")
-material_library = ExtResource("3_goanb")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 max_polyphony = 5
