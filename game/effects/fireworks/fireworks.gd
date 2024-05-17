@@ -25,4 +25,6 @@ func _process(delta):
 			set_process(false)
 			await get_tree().create_timer(5).timeout
 			queue_free()
-			
+		else:
+			if Utils.chance100(20):
+				SoundPlayer.play("fireworks")

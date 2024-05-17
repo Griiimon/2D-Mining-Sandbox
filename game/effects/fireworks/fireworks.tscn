@@ -6,5 +6,4 @@
 [node name="Fireworks" type="Node2D"]
 script = ExtResource("1_e4bbd")
 effect_scene = ExtResource("2_chqft")
-amount = 50
 interval = 0.1
