@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cp5nr6l3g215g"
+path="res://.godot/imported/ouch.mp3-64a9a26cb9259643dee3b635ea84c395.mp3str"
+
+[deps]
+
+source_file="res://game/player/characters/El Classico/ouch.mp3"
+dest_files=["res://.godot/imported/ouch.mp3-64a9a26cb9259643dee3b635ea84c395.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

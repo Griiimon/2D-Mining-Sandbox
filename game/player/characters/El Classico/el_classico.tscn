@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://baufx6u2wjni6"]
+[gd_scene load_steps=16 format=3 uid="uid://baufx6u2wjni6"]
 
 [ext_resource type="PackedScene" uid="uid://d4mufsk5s6ksm" path="res://game/player/base_player.tscn" id="1_aa1lj"]
 [ext_resource type="Script" path="res://game/player/characters/El Classico/el_classico.gd" id="2_ulbl5"]
 [ext_resource type="Script" path="res://game/player/hand.gd" id="3_pwspx"]
+[ext_resource type="AudioStream" uid="uid://cp5nr6l3g215g" path="res://game/player/characters/El Classico/ouch.mp3" id="4_1s88t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwxew"]
 resource_local_to_scene = true
@@ -343,3 +344,9 @@ libraries = {
 
 [node name="Debug Component" parent="." index="8"]
 max_detail_level = 4
+
+[node name="AudioStreamPlayer Hurt" type="AudioStreamPlayer" parent="." index="12"]
+stream = ExtResource("4_1s88t")
+
+[connection signal="report_damage" from="Health Component" to="." method="_on_health_component_report_damage"]
+[connection signal="release_charge" from="State Machine/Item Charging" to="." method="release_charge"]

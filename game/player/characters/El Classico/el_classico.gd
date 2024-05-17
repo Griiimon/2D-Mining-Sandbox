@@ -41,3 +41,7 @@ func on_start_mining():
 
 func on_stop_mining():
 	animation_player_hand.play("RESET")
+
+
+func _on_health_component_report_damage(damage: Damage, hitpoints: float):
+	$"AudioStreamPlayer Hurt".play()
