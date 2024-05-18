@@ -378,7 +378,12 @@ func get_tile_distance(tile: Vector2i)-> int:
 
 func die():
 	state_machine.change_state(state_machine.dying_state)
-	
+	on_death()
+
+
+func on_death():
+	pass
+
 
 func _on_crafting_recipe_crafted(recipe: CraftingRecipe):
 	inventory.block_update_callback= true
