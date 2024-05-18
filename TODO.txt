@@ -1,33 +1,26 @@
-
-player on_death() classico stop animation
-
-physics smoothing
-
-fix warnings
-
-release charge signal reconnect errors.. why?
-
-connect main menu links
-
--------- v5 ---------------
+-------- v4.1 ---------------
 
 modularize UI into more custom scenes
 
-make mob spawner resource
-
 photo booth tool for making profile pictures of characters etc 
-
-crafting queue
 
 fix damage area deal damage to solid entity ( doesnt seem to trigger any body_entered signal at all )
 try intersect_shape. which will only work for overlaps tho, not triggering signals
 
 dummy hurt effect
 
-equipment slots ( armor )
-
 player death drop inventory
 
 fix fluid simulation
 
+
+
+-------- v5 ---------------
+
 flowing water
+
+equipment slots ( armor )
+
+crafting queue
+
+make mob spawner resource
