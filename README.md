@@ -1,4 +1,4 @@
-![Discord](https://img.shields.io/discord/1241157847463493682.svg?color=%237289da&label=Discord&logo=discord&logoColor=%237289da)
+[![Discord](https://img.shields.io/discord/1241157847463493682.svg?color=%237289da&label=Discord&logo=discord&logoColor=%237289da)](https://discord.gg/ejxEZPcu)
 
 2D Mining Sandbox ( Godot )
 =============
