@@ -108,17 +108,19 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="LinkButton" type="LinkButton" parent="PanelContainer/MarginContainer/VBoxContainer/Footer HBoxContainer"]
+[node name="Github LinkButton" type="LinkButton" parent="PanelContainer/MarginContainer/VBoxContainer/Footer HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Source ( Github )"
+uri = "https://github.com/Griiimon/2D-Mining"
 
-[node name="LinkButton2" type="LinkButton" parent="PanelContainer/MarginContainer/VBoxContainer/Footer HBoxContainer"]
+[node name="Discord LinkButton" type="LinkButton" parent="PanelContainer/MarginContainer/VBoxContainer/Footer HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Discord"
+uri = "https://discord.gg/ejxEZPcu"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Header HBoxContainer/Close Button" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Main Content MarginContainer/HBoxContainer/VBoxContainer/Play Button" to="." method="_on_play_button_pressed"]
