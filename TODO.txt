@@ -1,20 +1,3 @@
--------- v4.1 ---------------
-
-modularize UI into more custom scenes
-
-photo booth tool for making profile pictures of characters etc 
-
-fix damage area deal damage to solid entity ( doesnt seem to trigger any body_entered signal at all )
-try intersect_shape. which will only work for overlaps tho, not triggering signals
-
-dummy hurt effect
-
-player death drop inventory
-
-fix fluid simulation
-
-
-
 -------- v5 ---------------
 
 flowing water
