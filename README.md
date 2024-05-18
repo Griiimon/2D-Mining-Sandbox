@@ -1,16 +1,16 @@
-<a href="https://github.com/badges/shields/graphs/contributors" alt="Contributors">
+<a href="https://github.com/Griiimon/2D-Mining/graphs/contributors" alt="Contributors">
         <img src="https://img.shields.io/github/contributors/badges/shields" /></a>
 
 <a href="https://discord.gg/ejxEZPcu">
         <img src="https://img.shields.io/discord/1241157847463493682?logo=discord"
             alt="chat on Discord"></a>
 
-<a href="https://github.com/badges/shields/pulse" alt="Activity">
+<a href="https://github.com/Griiimon/2D-Mining/pulse" alt="Activity">
         <img src="https://img.shields.io/github/commit-activity/m/badges/shields" /></a>
 
 
 
-[![Discord](https://img.shields.io/discord/1241157847463493682.svg?color=%237289da&label=Discord&logo=discord&logoColor=%237289da)](https://discord.gg/ejxEZPcu)
+
 
 2D Mining Sandbox ( Godot )
 =============
