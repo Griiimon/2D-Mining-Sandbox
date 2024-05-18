@@ -1,12 +1,12 @@
 <a href="https://github.com/Griiimon/2D-Mining/graphs/contributors" alt="Contributors">
-        <img src="https://img.shields.io/github/contributors/badges/shields" /></a>
+        <img src="https://img.shields.io/github/contributors/Griiimon/2D-Mining" /></a>
 
 <a href="https://discord.gg/ejxEZPcu">
         <img src="https://img.shields.io/discord/1241157847463493682?logo=discord"
             alt="chat on Discord"></a>
 
 <a href="https://github.com/Griiimon/2D-Mining/pulse" alt="Activity">
-        <img src="https://img.shields.io/github/commit-activity/m/badges/shields" /></a>
+        <img src="https://img.shields.io/github/commit-activity/m/Griiimon/2D-Mining" /></a>
 
 
 
