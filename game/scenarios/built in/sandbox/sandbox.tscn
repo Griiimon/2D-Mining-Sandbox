@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1y4833ux4p2k"]
+[gd_scene load_steps=8 format=3 uid="uid://d1y4833ux4p2k"]
 
 [ext_resource type="Script" path="res://game/scenarios/built in/sandbox/sandbox.gd" id="1_8m8iv"]
 [ext_resource type="Resource" uid="uid://dvlmv8v3wa81s" path="res://game/scenarios/built in/sandbox/game_settings.tres" id="2_qvjvu"]
 [ext_resource type="PackedScene" uid="uid://baufx6u2wjni6" path="res://game/player/characters/El Classico/el_classico.tscn" id="4_kgs5o"]
+[ext_resource type="Script" path="res://game/components/smoother.gd" id="4_syows"]
 [ext_resource type="PackedScene" uid="uid://dc0j27pwmaoye" path="res://game/world/world.tscn" id="5_gsgo2"]
 [ext_resource type="Resource" uid="uid://cdcf6aptu5uo4" path="res://game/world/terrain generator/generators/large_caves.tres" id="6_u73xu"]
 [ext_resource type="Script" path="res://game/ui/camera.gd" id="7_ak5w1"]
@@ -12,6 +13,10 @@ script = ExtResource("1_8m8iv")
 world = NodePath("World")
 settings = ExtResource("2_qvjvu")
 player_scene = ExtResource("4_kgs5o")
+
+[node name="Smoother" type="Node" parent="."]
+script = ExtResource("4_syows")
+smooth_parent = false
 
 [node name="World" parent="." instance=ExtResource("5_gsgo2")]
 generator = ExtResource("6_u73xu")
