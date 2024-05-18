@@ -15,7 +15,7 @@
 
 
 
-2D Mining Sandbox ( Godot )
+2D Mining Sandbox ( Godot Community Project )
 =============
 
 ![Logo](media/banner.png)
