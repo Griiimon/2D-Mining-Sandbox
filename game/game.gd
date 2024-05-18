@@ -66,6 +66,7 @@ func _process(_delta):
 
 func spawn_player():
 	assert(player_scene)
+	assert(player == null)
 	player= player_scene.instantiate()
 	player.position= settings.player_spawn
 	add_child.call_deferred(player)
@@ -73,7 +74,11 @@ func spawn_player():
 
 	camera.follow_node= player
 
-	player.tree_exited.connect(spawn_player if settings.respawn_on_death else game_over.bind(false))
+	player.tree_exited.connect(respawn if settings.respawn_on_death else game_over.bind(false))
+
+
+func respawn():
+	spawn_player.call_deferred()
 
 
 func on_player_spawned():
