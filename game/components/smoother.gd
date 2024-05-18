@@ -221,7 +221,6 @@ func _get_physics_process_nodes(node: Node, ignore_node: = false, with_includes:
 		#&& node.has_method("_physics_process")
 	):
 		nodes.push_back(node)
-		prints("Smoother push node", node.name)
 
 	if recursive:
 		for child in node.get_children():
