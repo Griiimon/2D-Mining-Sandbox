@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvafv12dien4y"]
+[gd_scene load_steps=6 format=3 uid="uid://cvafv12dien4y"]
 
 [ext_resource type="Script" path="res://game/autoload singletons/data_manager.gd" id="1_jsysr"]
-[ext_resource type="TileSet" uid="uid://q03vrmwa6im1" path="res://resources/tile_set.tres" id="2_7hkao"]
 [ext_resource type="TileSet" uid="uid://oilm5db18kw1" path="res://resources/orig_tile_set.tres" id="3_1fuao"]
 [ext_resource type="Resource" uid="uid://b4403wlk4dsx6" path="res://game/blocks/fluid_library.tres" id="3_bltjv"]
 [ext_resource type="Resource" uid="uid://dug8fqdiebex7" path="res://game/audio/sound_library.tres" id="5_l2d11"]
@@ -9,7 +8,6 @@
 
 [node name="Data Manager" type="Node"]
 script = ExtResource("1_jsysr")
-tile_set = ExtResource("2_7hkao")
 orig_tile_set = ExtResource("3_1fuao")
 blocks_path = "res://game/blocks"
 blocks_suffix = "_block.tres"

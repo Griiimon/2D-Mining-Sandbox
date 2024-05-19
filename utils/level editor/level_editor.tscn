@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbdvl22708gp"]
+[gd_scene load_steps=2 format=3 uid="uid://dbdvl22708gp"]
 
-[ext_resource type="TileSet" uid="uid://coushkto7lkdk" path="res://resources/tile_set.tres" id="1_52mq6"]
 [ext_resource type="Script" path="res://utils/level editor/level_editor.gd" id="1_bohj5"]
 
 [node name="Level Editor" type="TileMap"]
-tile_set = ExtResource("1_52mq6")
 format = 2
 layer_0/name = "terrain"
 layer_1/name = "fluids"
@@ -12,4 +10,3 @@ layer_1/z_index = 20
 layer_1/navigation_enabled = false
 layer_1/tile_data = PackedInt32Array()
 script = ExtResource("1_bohj5")
-tile_set_path = "res://resources/tile_set.tres"
