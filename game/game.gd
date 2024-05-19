@@ -78,7 +78,8 @@ func spawn_player():
 
 
 func respawn():
-	spawn_player.call_deferred()
+	if is_inside_tree():
+		spawn_player.call_deferred()
 
 
 func on_player_spawned():

@@ -60,4 +60,5 @@ func run(non_blocking: bool= true):
 
 
 func _on_update_timer_timeout():
-	run()
+	if is_inside_tree():
+		run()
