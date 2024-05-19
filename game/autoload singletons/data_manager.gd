@@ -1,7 +1,7 @@
 extends Node
 
+const TILE_SET_PATH= "res://resources/tile_set.tres"
 
-@export var tile_set: TileSet
 @export var orig_tile_set: TileSet
 @export_dir var blocks_path: String
 @export var blocks_suffix: String
@@ -20,6 +20,7 @@ extends Node
 @export var sound_library: SoundLibrary
 @export var material_sound_library: MaterialSoundLibrary
 
+var tile_set: TileSet
 
 var blocks: Array[Block]
 var blocks_lookup: Dictionary
@@ -40,15 +41,17 @@ var characters: Array[PackedScene]
 
 
 func _ready():
+	if Engine.is_editor_hint():
+		return
+
 	sound_library.build()
 	material_sound_library.build()
-	
+
 	load_resource_folder_into_array(blocks_path, blocks, blocks_suffix)
 	
 	for i in len(blocks):
 		blocks_lookup[blocks[i]]= i
 
-	if Engine.is_editor_hint(): return
 
 	load_resource_folder_into_array(items_path, items)
 
