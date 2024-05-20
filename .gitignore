@@ -4,5 +4,6 @@
 # dynamically generated tile set
 resources/tile_set.tres
 
-local/.gitkeep
+local/**
+!.gitkeep
 
