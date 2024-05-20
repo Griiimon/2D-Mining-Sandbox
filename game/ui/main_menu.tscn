@@ -113,7 +113,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Source ( Github )"
-uri = "https://github.com/Griiimon/2D-Mining"
+uri = "https://github.com/Griiimon/2D-Mining-Sandbox"
 
 [node name="Discord LinkButton" type="LinkButton" parent="PanelContainer/MarginContainer/VBoxContainer/Footer HBoxContainer"]
 layout_mode = 2
