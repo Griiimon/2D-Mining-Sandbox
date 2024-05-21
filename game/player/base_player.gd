@@ -351,7 +351,7 @@ func init_block_indicators():
 	block_breaker.hide()
 
 
-func on_start_mining():
+func on_start_mining(action_name: String):
 	pass
 
 

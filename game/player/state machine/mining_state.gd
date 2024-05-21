@@ -12,7 +12,7 @@ var mining_progress: float
 func on_enter():
 	mining_progress= 0
 	player.block_breaker.show()
-	player.on_start_mining()
+	player.on_start_mining(player.get_hand_object().type.mining_animation if player.has_hand_object() else "")
 
 
 func on_exit():

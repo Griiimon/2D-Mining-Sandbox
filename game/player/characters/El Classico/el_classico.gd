@@ -35,8 +35,8 @@ func on_hand_action_finished():
 	animation_player_hand.play("RESET")
 
 
-func on_start_mining():
-	animation_player_hand.play("mine")
+func on_start_mining(action_name: String):
+	animation_player_hand.play(action_name)
 
 
 func on_stop_mining():
