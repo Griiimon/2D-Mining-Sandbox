@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" load_steps=8 format=3 uid="uid://cw7n52yg2xk5m"]
+
+[ext_resource type="Resource" uid="uid://bhhsycxt24sle" path="res://game/items/iron ingot/iron_ingot.tres" id="1_gyvgm"]
+[ext_resource type="Script" path="res://game/recipes/crafting_recipe.gd" id="1_thtwb"]
+[ext_resource type="Script" path="res://game/player/inventory/inventory_item.gd" id="2_aqn0d"]
+[ext_resource type="Resource" uid="uid://dvmim47wemg41" path="res://game/items/coal ore/coal_ore.tres" id="3_5047m"]
+[ext_resource type="Resource" uid="uid://co1txj2dn5cyi" path="res://game/items/grenade/grenade.tres" id="4_cer3n"]
+
+[sub_resource type="Resource" id="Resource_yhw3q"]
+script = ExtResource("2_aqn0d")
+item = ExtResource("1_gyvgm")
+count = 1
+
+[sub_resource type="Resource" id="Resource_db8eh"]
+script = ExtResource("2_aqn0d")
+item = ExtResource("3_5047m")
+count = 2
+
+[resource]
+script = ExtResource("1_thtwb")
+product = ExtResource("4_cer3n")
+product_count = 1
+ingredients = Array[ExtResource("2_aqn0d")]([SubResource("Resource_yhw3q"), SubResource("Resource_db8eh")])
+crafting_duration = 1.0
