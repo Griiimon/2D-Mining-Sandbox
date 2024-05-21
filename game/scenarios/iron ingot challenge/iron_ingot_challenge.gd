@@ -21,7 +21,7 @@ func on_player_spawned():
 
 func check_inventory():
 	var items: int= player.inventory.get_item_count(item)
-	get_objective_text(items)
+	update_objectives(get_objective_text(items))
 	if items >= item_count:
 		win()
 
