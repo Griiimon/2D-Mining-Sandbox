@@ -23,11 +23,7 @@ func check_inventory():
 	var items: int= player.inventory.get_item_count(item)
 	get_objective_text(items)
 	if items >= item_count:
-		objective_completed= true
-
-
-func win_condition()-> bool:
-	return objective_completed
+		win()
 
 
 func get_objective_text(ingots_in_inventory: int)-> String:
