@@ -20,11 +20,12 @@ func _init():
 	
 
 func _ready():
-	assert(settings)
-
 	get_tree().paused= false
 
 	game_is_over.connect(GameManager.game_over)
+
+	if not settings:
+		settings= GameSettings.new()
 
 	if not cheats:
 		cheats= Cheats.new()
