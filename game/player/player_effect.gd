@@ -9,7 +9,7 @@ var duration: int
 
 
 func _init(_type: Type, _multiplier: float, _duration: int):
-	type= Type
+	type= _type
 	multiplier= _multiplier
 	duration= _duration
 
