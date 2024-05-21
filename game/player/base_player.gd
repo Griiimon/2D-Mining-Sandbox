@@ -1,6 +1,9 @@
 class_name BasePlayer
 extends CharacterBody2D
 
+signal break_block(block: Block)
+
+
 const DROP_THROW_FORCE= 300
 const FLY_SPEED_FACTOR= 4.0
 
@@ -370,10 +373,6 @@ func on_start_mining(action_name: String):
 
 
 func on_stop_mining():
-	pass
-
-
-func on_break_block(block: Block):
 	pass
 
 
