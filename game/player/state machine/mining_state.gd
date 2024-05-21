@@ -45,6 +45,7 @@ func on_physics_process(delta: float):
 		get_world().break_block(selected_block_pos, do_drop)
 		NodeDebugger.write(player, str("mined block ", selected_block_pos), 1)
 		stop_mining.emit()
+		player.on_break_block(block)
 		return
 	else:
 		player.block_breaker.position= get_world().map_to_local(selected_block_pos)

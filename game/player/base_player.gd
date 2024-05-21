@@ -359,6 +359,10 @@ func on_stop_mining():
 	pass
 
 
+func on_break_block(block: Block):
+	pass
+
+
 func is_swimming()-> bool:
 	return low_tile_detector.is_in_fluid() and mid_tile_detector.is_in_fluid()
 
