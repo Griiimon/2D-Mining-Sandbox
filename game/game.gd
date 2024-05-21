@@ -37,6 +37,8 @@ func _ready():
 	if GameManager.character:
 		player_scene= GameManager.character
 	
+	if not player_scene:
+		player_scene= DataManager.characters.front()
 
 	set_process(false)
 	await world.initialization_finished
