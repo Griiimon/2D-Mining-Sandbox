@@ -60,6 +60,9 @@ var inventory: Inventory= Inventory.new()
 # disable fall damage when spawned
 var disable_fall_damage: bool= true
 
+var active_effects: Array[PlayerEffect]
+
+
 
 func _ready():
 	assert_export_scenes()
@@ -95,6 +98,7 @@ func _physics_process(delta):
 	if freeze: return
 
 	movement(delta)
+	tick_effects()
 
 	if Input.is_action_just_pressed("drop_item") and has_hand_object():
 		drop_hand_item()
@@ -115,17 +119,15 @@ func movement(delta):
 		else:
 			velocity.y+= gravity * delta
 
-	var max_speed: float= get_max_speed()
-	
 	var direction= Input.get_axis("left", "right")
 	if direction:
-		velocity.x= direction * max_speed
+		velocity.x= direction * get_max_speed()
 	else:
 		#velocity.x= move_toward(velocity.x, 0, speed)
 		velocity.x= 0
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y= jump_velocity
+		velocity.y= get_jump_velocity()
 		on_movement_jump()
 	elif is_on_floor():
 		if abs(velocity.x) > 0:
@@ -144,6 +146,18 @@ func movement(delta):
 				disable_fall_damage= false
 
 	move_and_slide()
+
+
+func get_jump_velocity()-> float:
+	var result: float= jump_velocity
+	result*= get_effect_multiplier(PlayerEffect.Type.JUMP_FORCE)
+	return result
+
+
+func tick_effects():
+	for effect in active_effects.duplicate():
+		if not effect.tick():
+			active_effects.erase(effect)
 
 
 func on_movement_jump():
@@ -373,6 +387,8 @@ func get_max_speed()-> float:
 	if low_tile_detector.is_in_fluid() or mid_tile_detector.is_in_fluid():
 		result/= 2
 	
+	result*= get_effect_multiplier(PlayerEffect.Type.MOVE_SPEED)
+	
 	return result
 
 
@@ -420,6 +436,18 @@ func craft(recipe: CraftingRecipe, count: int):
 
 func play_hand_item_sound(target_material: MaterialSoundLibrary.Type):
 	PositionalSoundPlayer.play_material_sound(get_hand_object().type.material, target_material, get_hand_object().global_position)
+
+
+func add_effect(effect: PlayerEffect):
+	active_effects.append(effect)
+
+
+func get_effect_multiplier(type: PlayerEffect.Type):
+	var result: float= 1
+	for effect in active_effects:
+		if effect.type == type:
+			result*= effect.multiplier
+	return result
 
 
 func is_in_tile(tile_pos: Vector2i)-> bool:
