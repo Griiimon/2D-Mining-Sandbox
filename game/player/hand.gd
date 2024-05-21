@@ -3,12 +3,18 @@ class_name Hand
 
 @export var player: BasePlayer
 
-@onready var connector = $Connector
+@onready var connector
 
 
 
 func _ready():
 	assert(player)
+	connector= get_node_or_null("Connector")
+	
+	if not connector:
+		connector= Node2D.new()
+		connector.name= "Connector"
+		add_child(connector)
 
 
 func set_attack_state(b: bool):
