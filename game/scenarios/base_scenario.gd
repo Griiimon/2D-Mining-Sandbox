@@ -41,10 +41,9 @@ func _process(delta):
 		return
 	
 	if win_condition():
-		game_over(true)
+		win()
 	elif lose_condition():
-		game_over(false)
-
+		lose()
 
 func win_condition()-> bool:
 	return false
@@ -52,6 +51,14 @@ func win_condition()-> bool:
 
 func lose_condition()-> bool:
 	return false
+
+
+func win():
+	game_over(true)
+
+
+func lose():
+	game_over(false)
 
 
 func update_objectives(text: String):
