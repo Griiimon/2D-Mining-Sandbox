@@ -21,6 +21,10 @@ func _exit_tree():
 	on_despawn()
 
 
+func tick(world: World):
+	pass
+
+
 func on_despawn():
 	if type.register_tick:
 		Global.game.world.unregister_block_entity(self)
