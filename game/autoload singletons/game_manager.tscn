@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvdfo4xuykmdh"]
+[gd_scene load_steps=5 format=3 uid="uid://bvdfo4xuykmdh"]
 
 [ext_resource type="Script" path="res://game/autoload singletons/game_manager.gd" id="1_tgw6f"]
-[ext_resource type="PackedScene" uid="uid://cbhvqow2nbc0k" path="res://game/test_game.tscn" id="2_mwiib"]
 [ext_resource type="PackedScene" uid="uid://cq1j11s6jlegu" path="res://game/ui/main_menu.tscn" id="3_3k04b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx7w7"]
@@ -18,7 +17,6 @@ font_color = Color(0.240994, 0.466334, 0.441528, 1)
 
 [node name="Game Manager" type="CanvasLayer"]
 script = ExtResource("1_tgw6f")
-skip_to_scene = ExtResource("2_mwiib")
 main_menu = ExtResource("3_3k04b")
 
 [node name="Game Over CenterContainer" type="CenterContainer" parent="."]

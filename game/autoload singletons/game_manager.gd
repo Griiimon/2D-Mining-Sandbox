@@ -1,8 +1,13 @@
 extends Node
 
-@export var skip_main_menu: bool= false
-@export var skip_to_scene: PackedScene
+const RESOURCE_PATH= "res://local/game_start.res"
+
+@export_group("Functionality moved to")
+@export_placeholder(RESOURCE_PATH) var _look_here: String
+
+@export_category("Scenes")
 @export var main_menu: PackedScene
+
 
 @onready var game_over_container = $"Game Over CenterContainer"
 @onready var game_over_label = %"Game Over Label"
@@ -12,14 +17,21 @@ var game: Game
 var character: PackedScene
 var world_seed: String
 
+var game_start_resource: GameStart
 
 
 func init():
+	if not ResourceLoader.exists(RESOURCE_PATH):
+		game_start_resource= GameStart.new()
+		ResourceSaver.save(game_start_resource, RESOURCE_PATH)
+	else:
+		game_start_resource= load(RESOURCE_PATH)
+
 	assert(main_menu)
-	assert(not skip_main_menu or skip_to_scene != null)
+	assert(not game_start_resource.skip_main_menu or game_start_resource.skip_to_scene != null)
 	
-	if skip_main_menu:
-		GameManager.run_game(skip_to_scene)
+	if game_start_resource.skip_main_menu:
+		GameManager.run_game(game_start_resource.skip_to_scene)
 	else:
 		get_tree().change_scene_to_packed.call_deferred(main_menu)
 
