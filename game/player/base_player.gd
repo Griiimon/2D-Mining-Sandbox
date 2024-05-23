@@ -434,6 +434,7 @@ func craft(recipe: CraftingRecipe, count: int):
 
 
 func play_hand_item_sound(target_material: MaterialSoundLibrary.Type):
+	if not has_hand_object(): return
 	PositionalSoundPlayer.play_material_sound(get_hand_object().type.material, target_material, get_hand_object().global_position)
 
 
