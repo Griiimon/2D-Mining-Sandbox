@@ -35,10 +35,12 @@ func init(buildable: Buildable):
 
 
 func on_exit():
-	if ghost:
+	if ghost and is_instance_valid(ghost):
 		ghost.queue_free()
-	if block_sprite:
+		ghost= null
+	if block_sprite and is_instance_valid(block_sprite):
 		block_sprite.queue_free()
+		block_sprite= null
 
 
 func on_physics_process(_delta: float):
