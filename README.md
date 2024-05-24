@@ -61,3 +61,18 @@ Cheats ( if enabled ):
 Contribute
 ------
 
+### Full Video Tutorial
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/MnEOfBNNM4c/0.jpg)](https://www.youtube.com/watch?v=MnEOfBNNM4c)
+
+### Steps
+
+1. Create a GitHub Account
+2. *Fork* the 'latest' *Branch* of this code repository
+3. Create a new *Branch* in your forked repository for each feature you intend to add or bug you want to fix
+4. Use the GitHub Desktop App or the *git* command line tool to clone your repository to your local machine
+5. Switch to your newly created *Branch*
+6. Open *Godot* and make your additions/changes
+7. Commit your changes to your *Branch*
+8. Push your *Commits* to your online GitHub repository
+9. Create a *Pull Request* 
