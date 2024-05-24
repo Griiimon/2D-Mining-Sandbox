@@ -18,23 +18,26 @@
 2D Mining Sandbox ( Godot Community Project )
 =============
 
+
 ![Logo](media/banner.png)
 
  * [About](#about)
  * [Controls](#controls)
  * [How To Contribute](#contribute)
+ * [TODO](#todo)
+
+
 
 About
 ------
 
-Gameplay (V3)
-------
 
-![Gameplay](media/gameplay.gif)
+A Godot Community Project where everyone is welcome to contribute.
 
 
 Controls:
 ------
+
 
 | Action                        | Key(s)               |
 |---------                      | -------------        |
@@ -52,18 +55,23 @@ Controls:
 
 
 Cheats ( if enabled ):
-	
+
+ 
 | Cheat                        | Key              |
 |---------                      | -------------        |
 |Toggle fly|F1|
 
 
+
+
 Contribute
 ------
 
+
 ### Full Video Tutorial
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/MnEOfBNNM4c/0.jpg)](https://www.youtube.com/watch?v=MnEOfBNNM4c)
+[![Video Tutorial](https://img.youtube.com/vi/MnEOfBNNM4c/0.jpg)](https://www.youtube.com/watch?v=MnEOfBNNM4c)
+
 
 ### Steps
 
@@ -76,3 +84,13 @@ Contribute
 7. Commit your changes to your *Branch*
 8. Push your *Commits* to your online GitHub repository
 9. Create a *Pull Request* 
+
+
+
+TODO
+------
+
+
+- [ ] Overworld terrain
+- [ ] Prettier UI theme
+- [ ] Threaded terrain generation
