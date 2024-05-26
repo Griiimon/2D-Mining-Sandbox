@@ -120,7 +120,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Discord"
-uri = "https://discord.gg/ejxEZPcu"
+uri = "https://discord.gg/rwJgYm8228"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Header HBoxContainer/Close Button" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Main Content MarginContainer/HBoxContainer/VBoxContainer/Play Button" to="." method="_on_play_button_pressed"]
