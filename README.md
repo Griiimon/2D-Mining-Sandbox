@@ -2,7 +2,7 @@
 <a href="https://github.com/Griiimon/2D-Mining/tree/stable">
 	<img src="https://img.shields.io/badge/stable_version-0.4.0-blue" alt="stable version"></a>
 
-<a href="https://discord.gg/ejxEZPcu">
+<a href="https://discord.gg/rwJgYm8228">
         <img src="https://img.shields.io/discord/1241157847463493682?logo=discord"
             alt="chat on Discord"></a>
 
