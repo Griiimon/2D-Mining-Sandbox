@@ -16,6 +16,7 @@ const GHOST_LAYER= 2
 var world: World
 
 var scheduled_blocks: Array[Vector2i]= []
+var queued_scheduled_blocks: Array[Vector2i]= []
 
 var items: Array[WorldItem]= []
 
@@ -56,9 +57,11 @@ func tick_blocks():
 	for block_pos in scheduled_blocks.duplicate():
 		var block: Block= get_block(block_pos)
 		if block:
+			#prints("Tick block", get_global_pos(block_pos))
 			block.on_tick(world, get_global_pos(block_pos))
 		else:
-			assert(false)
+			#assert(false)
+			push_warning("WorldChunk().tick_blocks(): no block at scheduled position")
 			# TODO i would like to store a failed attempt and only 
 			# unschedule after a second failed attempt ( additional array? )
 			unschedule_block(block_pos)
@@ -79,7 +82,8 @@ func set_block(block: Block, tile_pos: Vector2i, state: Block.State= Block.State
 	
 	block.on_spawn(world, get_global_pos(tile_pos))
 	if block.schedule_tick:
-		scheduled_blocks.append(tile_pos)
+		queued_scheduled_blocks.append(tile_pos)
+		
 	
 	if trigger_neighbor_update:
 		world.trigger_neighbor_update(get_global_pos(tile_pos))
