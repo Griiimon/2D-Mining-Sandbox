@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbhvqow2nbc0k"]
+[gd_scene load_steps=13 format=3 uid="uid://cbhvqow2nbc0k"]
 
 [ext_resource type="Script" path="res://game/test_game.gd" id="1_desap"]
 [ext_resource type="Resource" uid="uid://bkrr445vap63e" path="res://game/player/loadouts/full_loadout.tres" id="2_jkm7x"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://game/ui/camera.gd" id="8_3qg1m"]
 [ext_resource type="Resource" uid="uid://coin0o2iwsbjj" path="res://game/world/terrain generator/generators/stone_only.tres" id="8_4yhic"]
 [ext_resource type="PackedScene" uid="uid://xkfp7o6wk8ur" path="res://game/mobs/dummy/dummy.tscn" id="10_upluk"]
-[ext_resource type="Script" path="res://game/components/smoother.gd" id="11_bigy6"]
 [ext_resource type="PackedScene" uid="uid://dx7aae3y68pyh" path="res://game/mobs/bat/bat.tscn" id="12_vyhcf"]
 
 [sub_resource type="Resource" id="Resource_bmphr"]
@@ -31,10 +30,6 @@ world = NodePath("World")
 settings = SubResource("Resource_bmphr")
 cheats = SubResource("Resource_g2rh2")
 player_scene = ExtResource("5_0set7")
-
-[node name="Smoother" type="Node" parent="."]
-script = ExtResource("11_bigy6")
-smooth_parent = false
 
 [node name="World" parent="." instance=ExtResource("6_dkwx3")]
 generator = ExtResource("8_4yhic")

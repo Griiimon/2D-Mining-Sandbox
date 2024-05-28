@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdykicosk4xdy"]
+[gd_scene load_steps=10 format=3 uid="uid://cdykicosk4xdy"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_blqru"]
 [ext_resource type="Script" path="res://game/cheats.gd" id="2_43t25"]
 [ext_resource type="Script" path="res://game/game_settings.gd" id="2_kke0s"]
 [ext_resource type="PackedScene" uid="uid://baufx6u2wjni6" path="res://game/player/characters/El Classico/el_classico.tscn" id="4_pra6c"]
-[ext_resource type="Script" path="res://game/components/smoother.gd" id="5_cu3wh"]
 [ext_resource type="Script" path="res://game/ui/camera.gd" id="5_jn5ho"]
 [ext_resource type="PackedScene" uid="uid://dc0j27pwmaoye" path="res://game/world/world.tscn" id="5_xagwd"]
 [ext_resource type="Resource" uid="uid://cdcf6aptu5uo4" path="res://game/world/terrain generator/generators/large_caves.tres" id="6_45tpe"]
@@ -28,10 +27,6 @@ settings = SubResource("Resource_lqxxk")
 cheats = SubResource("Resource_2wtjc")
 can_toggle_cheats = false
 player_scene = ExtResource("4_pra6c")
-
-[node name="Smoother" type="Node" parent="."]
-script = ExtResource("5_cu3wh")
-smooth_parent = false
 
 [node name="World" parent="." instance=ExtResource("5_xagwd")]
 generator = ExtResource("6_45tpe")
