@@ -61,9 +61,15 @@ func _physics_process(_delta):
 			entity.tick(self)
 
 	if Engine.get_physics_frames() % int(60.0 / BLOCK_TICKS) == 0:
+		#print("Tick world blocks")
 		for chunk in get_chunks():
 			chunk.tick_blocks()
-
+		for chunk in get_chunks():
+			for tile_pos in chunk.queued_scheduled_blocks:
+				if not tile_pos in chunk.scheduled_blocks:
+					chunk.scheduled_blocks.append(tile_pos)
+			chunk.queued_scheduled_blocks.clear()
+				
 	execute_block_updates()
 
 
