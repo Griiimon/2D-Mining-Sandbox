@@ -18,7 +18,7 @@ func on_tick(world: World, block_pos: Vector2i):
 	if block_below is FluidBlock:
 		if not (block_below as FluidBlock).is_full() and DataManager.fluid_library.is_same_fluid(self, block_below):
 			flow(world, block_pos, block_below)
-			finalize(world, block_pos)
+			#finalize(world, block_pos)
 			return
 	
 	if can_split():
@@ -30,13 +30,14 @@ func on_tick(world: World, block_pos: Vector2i):
 		
 		if not potential_split_pos.is_empty():
 			var split_product: Block= get_split_block(len(potential_split_pos))
-			
-			for pos in potential_split_pos:
-				world.set_block(split_product, pos)
-			
-			replace(world, block_pos, get_split_block())
-			finalize(world, block_pos)
-			return
+			if split_product:
+				for pos in potential_split_pos:
+					world.set_block(split_product, pos)
+					(world.get_block(pos) as FluidBlock).finalize(world, pos)
+				
+				replace(world, block_pos, get_split_block())
+				finalize(world, block_pos)
+				return
 	
 	NodeDebugger.write(world, str("water block cant split ", block_pos), 4)
 	
@@ -65,6 +66,7 @@ func finalize(world: World, block_pos: Vector2i):
 	
 	if make_flow:
 		replace(world, block_pos, DataManager.fluid_library.get_flowing_block(self))
+		world.schedule_block(block_pos)
 
 
 func on_neighbor_update(world: World, block_pos: Vector2i, neighbor_pos: Vector2i):
@@ -74,11 +76,14 @@ func on_neighbor_update(world: World, block_pos: Vector2i, neighbor_pos: Vector2
 
 func flow(world: World, block_pos: Vector2i, block_below: FluidBlock):
 	replace(world, block_pos, DataManager.fluid_library.get_lower_fluid_block(self))
+	if not world.is_air_at(block_pos):
+		(world.get_block(block_pos) as FluidBlock).finalize(world, block_pos)
 	replace(world, block_pos + Vector2i.DOWN, DataManager.fluid_library.get_higher_fluid_block(block_below))
+	(world.get_block(block_pos + Vector2i.DOWN) as FluidBlock).finalize(world, block_pos + Vector2i.DOWN)
 
 
 func can_split()-> bool:
-	return get_split_block(1) != null
+	return get_split_block() != null
 
 
 func get_split_block(depth: int= 1)-> Block:
