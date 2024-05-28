@@ -64,7 +64,8 @@ func tick_blocks():
 			push_warning("WorldChunk().tick_blocks(): no block at scheduled position")
 			# TODO i would like to store a failed attempt and only 
 			# unschedule after a second failed attempt ( additional array? )
-			unschedule_block(block_pos)
+			
+			#unschedule_block(block_pos)
 
 
 func set_block(block: Block, tile_pos: Vector2i, state: Block.State= Block.State.NONE, trigger_neighbor_update: bool= true):
