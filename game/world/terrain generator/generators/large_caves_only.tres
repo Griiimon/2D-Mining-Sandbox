@@ -1,0 +1,99 @@
+[gd_resource type="Resource" script_class="TerrainGenerator" load_steps=24 format=3 uid="uid://c0kqyn4i7ytj6"]
+
+[ext_resource type="Resource" uid="uid://bv3qfie2av8dh" path="res://game/blocks/stone block/stone_block.tres" id="1_3tsyb"]
+[ext_resource type="Script" path="res://game/world/terrain generator/terrain_block_distribution.gd" id="2_lv8h7"]
+[ext_resource type="Script" path="res://game/world/terrain generator/terrain_generator_instruction.gd" id="3_b8msj"]
+[ext_resource type="Resource" uid="uid://dxe3ydhcx4yc8" path="res://game/blocks/clay block/clay_block.tres" id="4_m8phr"]
+[ext_resource type="Resource" uid="uid://d12w8mbqpsyov" path="res://game/blocks/coal block/coal_block.tres" id="5_oc63e"]
+[ext_resource type="Resource" uid="uid://obgjml6tlfcn" path="res://game/blocks/iron block/iron_block.tres" id="6_7fplo"]
+[ext_resource type="Resource" uid="uid://8qexa73jgb56" path="res://game/blocks/godot block/godot_block.tres" id="7_fvqae"]
+[ext_resource type="Resource" uid="uid://cjykj5i260i0c" path="res://game/blocks/air block/air_block.tres" id="8_2hlx6"]
+[ext_resource type="Script" path="res://game/world/terrain generator/terrain_generator.gd" id="9_feake"]
+
+[sub_resource type="Resource" id="Resource_qdcf6"]
+script = ExtResource("2_lv8h7")
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("1_3tsyb")])
+noise_threshold = 0.0
+
+[sub_resource type="Resource" id="Resource_62246"]
+script = ExtResource("3_b8msj")
+min_height = -100
+max_height = 1024
+distribution = SubResource("Resource_qdcf6")
+ignore_height = false
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j2pit"]
+frequency = 0.0267
+
+[sub_resource type="Resource" id="Resource_q0alk"]
+script = ExtResource("2_lv8h7")
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("4_m8phr")])
+noise = SubResource("FastNoiseLite_j2pit")
+noise_threshold = 0.4
+
+[sub_resource type="Resource" id="Resource_puc8l"]
+script = ExtResource("3_b8msj")
+min_height = 0
+max_height = 1024
+distribution = SubResource("Resource_q0alk")
+ignore_height = false
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6egp1"]
+frequency = 0.2021
+
+[sub_resource type="Resource" id="Resource_hfx3x"]
+script = ExtResource("2_lv8h7")
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("5_oc63e"), ExtResource("6_7fplo")])
+noise = SubResource("FastNoiseLite_6egp1")
+noise_threshold = 0.39
+
+[sub_resource type="Resource" id="Resource_tk6ju"]
+script = ExtResource("3_b8msj")
+min_height = 0
+max_height = 1024
+distribution = SubResource("Resource_hfx3x")
+ignore_height = false
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5lybx"]
+noise_type = 4
+frequency = 0.6583
+
+[sub_resource type="Resource" id="Resource_b0jq7"]
+script = ExtResource("2_lv8h7")
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("7_fvqae")])
+noise = SubResource("FastNoiseLite_5lybx")
+noise_threshold = 0.42
+
+[sub_resource type="Resource" id="Resource_j6re8"]
+script = ExtResource("3_b8msj")
+min_height = 0
+max_height = 1024
+distribution = SubResource("Resource_b0jq7")
+ignore_height = false
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6losj"]
+frequency = 0.0125
+fractal_type = 2
+fractal_octaves = 3
+fractal_lacunarity = 2.41
+fractal_gain = 0.77
+domain_warp_amplitude = 27.995
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="Resource" id="Resource_kx2jn"]
+script = ExtResource("2_lv8h7")
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("8_2hlx6")])
+noise = SubResource("FastNoiseLite_6losj")
+noise_threshold = 0.2
+
+[sub_resource type="Resource" id="Resource_wdpor"]
+script = ExtResource("3_b8msj")
+min_height = 0
+max_height = 1024
+distribution = SubResource("Resource_kx2jn")
+ignore_height = false
+
+[resource]
+script = ExtResource("9_feake")
+instructions = Array[ExtResource("3_b8msj")]([SubResource("Resource_62246"), SubResource("Resource_puc8l"), SubResource("Resource_tk6ju"), SubResource("Resource_j6re8"), SubResource("Resource_wdpor")])
+height_scale = 10.0

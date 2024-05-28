@@ -15,7 +15,9 @@ script = ExtResource("3_251kn")
 min_height = -100
 max_height = 1024
 distribution = SubResource("Resource_xsb8v")
+ignore_height = false
 
 [resource]
 script = ExtResource("1_7ufax")
 instructions = Array[ExtResource("3_251kn")]([SubResource("Resource_wjd63")])
+height_scale = 10.0
