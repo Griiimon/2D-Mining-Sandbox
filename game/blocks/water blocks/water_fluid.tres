@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="FluidLibraryItem" load_steps=6 format=3 uid="uid://bys57w7lsd5mg"]
+[gd_resource type="Resource" script_class="FluidLibraryItem" load_steps=9 format=3 uid="uid://bys57w7lsd5mg"]
 
 [ext_resource type="Resource" uid="uid://d4hbmp48eqem4" path="res://game/blocks/water blocks/water_block.tres" id="1_rwpyl"]
 [ext_resource type="Resource" uid="uid://cotoue1kmmwxo" path="res://game/blocks/water blocks/water_half_block.tres" id="2_4iqgv"]
 [ext_resource type="Resource" uid="uid://c3lu08ssbfn4k" path="res://game/blocks/water blocks/water_three_quarter_block.tres" id="2_ahhte"]
 [ext_resource type="Resource" uid="uid://cdsr7rdwvpfcd" path="res://game/blocks/water blocks/water_quarter_block.tres" id="3_woq0s"]
 [ext_resource type="Script" path="res://game/blocks/fluid_library_item.gd" id="4_owjfv"]
+[ext_resource type="Resource" uid="uid://4wrw0b5rir0v" path="res://game/blocks/water blocks/water_three_quarter_flowing_block.tres" id="5_giwmd"]
+[ext_resource type="Resource" uid="uid://d3dvlrny3fyen" path="res://game/blocks/water blocks/water_half_flowing_block.tres" id="6_v0kml"]
+[ext_resource type="Resource" uid="uid://crfanhegjj60g" path="res://game/blocks/water blocks/water_quarter_flowing_block.tres" id="7_wey6b"]
 
 [resource]
 script = ExtResource("4_owjfv")
 blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("1_rwpyl"), ExtResource("2_ahhte"), ExtResource("2_4iqgv"), ExtResource("3_woq0s")])
+flowing_blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("5_giwmd"), ExtResource("6_v0kml"), ExtResource("7_wey6b")])
