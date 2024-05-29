@@ -13,13 +13,21 @@ func on_tick(world: World, block_pos: Vector2i):
 		finalize(world, block_pos)
 		return
 	
-	var block_below: Block= world.get_block(block_pos + Vector2i.DOWN)
-	
-	if block_below is FluidBlock:
-		if not (block_below as FluidBlock).is_full() and DataManager.fluid_library.is_same_fluid(self, block_below):
-			flow(world, block_pos, block_below)
-			#finalize(world, block_pos)
-			return
+	var neighbor_positions: Array[Vector2i]
+	var left_right:= [-1, 1]
+	left_right.shuffle()
+	neighbor_positions.append(block_pos + Vector2i.DOWN)
+	for y in range(1, -1, -1):
+			for i in 2:
+				neighbor_positions.append(Vector2i(left_right[i], y) + block_pos)
+		
+	for pos in neighbor_positions:
+		var neighbor_block: Block= world.get_block(pos)
+		if neighbor_block is FluidBlock:
+			if not (neighbor_block as FluidBlock).is_full() and DataManager.fluid_library.is_same_fluid(self, neighbor_block):
+				#if not flow(world, block_pos, below_pos, block_below):
+				flow(world, block_pos, pos, neighbor_block)
+				return
 	
 	if can_split():
 		var potential_split_pos: Array[Vector2i]= []
@@ -41,12 +49,12 @@ func on_tick(world: World, block_pos: Vector2i):
 	
 	NodeDebugger.write(world, str("water block cant split ", block_pos), 4)
 	
-	world.unschedule_block(block_pos)
-	finalize(world, block_pos)
+	if not finalize(world, block_pos):
+		world.unschedule_block(block_pos)
+		pass
 
-
-func finalize(world: World, block_pos: Vector2i):
-	if is_full(): return
+func finalize(world: World, block_pos: Vector2i)-> bool:
+	if is_full(): return false
 	
 	var make_flow:= false
 	
@@ -67,23 +75,27 @@ func finalize(world: World, block_pos: Vector2i):
 	if make_flow:
 		replace(world, block_pos, DataManager.fluid_library.get_flowing_block(self))
 		world.schedule_block(block_pos)
+	return make_flow
+
+
+func flow(world: World, block_pos: Vector2i, below_pos: Vector2i, block_below: FluidBlock)-> bool:
+	var new_block: Block= DataManager.fluid_library.get_lower_fluid_block(self)
+	replace(world, block_pos, new_block)
+	if not world.is_air_at(block_pos):
+		(world.get_block(block_pos) as FluidBlock).finalize(world, block_pos)
+	replace(world, below_pos, DataManager.fluid_library.get_higher_fluid_block(block_below))
+	world.schedule_block(below_pos)
+	(world.get_block(below_pos) as FluidBlock).finalize(world, below_pos)
+	return new_block != null
 
 
 func on_neighbor_update(world: World, block_pos: Vector2i, neighbor_pos: Vector2i):
-	if neighbor_pos.y >= block_pos.y:
-		world.schedule_block(block_pos)
-
-
-func flow(world: World, block_pos: Vector2i, block_below: FluidBlock):
-	replace(world, block_pos, DataManager.fluid_library.get_lower_fluid_block(self))
-	if not world.is_air_at(block_pos):
-		(world.get_block(block_pos) as FluidBlock).finalize(world, block_pos)
-	replace(world, block_pos + Vector2i.DOWN, DataManager.fluid_library.get_higher_fluid_block(block_below))
-	(world.get_block(block_pos + Vector2i.DOWN) as FluidBlock).finalize(world, block_pos + Vector2i.DOWN)
+	#if neighbor_pos.y >= block_pos.y:
+	world.schedule_block(block_pos)
 
 
 func can_split()-> bool:
-	return get_split_block() != null
+	return not is_flowing and get_split_block() != null
 
 
 func get_split_block(depth: int= 1)-> Block:
