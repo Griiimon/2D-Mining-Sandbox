@@ -3,14 +3,10 @@ extends Game
 
 func _ready():
 	super()
-	#world.spawn_block_entity(DataManager.block_entities[0], Vector2i(-7, 6))
+	world.spawn_block_entity(DataManager.block_entities[0], Vector2i(-7, 6))
 
 
 func post_init():
-	world.set_block(load("res://game/blocks/water blocks/water_source_block.tres"), Vector2i(0, -2))
-	
-	return
-	
 	var water_block: Block= load("res://game/blocks/water blocks/water_block.tres")
 	var y:= 8
 	for x in 12:
@@ -21,7 +17,3 @@ func post_init():
 			world.set_block(water_block, Vector2i(x, y + 1), Block.State.NONE, false)
 			if x > 6:
 				world.set_block(water_block, Vector2i(x, y + 2), Block.State.NONE, false)
-
-
-func _physics_process(delta):
-	DebugHud.send("Scheduled", world.get_chunks().reduce(func(sum, c: WorldChunk): return sum + len(c.scheduled_blocks), 0))
