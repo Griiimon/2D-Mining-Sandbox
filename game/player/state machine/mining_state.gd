@@ -57,7 +57,7 @@ func on_physics_process(delta: float):
 					best_match_pos= to
 					best_rating= rating
 			
-			select_block_pos(best_match_pos)
+			select_block_at(best_match_pos)
 			
 	
 	
