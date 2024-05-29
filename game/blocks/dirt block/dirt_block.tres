@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Block" load_steps=3 format=3 uid="uid://bo66rlvwjy2w5"]
+
+[ext_resource type="Script" path="res://game/blocks/block.gd" id="1_bhfnx"]
+[ext_resource type="Texture2D" uid="uid://7kqkvsppaw86" path="res://game/blocks/dirt block/dirt.png" id="2_8ycc1"]
+
+[resource]
+script = ExtResource("1_bhfnx")
+texture = ExtResource("2_8ycc1")
+hardness = 0.1
+has_collision = true
+tags = Array[Resource("res://game/tags/tag.gd")]([])
+particle_color = Color(0.570925, 0.251778, 0.078266, 1)
+material = 6
+mining_tool = 2
+other_tool_penalty = 0.0
+other_tool_produces_drops = false
+schedule_tick = false
+is_air = false
+is_fluid = false
+custom_collision_polygon = PackedVector2Array()
+name = "dirt_block"
