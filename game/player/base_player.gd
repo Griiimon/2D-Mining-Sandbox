@@ -391,8 +391,13 @@ func get_max_speed()-> float:
 	return result
 
 
+func get_tile_pos()-> Vector2i:
+	return get_world().get_tile(global_position)
+
+
 func get_tile_distance(tile: Vector2i)-> int:
-	return int((get_world().get_tile(global_position) - tile).length())
+	return int((get_tile_pos() - tile).length())
+	
 
 
 func die():
