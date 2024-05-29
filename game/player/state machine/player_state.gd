@@ -19,7 +19,17 @@ func select_block():
 	if new_block_pos != selected_block_pos:
 		on_selected_block_changed()
 	selected_block_pos= new_block_pos
+	update_block_marker()
 	
+
+func select_block_at(block_pos: Vector2i):
+	if block_pos != selected_block_pos:
+		on_selected_block_changed()
+	selected_block_pos= block_pos
+	update_block_marker()
+
+
+func update_block_marker():
 	player.block_marker.position= get_world().map_to_local(selected_block_pos)
 	player.block_marker.show()
 
