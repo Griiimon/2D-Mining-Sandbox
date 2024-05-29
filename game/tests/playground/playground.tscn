@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cbhvqow2nbc0k"]
 
-[ext_resource type="Script" path="res://game/test_game.gd" id="1_desap"]
+[ext_resource type="Script" path="res://game/tests/playground/playground.gd" id="1_desap"]
 [ext_resource type="Resource" uid="uid://bkrr445vap63e" path="res://game/player/loadouts/full_loadout.tres" id="2_jkm7x"]
 [ext_resource type="Script" path="res://game/cheats.gd" id="2_p63yw"]
 [ext_resource type="Script" path="res://game/game_settings.gd" id="2_ru5vw"]
