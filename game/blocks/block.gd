@@ -65,6 +65,14 @@ func replace(world: World, block_pos: Vector2i, new_block: Block):
 	world.set_block(new_block, block_pos)
 
 
+func on_chunk_generated(world: World, block_pos: Vector2i):
+	pass
+
+
+func on_random_update(world: World, block_pos: Vector2i):
+	pass
+
+
 static func get_state_from_alt(alt_tile: int)-> State:
 	if alt_tile & TileSetAtlasSource.TRANSFORM_FLIP_H:
 		return Block.State.FLIP_HORIZONTAL

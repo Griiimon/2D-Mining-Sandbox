@@ -360,3 +360,15 @@ func is_block_solid_at(tile: Vector2i)-> bool:
 	var block: Block= get_block(tile)
 	if not block: return false
 	return block.is_solid()
+
+
+func has_block_above(tile_pos: Vector2i)-> bool:
+	var y: int= tile_pos.y - 1
+	while true:
+		var pos:= Vector2i(tile_pos.x, y)
+		if get_block(pos):
+			return true
+		if not get_chunk_at(pos):
+			return false
+		y-= 1
+	return false

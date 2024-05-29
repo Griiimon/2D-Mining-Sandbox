@@ -168,6 +168,7 @@ build={
 2d_physics/layer_7="Damage"
 2d_physics/layer_8="Solid Block Entity"
 2d_physics/layer_9="No Collision Block Entity"
+2d_physics/layer_10="Vehicle"
 
 [rendering]
 

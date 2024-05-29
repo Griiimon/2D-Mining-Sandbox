@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cem7rnoxns4c7"]
+
+[ext_resource type="PackedScene" uid="uid://bcedp6wykxo8m" path="res://game/vehicles/vehicle.tscn" id="1_3oi6k"]
+[ext_resource type="Script" path="res://game/vehicles/boat/boat.gd" id="2_1dbr8"]
+[ext_resource type="PackedScene" uid="uid://kp5ss4gudwu3" path="res://game/components/tile detector/tile_detector.tscn" id="3_ksky4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4idu"]
+size = Vector2(80, 20)
+
+[node name="Boat" instance=ExtResource("1_3oi6k")]
+script = ExtResource("2_1dbr8")
+lift = 10.0
+air_damp = 1.0
+water_damp = 3.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_r4idu")
+
+[node name="Polygon2D" type="Polygon2D" parent="." index="1"]
+color = Color(0.486555, 0.272316, 0.110446, 1)
+polygon = PackedVector2Array(-48, -16, -32, 8, 32, 8, 48, -16, 32, -16, 24, -8, -24, -8, -32, -16)
+
+[node name="Tile Detector" parent="." index="2" instance=ExtResource("3_ksky4")]

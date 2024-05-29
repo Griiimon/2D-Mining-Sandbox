@@ -1,23 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtq28wgfpmux8"]
+[gd_scene load_steps=4 format=3 uid="uid://dtq28wgfpmux8"]
 
 [ext_resource type="Script" path="res://game/player/inventory/inventory_slot.gd" id="1_nahyv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h18t"]
-bg_color = Color(0.752941, 0.654902, 0.564706, 0.529412)
+bg_color = Color(0.885915, 0.818395, 0.767317, 0.956863)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_6csru"]
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
 
 [node name="Inventory Slot" type="PanelContainer"]
 custom_minimum_size = Vector2(40, 40)
 theme_override_styles/panel = SubResource("StyleBoxFlat_7h18t")
 script = ExtResource("1_nahyv")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2"]
+unique_name_in_owner = true
+self_modulate = Color(0.471375, 0.471375, 0.471375, 1)
 layout_mode = 2
 expand_mode = 1
-stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -29,6 +41,7 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 8
 text = "0"
+label_settings = SubResource("LabelSettings_6csru")
 horizontal_alignment = 2
 vertical_alignment = 2
 

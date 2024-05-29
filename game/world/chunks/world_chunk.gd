@@ -43,13 +43,21 @@ func generate_tiles():
 	var generator: TerrainGenerator= world.generator
 	if not generator: return
 	
+	var positions: Array[Vector2i]= []
+	
 	for x in SIZE:
 		for y in SIZE:
 			var local_pos= Vector2i(x, y)
 			var global_pos= get_global_pos(local_pos)
 			var block_id: int= generator.get_block_id(global_pos)
 			var block: Block= DataManager.get_block(block_id)
+			if block:
+				positions.append(global_pos)
 			set_block(block, local_pos, Block.State.NONE, false)
+
+	for pos in positions:
+		get_block(pos).on_chunk_generated(world, pos)
+
 	ignore_changes= false
 
 

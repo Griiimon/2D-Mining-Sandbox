@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TerrainGenerator" load_steps=24 format=3 uid="uid://cdcf6aptu5uo4"]
+[gd_resource type="Resource" script_class="TerrainGenerator" load_steps=30 format=3 uid="uid://cdcf6aptu5uo4"]
 
 [ext_resource type="Resource" uid="uid://dxe3ydhcx4yc8" path="res://game/blocks/clay block/clay_block.tres" id="1_a6vv0"]
 [ext_resource type="Resource" uid="uid://bv3qfie2av8dh" path="res://game/blocks/stone block/stone_block.tres" id="1_ava8k"]
@@ -9,6 +9,10 @@
 [ext_resource type="Resource" uid="uid://8qexa73jgb56" path="res://game/blocks/godot block/godot_block.tres" id="6_cdd3r"]
 [ext_resource type="Resource" uid="uid://cjykj5i260i0c" path="res://game/blocks/air block/air_block.tres" id="7_sqj32"]
 [ext_resource type="Script" path="res://game/world/terrain generator/terrain_generator.gd" id="8_g8it4"]
+[ext_resource type="Resource" uid="uid://mmw13x1t1pjw" path="res://game/blocks/grass block/grass_block.tres" id="9_bjedn"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_busjf"]
+frequency = 0.0287
 
 [sub_resource type="Resource" id="Resource_qdcf6"]
 script = ExtResource("2_ud22x")
@@ -20,6 +24,7 @@ script = ExtResource("3_0sel7")
 min_height = -100
 max_height = 1024
 distribution = SubResource("Resource_qdcf6")
+ignore_height = false
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j2pit"]
 frequency = 0.0267
@@ -35,6 +40,7 @@ script = ExtResource("3_0sel7")
 min_height = 0
 max_height = 1024
 distribution = SubResource("Resource_q0alk")
+ignore_height = false
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6egp1"]
 frequency = 0.2021
@@ -50,6 +56,7 @@ script = ExtResource("3_0sel7")
 min_height = 0
 max_height = 1024
 distribution = SubResource("Resource_hfx3x")
+ignore_height = false
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5lybx"]
 noise_type = 4
@@ -66,6 +73,7 @@ script = ExtResource("3_0sel7")
 min_height = 0
 max_height = 1024
 distribution = SubResource("Resource_b0jq7")
+ignore_height = false
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6losj"]
 frequency = 0.0125
@@ -87,7 +95,30 @@ script = ExtResource("3_0sel7")
 min_height = 0
 max_height = 1024
 distribution = SubResource("Resource_kx2jn")
+ignore_height = false
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3f4av"]
+
+[sub_resource type="Resource" id="Resource_o38dw"]
+script = ExtResource("2_ud22x")
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("9_bjedn"), ExtResource("1_ava8k")])
+noise = SubResource("FastNoiseLite_3f4av")
+noise_threshold = 0.0
+
+[sub_resource type="Curve" id="Curve_ghaag"]
+_data = [Vector2(0, 0.320755), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_pmnpt"]
+script = ExtResource("3_0sel7")
+min_height = -20
+max_height = 10
+distribution = SubResource("Resource_o38dw")
+ignore_height = false
+height_curve = SubResource("Curve_ghaag")
 
 [resource]
 script = ExtResource("8_g8it4")
-instructions = Array[ExtResource("3_0sel7")]([SubResource("Resource_62246"), SubResource("Resource_puc8l"), SubResource("Resource_tk6ju"), SubResource("Resource_j6re8"), SubResource("Resource_wdpor")])
+instructions = Array[ExtResource("3_0sel7")]([SubResource("Resource_62246"), SubResource("Resource_puc8l"), SubResource("Resource_tk6ju"), SubResource("Resource_j6re8"), SubResource("Resource_wdpor"), SubResource("Resource_pmnpt")])
+height_noise = SubResource("FastNoiseLite_busjf")
+height_scale = 10.0

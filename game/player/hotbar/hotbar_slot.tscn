@@ -9,5 +9,6 @@ script = ExtResource("1_pcgvu")
 
 [node name="Selection" type="TextureRect" parent="." index="1"]
 visible = false
+modulate = Color(0.74902, 0, 0, 1)
 layout_mode = 2
 texture = ExtResource("2_3eqn3")

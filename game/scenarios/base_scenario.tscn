@@ -1,25 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://c510uo66y1t16"]
+[gd_scene load_steps=6 format=3 uid="uid://c510uo66y1t16"]
 
 [ext_resource type="Script" path="res://game/scenarios/base_scenario.gd" id="1_1t407"]
-[ext_resource type="Script" path="res://game/components/smoother.gd" id="2_l1b4t"]
 [ext_resource type="PackedScene" uid="uid://dbdvl22708gp" path="res://utils/level editor/level_editor.tscn" id="4_2le7v"]
 [ext_resource type="PackedScene" uid="uid://dc0j27pwmaoye" path="res://game/world/world.tscn" id="5_suwde"]
 [ext_resource type="PackedScene" uid="uid://rulbjxj13xn7" path="res://game/scenarios/scenario_ui.tscn" id="5_v74o5"]
 [ext_resource type="Script" path="res://game/ui/camera.gd" id="7_5xy13"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jukaa"]
-
-[sub_resource type="TileSet" id="TileSet_2q4vh"]
-tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_jukaa")
-
 [node name="Base Scenario" type="Node"]
 script = ExtResource("1_1t407")
-
-[node name="Smoother" type="Node" parent="."]
-script = ExtResource("2_l1b4t")
-smooth_parent = false
 
 [node name="World" parent="." instance=ExtResource("5_suwde")]
 generator = null
@@ -29,7 +17,6 @@ script = ExtResource("7_5xy13")
 speed = 1000.0
 
 [node name="Level Editor" parent="." instance=ExtResource("4_2le7v")]
-tile_set = SubResource("TileSet_2q4vh")
 
 [node name="UI" parent="." instance=ExtResource("5_v74o5")]
 
