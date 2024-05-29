@@ -4,7 +4,7 @@ class_name InventorySlot
 signal left_clicked
 signal right_clicked
 
-@onready var texture_rect: TextureRect = $TextureRect
+@onready var texture_rect: TextureRect = %TextureRect
 @onready var amount_label: Label = $MarginContainer/Amount
 
 
