@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcedp6wykxo8m"]
+
+[ext_resource type="Script" path="res://game/vehicles/vehicle.gd" id="1_jvd77"]
+
+[node name="Vehicle" type="CharacterBody2D"]
+collision_layer = 512
+collision_mask = 3
+script = ExtResource("1_jvd77")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
