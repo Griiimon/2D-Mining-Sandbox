@@ -25,4 +25,4 @@ func get_block_id(pos: Vector2i)-> int:
 
 func get_height(x: int)-> int:
 	if not height_noise: return 999999
-	return height_noise.get_noise_1d(x) * height_scale
+	return int(height_noise.get_noise_1d(x) * height_scale)
