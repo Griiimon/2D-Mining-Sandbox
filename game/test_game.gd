@@ -20,3 +20,7 @@ func post_init():
 			world.set_block(water_block, Vector2i(x, y + 1), Block.State.NONE, false)
 			if x > 6:
 				world.set_block(water_block, Vector2i(x, y + 2), Block.State.NONE, false)
+
+
+func _physics_process(delta):
+	DebugHud.send("Scheduled", world.get_chunks().reduce(func(sum, c: WorldChunk): return sum + len(c.scheduled_blocks), 0))
