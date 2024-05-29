@@ -32,7 +32,7 @@ height = 75.0
 [node name="Base Player" type="CharacterBody2D"]
 z_index = 10
 collision_layer = 2
-collision_mask = 133
+collision_mask = 645
 script = ExtResource("1_lm5hc")
 loadout = ExtResource("2_dv4ej")
 block_marker_scene = ExtResource("3_6qduw")
