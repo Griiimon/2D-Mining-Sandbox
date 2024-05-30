@@ -1,0 +1,42 @@
+[gd_scene load_steps=12 format=3 uid="uid://iomxef3adtvb"]
+
+[ext_resource type="Script" path="res://game/tests/playground/playground.gd" id="1_0hwqb"]
+[ext_resource type="Resource" uid="uid://bkrr445vap63e" path="res://game/player/loadouts/full_loadout.tres" id="2_k8ot7"]
+[ext_resource type="Script" path="res://game/game_settings.gd" id="3_e6syh"]
+[ext_resource type="Script" path="res://game/cheats.gd" id="4_gk5aa"]
+[ext_resource type="PackedScene" uid="uid://baufx6u2wjni6" path="res://game/player/characters/El Classico/el_classico.tscn" id="5_ljp5k"]
+[ext_resource type="PackedScene" uid="uid://dc0j27pwmaoye" path="res://game/world/world.tscn" id="6_u23cu"]
+[ext_resource type="Resource" uid="uid://coin0o2iwsbjj" path="res://game/world/terrain generator/generators/stone_only.tres" id="7_fuie1"]
+[ext_resource type="Script" path="res://game/ui/camera.gd" id="8_gnic4"]
+[ext_resource type="PackedScene" uid="uid://cem7rnoxns4c7" path="res://game/vehicles/boat/boat.tscn" id="9_n4nxa"]
+
+[sub_resource type="Resource" id="Resource_bmphr"]
+script = ExtResource("3_e6syh")
+world_seed = 0
+player_spawn = Vector2i(0, 0)
+spawn_clearing_radius = 8
+respawn_on_death = true
+player_loadout = ExtResource("2_k8ot7")
+
+[sub_resource type="Resource" id="Resource_g2rh2"]
+script = ExtResource("4_gk5aa")
+instant_mine = false
+fly = false
+
+[node name="Boat Test" type="Node" node_paths=PackedStringArray("world")]
+script = ExtResource("1_0hwqb")
+world = NodePath("World")
+settings = SubResource("Resource_bmphr")
+cheats = SubResource("Resource_g2rh2")
+player_scene = ExtResource("5_ljp5k")
+
+[node name="World" parent="." instance=ExtResource("6_u23cu")]
+enable_mob_spawner = false
+generator = ExtResource("7_fuie1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("8_gnic4")
+speed = 1000.0
+
+[node name="Boat" parent="." instance=ExtResource("9_n4nxa")]
+position = Vector2(111, 239)
