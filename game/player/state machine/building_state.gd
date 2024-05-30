@@ -6,6 +6,9 @@ signal build_block(block, block_state, tile_pos)
 signal cancel
 
 enum Type { ENTITY, BLOCK }
+enum SelectionMode { RAYCAST, POSITION }
+
+@export var selection_mode: SelectionMode= SelectionMode.POSITION
 
 var type: Type
 var entity_definition: BlockEntityDefinition
@@ -53,21 +56,28 @@ func on_physics_process(_delta: float):
 		Type.ENTITY:
 			handle_block_entity_input()
 
-	if player.ray_cast.is_colliding():
-		var new_empty_tile= get_empty_tile()
-		if empty_tile == new_empty_tile: return
-		
-		empty_tile= new_empty_tile
+	match selection_mode:
+		SelectionMode.RAYCAST:
+			if player.ray_cast.is_colliding():
+				var new_empty_tile= get_empty_tile()
+				if empty_tile == new_empty_tile: return
+				if player.is_in_tile(empty_tile): return
+				
+				empty_tile= new_empty_tile
 
-		if player.is_in_tile(empty_tile): return
+		SelectionMode.POSITION:
+			var mouse_tile: Vector2i= player.get_world().get_tile(player.get_global_mouse_position())
+			if empty_tile == mouse_tile: return
+			if player.is_in_tile(mouse_tile): return
+			if not player.get_world().is_air_at(mouse_tile): return
+			
+			empty_tile= mouse_tile
 		
-		DebugHud.send("Empty Tile", str(empty_tile))
-		
-		match type:
-			Type.BLOCK:
-				handle_block_pos_update()
-			Type.ENTITY:
-				handle_block_entity_pos_update()
+	match type:
+		Type.BLOCK:
+			handle_block_pos_update()
+		Type.ENTITY:
+			handle_block_entity_pos_update()
 
 
 func handle_block_input(): 
