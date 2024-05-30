@@ -1,3 +1,4 @@
+class_name PlayerMiningState
 extends PlayerState
 
 signal stop_mining
@@ -34,31 +35,9 @@ func on_physics_process(delta: float):
 				return
 				
 		SelectionMode.NEAREST:
-			var from: Vector2i= player.get_tile_pos()
-			var mine_positions: Array[Vector2i]= []
-
-			for x in range(-mining_range, mining_range + 1):
-				for y in range(-mining_range, mining_range + 1):
-					var tile:= from + Vector2i(x, y)
-					if get_world().is_block_solid_at(tile):
-						mine_positions.append(tile)
-			
-			if mine_positions.is_empty():
+			if not select_nearest_minable_tile(mining_range):
 				stop_mining.emit()
 				return
-			
-			var best_match_pos: Vector2i
-			var best_rating: float= -INF
-			
-			for to in mine_positions:
-				var rating: float= player.get_look_direction().dot(Vector2(to - from).normalized())
-				rating*= 1.0 / (to - from).length()
-				if rating > best_rating:
-					best_match_pos= to
-					best_rating= rating
-			
-			select_block_at(best_match_pos)
-			
 	
 	
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
