@@ -393,6 +393,5 @@ max_detail_level = 4
 stream = ExtResource("4_1s88t")
 
 [connection signal="report_damage" from="Health Component" to="." method="_on_health_component_report_damage"]
-[connection signal="release_charge" from="State Machine/Item Charging" to="." method="release_charge"]
 [connection signal="state_entered" from="State Machine/Vehicle" to="." method="_on_vehicle_state_entered"]
 [connection signal="state_exited" from="State Machine/Vehicle" to="." method="_on_vehicle_state_exited"]
