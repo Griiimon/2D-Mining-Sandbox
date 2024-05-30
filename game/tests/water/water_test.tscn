@@ -1,0 +1,37 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbhvqow2nbc0k"]
+
+[ext_resource type="Script" path="res://game/tests/water/water_test.gd" id="1_desap"]
+[ext_resource type="Resource" uid="uid://bkrr445vap63e" path="res://game/player/loadouts/full_loadout.tres" id="2_jkm7x"]
+[ext_resource type="Script" path="res://game/cheats.gd" id="2_p63yw"]
+[ext_resource type="Script" path="res://game/game_settings.gd" id="2_ru5vw"]
+[ext_resource type="PackedScene" uid="uid://baufx6u2wjni6" path="res://game/player/characters/El Classico/el_classico.tscn" id="5_0set7"]
+[ext_resource type="PackedScene" uid="uid://dc0j27pwmaoye" path="res://game/world/world.tscn" id="6_dkwx3"]
+[ext_resource type="Script" path="res://game/ui/camera.gd" id="8_3qg1m"]
+[ext_resource type="Resource" uid="uid://coin0o2iwsbjj" path="res://game/world/terrain generator/generators/stone_only.tres" id="8_4yhic"]
+
+[sub_resource type="Resource" id="Resource_bmphr"]
+script = ExtResource("2_ru5vw")
+world_seed = 0
+player_spawn = Vector2i(0, 0)
+spawn_clearing_radius = 8
+respawn_on_death = true
+player_loadout = ExtResource("2_jkm7x")
+
+[sub_resource type="Resource" id="Resource_g2rh2"]
+script = ExtResource("2_p63yw")
+instant_mine = false
+fly = false
+
+[node name="Test Game" type="Node" node_paths=PackedStringArray("world")]
+script = ExtResource("1_desap")
+world = NodePath("World")
+settings = SubResource("Resource_bmphr")
+cheats = SubResource("Resource_g2rh2")
+player_scene = ExtResource("5_0set7")
+
+[node name="World" parent="." instance=ExtResource("6_dkwx3")]
+generator = ExtResource("8_4yhic")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("8_3qg1m")
+speed = 1000.0

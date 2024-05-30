@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="FluidSourceBlock" load_steps=4 format=3 uid="uid://bcowip3yt0fnp"]
+
+[ext_resource type="Resource" uid="uid://bys57w7lsd5mg" path="res://game/blocks/water blocks/water_fluid.tres" id="1_doo8u"]
+[ext_resource type="Script" path="res://game/blocks/fluid_source_block.gd" id="1_wn4or"]
+[ext_resource type="Texture2D" uid="uid://cl5xbxp01bj06" path="res://game/blocks/water blocks/water.png" id="3_uh81p"]
+
+[resource]
+script = ExtResource("1_wn4or")
+fluid = ExtResource("1_doo8u")
+texture = ExtResource("3_uh81p")
+hardness = null
+has_collision = null
+tags = null
+particle_color = null
+material = null
+mining_tool = 0
+other_tool_penalty = null
+other_tool_produces_drops = null
+schedule_tick = true
+is_air = null
+is_fluid = null
+custom_collision_polygon = null
+name = null

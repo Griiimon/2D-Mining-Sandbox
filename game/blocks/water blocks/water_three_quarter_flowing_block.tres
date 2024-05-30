@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="FluidBlock" load_steps=3 format=3 uid="uid://4wrw0b5rir0v"]
+
+[ext_resource type="Script" path="res://game/blocks/fluid_block.gd" id="1_ip4af"]
+[ext_resource type="Texture2D" uid="uid://c88ohnh35u3si" path="res://game/blocks/water blocks/water_flowing.png" id="2_lgxxr"]
+
+[resource]
+script = ExtResource("1_ip4af")
+fill_ratio = 1
+is_flowing = true
+texture = ExtResource("2_lgxxr")
+hardness = 0.5
+has_collision = false
+tags = Array[Resource("res://game/tags/tag.gd")]([])
+particle_color = Color(0.478431, 0.643137, 1, 1)
+material = 0
+mining_tool = 0
+other_tool_penalty = 4.0
+other_tool_produces_drops = false
+schedule_tick = true
+is_air = false
+is_fluid = true
+custom_collision_polygon = PackedVector2Array()
+name = "water_three_quarter_flowing"
