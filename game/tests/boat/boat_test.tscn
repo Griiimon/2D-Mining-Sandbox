@@ -39,4 +39,5 @@ script = ExtResource("8_gnic4")
 speed = 1000.0
 
 [node name="Boat" parent="." instance=ExtResource("9_n4nxa")]
-position = Vector2(111, 239)
+z_index = 0
+position = Vector2(84, 266)
