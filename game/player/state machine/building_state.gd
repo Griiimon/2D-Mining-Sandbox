@@ -1,5 +1,5 @@
-extends PlayerState
 class_name PlayerBuildingState
+extends PlayerState
 
 signal build_entity(scene, tile_pos)
 signal build_block(block, block_state, tile_pos)
