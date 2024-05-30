@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cem7rnoxns4c7"]
+[gd_scene load_steps=6 format=3 uid="uid://cem7rnoxns4c7"]
 
 [ext_resource type="PackedScene" uid="uid://bcedp6wykxo8m" path="res://game/vehicles/vehicle.tscn" id="1_3oi6k"]
 [ext_resource type="Script" path="res://game/vehicles/boat/boat.gd" id="2_1dbr8"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r4idu"]
 size = Vector2(80, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0lf"]
+size = Vector2(50, 20)
 
 [node name="Boat" instance=ExtResource("1_3oi6k")]
 script = ExtResource("2_1dbr8")
@@ -21,3 +24,15 @@ color = Color(0.486555, 0.272316, 0.110446, 1)
 polygon = PackedVector2Array(-48, -16, -32, 8, 32, 8, 48, -16, 32, -16, 24, -8, -24, -8, -32, -16)
 
 [node name="Tile Detector" parent="." index="2" instance=ExtResource("3_ksky4")]
+
+[node name="Vehicle Seat" parent="." index="3"]
+position = Vector2(0, -16)
+
+[node name="Area2D" parent="Vehicle Seat" index="0"]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" parent="Vehicle Seat/Area2D" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_cp0lf")
+
+[editable path="Vehicle Seat"]
