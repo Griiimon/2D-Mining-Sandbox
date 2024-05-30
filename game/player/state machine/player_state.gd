@@ -29,6 +29,34 @@ func select_block_at(block_pos: Vector2i):
 	update_block_marker()
 
 
+func select_nearest_minable_tile(mining_range: int)-> bool:
+	var from: Vector2i= player.get_tile_pos()
+	var mine_positions: Array[Vector2i]= []
+
+	for x in range(-mining_range, mining_range + 1):
+		for y in range(-mining_range, mining_range + 1):
+			var tile:= from + Vector2i(x, y)
+			if get_world().is_block_solid_at(tile):
+				mine_positions.append(tile)
+	
+	if mine_positions.is_empty():
+		return false
+
+	var best_match_pos: Vector2i
+	var best_rating: float= -INF
+	
+	for to in mine_positions:
+		var rating: float= player.get_look_direction().dot(Vector2(to - from).normalized())
+		rating*= 1.0 / (to - from).length()
+		if rating > best_rating:
+			best_match_pos= to
+			best_rating= rating
+
+	select_block_at(best_match_pos)
+
+	return true
+
+
 func update_block_marker():
 	player.block_marker.position= get_world().map_to_local(selected_block_pos)
 	player.block_marker.show()
