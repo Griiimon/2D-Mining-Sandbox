@@ -24,7 +24,7 @@ script = ExtResource("2_p63yw")
 instant_mine = false
 fly = false
 
-[node name="Test Game" type="Node" node_paths=PackedStringArray("world")]
+[node name="Playground" type="Node" node_paths=PackedStringArray("world")]
 script = ExtResource("1_desap")
 world = NodePath("World")
 settings = SubResource("Resource_bmphr")
