@@ -24,3 +24,7 @@ func post_init():
 
 func _physics_process(delta):
 	DebugHud.send("Scheduled", world.get_chunks().reduce(func(sum, c: WorldChunk): return sum + len(c.scheduled_blocks), 0))
+	
+	for chunk in world.get_chunks():
+		for pos in chunk.scheduled_blocks:
+			DebugHud.add_global_label(world.map_to_local(chunk.get_global_pos(pos)) - Vector2.ONE * World.TILE_SIZE / 2, "S", 0.1)
