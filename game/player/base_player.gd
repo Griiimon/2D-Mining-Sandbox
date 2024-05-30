@@ -464,3 +464,7 @@ func is_in_tile(tile_pos: Vector2i)-> bool:
 	if get_world_2d().direct_space_state.intersect_shape(query):
 		return true
 	return false
+
+
+func is_frozen()-> bool:
+	return freeze
