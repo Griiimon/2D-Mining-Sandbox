@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcedp6wykxo8m"]
+[gd_scene load_steps=3 format=3 uid="uid://bcedp6wykxo8m"]
 
 [ext_resource type="Script" path="res://game/vehicles/vehicle.gd" id="1_jvd77"]
+[ext_resource type="PackedScene" uid="uid://clf7g7ce703eu" path="res://game/vehicles/vehicle_seat.tscn" id="2_65pl0"]
 
 [node name="Vehicle" type="CharacterBody2D"]
+z_index = 15
 collision_layer = 512
 collision_mask = 3
 script = ExtResource("1_jvd77")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Vehicle Seat" parent="." instance=ExtResource("2_65pl0")]
