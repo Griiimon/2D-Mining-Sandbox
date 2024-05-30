@@ -3,7 +3,7 @@ class_name PlayerStateMachine
 
 @onready var player: BasePlayer= get_parent()
 @onready var default_state: PlayerState = $"Default"
-@onready var mining_state: PlayerState = $"Mining"
+@onready var mining_state: PlayerMiningState = $"Mining"
 @onready var item_using_state: PlayerState = $"Item Using"
 @onready var item_charging_state: PlayerState = $"Item Charging"
 @onready var dying_state: PlayerState = $"Dying"
