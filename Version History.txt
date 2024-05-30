@@ -1,4 +1,16 @@
 ##################
+# latest        #
+##################
+
+- improved mining and building algorithm
+- boat
+- overworld terrain generation with height curve
+- grass & dirt block
+- gold block & ore
+- game start options in /local
+- PlayerEffect
+
+##################
 # v0.4          #
 ##################
 
