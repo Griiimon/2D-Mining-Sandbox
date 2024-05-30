@@ -104,6 +104,7 @@ vertical_alignment = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
+mouse_filter = 2
 theme_override_constants/margin_top = 30
 
 [node name="ProgressBar Health" type="ProgressBar" parent="Health"]
@@ -112,6 +113,7 @@ visible = false
 custom_minimum_size = Vector2(500, 20)
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_vepwu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_noruo")
 value = 90.0
