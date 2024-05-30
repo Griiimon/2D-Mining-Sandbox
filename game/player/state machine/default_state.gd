@@ -10,6 +10,8 @@ func on_physics_process(_delta: float):
 	if Input.is_action_just_pressed("toggle_build_menu"):
 		player.ui.toggle_build_menu()
 
+	if player.is_frozen(): return
+
 	interaction_logic()
 	
 	var can_mine:= false

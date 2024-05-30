@@ -9,6 +9,7 @@ enum Type { ENTITY, BLOCK }
 enum SelectionMode { RAYCAST, POSITION }
 
 @export var selection_mode: SelectionMode= SelectionMode.POSITION
+@export var build_range: int= 5
 
 var type: Type
 var entity_definition: BlockEntityDefinition
@@ -47,6 +48,8 @@ func on_exit():
 
 
 func on_physics_process(_delta: float):
+	if player.is_frozen(): return
+
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		cancel.emit()
 	
@@ -69,6 +72,7 @@ func on_physics_process(_delta: float):
 			var mouse_tile: Vector2i= player.get_world().get_tile(player.get_global_mouse_position())
 			if empty_tile == mouse_tile: return
 			if player.is_in_tile(mouse_tile): return
+			if player.get_tile_distance(mouse_tile) > build_range: return
 			if not player.get_world().is_air_at(mouse_tile): return
 			
 			empty_tile= mouse_tile

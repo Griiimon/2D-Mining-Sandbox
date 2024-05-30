@@ -26,7 +26,8 @@ func on_exit():
 
 
 func on_physics_process(delta: float):
-	
+	if player.is_frozen(): return
+
 	match selection_mode:
 		SelectionMode.RAYCAST:
 			if player.ray_cast.is_colliding() and is_raycast_hitting_terrain():
