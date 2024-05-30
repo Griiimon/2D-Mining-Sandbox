@@ -446,6 +446,11 @@ func add_effect(effect: PlayerEffect):
 	active_effects.append(effect)
 
 
+func enter_vehicle_seat(seat: VehicleSeat):
+	state_machine.vehicle_state.seat= seat
+	state_machine.change_state(state_machine.vehicle_state)
+
+
 func get_effect_multiplier(type: PlayerEffect.Type):
 	var result: float= 1
 	for effect in active_effects:
