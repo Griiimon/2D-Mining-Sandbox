@@ -397,7 +397,6 @@ func get_tile_pos()-> Vector2i:
 
 func get_tile_distance(tile: Vector2i)-> int:
 	return int((get_tile_pos() - tile).length())
-	
 
 
 func die():
