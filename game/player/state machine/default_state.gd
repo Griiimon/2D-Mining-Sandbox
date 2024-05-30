@@ -12,9 +12,20 @@ func on_physics_process(_delta: float):
 
 	interaction_logic()
 	
-	if player.ray_cast.is_colliding() and is_raycast_hitting_terrain():
-		select_block()
-		
+	var can_mine:= false
+	var mining_state: PlayerMiningState= (get_state_machine() as PlayerStateMachine).mining_state
+	
+	match mining_state.selection_mode:
+		PlayerMiningState.SelectionMode.RAYCAST:
+			if player.ray_cast.is_colliding() and is_raycast_hitting_terrain():
+				select_block()
+				can_mine= true
+		PlayerMiningState.SelectionMode.NEAREST:
+			if select_nearest_minable_tile(mining_state.mining_range):
+				can_mine= true
+
+
+	if can_mine:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			if can_mine():
 				start_mining.emit()
