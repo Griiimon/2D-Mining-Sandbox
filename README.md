@@ -33,7 +33,9 @@ About
 
 
 A Godot Community Project where everyone is welcome to contribute. Add content or new features to this solid and flexible game framework. No long term commitment or coding skills required. You can do as little as making a change to a single texture or block property and be on your way.
+
 Learn how to participate in a team project in a safe and judgement free zone. Beginners are especially encouraged to get their feet wet and make their first contribution to a larger code base. This is meant to be a learning environment above all.
+
 You can also contribute by reporting a bug or making a feature request by opening an [Issue](https://github.com/Griiimon/2D-Mining-Sandbox/issues).
 
 Please feel free to ask me anyting or leave feedback in the [Discussions Section](https://github.com/Griiimon/2D-Mining-Sandbox/discussions) or on [Discord](https://discord.com/invite/ejxEZPcu)!
