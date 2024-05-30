@@ -11,7 +11,9 @@ var charge_primary: bool= true
 
 
 func _ready():
-	assert(player)
+	if not player:
+		player= get_parent().get_parent()
+	assert(player, get_tree_string() + " has no player assigned")
 
 
 func select_block():
