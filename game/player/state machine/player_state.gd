@@ -35,7 +35,9 @@ func select_nearest_minable_tile(mining_range: int)-> bool:
 
 	for x in range(-mining_range, mining_range + 1):
 		for y in range(-mining_range, mining_range + 1):
-			var tile:= from + Vector2i(x, y)
+			var vec:= Vector2i(x, y)
+			if vec.length() > mining_range: continue
+			var tile:= from + vec
 			if get_world().is_block_solid_at(tile):
 				mine_positions.append(tile)
 	
@@ -46,7 +48,7 @@ func select_nearest_minable_tile(mining_range: int)-> bool:
 	var best_rating: float= -INF
 	
 	for to in mine_positions:
-		var rating: float= player.get_look_direction().dot(Vector2(to - from).normalized())
+		var rating: float= pow(player.get_look_direction().dot(Vector2(to - from).normalized()), 3)
 		rating*= 1.0 / (to - from).length()
 		if rating > best_rating:
 			best_match_pos= to
