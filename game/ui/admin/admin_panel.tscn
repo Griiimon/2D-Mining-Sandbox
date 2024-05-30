@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://boax5akboulbg"]
+
+[ext_resource type="Script" path="res://game/ui/admin/admin_panel.gd" id="1_oedsy"]
+[ext_resource type="Script" path="res://game/ui/admin/admin_state_machine.gd" id="2_n06x5"]
+[ext_resource type="Script" path="res://game/ui/admin/water_row_state.gd" id="3_q0dwu"]
+[ext_resource type="Resource" uid="uid://d4hbmp48eqem4" path="res://game/blocks/water blocks/water_block.tres" id="4_slikf"]
+
+[node name="Admin Panel" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_oedsy")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Water Row Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Water Row"
+
+[node name="State Machine" type="Node" parent="."]
+script = ExtResource("2_n06x5")
+
+[node name="Water Row" type="Node" parent="State Machine"]
+script = ExtResource("3_q0dwu")
+water_block = ExtResource("4_slikf")
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Water Row Button" to="State Machine" method="_on_water_row_button_pressed"]
