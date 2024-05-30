@@ -47,6 +47,16 @@ func _on_health_component_report_damage(_damage: Damage, _hitpoints: float):
 	$"AudioStreamPlayer Hurt".play()
 
 
+func _on_vehicle_state_entered():
+	animation_player_feet.play("enter_vehicle")
+
+
+func _on_vehicle_state_exited():
+	animation_player_feet.play("exit_vehicle")
+
+
 func on_death():
 	animation_player_hand.play("RESET")
 	animation_player_feet.play("RESET")
+
+
