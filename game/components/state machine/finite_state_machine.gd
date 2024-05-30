@@ -19,6 +19,11 @@ func _physics_process(delta: float):
 		current_state.on_physics_process(delta)
 
 
+func _unhandled_input(event: InputEvent):
+	if current_state:
+		current_state.on_unhandled_input(event)
+
+
 func change_state(next_state: StateMachineState):
 	if next_state:
 		current_state = next_state

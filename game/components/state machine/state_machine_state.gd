@@ -21,6 +21,10 @@ func on_physics_process(_delta: float):
 	pass
 
 
+func on_unhandled_input(event: InputEvent):
+	pass
+
+
 func on_exit():
 	pass
 
