@@ -3,9 +3,13 @@ extends TileMap
 
 const SIZE= 32
 
+
 const TERRAIN_LAYER= 0
 const FLUID_LAYER= 1
-const GHOST_LAYER= 2
+const BACKGROUND_LAYER= 2
+
+# quasi const
+static var WHITE_TILE_SOURCE_ID: int
 
 
 @export var coords: Vector2i
@@ -54,6 +58,9 @@ func generate_tiles():
 			if block:
 				positions.append(global_pos)
 			set_block(block, local_pos, Block.State.NONE, false)
+			
+			if block and not block is FluidBlock:
+				set_cell(BACKGROUND_LAYER, local_pos, WHITE_TILE_SOURCE_ID, Vector2i.ZERO)
 
 	for pos in positions:
 		get_block(pos).on_chunk_generated(world, pos)
@@ -244,5 +251,14 @@ static func create_tileset():
 			var polygon: PackedVector2Array= block.custom_collision_polygon if block.custom_collision_polygon else collision_polygon
 			tile_data.set_collision_polygon_points(0, 0, polygon)
 
+	# Add white tile
+	var source:= TileSetAtlasSource.new()
+	source.texture_region_size= Vector2i.ONE * World.TILE_SIZE
+	var white_image: Image= Image.create(World.TILE_SIZE, World.TILE_SIZE, false, Image.FORMAT_RGBA8)
+	white_image.fill(Color.WHITE)
+	source.texture= ImageTexture.create_from_image(white_image)
+	source.create_tile(Vector2i.ZERO)
+	DataManager.tile_set.add_source(source)
+	WHITE_TILE_SOURCE_ID= len(DataManager.blocks)
 
 	ResourceSaver.save(DataManager.tile_set, DataManager.TILE_SET_PATH)
