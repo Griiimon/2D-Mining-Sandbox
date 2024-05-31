@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MobDefinition" load_steps=3 format=3 uid="uid://dqthv8ifl1hw0"]
+
+[ext_resource type="Script" path="res://game/mobs/mob_definition.gd" id="1_5whw3"]
+[ext_resource type="PackedScene" uid="uid://evryq0c23cxa" path="res://game/mobs/fish/fish.tscn" id="1_v7vm7"]
+
+[resource]
+script = ExtResource("1_5whw3")
+scene = ExtResource("1_v7vm7")
+name = "fish"
