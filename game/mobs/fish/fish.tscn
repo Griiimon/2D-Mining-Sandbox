@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://evryq0c23cxa"]
+
+[ext_resource type="PackedScene" uid="uid://dlb6166tyk62s" path="res://game/mobs/base_mob.tscn" id="1_n0328"]
+[ext_resource type="Script" path="res://game/mobs/fish/fish.gd" id="2_80siq"]
+[ext_resource type="PackedScene" uid="uid://kp5ss4gudwu3" path="res://game/components/tile detector/tile_detector.tscn" id="3_t4y5j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6tiwo"]
+radius = 7.0
+
+[node name="Fish" instance=ExtResource("1_n0328")]
+collision_layer = 8
+collision_mask = 133
+motion_mode = 1
+script = ExtResource("2_80siq")
+min_speed = 2.0
+max_speed = 2.0
+gravity = 100.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6tiwo")
+
+[node name="Tile Detector" parent="." index="1" instance=ExtResource("3_t4y5j")]
+
+[node name="Visual" type="Node2D" parent="." index="2"]
+position = Vector2(4, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Visual" index="0"]
+color = Color(1, 1, 0.384314, 1)
+polygon = PackedVector2Array(6, 0, -6, -8, -14, -8, -18, -2, -18, 2, -14, 6, -6, 6)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Visual" index="1"]
+color = Color(1, 1, 0.384314, 1)
+polygon = PackedVector2Array(6, 0, 10, -6, 10, 6)
+
+[node name="Eye" type="Line2D" parent="Visual" index="2"]
+position = Vector2(-12, -2)
+points = PackedVector2Array(0, 0, 0.001, 0)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D" type="Line2D" parent="Visual" index="3"]
+points = PackedVector2Array(-18, 2, -14, 2)
+width = 1.0
+default_color = Color(0.236334, 0.236334, 0.236334, 1)
+
+[node name="State Machine" parent="." index="5"]
+allow_no_state = true
