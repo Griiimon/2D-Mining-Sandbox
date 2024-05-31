@@ -4,9 +4,18 @@ extends Node
 signal state_changed(new_state: StateMachineState)
 
 @export var current_state: StateMachineState = null: set = set_current_state
+@export var allow_no_state: bool= false
 @export var animation_player: AnimationPlayer
 @export var debug: bool= false
 
+
+
+func _ready():
+	late_ready.call_deferred()
+
+
+func late_ready():
+	assert(current_state or allow_no_state, "No FSM initial state " + get_parent().name)
 
 
 func _process(delta: float):
@@ -28,7 +37,13 @@ func change_state(next_state: StateMachineState):
 	if next_state:
 		current_state = next_state
 	else:
-		push_error("Not a valid StateMachineState")
+		if not allow_no_state:
+			push_error("Not a valid StateMachineState")
+		else:
+			if current_state:
+				current_state.on_exit()
+				current_state.state_exited.emit()
+				current_state= null
 
 
 func set_current_state(next_state: StateMachineState):
@@ -52,3 +67,8 @@ func set_current_state(next_state: StateMachineState):
 			animation_player.play(current_state.auto_play_animation)
 		current_state.on_enter()
 		current_state.state_entered.emit()
+
+
+func cancel_state():
+	assert(allow_no_state)
+	change_state(null)
