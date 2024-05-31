@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@onready var state_machine: FiniteStateMachine = $"State Machine"
 
 
 func _input(event):
@@ -8,3 +9,6 @@ func _input(event):
 			visible= not visible
 			if Global.game and Global.game.player:
 				Global.game.player.freeze= visible
+			if not visible:
+				state_machine.cancel_state()
+				
