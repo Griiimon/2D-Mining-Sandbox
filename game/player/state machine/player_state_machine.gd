@@ -49,3 +49,7 @@ func _on_building_cancel():
 func _on_player_ui_select_buildable(buildable: Buildable):
 	change_state(building_state)
 	building_state.init(buildable)
+
+
+func _on_exit_vehicle():
+	change_state(default_state)
