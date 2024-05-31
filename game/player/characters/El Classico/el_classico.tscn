@@ -361,6 +361,7 @@ position = Vector2(-8, -16)
 [node name="Shoulder" type="Node2D" parent="Body/Look Pivot" index="0"]
 
 [node name="Hand" type="Line2D" parent="Body/Look Pivot/Shoulder" index="0" node_paths=PackedStringArray("player")]
+z_index = 1
 position = Vector2(8, 16)
 rotation = 0.349066
 points = PackedVector2Array(0, 0, 5, 0)
