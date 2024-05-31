@@ -12,10 +12,11 @@ size = Vector2(50, 20)
 
 [node name="Boat" instance=ExtResource("1_3oi6k")]
 script = ExtResource("2_1dbr8")
-lift = 10.0
+lift = 150.0
 air_damp = 1.0
 water_damp = 3.0
 speed = 30.0
+gravity = 100.0
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("RectangleShape2D_r4idu")
