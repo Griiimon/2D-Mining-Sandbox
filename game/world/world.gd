@@ -362,6 +362,12 @@ func is_block_solid_at(tile: Vector2i)-> bool:
 	return block.is_solid()
 
 
+func is_fluid_at(tile: Vector2i)-> bool:
+	var block: Block= get_block(tile)
+	if not block: return false
+	return block is FluidBlock
+
+
 func has_block_above(tile_pos: Vector2i)-> bool:
 	var y: int= tile_pos.y - 1
 	while true:
