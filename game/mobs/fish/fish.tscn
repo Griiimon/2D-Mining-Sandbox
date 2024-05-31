@@ -25,18 +25,25 @@ shape = SubResource("CapsuleShape2D_6tiwo")
 [node name="Tile Detector" parent="." index="1" instance=ExtResource("3_t4y5j")]
 
 [node name="Visual" type="Node2D" parent="." index="2"]
-position = Vector2(4, 0)
 
 [node name="Polygon2D" type="Polygon2D" parent="Visual" index="0"]
+position = Vector2(-5, 0)
+rotation = 3.14159
+scale = Vector2(1, -1)
 color = Color(1, 1, 0.384314, 1)
 polygon = PackedVector2Array(6, 0, -6, -8, -14, -8, -18, -2, -18, 2, -14, 6, -6, 6)
 
 [node name="Polygon2D2" type="Polygon2D" parent="Visual" index="1"]
+position = Vector2(-5, 0)
+rotation = 3.14159
+scale = Vector2(1, -1)
 color = Color(1, 1, 0.384314, 1)
 polygon = PackedVector2Array(6, 0, 10, -6, 10, 6)
 
 [node name="Eye" type="Line2D" parent="Visual" index="2"]
-position = Vector2(-12, -2)
+position = Vector2(7, -2)
+rotation = 3.14159
+scale = Vector2(1, -1)
 points = PackedVector2Array(0, 0, 0.001, 0)
 width = 3.0
 default_color = Color(0, 0, 0, 1)
@@ -44,6 +51,9 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Line2D" type="Line2D" parent="Visual" index="3"]
+position = Vector2(-5, 0)
+rotation = 3.14159
+scale = Vector2(1, -1)
 points = PackedVector2Array(-18, 2, -14, 2)
 width = 1.0
 default_color = Color(0.236334, 0.236334, 0.236334, 1)

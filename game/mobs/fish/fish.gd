@@ -10,6 +10,7 @@ extends BaseMob
 @onready var apply_color_to: Array[Node2D]= [$Visual/Polygon2D, $Visual/Polygon2D2]
 
 
+
 func _ready():
 	var color= colors.pick_random()
 	for node in apply_color_to:
