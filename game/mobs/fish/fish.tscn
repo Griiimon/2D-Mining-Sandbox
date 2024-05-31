@@ -13,7 +13,7 @@ collision_mask = 133
 motion_mode = 1
 script = ExtResource("2_80siq")
 min_speed = 2.0
-max_speed = 2.0
+max_speed = 8.0
 gravity = 100.0
 colors = Array[Color]([Color(0.796078, 0.521569, 0.0980392, 1), Color(0.999732, 0.213296, 0.160225, 1), Color(0.101614, 0.301871, 0.0407679, 1)])
 
