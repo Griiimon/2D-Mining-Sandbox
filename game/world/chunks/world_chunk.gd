@@ -189,6 +189,8 @@ func save()-> ChunkStorage:
 			var alternative_tile: int= get_cell_alternative_tile(TERRAIN_LAYER, tile_pos)
 			if alternative_tile:
 				storage.alternative_tiles[tile_pos]= alternative_tile
+
+	storage.cave= get_used_cells(BACKGROUND_LAYER)
 	return storage
 
 
@@ -202,6 +204,10 @@ func restore(storage: ChunkStorage):
 			if storage.alternative_tiles.has(tile_pos):
 				alternative_tile= storage.alternative_tiles[tile_pos]
 			set_block(DataManager.get_block(tiles.pop_front()), tile_pos, Block.get_state_from_alt(alternative_tile), false)
+	
+	for tile in storage.cave:
+		set_cell(BACKGROUND_LAYER, tile, WHITE_TILE_SOURCE_ID, Vector2i.ZERO)
+	
 	ignore_changes= false
 
 
