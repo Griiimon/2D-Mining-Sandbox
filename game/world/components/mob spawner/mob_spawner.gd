@@ -25,7 +25,7 @@ func _on_timer_timeout():
 	var mob_def: MobDefinition= DataManager.mobs.pick_random()
 	var spawner: MobSpawnerDefinition= mob_def.spawner
 	
-	if spawner.can_spawn(tile, world):
+	if spawner and spawner.can_spawn(tile, world):
 		var other_mob: BaseMob= get_world().get_closest_mob(tile)
 		if other_mob:
 			var dist: float= other_mob.distance_to_tile(tile)
