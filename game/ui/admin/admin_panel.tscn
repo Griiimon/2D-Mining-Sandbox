@@ -39,7 +39,5 @@ allow_no_state = true
 [node name="Water Row" type="Node" parent="State Machine"]
 script = ExtResource("3_q0dwu")
 water_block = ExtResource("4_slikf")
-auto_play_animation = null
-auto_stop_animation = null
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Water Row Button" to="State Machine" method="_on_water_row_button_pressed"]
