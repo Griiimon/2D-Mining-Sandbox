@@ -3,14 +3,17 @@ extends BaseMob
 @export var min_speed: float= 2.0
 @export var max_speed: float= 2.0
 @export var gravity: float= 100.0
-
+@export var colors: Array[Color]
 
 @onready var tile_detector: TileDetector = $"Tile Detector"
 @onready var visual: Node2D = $Visual
-
+@onready var apply_color_to: Array[Node2D]= [$Visual/Polygon2D, $Visual/Polygon2D2]
 
 
 func _ready():
+	var color= colors.pick_random()
+	for node in apply_color_to:
+		node.color= color
 	rand_velocity()
 
 
