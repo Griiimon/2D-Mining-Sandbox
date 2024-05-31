@@ -3,7 +3,7 @@ extends PlayerState
 
 signal build_entity(scene, tile_pos)
 signal build_block(block, block_state, tile_pos)
-signal cancel
+signal cancel_build
 
 enum Type { ENTITY, BLOCK }
 enum SelectionMode { RAYCAST, POSITION }
@@ -51,7 +51,7 @@ func on_physics_process(_delta: float):
 	if player.is_frozen(): return
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		cancel.emit()
+		cancel_build.emit()
 	
 	match type:
 		Type.BLOCK:
@@ -88,7 +88,7 @@ func handle_block_input():
 	if Input.is_action_just_pressed("build"):
 		build_block.emit(block, block_state, block_pos, ingredients)
 		if not player.inventory.has_ingredients(ingredients):
-			cancel.emit()
+			cancel_build.emit()
 		return
 
 	if Input.is_action_just_pressed("change_block_state"):
@@ -110,7 +110,7 @@ func handle_block_pos_update():
 func handle_block_entity_input():
 	if Input.is_action_just_pressed("build"):
 		build_entity.emit(entity_definition, ghost_pos, ingredients)
-		cancel.emit()
+		cancel_build.emit()
 
 
 func handle_block_entity_pos_update():
