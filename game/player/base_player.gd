@@ -100,7 +100,9 @@ func _process(_delta):
 func _physics_process(delta):
 	if freeze: return
 
-	movement(delta)
+	if state_machine.current_state.can_move:
+		movement(delta)
+	
 	tick_effects()
 
 	if Input.is_action_just_pressed("drop_item") and has_hand_object():

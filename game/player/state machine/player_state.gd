@@ -2,7 +2,7 @@ extends StateMachineState
 class_name PlayerState
 
 @export var player: BasePlayer
-
+@export var can_move: bool= true
 
 var selected_block_pos: Vector2i
 
