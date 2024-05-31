@@ -126,4 +126,4 @@ script = ExtResource("21_n56ys")
 [connection signal="release_charge" from="State Machine/Item Charging" to="." method="release_charge"]
 [connection signal="build_block" from="State Machine/Building" to="State Machine" method="_on_place_block"]
 [connection signal="build_entity" from="State Machine/Building" to="State Machine" method="_on_building_build_entity"]
-[connection signal="cancel" from="State Machine/Building" to="State Machine" method="_on_building_cancel"]
+[connection signal="cancel_build" from="State Machine/Building" to="State Machine" method="_on_building_cancel"]
