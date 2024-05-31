@@ -98,3 +98,4 @@ TODO
 - [ ] Overhaul UI
 - [ ] Threaded terrain generation
 - [ ] Physics smoothing
+- [ ] Put block textures into single atlas texture
