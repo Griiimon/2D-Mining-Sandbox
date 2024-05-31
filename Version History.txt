@@ -2,6 +2,8 @@
 # latest        #
 ##################
 
+- admin panel
+- water source block
 - improved mining and building algorithm
 - boat
 - overworld terrain generation with height curve
