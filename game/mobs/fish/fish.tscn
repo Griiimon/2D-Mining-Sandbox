@@ -15,6 +15,7 @@ script = ExtResource("2_80siq")
 min_speed = 2.0
 max_speed = 8.0
 gravity = 100.0
+jump_velocity = -20.0
 colors = Array[Color]([Color(0.796078, 0.521569, 0.0980392, 1), Color(0.999732, 0.213296, 0.160225, 1), Color(0.101614, 0.301871, 0.0407679, 1)])
 
 [node name="CollisionShape2D" parent="." index="0"]
@@ -41,6 +42,7 @@ color = Color(1, 1, 0.384314, 1)
 polygon = PackedVector2Array(6, 0, 10, -6, 10, 6)
 
 [node name="Eye" type="Line2D" parent="Visual" index="2"]
+unique_name_in_owner = true
 position = Vector2(7, -2)
 rotation = 3.14159
 scale = Vector2(1, -1)
@@ -50,7 +52,23 @@ default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Line2D" type="Line2D" parent="Visual" index="3"]
+[node name="Dead Eye" type="Node2D" parent="Visual" index="3"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(7, -2)
+
+[node name="Line2D" type="Line2D" parent="Visual/Dead Eye" index="0"]
+points = PackedVector2Array(-2, -2, 2, 2)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="Visual/Dead Eye" index="1"]
+rotation = 1.5708
+points = PackedVector2Array(-2, -2, 2, 2)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D" type="Line2D" parent="Visual" index="4"]
 position = Vector2(-5, 0)
 rotation = 3.14159
 scale = Vector2(1, -1)
@@ -58,5 +76,14 @@ points = PackedVector2Array(-18, 2, -14, 2)
 width = 1.0
 default_color = Color(0.236334, 0.236334, 0.236334, 1)
 
-[node name="State Machine" parent="." index="5"]
+[node name="Dry Timer" type="Timer" parent="." index="3"]
+wait_time = 5.0
+one_shot = true
+
+[node name="HealthComponent" parent="." index="4"]
+max_hitpoints = 1
+
+[node name="State Machine" parent="." index="6"]
 allow_no_state = true
+
+[connection signal="timeout" from="Dry Timer" to="." method="die"]
