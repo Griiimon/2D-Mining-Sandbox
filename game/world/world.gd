@@ -356,6 +356,15 @@ func is_air_at_rect(rect: Rect2i):
 	return true
 
 
+func is_fluid_at_rect(rect: Rect2i):
+	for x in rect.size.x:
+		for y in rect.size.y:
+			var tile: Vector2i= rect.position + Vector2i(x, y)
+			if not is_fluid_at(tile):
+				return false
+	return true
+
+
 func is_block_solid_at(tile: Vector2i)-> bool:
 	var block: Block= get_block(tile)
 	if not block: return false
