@@ -113,6 +113,7 @@ player = NodePath("../..")
 
 [node name="Vehicle" type="Node" parent="State Machine"]
 script = ExtResource("21_n56ys")
+can_move = false
 
 [connection signal="hotbar_slot_changed" from="Player UI" to="." method="_on_player_ui_hotbar_slot_changed"]
 [connection signal="hotbar_slot_changed" from="Player UI" to="State Machine/Mining" method="_on_player_ui_hotbar_slot_changed"]
@@ -127,3 +128,4 @@ script = ExtResource("21_n56ys")
 [connection signal="build_block" from="State Machine/Building" to="State Machine" method="_on_place_block"]
 [connection signal="build_entity" from="State Machine/Building" to="State Machine" method="_on_building_build_entity"]
 [connection signal="cancel_build" from="State Machine/Building" to="State Machine" method="_on_building_cancel"]
+[connection signal="exit_vehicle" from="State Machine/Vehicle" to="State Machine" method="_on_exit_vehicle"]
