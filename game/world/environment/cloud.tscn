@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyropcrf6ibvl"]
+
+[ext_resource type="Script" path="res://game/world/environment/cloud.gd" id="1_xlkbm"]
+
+[node name="Cloud" type="Node2D"]
+script = ExtResource("1_xlkbm")
+generate_dynamic = null
+
+[node name="Dynamic Polygon" type="Polygon2D" parent="."]
+visible = false
+
+[node name="Premade" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Premade"]
+visible = false
+polygon = PackedVector2Array(0, 0, 0, 48, 48, 48, 48, 16, 64, 16, 64, 32, 112, 32, 112, 64, 144, 64, 144, 16, 176, 16, 176, -32, 128, -32, 128, -80, 64, -80, 64, -32, 32, -32, 32, -64, 0, -64)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Premade"]
+visible = false
+polygon = PackedVector2Array(0, 0, 48, 0, 48, 32, 128, 32, 128, -32, 192, -32, 192, -80, 96, -80, 96, -48, 80, -48, 32, -48, -48, -48, -48, 0)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Premade"]
+visible = false
+polygon = PackedVector2Array(0, 0, 0, 48, 48, 48, 48, 64, 96, 64, 96, 32, 144, 32, 144, 80, 192, 80, 192, 0, 272, 0, 272, -64, 224, -64, 224, -112, 160, -112, 160, -32, 96, -32, 96, -80, 32, -80, 32, -32, 0, -32, 0, -16)
