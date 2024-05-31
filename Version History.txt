@@ -2,6 +2,7 @@
 # latest        #
 ##################
 
+- render background
 - admin panel
 - water source block
 - improved mining and building algorithm
