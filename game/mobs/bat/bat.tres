@@ -9,6 +9,11 @@ script = ExtResource("3_to7kb")
 faction = 1
 probability = 10.0
 empty_radius = 1
+min_distance_to_same = 20
+min_distance_to_other = 10
+only_underground = true
+only_overworld = false
+only_in_fluid = false
 
 [resource]
 script = ExtResource("1_e5f3d")
