@@ -4,6 +4,7 @@ extends Resource
 @export var min_height: int= 0
 @export var max_height: int= 1024
 @export var distribution: TerrainBlockDistribution
+@export var is_cave: bool= false
 @export var ignore_height: bool= false
 @export var height_curve: Curve
 

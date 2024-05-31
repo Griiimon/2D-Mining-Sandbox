@@ -47,6 +47,8 @@ func generate_tiles():
 	var generator: TerrainGenerator= world.generator
 	if not generator: return
 	
+	generator.start_caching_caves()
+	
 	var positions: Array[Vector2i]= []
 	
 	for x in SIZE:
@@ -59,7 +61,7 @@ func generate_tiles():
 				positions.append(global_pos)
 			set_block(block, local_pos, Block.State.NONE, false)
 			
-			if block and not block is FluidBlock:
+			if (block or generator.is_cave(global_pos)) and not block is FluidBlock:
 				set_cell(BACKGROUND_LAYER, local_pos, WHITE_TILE_SOURCE_ID, Vector2i.ZERO)
 
 	for pos in positions:
