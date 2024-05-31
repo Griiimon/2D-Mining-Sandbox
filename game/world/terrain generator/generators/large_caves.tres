@@ -24,6 +24,7 @@ script = ExtResource("3_0sel7")
 min_height = -100
 max_height = 1024
 distribution = SubResource("Resource_qdcf6")
+is_cave = false
 ignore_height = false
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j2pit"]
@@ -40,6 +41,7 @@ script = ExtResource("3_0sel7")
 min_height = 0
 max_height = 1024
 distribution = SubResource("Resource_q0alk")
+is_cave = false
 ignore_height = false
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6egp1"]
@@ -56,6 +58,7 @@ script = ExtResource("3_0sel7")
 min_height = 0
 max_height = 1024
 distribution = SubResource("Resource_hfx3x")
+is_cave = false
 ignore_height = false
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5lybx"]
@@ -73,6 +76,7 @@ script = ExtResource("3_0sel7")
 min_height = 0
 max_height = 1024
 distribution = SubResource("Resource_b0jq7")
+is_cave = false
 ignore_height = false
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6losj"]
@@ -95,6 +99,7 @@ script = ExtResource("3_0sel7")
 min_height = 0
 max_height = 1024
 distribution = SubResource("Resource_kx2jn")
+is_cave = true
 ignore_height = false
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3f4av"]
@@ -114,6 +119,7 @@ script = ExtResource("3_0sel7")
 min_height = -20
 max_height = 10
 distribution = SubResource("Resource_o38dw")
+is_cave = false
 ignore_height = false
 height_curve = SubResource("Curve_ghaag")
 
