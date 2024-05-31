@@ -29,6 +29,10 @@ func on_exit():
 	pass
 
 
+func cancel():
+	get_state_machine().change_state(null)
+
+
 func is_current_state() -> bool:
 	return get_state_machine().current_state == self
 	
