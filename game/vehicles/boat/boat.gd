@@ -18,3 +18,7 @@ func movement(delta: float):
 		velocity.y*= (1 - delta * water_damp) 
 		
 	move_and_slide()
+
+
+func on_occupied_physics_process(delta: float):
+	velocity.x= Input.get_axis("left", "right") * speed
