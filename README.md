@@ -79,7 +79,7 @@ Controls:
 |Toggle Build Menu|B / Middle Mouse Button|
 |Rotate Block|F|
 |Toggle free camera|K|
-
+|Admin panel|F9|
 
 Cheats ( if enabled ):
 
