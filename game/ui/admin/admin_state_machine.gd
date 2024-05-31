@@ -3,7 +3,12 @@ extends FiniteStateMachine
 
 
 @onready var water_row: StateMachineState = $"Water Row"
+@onready var spawn_scene: StateMachineState = $"Spawn Scene"
 
 
 func _on_water_row_button_pressed():
 	change_state(water_row)
+
+
+func _on_spawn_scene_button_pressed():
+	change_state(spawn_scene)

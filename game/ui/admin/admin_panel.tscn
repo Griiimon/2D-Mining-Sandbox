@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://boax5akboulbg"]
+[gd_scene load_steps=7 format=3 uid="uid://boax5akboulbg"]
 
 [ext_resource type="Script" path="res://game/ui/admin/admin_panel.gd" id="1_oedsy"]
 [ext_resource type="Script" path="res://game/ui/admin/admin_state_machine.gd" id="2_n06x5"]
 [ext_resource type="Script" path="res://game/ui/admin/water_row_state.gd" id="3_q0dwu"]
 [ext_resource type="Resource" uid="uid://d4hbmp48eqem4" path="res://game/blocks/water blocks/water_block.tres" id="4_slikf"]
+[ext_resource type="Script" path="res://game/ui/admin/spawn_scene.gd" id="5_pj31t"]
+[ext_resource type="PackedScene" uid="uid://cem7rnoxns4c7" path="res://game/vehicles/boat/boat.tscn" id="6_3wqfx"]
 
 [node name="Admin Panel" type="CanvasLayer"]
 visible = false
@@ -40,6 +42,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Water Row"
 
+[node name="Spawn Scene Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Spawn Scene"
+
 [node name="State Machine" type="Node" parent="."]
 script = ExtResource("2_n06x5")
 allow_no_state = true
@@ -48,4 +54,9 @@ allow_no_state = true
 script = ExtResource("3_q0dwu")
 water_block = ExtResource("4_slikf")
 
+[node name="Spawn Scene" type="Node" parent="State Machine"]
+script = ExtResource("5_pj31t")
+scene = ExtResource("6_3wqfx")
+
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Water Row Button" to="State Machine" method="_on_water_row_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Spawn Scene Button" to="State Machine" method="_on_spawn_scene_button_pressed"]
