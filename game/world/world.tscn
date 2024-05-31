@@ -39,6 +39,18 @@ wait_time = 0.1
 max_detail_level = 4
 prefix = "World"
 
+[node name="Backgound" type="CanvasLayer" parent="."]
+layer = -50
+
+[node name="Sky" type="ColorRect" parent="Backgound"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.694118, 1, 1, 1)
+
 [connection signal="initial_run_completed" from="Chunk Updater" to="." method="_on_chunk_updater_initial_run_completed"]
 [connection signal="timeout" from="Chunk Updater/Update Timer" to="Chunk Updater" method="_on_update_timer_timeout"]
 [connection signal="timeout" from="Mob Spawner/Timer" to="Mob Spawner" method="_on_timer_timeout"]
