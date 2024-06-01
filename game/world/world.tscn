@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dc0j27pwmaoye"]
+[gd_scene load_steps=15 format=3 uid="uid://dc0j27pwmaoye"]
 
 [ext_resource type="Script" path="res://game/world/world.gd" id="1_pmjc8"]
 [ext_resource type="PackedScene" uid="uid://bvx4bb7jk0sr7" path="res://game/world/item/world_item.tscn" id="2_xrbq3"]
@@ -10,6 +10,16 @@
 [ext_resource type="Script" path="res://game/world/components/mob spawner/mob_spawner.gd" id="7_otmna"]
 [ext_resource type="Script" path="res://game/world/environment.gd" id="9_xooip"]
 [ext_resource type="PackedScene" uid="uid://dyropcrf6ibvl" path="res://game/world/environment/cloud.tscn" id="10_ljkx7"]
+[ext_resource type="Script" path="res://game/world/backgound.gd" id="11_q7yms"]
+[ext_resource type="Shader" path="res://game/world/environment/sky_shader.gdshader" id="11_r234t"]
+[ext_resource type="Texture2D" uid="uid://cbnmgytutllp" path="res://game/world/environment/stars.png" id="12_2tmry"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kl5xq"]
+shader = ExtResource("11_r234t")
+shader_parameter/horizon_color = Vector3(0.4, 0.4, 1)
+shader_parameter/atmo_color = Vector3(0, 0, 0)
+shader_parameter/height = 1500.0
+shader_parameter/y = null
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("chunks")]
 script = ExtResource("1_pmjc8")
@@ -50,8 +60,10 @@ z_index = -40
 
 [node name="Backgound" type="CanvasLayer" parent="."]
 layer = -50
+script = ExtResource("11_q7yms")
 
 [node name="Sky" type="ColorRect" parent="Backgound"]
+material = SubResource("ShaderMaterial_kl5xq")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -59,6 +71,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.694118, 1, 1, 1)
+
+[node name="Stars" type="TextureRect" parent="Backgound"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_2tmry")
 
 [connection signal="initial_run_completed" from="Chunk Updater" to="." method="_on_chunk_updater_initial_run_completed"]
 [connection signal="timeout" from="Chunk Updater/Update Timer" to="Chunk Updater" method="_on_update_timer_timeout"]
