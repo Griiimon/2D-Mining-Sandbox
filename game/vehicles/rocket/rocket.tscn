@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhm7k4rl1tsa7"]
+
+[ext_resource type="PackedScene" uid="uid://bcedp6wykxo8m" path="res://game/vehicles/vehicle.tscn" id="1_b4vla"]
+[ext_resource type="Script" path="res://game/vehicles/rocket/rocket.gd" id="2_m8qs6"]
+[ext_resource type="Texture2D" uid="uid://cltqtfxrciwkk" path="res://game/vehicles/rocket/rocket.png" id="3_av28b"]
+[ext_resource type="Texture2D" uid="uid://c3h7mbd4oddko" path="res://game/vehicles/rocket/flame.png" id="4_7bv1h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2v0qx"]
+size = Vector2(100, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buer4"]
+size = Vector2(130, 100)
+
+[node name="Rocket" instance=ExtResource("1_b4vla")]
+script = ExtResource("2_m8qs6")
+acceleration = 200.0
+drag = 0.01
+turn_speed = 1.0
+gravity = 50.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_2v0qx")
+
+[node name="Vehicle Seat" parent="." index="1"]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" parent="Vehicle Seat/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_buer4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+texture = ExtResource("3_av28b")
+
+[node name="Flame" type="Sprite2D" parent="." index="3"]
+visible = false
+z_index = -1
+position = Vector2(0, 89)
+texture = ExtResource("4_7bv1h")
+
+[editable path="Vehicle Seat"]
