@@ -13,11 +13,13 @@ func on_enter():
 	await get_tree().physics_frame
 	entry_offset= player.global_position - seat.global_position
 	player.global_position= seat.global_position
+	player.main_hand.hide()
 
 
 func on_exit():
 	player.remove_collision_exception_with(seat.get_vehicle())
 	player.global_position= seat.global_position + entry_offset
+	player.main_hand.show()
 
 
 func on_physics_process(delta: float):
