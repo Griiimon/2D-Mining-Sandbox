@@ -14,7 +14,7 @@ size = Vector2(130, 100)
 [node name="Rocket" instance=ExtResource("1_b4vla")]
 script = ExtResource("2_m8qs6")
 acceleration = 200.0
-drag = 0.01
+drag = 0.1
 turn_speed = 1.0
 gravity = 50.0
 
