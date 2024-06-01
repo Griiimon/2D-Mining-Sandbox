@@ -43,6 +43,7 @@ const FLY_SPEED_FACTOR= 4.0
 @onready var health: HealthComponent = $"Health Component"
 @onready var hurtbox = $"Hurt Box"
 @onready var crafting: PlayerCrafting = $Crafting
+@onready var vehicle_logic: PlayerVehicleLogic = $Vehicle
 
 @onready var state_machine: PlayerStateMachine = $"State Machine"
 
@@ -64,6 +65,8 @@ var inventory: Inventory= Inventory.new()
 var disable_fall_damage: bool= true
 
 var active_effects: Array[PlayerEffect]
+
+var in_vehicle: Vehicle
 
 
 
@@ -100,8 +103,11 @@ func _process(_delta):
 func _physics_process(delta):
 	if freeze: return
 
-	if state_machine.current_state.can_move:
-		movement(delta)
+	if in_vehicle:
+		in_vehicle.on_occupied_physics_process(delta)
+	else:
+		if state_machine.current_state.can_move:
+			movement(delta)
 	
 	tick_effects()
 
@@ -449,8 +455,9 @@ func add_effect(effect: PlayerEffect):
 
 
 func enter_vehicle_seat(seat: VehicleSeat):
-	state_machine.vehicle_state.seat= seat
-	state_machine.change_state(state_machine.vehicle_state)
+	state_machine.paused= true
+	in_vehicle= seat.get_vehicle()
+	vehicle_logic.on_enter(seat)
 	seat.get_vehicle().on_enter()
 
 
