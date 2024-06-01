@@ -15,6 +15,7 @@ script = ExtResource("3_251kn")
 min_height = -100
 max_height = 1024
 distribution = SubResource("Resource_xsb8v")
+is_cave = false
 ignore_height = true
 
 [resource]
