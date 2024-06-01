@@ -26,3 +26,11 @@ func movement(delta: float):
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
+
+
+func on_enter():
+	pass
+
+
+func on_exit():
+	pass
