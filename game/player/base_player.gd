@@ -104,7 +104,7 @@ func _physics_process(delta):
 	if freeze: return
 
 	if in_vehicle:
-		in_vehicle.on_occupied_physics_process(delta)
+		vehicle_logic.on_physics_process(delta)
 	else:
 		if state_machine.current_state.can_move:
 			movement(delta)
