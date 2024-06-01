@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://d21rx68kgfg2h"]
+
+[ext_resource type="Script" path="res://game/items/fishing rod/fishing_rod.gd" id="1_47up6"]
+
+[node name="Fishing Rod" type="Node2D"]
+script = ExtResource("1_47up6")
+
+[node name="Idle Line" type="Line2D" parent="."]
+position = Vector2(-1, 0)
+points = PackedVector2Array(32, -32, 32, -8)
+closed = true
+width = 1.0
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D" type="Line2D" parent="Idle Line"]
+position = Vector2(1, 0)
+points = PackedVector2Array(31, -8, 31, -6, 29, -6)
+width = 1.0
+default_color = Color(0.174028, 0.174028, 0.174028, 1)
+
+[node name="Rod" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 32, -32)
+width = 3.0
+default_color = Color(0.508875, 0.221579, 0.111003, 1)
+begin_cap_mode = 2
