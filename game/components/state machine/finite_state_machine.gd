@@ -7,6 +7,7 @@ signal state_changed(new_state: StateMachineState)
 @export var allow_no_state: bool= false
 @export var animation_player: AnimationPlayer
 @export var debug: bool= false
+@export var paused: bool= false
 
 
 
@@ -19,17 +20,17 @@ func late_ready():
 
 
 func _process(delta: float):
-	if current_state:
+	if current_state and not paused:
 		current_state.on_process(delta)
 
 
 func _physics_process(delta: float):
-	if current_state:
+	if current_state and not paused:
 		current_state.on_physics_process(delta)
 
 
 func _unhandled_input(event: InputEvent):
-	if current_state:
+	if current_state and not paused:
 		current_state.on_unhandled_input(event)
 
 
