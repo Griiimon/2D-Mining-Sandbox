@@ -10,6 +10,8 @@ const TILE_SIZE= 32
 
 @export var enable_mob_spawner: bool= true
 @export var generator: TerrainGenerator
+@export var disable_environment: bool= false
+@export var disable_background: bool= false
 
 @export_category("Nodes")
 @export var chunks: Node2D
@@ -19,10 +21,13 @@ const TILE_SIZE= 32
 @export var world_item_scene: PackedScene
 @export var world_chunk_scene: PackedScene
 
+
 @onready var chunk_updater: ChunkUpdater = $"Chunk Updater"
 @onready var mobs = $Mobs
 @onready var block_entities = $"Block Entities"
 @onready var mob_spawner = $"Mob Spawner"
+@onready var backgound = $Backgound
+@onready var environment: MyWorldEnvironment = $Environment
 
 
 var tick_entities: Array[BaseBlockEntity]
@@ -37,6 +42,15 @@ var block_change_subscriptions:= {}
 
 func _ready():
 	set_physics_process(false)
+	
+	if disable_background:
+		backgound.queue_free()
+	
+	if disable_environment:
+		environment.queue_free()
+	else:
+		environment.init()
+	
 	if generator:
 		generator.initialize()
 
