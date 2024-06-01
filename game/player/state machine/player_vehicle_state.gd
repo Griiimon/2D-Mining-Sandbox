@@ -28,3 +28,4 @@ func on_physics_process(delta: float):
 	seat.get_vehicle().on_occupied_physics_process(delta)
 
 	player.global_position= seat.global_position
+	player.global_rotation= seat.global_rotation
