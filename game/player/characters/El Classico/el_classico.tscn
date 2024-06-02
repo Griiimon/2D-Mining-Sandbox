@@ -90,6 +90,22 @@ tracks/1/keys = {
 "values": [0.349066, -0.471239, 0.453786]
 }
 
+[sub_resource type="Animation" id="Animation_b5qgm"]
+resource_name = "reel_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Look Pivot/Shoulder/Hand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.349066, -0.349066, 0.349066]
+}
+
 [sub_resource type="Animation" id="Animation_t0jmi"]
 resource_name = "stab"
 tracks/0/type = "value"
@@ -198,22 +214,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(8, 16), Vector2(0, 16)]
-}
-
-[sub_resource type="Animation" id="Animation_b5qgm"]
-resource_name = "reel_in"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Look Pivot/Shoulder/Hand:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.349066, -0.349066, 0.349066]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qvefq"]
@@ -410,5 +410,8 @@ max_detail_level = 4
 [node name="AudioStreamPlayer Hurt" type="AudioStreamPlayer" parent="." index="12"]
 stream = ExtResource("4_1s88t")
 
+[node name="State Machine" parent="." index="13"]
+allow_no_state = false
+paused = false
+
 [connection signal="report_damage" from="Health Component" to="." method="_on_health_component_report_damage"]
-[connection signal="release_charge" from="State Machine/Item Charging" to="." method="release_charge"]
