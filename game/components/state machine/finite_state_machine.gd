@@ -4,6 +4,7 @@ extends Node
 signal state_changed(new_state: StateMachineState)
 
 @export var current_state: StateMachineState = null: set = set_current_state
+@export var previous_state: StateMachineState = null
 @export var allow_no_state: bool= false
 @export var animation_player: AnimationPlayer
 @export var debug: bool= false
@@ -36,6 +37,7 @@ func _unhandled_input(event: InputEvent):
 
 func change_state(next_state: StateMachineState):
 	if next_state:
+		previous_state= current_state
 		current_state = next_state
 	else:
 		if not allow_no_state:
