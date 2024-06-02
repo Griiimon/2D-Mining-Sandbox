@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="PlayerLoadout" load_steps=17 format=3 uid="uid://bkrr445vap63e"]
+[gd_resource type="Resource" script_class="PlayerLoadout" load_steps=19 format=3 uid="uid://bkrr445vap63e"]
 
 [ext_resource type="Resource" uid="uid://de53vt430ls03" path="res://game/items/pickaxe/pickaxe.tres" id="1_g0e2q"]
 [ext_resource type="Script" path="res://game/player/inventory/inventory_item.gd" id="2_k0fc7"]
 [ext_resource type="Resource" uid="uid://c0uy4aakxock" path="res://game/items/sword/sword.tres" id="3_ne423"]
+[ext_resource type="Resource" uid="uid://boxvhcc5xviuo" path="res://game/items/fishing rod/fishing_rod.tres" id="4_4uk8s"]
 [ext_resource type="Script" path="res://game/player/player_loadout.gd" id="4_a2iic"]
 [ext_resource type="Resource" uid="uid://dvmim47wemg41" path="res://game/items/coal ore/coal_ore.tres" id="4_u6vlg"]
 [ext_resource type="Resource" uid="uid://dxr48tuivsyc2" path="res://game/items/iron ore/iron_ore.tres" id="5_paj5d"]
@@ -18,6 +19,11 @@ count = 1
 [sub_resource type="Resource" id="Resource_kxhpa"]
 script = ExtResource("2_k0fc7")
 item = ExtResource("3_ne423")
+count = 1
+
+[sub_resource type="Resource" id="Resource_lgbn4"]
+script = ExtResource("2_k0fc7")
+item = ExtResource("4_4uk8s")
 count = 1
 
 [sub_resource type="Resource" id="Resource_j87m0"]
@@ -47,4 +53,4 @@ count = 20
 
 [resource]
 script = ExtResource("4_a2iic")
-inventory_items = Array[ExtResource("2_k0fc7")]([SubResource("Resource_262tr"), SubResource("Resource_kxhpa"), SubResource("Resource_j87m0"), SubResource("Resource_ypdij"), SubResource("Resource_kfgry"), SubResource("Resource_hb4wu"), SubResource("Resource_by25c")])
+inventory_items = Array[ExtResource("2_k0fc7")]([SubResource("Resource_262tr"), SubResource("Resource_kxhpa"), SubResource("Resource_lgbn4"), SubResource("Resource_j87m0"), SubResource("Resource_ypdij"), SubResource("Resource_kfgry"), SubResource("Resource_hb4wu"), SubResource("Resource_by25c")])
