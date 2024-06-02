@@ -13,11 +13,12 @@ func _ready():
 	set_physics_process(false)
 
 
-func shoot(force: float, dir: Vector2):
+func shoot(from: Vector2, force: float, dir: Vector2):
 	velocity= force * dir * speed
 	collision_shape.set_deferred("disabled", false)
 	tile_detector.active= true
 	top_level= true
+	position= from
 	set_physics_process(true)
 
 
