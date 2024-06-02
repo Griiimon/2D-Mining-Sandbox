@@ -13,6 +13,15 @@ var reel_in: bool= false
 
 
 
+
+func on_equip():
+	get_player().state_machine.change_state(get_player().state_machine.fishing_state)
+
+
+func on_unequip():
+	get_player().state_machine.change_state(get_player().state_machine.default_state)
+
+
 func action(primary: bool):
 	if not primary:
 		reel_in= true
