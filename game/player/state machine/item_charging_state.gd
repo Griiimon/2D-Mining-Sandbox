@@ -12,5 +12,6 @@ func on_enter():
 func on_physics_process(delta: float):
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		release_charge.emit(charge_primary, total_charge)
-
+		return
+		
 	total_charge+= delta
