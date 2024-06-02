@@ -244,7 +244,7 @@ func unequip_hand_item():
 		await get_tree().process_frame
 
 
-func hand_action_executed(action_name: String= ""):
+func hand_action_executed(action_name: String= "", primary: bool= true):
 	if get_hand_object() is VirtualProjectileThrower:
 		inventory.sub_item(get_current_inventory_item())
 		if get_current_inventory_item().count > 0:
@@ -256,6 +256,8 @@ func hand_action_executed(action_name: String= ""):
 		subscribe_hand_action_finished(action_name, hand_action_finished)
 	else:
 		hand_action_finished(action_name)
+
+	get_hand_object().action(primary)
 
 
 func hand_action_finished(_action_name: String= ""):
