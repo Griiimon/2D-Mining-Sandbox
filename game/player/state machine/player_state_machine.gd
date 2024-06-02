@@ -8,6 +8,7 @@ class_name PlayerStateMachine
 @onready var item_charging_state: PlayerState = $"Item Charging"
 @onready var dying_state: PlayerState = $"Dying"
 @onready var building_state: PlayerBuildingState = $Building
+@onready var fishing_state: PlayerFishingState = $Fishing
 
 
 

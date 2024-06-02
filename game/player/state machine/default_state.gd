@@ -1,8 +1,6 @@
 extends PlayerState
 
 signal start_mining
-signal use_item
-signal charge_item
 
 
 
@@ -50,34 +48,3 @@ func interaction_logic():
 
 	if Input.is_action_just_pressed("interact"):
 		interaction_target.interact(player)
-
-
-func mouse_actions():
-	var is_charging:= false
-	var primary: bool
-	
-	if player.has_hand_object():
-		var action_name: String
-		var hand_item_type: HandItem= player.get_hand_object().type
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			primary= true
-			action_name= hand_item_type.primary_action_animation
-			if hand_item_type.charge_primary_action:
-				is_charging= true
-
-		elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-			primary= false
-			action_name= hand_item_type.secondary_action_animation
-			if hand_item_type.charge_secondary_action:
-				is_charging= true
-
-		if action_name:
-			NodeDebugger.write(player, "hand action " + action_name, 2)
-			player.on_hand_action(action_name)
-
-			if is_charging:
-				charge_primary= primary
-				charge_item.emit()
-			else:
-				use_item.emit()
-				player.hand_action_executed(action_name, primary)
