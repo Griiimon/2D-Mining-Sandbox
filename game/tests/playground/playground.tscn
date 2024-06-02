@@ -32,7 +32,13 @@ cheats = SubResource("Resource_g2rh2")
 player_scene = ExtResource("5_0set7")
 
 [node name="World" parent="." instance=ExtResource("6_dkwx3")]
+enable_mob_spawner = false
 generator = ExtResource("8_4yhic")
+disable_environment = true
+disable_background = true
+
+[node name="Chunk Updater" parent="World" index="0"]
+min_distance = 50
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("8_3qg1m")
@@ -42,3 +48,5 @@ speed = 1000.0
 
 [node name="Dummy" parent="." instance=ExtResource("10_upluk")]
 position = Vector2(81, 221)
+
+[editable path="World"]
