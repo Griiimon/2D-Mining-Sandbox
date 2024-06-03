@@ -91,9 +91,6 @@ debug = true
 [node name="Default" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
 script = ExtResource("14_urqh1")
 player = NodePath("../..")
-can_move = null
-auto_play_animation = null
-auto_stop_animation = null
 
 [node name="Mining" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
 script = ExtResource("15_ips6r")
