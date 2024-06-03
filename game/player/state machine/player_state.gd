@@ -126,6 +126,10 @@ func get_tile_collision(inside: bool= true)-> Vector2:
 	return point
 
 
+func on_hand_action_finished():
+	get_state_machine().change_state(get_state_machine().previous_state)
+	
+
 func can_mine()-> bool:
 	return not player.has_hand_object() or player.get_hand_object().can_mine()
 

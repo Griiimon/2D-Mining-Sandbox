@@ -262,8 +262,8 @@ func hand_action_executed(action_name: String= "", primary: bool= true):
 
 func hand_action_finished(_action_name: String= ""):
 	on_hand_action_finished()
-	#state_machine.change_state(state_machine.default_state)
-	state_machine.change_state(state_machine.previous_state)
+	if state_machine.current_state:
+		state_machine.current_state.on_hand_action_finished()
 
 
 func subscribe_hand_action_finished(_action_name: String, _method: Callable):
