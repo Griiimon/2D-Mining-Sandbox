@@ -1,3 +1,4 @@
+class_name Fish
 extends BaseMob
 
 @export var min_speed: float= 2.0
@@ -10,7 +11,9 @@ extends BaseMob
 @onready var visual: Node2D = $Visual
 @onready var apply_color_to: Array[Node2D]= [$Visual/Polygon2D, $Visual/Polygon2D2]
 @onready var dry_timer: Timer = $"Dry Timer"
+@onready var mouth = $Mouth
 
+var is_hooked: bool= false
 
 
 func _ready():
@@ -21,6 +24,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if is_hooked: return
+	
 	if tile_detector.is_in_fluid():
 		dry_timer.stop()
 		if move_and_collide(velocity * delta, true) or velocity.y > max_speed:
@@ -63,3 +68,14 @@ func my_is_on_floor()-> bool:
 	if get_last_slide_collision():
 		return get_last_slide_collision().get_normal().is_equal_approx(Vector2.UP)
 	return false
+
+
+func hook_interest(hook: FishingRodHookBody):
+	velocity= mouth.global_position.direction_to(hook.global_position) * max_speed
+
+
+func hook(hook: FishingRodHookBody):
+	is_hooked= true
+	scale.x= 1
+	look_at(hook.global_position)
+	reparent(hook)
