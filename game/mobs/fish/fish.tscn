@@ -76,14 +76,16 @@ points = PackedVector2Array(-18, 2, -14, 2)
 width = 1.0
 default_color = Color(0.236334, 0.236334, 0.236334, 1)
 
-[node name="Dry Timer" type="Timer" parent="." index="3"]
+[node name="Mouth" type="Marker2D" parent="." index="3"]
+
+[node name="Dry Timer" type="Timer" parent="." index="4"]
 wait_time = 10.0
 one_shot = true
 
-[node name="HealthComponent" parent="." index="4"]
+[node name="HealthComponent" parent="." index="5"]
 max_hitpoints = 1
 
-[node name="State Machine" parent="." index="6"]
+[node name="State Machine" parent="." index="7"]
 allow_no_state = true
 
 [connection signal="timeout" from="Dry Timer" to="." method="die"]
