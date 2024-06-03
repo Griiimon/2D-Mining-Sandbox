@@ -10,7 +10,8 @@ func on_enter():
 
 
 func on_physics_process(_delta: float):
-	assert(player.has_hand_object() and player.get_hand_object() is FishingRod)
+	if not player.has_hand_object() or not player.get_hand_object() is FishingRod:
+		return
 	if (player.get_hand_object() as FishingRod).reel_in: return
 	mouse_actions()
 
