@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d21rx68kgfg2h"]
+[gd_scene load_steps=7 format=3 uid="uid://d21rx68kgfg2h"]
 
 [ext_resource type="Script" path="res://game/items/fishing rod/fishing_rod.gd" id="1_47up6"]
 [ext_resource type="Script" path="res://game/items/fishing rod/hook.gd" id="2_0jkae"]
@@ -7,11 +7,18 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_42r2k"]
 radius = 2.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ut2f"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yphd4"]
+radius = 5.0
+
 [node name="Fishing Rod" type="Node2D"]
 script = ExtResource("1_47up6")
 reel_in_speed = 200.0
 
 [node name="Line" type="Line2D" parent="."]
+visible = false
 position = Vector2(31, -32)
 points = PackedVector2Array(0, 0, 0, 24)
 closed = true
@@ -23,6 +30,7 @@ end_cap_mode = 2
 position = Vector2(31, -8)
 
 [node name="Hook" type="Line2D" parent="."]
+top_level = true
 position = Vector2(31, -8)
 points = PackedVector2Array(0, 0, 0, 2, -2, 2)
 width = 1.0
@@ -42,8 +50,27 @@ disabled = true
 [node name="Tile Detector" parent="Hook/Hook body" instance=ExtResource("3_ia6ln")]
 active = false
 
+[node name="Fish Interest Area" type="Area2D" parent="Hook/Hook body"]
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hook/Hook body/Fish Interest Area"]
+shape = SubResource("CircleShape2D_0ut2f")
+
+[node name="Fish Hook Area" type="Area2D" parent="Hook/Hook body"]
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hook/Hook body/Fish Hook Area"]
+shape = SubResource("CircleShape2D_yphd4")
+
 [node name="Rod" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 32, -32)
 width = 3.0
 default_color = Color(0.508875, 0.221579, 0.111003, 1)
 begin_cap_mode = 2
+
+[connection signal="body_entered" from="Hook/Hook body/Fish Interest Area" to="Hook/Hook body" method="_on_fish_interest_area_body_entered"]
+[connection signal="body_entered" from="Hook/Hook body/Fish Hook Area" to="Hook/Hook body" method="_on_fish_hook_area_body_entered"]
