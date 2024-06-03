@@ -1,6 +1,7 @@
 extends Game
 
 
+
 func _ready():
 	super()
 	world.spawn_block_entity(DataManager.block_entities[0], Vector2i(-7, 6))
