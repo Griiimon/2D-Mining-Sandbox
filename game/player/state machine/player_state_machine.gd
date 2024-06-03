@@ -53,3 +53,7 @@ func _on_player_ui_select_buildable(buildable: Buildable):
 
 func _on_exit_vehicle():
 	change_state(default_state)
+
+
+func release_charge(charge_primary: bool, total_charge: float):
+	player.release_charge(charge_primary, total_charge)
