@@ -8,10 +8,22 @@ extends HandItemObject
 @onready var hook_body: FishingRodHookBody = %"Hook body"
 @onready var hook_orig_position = $"Hook Orig Position"
 
+var line_orig_position: Node2D
 
 var hook_tween: Tween
 var reel_in: bool= false
+var previous_line_pos: Vector2
 
+
+
+func _ready():
+	line_orig_position= Node2D.new()
+	line_orig_position.position= line.global_position
+	add_child(line_orig_position)
+	line_orig_position.global_position= line.global_position
+	line.top_level= true
+	await get_tree().process_frame
+	line.show()
 
 
 func on_equip():
@@ -25,16 +37,22 @@ func on_unequip():
 func action(primary: bool):
 	if not primary:
 		reel_in= true
+		#hook.top_level= true
+		previous_line_pos= line.global_position
 
 
 func release_charge(total_charge: float, primary: bool):
 	if not primary: return
-	
-	hook_body.shoot(hook_orig_position.global_position, total_charge, (transform.x - transform.y).normalized())
+	hook_body.shoot(hook_orig_position.global_position, total_charge, (global_transform.x - global_transform.y).normalized())
 
 
 func _process(delta):
-	if not hook_body.top_level: return
+	line.global_position= line_orig_position.global_position
+	line.points[-1]= line.to_local(hook.global_position)
+
+	if not hook_body.top_level: 
+		hook.global_position= hook_orig_position.global_position
+		return
 
 	if reel_in:
 		hook_body.position= hook_body.position.move_toward(hook_orig_position.global_position, reel_in_speed * delta)
@@ -43,5 +61,13 @@ func _process(delta):
 			hook_body.top_level= false
 			hook_body.position= Vector2.ZERO
 	
-	hook.global_position= hook_body.global_position
-	line.points[-1]= line.to_local(hook.global_position)
+	hook.global_position= lerp(hook.global_position, hook_body.global_position, delta * 10)
+
+
+func _physics_process(delta):
+	if not reel_in: return
+	
+	if hook_body.global_position.distance_squared_to(line.global_position) >\
+		hook_body.global_position.distance_squared_to(previous_line_pos):
+			hook_body.global_position+= line.global_position - previous_line_pos
+	previous_line_pos= line.global_position
