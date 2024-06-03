@@ -1,3 +1,4 @@
+class_name FishingRod
 extends HandItemObject
 
 @export var reel_in_speed: float= 500.0
@@ -10,7 +11,6 @@ extends HandItemObject
 
 var hook_tween: Tween
 var reel_in: bool= false
-
 
 
 
