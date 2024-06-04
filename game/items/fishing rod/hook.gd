@@ -3,11 +3,16 @@ extends CharacterBody2D
 
 @export var speed: float= 50.0
 @export var gravity: float= 100.0
+@export var hook_time: float= 0.2
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var tile_detector: TileDetector = $"Tile Detector"
 @onready var fish_interest_area = $"Fish Interest Area"
 @onready var fish_hook_area = $"Fish Hook Area"
+
+
+var can_hook: bool= true
+var fish: Fish
 
 
 
@@ -48,6 +53,20 @@ func _on_fish_interest_area_body_entered(body):
 
 
 func _on_fish_hook_area_body_entered(body):
+	if not can_hook: return
 	assert(body is BaseMob)
 	if body is Fish:
-		body.hook(self)
+		fish= body
+		fish.hook(self)
+		can_hook= false
+
+
+func reel_in():
+	if not fish: return
+	var store_position: Vector2= global_position
+	await get_tree().create_timer(hook_time).timeout
+	var world_item: WorldItem= fish.world.spawn_item(fish.item, global_position)
+	world_item.velocity= global_position - store_position
+	fish.queue_free()
+	fish= null
+	can_hook= true
