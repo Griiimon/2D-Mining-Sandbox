@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://evryq0c23cxa"]
+[gd_scene load_steps=6 format=3 uid="uid://evryq0c23cxa"]
 
 [ext_resource type="PackedScene" uid="uid://dlb6166tyk62s" path="res://game/mobs/base_mob.tscn" id="1_n0328"]
 [ext_resource type="Script" path="res://game/mobs/fish/fish.gd" id="2_80siq"]
+[ext_resource type="Resource" uid="uid://c20pc7lypxugj" path="res://game/items/fish/fish.tres" id="3_6ne3w"]
 [ext_resource type="PackedScene" uid="uid://kp5ss4gudwu3" path="res://game/components/tile detector/tile_detector.tscn" id="3_t4y5j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6tiwo"]
@@ -17,6 +18,7 @@ max_speed = 8.0
 gravity = 100.0
 jump_velocity = -20.0
 colors = Array[Color]([Color(0.796078, 0.521569, 0.0980392, 1), Color(0.999732, 0.213296, 0.160225, 1), Color(0.101961, 0.843137, 0.0392157, 1)])
+item = ExtResource("3_6ne3w")
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, -1)
