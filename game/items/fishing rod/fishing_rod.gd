@@ -39,7 +39,7 @@ func action(primary: bool):
 		reel_in= true
 		#hook.top_level= true
 		previous_line_pos= line.global_position
-
+		hook_body.reel_in()
 
 func release_charge(total_charge: float, primary: bool):
 	if not primary: return
