@@ -59,6 +59,7 @@ monitorable = false
 shape = SubResource("CircleShape2D_0ut2f")
 
 [node name="Fish Hook Area" type="Area2D" parent="Hook/Hook body"]
+position = Vector2(0, 2)
 collision_mask = 8
 monitoring = false
 monitorable = false
