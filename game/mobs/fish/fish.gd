@@ -6,6 +6,7 @@ extends BaseMob
 @export var gravity: float= 100.0
 @export var jump_velocity: float= -20.0
 @export var colors: Array[Color]
+@export var item: Item
 
 @onready var tile_detector: TileDetector = $"Tile Detector"
 @onready var visual: Node2D = $Visual
@@ -43,6 +44,7 @@ func _physics_process(delta):
 	
 	if not is_zero_approx(velocity.x):
 		visual.scale.x= sign(velocity.x)
+	
 	move_and_slide()
 
 
@@ -76,6 +78,6 @@ func hook_interest(hook: FishingRodHookBody):
 
 func hook(hook: FishingRodHookBody):
 	is_hooked= true
-	scale.x= 1
-	look_at(hook.global_position)
-	reparent(hook)
+	scale= Vector2(1, 1)
+	look_at(global_position + Vector2.DOWN)
+	reparent.call_deferred(hook)
