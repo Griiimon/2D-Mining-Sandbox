@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c20pc7lypxugj"]
+
+[ext_resource type="Script" path="res://game/items/item.gd" id="1_8j0x5"]
+[ext_resource type="Texture2D" uid="uid://c36khwt0tuk5b" path="res://game/items/fish/fish.png" id="2_tbfsl"]
+
+[resource]
+script = ExtResource("1_8j0x5")
+texture = ExtResource("2_tbfsl")
+can_stack = true
+tags = Array[Resource("res://game/tags/tag.gd")]([])
+fuel_value = 0.0
+name = "fish"
