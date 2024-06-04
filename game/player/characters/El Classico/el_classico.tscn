@@ -410,9 +410,4 @@ max_detail_level = 4
 [node name="AudioStreamPlayer Hurt" type="AudioStreamPlayer" parent="." index="12"]
 stream = ExtResource("4_1s88t")
 
-[node name="Default" parent="State Machine" index="0"]
-can_move = true
-auto_play_animation = ""
-auto_stop_animation = true
-
 [connection signal="report_damage" from="Health Component" to="." method="_on_health_component_report_damage"]
