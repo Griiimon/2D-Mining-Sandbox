@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://game/ui/admin/water_row_state.gd" id="3_q0dwu"]
 [ext_resource type="Resource" uid="uid://d4hbmp48eqem4" path="res://game/blocks/water blocks/water_block.tres" id="4_slikf"]
 [ext_resource type="Script" path="res://game/ui/admin/spawn_scene.gd" id="5_pj31t"]
-[ext_resource type="PackedScene" uid="uid://cem7rnoxns4c7" path="res://game/vehicles/boat/boat.tscn" id="6_3wqfx"]
+[ext_resource type="PackedScene" uid="uid://dhm7k4rl1tsa7" path="res://game/vehicles/rocket/rocket.tscn" id="6_wfd7e"]
 [ext_resource type="Script" path="res://game/ui/admin/spawn_mob.gd" id="7_ueemw"]
 [ext_resource type="Resource" uid="uid://dqthv8ifl1hw0" path="res://game/mobs/fish/fish.tres" id="8_lxgvb"]
 
@@ -62,7 +62,7 @@ water_block = ExtResource("4_slikf")
 
 [node name="Spawn Scene" type="Node" parent="State Machine"]
 script = ExtResource("5_pj31t")
-scene = ExtResource("6_3wqfx")
+scene = ExtResource("6_wfd7e")
 
 [node name="Spawn Mob" type="Node" parent="State Machine"]
 script = ExtResource("7_ueemw")
