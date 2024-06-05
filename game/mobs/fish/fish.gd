@@ -29,9 +29,9 @@ func _physics_process(delta):
 	
 	if tile_detector.is_in_fluid():
 		dry_timer.stop()
-		if move_and_collide(velocity * delta, true) or velocity.y > max_speed:
+		if get_slide_collision_count() > 0 or move_and_collide(velocity * delta, true) or velocity.y > max_speed:
 			rand_velocity()
-			return
+			#return
 	else:
 		if dry_timer.is_stopped():
 			dry_timer.start()
@@ -51,7 +51,6 @@ func _physics_process(delta):
 func rand_velocity():
 	velocity= Vector2.from_angle(randf() * 2 * PI)
 	velocity*= randf_range(min_speed, max_speed)
-	prints("Fish velocity", velocity)
 
 
 func die():
