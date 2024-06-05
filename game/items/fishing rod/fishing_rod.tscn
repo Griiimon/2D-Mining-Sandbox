@@ -66,6 +66,7 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hook/Hook body/Fish Hook Area"]
 shape = SubResource("CircleShape2D_yphd4")
+debug_color = Color(0.954236, 0.178437, 0.311326, 0.42)
 
 [node name="Rod" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 32, -32)
