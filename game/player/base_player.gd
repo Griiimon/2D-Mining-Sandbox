@@ -239,6 +239,7 @@ func equip_hand_item(item: HandItem):
 
 func unequip_hand_item():
 	if has_hand_object():
+		get_hand_object().on_unequip()
 		get_hand_object().queue_free()
 		hand_item_obj= null
 		await get_tree().process_frame

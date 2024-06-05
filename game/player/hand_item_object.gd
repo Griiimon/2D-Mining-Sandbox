@@ -43,6 +43,10 @@ func on_equip():
 			damage_area.exclude_hurtbox= hurt_box
 
 
+func on_unequip():
+	pass
+
+
 func can_mine()-> bool:
 	return type.can_mine()
 
