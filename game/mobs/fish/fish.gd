@@ -51,6 +51,7 @@ func _physics_process(delta):
 func rand_velocity():
 	velocity= Vector2.from_angle(randf() * 2 * PI)
 	velocity*= randf_range(min_speed, max_speed)
+	prints("Fish velocity", velocity)
 
 
 func die():
@@ -60,7 +61,7 @@ func die():
 	
 	%Eye.hide()
 	%"Dead Eye".show()
-	scale.y= -1
+	visual.scale.y= -1
 	
 	await get_tree().create_timer(10).timeout
 	queue_free()
@@ -77,7 +78,10 @@ func hook_interest(hook: FishingRodHookBody):
 
 
 func hook(hook: FishingRodHookBody):
+	if is_hooked: return
 	is_hooked= true
-	scale= Vector2(1, 1)
-	look_at(global_position + Vector2.DOWN)
+	visual.scale= Vector2(1, 1)
+	look_at(global_position + Vector2.UP)
 	reparent.call_deferred(hook)
+	await get_tree().process_frame
+	position= Vector2.ZERO
