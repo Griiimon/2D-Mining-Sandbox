@@ -65,11 +65,11 @@ func replace(world: World, block_pos: Vector2i, new_block: Block):
 	world.set_block(new_block, block_pos)
 
 
-func on_chunk_generated(world: World, block_pos: Vector2i):
+func on_chunk_generated(_world: World, _block_pos: Vector2i):
 	pass
 
 
-func on_random_update(world: World, block_pos: Vector2i):
+func on_random_update(_world: World, _block_pos: Vector2i):
 	pass
 
 

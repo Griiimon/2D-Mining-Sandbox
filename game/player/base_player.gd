@@ -380,7 +380,7 @@ func init_block_indicators():
 	block_breaker.hide()
 
 
-func on_start_mining(action_name: String):
+func on_start_mining(_action_name: String):
 	pass
 
 

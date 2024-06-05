@@ -13,7 +13,7 @@ func on_tick(world: World, block_pos: Vector2i):
 		finalize(world, block_pos)
 		return
 	
-	var neighbor_positions: Array[Vector2i]
+	var neighbor_positions: Array[Vector2i]= []
 	var left_right:= [-1, 1]
 	left_right.shuffle()
 	neighbor_positions.append(block_pos + Vector2i.DOWN)
@@ -76,7 +76,7 @@ func flow(world: World, block_pos: Vector2i, neighbor_pos: Vector2i, neighbor_bl
 	(world.get_block(neighbor_pos) as FluidBlock).finalize(world, neighbor_pos)
 
 
-func on_neighbor_update(world: World, block_pos: Vector2i, neighbor_pos: Vector2i):
+func on_neighbor_update(world: World, block_pos: Vector2i, _neighbor_pos: Vector2i):
 	#if neighbor_pos.y >= block_pos.y:
 	world.schedule_block(block_pos)
 

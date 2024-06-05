@@ -5,7 +5,7 @@ extends CanvasLayer
 
 
 
-func _process(delta):
+func _process(_delta):
 	var y: float= get_viewport().get_camera_2d().global_position.y
 	var shader: ShaderMaterial= sky.material
 	shader.set_shader_parameter("y", y)

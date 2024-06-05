@@ -21,7 +21,7 @@ func _exit_tree():
 	on_despawn()
 
 
-func tick(world: World):
+func tick(_world: World):
 	pass
 
 
