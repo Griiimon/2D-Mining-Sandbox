@@ -27,6 +27,7 @@ func _ready():
 
 
 func on_equip():
+	super()
 	get_player().state_machine.change_state(get_player().state_machine.fishing_state)
 
 
