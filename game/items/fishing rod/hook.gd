@@ -68,7 +68,7 @@ func reel_in():
 	if not fish: return
 	var world_item: WorldItem= fish.world.spawn_item(fish.item, global_position)
 	world_item.velocity= global_position - store_position
-	world_item.x_damping= 0.1
+	world_item.x_damping= 0.01
 	fish.queue_free()
 	fish= null
 	can_hook= true
