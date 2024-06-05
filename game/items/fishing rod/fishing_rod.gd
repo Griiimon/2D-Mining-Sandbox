@@ -41,6 +41,7 @@ func action(primary: bool):
 		previous_line_pos= line.global_position
 		hook_body.reel_in()
 
+
 func release_charge(total_charge: float, primary: bool):
 	if not primary: return
 	hook_body.shoot(hook_orig_position.global_position, total_charge, (global_transform.x - global_transform.y).normalized())
