@@ -23,8 +23,6 @@ func _ready():
 func shoot(from: Vector2, force: float, dir: Vector2):
 	velocity= force * dir * speed
 	collision_shape.set_deferred("disabled", false)
-	fish_hook_area.set_deferred("monitoring", true)
-	fish_interest_area.set_deferred("monitoring", true)
 	tile_detector.active= true
 	top_level= true
 	position= from
@@ -34,8 +32,8 @@ func shoot(from: Vector2, force: float, dir: Vector2):
 func _physics_process(delta):
 	if tile_detector.is_in_fluid():
 		collision_shape.set_deferred("disabled", true)
-		fish_hook_area.set_deferred("monitoring", false)
-		fish_interest_area.set_deferred("monitoring", false)
+		fish_hook_area.set_deferred("monitoring", true)
+		fish_interest_area.set_deferred("monitoring", true)
 		tile_detector.active= false
 		
 		set_physics_process(false)
@@ -62,11 +60,15 @@ func _on_fish_hook_area_body_entered(body):
 
 
 func reel_in():
+	fish_hook_area.set_deferred("monitoring", false)
+	fish_interest_area.set_deferred("monitoring", false)
 	if not fish: return
 	var store_position: Vector2= global_position
 	await get_tree().create_timer(hook_time).timeout
+	if not fish: return
 	var world_item: WorldItem= fish.world.spawn_item(fish.item, global_position)
 	world_item.velocity= global_position - store_position
+	world_item.x_damping= 0.1
 	fish.queue_free()
 	fish= null
 	can_hook= true
