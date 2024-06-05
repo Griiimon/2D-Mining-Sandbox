@@ -2,6 +2,8 @@
 # latest        #
 ##################
 
+- rocket
+- fishing rod
 - fish
 - clouds
 - render background
