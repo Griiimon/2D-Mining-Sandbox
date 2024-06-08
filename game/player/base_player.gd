@@ -46,6 +46,7 @@ const FLY_SPEED_FACTOR= 4.0
 @onready var vehicle_logic: PlayerVehicleLogic = $Vehicle
 
 @onready var state_machine: PlayerStateMachine = $"State Machine"
+@onready var coyote_timer: Timer = $"Coyote Timer"
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -68,6 +69,7 @@ var active_effects: Array[PlayerEffect]
 
 var in_vehicle: Vehicle
 
+var can_jump:= true
 
 
 func _ready():
@@ -76,12 +78,12 @@ func _ready():
 	var game: Game= get_parent()
 	assert(game)
 	game.player= self
-	
+
 	ray_cast= mine_raycast_scene.instantiate()
 	look_pivot.add_child(ray_cast)
-	
+
 	inventory.update.connect(update_inventory)
-	
+
 	init_block_indicators()
 
 	init_loadout()
@@ -89,9 +91,9 @@ func _ready():
 
 func _process(_delta):
 	if freeze: return
-	
+
 	var mouse_pos: Vector2= get_global_mouse_position()
-	
+
 	if mouse_pos.x >= position.x:
 		body.scale.x= 1
 	else:
@@ -108,7 +110,7 @@ func _physics_process(delta):
 	else:
 		if state_machine.current_state.can_move:
 			movement(delta)
-	
+
 	tick_effects()
 
 	if Input.is_action_just_pressed("drop_item") and has_hand_object():
@@ -119,11 +121,12 @@ func movement(delta):
 	if is_swimming():
 		swim(delta)
 		return
-	
+
 	if Global.game.cheats.fly:
 		fly(delta)
 		return
-	
+
+
 	if not is_on_floor():
 		if low_tile_detector.is_in_fluid():
 			velocity.y+= gravity / 20 * delta
@@ -137,10 +140,21 @@ func movement(delta):
 		#velocity.x= move_toward(velocity.x, 0, speed)
 		velocity.x= 0
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y= get_jump_velocity()
-		on_movement_jump()
+	if is_on_floor():
+		coyote_timer.start()
+		coyote_timer.set_paused(true)
+		can_jump = true
+
+	else:
+		coyote_timer.set_paused(false)
+
+	if Input.is_action_just_pressed("jump") and coyote_timer.time_left > 0:
+		if can_jump:
+			can_jump = false
+			velocity.y= get_jump_velocity()
+			on_movement_jump()
 	elif is_on_floor():
+
 		if abs(velocity.x) > 0:
 			on_movement_walk()
 		else:
@@ -185,7 +199,7 @@ func on_movement_stop():
 
 func swim(delta: float):
 	on_swim()
-	
+
 	var direction= Input.get_axis("left", "right")
 	if direction:
 		velocity.x= move_toward(velocity.x, direction * swim_speed, swim_acceleration)
@@ -194,9 +208,9 @@ func swim(delta: float):
 		velocity.y= -swim_speed
 	elif Input.is_action_pressed("down") and not is_on_floor():
 		velocity.y= swim_speed
-	
+
 	move_and_slide()
-	
+
 	velocity*= 1 - delta * swim_damping
 
 
@@ -224,10 +238,10 @@ func release_charge(charge_primary: bool, total_charge: float):
 func equip_hand_item(item: HandItem):
 	await unequip_hand_item()
 	assert(not hand_item_obj and not has_hand_object())
-	
+
 	var obj_scene: PackedScene
 	if item.type == HandItem.Type.THROWABLE:
-		obj_scene= virtual_thrower_scene 
+		obj_scene= virtual_thrower_scene
 	else:
 		obj_scene= item.scene
 
@@ -252,7 +266,7 @@ func hand_action_executed(action_name: String= "", primary: bool= true):
 			get_hand_object().on_equip()
 		else:
 			get_hand_object().queue_free()
-	
+
 	if action_name:
 		subscribe_hand_action_finished(action_name, hand_action_finished)
 	else:
@@ -303,7 +317,7 @@ func pickup(item: Item):
 
 func add_item_to_inventory(item: Item, count: int= 1):
 	inventory.add_new_item(item, count)
-	
+
 	if not has_hand_object():
 		check_hotbar_hand_item()
 
@@ -373,7 +387,7 @@ func init_block_indicators():
 	add_child(block_marker)
 	block_marker.top_level= true
 	block_marker.hide()
-	
+
 	block_breaker= block_breaker_scene.instantiate()
 	add_child(block_breaker)
 	block_breaker.top_level= true
@@ -394,12 +408,12 @@ func is_swimming()-> bool:
 
 func get_max_speed()-> float:
 	var result: float= speed
-	
+
 	if low_tile_detector.is_in_fluid() or mid_tile_detector.is_in_fluid():
 		result/= 2
-	
+
 	result*= get_effect_multiplier(PlayerEffect.Type.MOVE_SPEED)
-	
+
 	return result
 
 
