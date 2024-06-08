@@ -47,6 +47,7 @@ const FLY_SPEED_FACTOR= 4.0
 
 @onready var state_machine: PlayerStateMachine = $"State Machine"
 @onready var coyote_timer: Timer = $"Coyote Timer"
+@onready var jump_buffer_timer: Timer = $"Jump Buffer Timer"
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -69,7 +70,7 @@ var active_effects: Array[PlayerEffect]
 
 var in_vehicle: Vehicle
 
-var can_jump:= true
+var has_jumped:= false
 
 
 func _ready():
@@ -143,18 +144,22 @@ func movement(delta):
 	if is_on_floor():
 		coyote_timer.start()
 		coyote_timer.set_paused(true)
-		can_jump = true
-
+		has_jumped = false
+		print (has_jumped)
+		if jump_buffer_timer.time_left > 0:
+			print("buffer")
+			jump()
 	else:
 		coyote_timer.set_paused(false)
 
-	if Input.is_action_just_pressed("jump") and coyote_timer.time_left > 0:
-		if can_jump:
-			can_jump = false
-			velocity.y= get_jump_velocity()
-			on_movement_jump()
-	elif is_on_floor():
+	if Input.is_action_just_pressed("jump"):
+		if not has_jumped and coyote_timer.time_left > 0:
+			print("normal")
+			jump()
+		elif has_jumped:
+			jump_buffer_timer.start()
 
+	if is_on_floor():
 		if abs(velocity.x) > 0:
 			on_movement_walk()
 		else:
@@ -172,6 +177,10 @@ func movement(delta):
 
 	move_and_slide()
 
+func jump():
+	has_jumped = true
+	velocity.y= get_jump_velocity()
+	on_movement_jump()
 
 func get_jump_velocity()-> float:
 	var result: float= jump_velocity
