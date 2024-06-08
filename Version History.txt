@@ -2,6 +2,7 @@
 # latest        #
 ##################
 
+- jump buffer and coyote timer
 - rocket
 - fishing rod
 - fish
