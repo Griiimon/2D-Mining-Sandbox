@@ -145,16 +145,13 @@ func movement(delta):
 		coyote_timer.start()
 		coyote_timer.set_paused(true)
 		has_jumped = false
-		print (has_jumped)
 		if jump_buffer_timer.time_left > 0:
-			print("buffer")
 			jump()
 	else:
 		coyote_timer.set_paused(false)
 
 	if Input.is_action_just_pressed("jump"):
 		if not has_jumped and coyote_timer.time_left > 0:
-			print("normal")
 			jump()
 		elif has_jumped:
 			jump_buffer_timer.start()
