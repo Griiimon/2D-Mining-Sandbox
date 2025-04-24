@@ -5,6 +5,11 @@ extends BasePlayer
 @onready var animation_player_feet = $"AnimationPlayer Feet"
 
 
+func _process(_delta):
+	if velocity.length() > 0:
+		# When moving, update the body rotation to match the movement direction
+		body.rotation = velocity.angle()
+
 
 func on_movement_jump():
 	animation_player_feet.play("jump")
