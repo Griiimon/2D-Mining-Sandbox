@@ -10,7 +10,7 @@ const FLY_SPEED_FACTOR= 4.0
 @export var top_down_mode: bool= false
 
 @export_category("Movement")
-@export var speed: float = 100.0
+@export var speed: float = 200.0
 @export var jump_velocity: float = -300.0
 @export var mining_speed: float= 1.0
 @export var swim_speed: float= 30.0
@@ -186,11 +186,21 @@ func sidescroll_movement(delta):
 	move_and_slide()
 
 
-func top_down_movement(delta):
-	var move_axis= Input.get_axis("down", "up")
-	velocity= look_pivot.global_transform.x * move_axis * get_max_speed()
-	move_and_slide()
+func top_down_movement(_delta):
+	var direction = Input.get_vector("left", "right", "up", "down")
+	if direction.length() > 0:
+		velocity = direction.normalized() * get_max_speed() * 1.5
+		on_movement_walk()
+	else:
+		velocity = Vector2.ZERO
+		on_movement_stop()
 	
+	# Update look_pivot only if character should still face mouse
+	var mouse_pos: Vector2 = get_global_mouse_position()
+	look_pivot.look_at(mouse_pos)
+	
+	move_and_slide()
+
 
 func jump():
 	has_jumped = true
