@@ -34,7 +34,7 @@ Learn how to participate in a team project in a safe and judgement free zone. Be
 
 You can also contribute by reporting a bug or making a feature request by opening an [Issue](https://github.com/Griiimon/2D-Mining-Sandbox/issues).
 
-Please feel free to ask me anyting or leave feedback in the [Discussions Section](https://github.com/Griiimon/2D-Mining-Sandbox/discussions) or on [Discord](https://discord.com/invite/ejxEZPcu)!
+Please feel free to ask me anyting or leave feedback in the [Discussions Section](https://github.com/Griiimon/2D-Mining-Sandbox/discussions)!
 
 
 Contribute
