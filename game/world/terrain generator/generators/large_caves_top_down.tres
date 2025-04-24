@@ -1,0 +1,113 @@
+[gd_resource type="Resource" script_class="TerrainGenerator" load_steps=25 format=3 uid="uid://b2kuuuty8rqw"]
+
+[ext_resource type="Resource" uid="uid://bv3qfie2av8dh" path="res://game/blocks/stone block/stone_block.tres" id="1_6hlh7"]
+[ext_resource type="Script" path="res://game/world/terrain generator/terrain_block_distribution.gd" id="2_3mx5x"]
+[ext_resource type="Script" path="res://game/world/terrain generator/terrain_generator_instruction.gd" id="3_wr10g"]
+[ext_resource type="Resource" uid="uid://dxe3ydhcx4yc8" path="res://game/blocks/clay block/clay_block.tres" id="4_a6agh"]
+[ext_resource type="Resource" uid="uid://d12w8mbqpsyov" path="res://game/blocks/coal block/coal_block.tres" id="5_78eno"]
+[ext_resource type="Resource" uid="uid://obgjml6tlfcn" path="res://game/blocks/iron block/iron_block.tres" id="6_qqg3o"]
+[ext_resource type="Resource" uid="uid://8qexa73jgb56" path="res://game/blocks/godot block/godot_block.tres" id="7_x50ci"]
+[ext_resource type="Resource" uid="uid://cjykj5i260i0c" path="res://game/blocks/air block/air_block.tres" id="8_s7mqo"]
+[ext_resource type="Script" path="res://game/world/terrain generator/terrain_generator.gd" id="10_0mc18"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_busjf"]
+frequency = 0.0287
+
+[sub_resource type="Resource" id="Resource_kl7g2"]
+script = ExtResource("2_3mx5x")
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("1_6hlh7")])
+noise_threshold = 0.0
+
+[sub_resource type="Resource" id="Resource_6iihd"]
+script = ExtResource("3_wr10g")
+top_down = true
+min_height = 0
+max_height = 0
+distribution = SubResource("Resource_kl7g2")
+is_cave = false
+ignore_height = false
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j2pit"]
+frequency = 0.0267
+
+[sub_resource type="Resource" id="Resource_fapk4"]
+script = ExtResource("2_3mx5x")
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("4_a6agh")])
+noise = SubResource("FastNoiseLite_j2pit")
+noise_threshold = 0.4
+
+[sub_resource type="Resource" id="Resource_wxe8e"]
+script = ExtResource("3_wr10g")
+top_down = true
+min_height = 0
+max_height = 0
+distribution = SubResource("Resource_fapk4")
+is_cave = false
+ignore_height = false
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6egp1"]
+frequency = 0.2021
+
+[sub_resource type="Resource" id="Resource_skq5p"]
+script = ExtResource("2_3mx5x")
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("5_78eno"), ExtResource("6_qqg3o")])
+noise = SubResource("FastNoiseLite_6egp1")
+noise_threshold = 0.39
+
+[sub_resource type="Resource" id="Resource_akyxm"]
+script = ExtResource("3_wr10g")
+top_down = true
+min_height = 0
+max_height = 0
+distribution = SubResource("Resource_skq5p")
+is_cave = false
+ignore_height = false
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5lybx"]
+noise_type = 4
+frequency = 0.6583
+
+[sub_resource type="Resource" id="Resource_b0jq7"]
+script = ExtResource("2_3mx5x")
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("7_x50ci")])
+noise = SubResource("FastNoiseLite_5lybx")
+noise_threshold = 0.42
+
+[sub_resource type="Resource" id="Resource_6r1w7"]
+script = ExtResource("3_wr10g")
+top_down = true
+min_height = 0
+max_height = 0
+distribution = SubResource("Resource_b0jq7")
+is_cave = false
+ignore_height = false
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6losj"]
+frequency = 0.0125
+fractal_type = 2
+fractal_octaves = 3
+fractal_lacunarity = 2.41
+fractal_gain = 0.77
+domain_warp_amplitude = 27.995
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="Resource" id="Resource_ityl7"]
+script = ExtResource("2_3mx5x")
+blocks = Array[Resource("res://game/blocks/block.gd")]([ExtResource("8_s7mqo")])
+noise = SubResource("FastNoiseLite_6losj")
+noise_threshold = 0.2
+
+[sub_resource type="Resource" id="Resource_gkaed"]
+script = ExtResource("3_wr10g")
+top_down = true
+min_height = 0
+max_height = 0
+distribution = SubResource("Resource_ityl7")
+is_cave = false
+ignore_height = false
+
+[resource]
+script = ExtResource("10_0mc18")
+instructions = Array[ExtResource("3_wr10g")]([SubResource("Resource_6iihd"), SubResource("Resource_wxe8e"), SubResource("Resource_akyxm"), SubResource("Resource_6r1w7"), SubResource("Resource_gkaed")])
+height_noise = SubResource("FastNoiseLite_busjf")
+height_scale = 10.0

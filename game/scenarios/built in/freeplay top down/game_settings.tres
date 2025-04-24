@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GameSettings" load_steps=2 format=3 uid="uid://dpkddexaakklt"]
+
+[ext_resource type="Script" path="res://game/game_settings.gd" id="1_bvqmk"]
+
+[resource]
+script = ExtResource("1_bvqmk")
+world_seed = 0
+player_spawn = Vector2i(0, 0)
+spawn_clearing_radius = 4
+respawn_on_death = true
+top_down_mode = true

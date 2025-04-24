@@ -31,8 +31,10 @@ func _ready():
 
 	# wait for shapecast to get collider information. necessary?
 	set_physics_process(false)
-	await get_tree().physics_frame
-	set_physics_process(true)
+	
+	if not Global.game.settings.top_down_mode:
+		await get_tree().physics_frame
+		set_physics_process(true)
 
 
 func _physics_process(delta):

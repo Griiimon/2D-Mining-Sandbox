@@ -7,6 +7,8 @@ signal break_block(block: Block)
 const DROP_THROW_FORCE= 300
 const FLY_SPEED_FACTOR= 4.0
 
+@export var top_down_mode: bool= false
+
 @export_category("Movement")
 @export var speed: float = 100.0
 @export var jump_velocity: float = -300.0
@@ -80,8 +82,12 @@ func _ready():
 	assert(game)
 	game.player= self
 
+	assert(game.settings.top_down_mode == top_down_mode)
+
 	ray_cast= mine_raycast_scene.instantiate()
 	look_pivot.add_child(ray_cast)
+
+	motion_mode= CharacterBody2D.MOTION_MODE_FLOATING if top_down_mode else CharacterBody2D.MOTION_MODE_GROUNDED
 
 	inventory.update.connect(update_inventory)
 
@@ -95,10 +101,11 @@ func _process(_delta):
 
 	var mouse_pos: Vector2= get_global_mouse_position()
 
-	if mouse_pos.x >= position.x:
-		body.scale.x= 1
-	else:
-		body.scale.x= -1
+	if not top_down_mode:
+		if mouse_pos.x >= position.x:
+			body.scale.x= 1
+		else:
+			body.scale.x= -1
 
 	look_pivot.look_at(mouse_pos)
 
@@ -110,7 +117,11 @@ func _physics_process(delta):
 		vehicle_logic.on_physics_process(delta)
 	else:
 		if state_machine.current_state.can_move:
-			movement(delta)
+			match top_down_mode:
+				true:
+					top_down_movement(delta)
+				false:
+					sidescroll_movement(delta)
 
 	tick_effects()
 
@@ -118,7 +129,7 @@ func _physics_process(delta):
 		drop_hand_item()
 
 
-func movement(delta):
+func sidescroll_movement(delta):
 	if is_swimming():
 		swim(delta)
 		return
@@ -174,10 +185,18 @@ func movement(delta):
 
 	move_and_slide()
 
+
+func top_down_movement(delta):
+	var move_axis= Input.get_axis("down", "up")
+	velocity= look_pivot.global_transform.x * move_axis * get_max_speed()
+	move_and_slide()
+	
+
 func jump():
 	has_jumped = true
 	velocity.y= get_jump_velocity()
 	on_movement_jump()
+
 
 func get_jump_velocity()-> float:
 	var result: float= jump_velocity
