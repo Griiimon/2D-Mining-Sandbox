@@ -1,0 +1,31 @@
+[gd_scene load_steps=9 format=3 uid="uid://vhn05qh6vjh6"]
+
+[ext_resource type="Script" path="res://game/game.gd" id="1_dmvog"]
+[ext_resource type="Resource" uid="uid://dpkddexaakklt" path="res://game/scenarios/built in/freeplay top down/game_settings.tres" id="2_3yd2q"]
+[ext_resource type="Script" path="res://game/cheats.gd" id="3_8u4sn"]
+[ext_resource type="PackedScene" uid="uid://baufx6u2wjni6" path="res://game/player/characters/El Classico/el_classico.tscn" id="4_x7hmm"]
+[ext_resource type="PackedScene" uid="uid://dc0j27pwmaoye" path="res://game/world/world.tscn" id="5_nfhhp"]
+[ext_resource type="Resource" uid="uid://b2kuuuty8rqw" path="res://game/world/terrain generator/generators/large_caves_top_down.tres" id="6_ie0fa"]
+[ext_resource type="Script" path="res://game/ui/camera.gd" id="7_0urn2"]
+
+[sub_resource type="Resource" id="Resource_2wtjc"]
+script = ExtResource("3_8u4sn")
+instant_mine = false
+fly = false
+
+[node name="Game" type="Node" node_paths=PackedStringArray("world")]
+script = ExtResource("1_dmvog")
+world = NodePath("World")
+settings = ExtResource("2_3yd2q")
+cheats = SubResource("Resource_2wtjc")
+can_toggle_cheats = false
+player_scene = ExtResource("4_x7hmm")
+
+[node name="World" parent="." instance=ExtResource("5_nfhhp")]
+generator = ExtResource("6_ie0fa")
+disable_environment = true
+disable_background = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("7_0urn2")
+speed = 1000.0
